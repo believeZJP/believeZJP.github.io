@@ -1,0 +1,15 @@
+*{margin:0;padding:0;}
+.myTitle{
+  background-color:#0099cc;
+  color:#FFF;
+  border-radius:5px;
+  animation:myfirst 5s infinite;
+}
+
+@keyframes myfirst
+{
+0%   {background:red;transform:rotate(20deg)}
+25%  {background:yellow;transform:rotate(90deg)}
+50%  {background:blue;transform:rotate(180deg)}
+100% {background:green;transform:rotate(3600deg)}
+}
