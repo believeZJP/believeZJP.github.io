@@ -1,0 +1,29 @@
+@height:200px;
+@color:black;
+@fontColor:#FFF;
+.relative{
+    position:relative;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.header,.footer{
+    height:@height;
+    background-color: @color;
+    color:@fontColor;
+    
+}
+.header{
+    top:0;
+    .relative;
+}
+.footer{
+    bottom: 0;
+    .relative;
+}
+.content{
+    height:@height;
+    background-color: darkgoldenrod;
+}
+
