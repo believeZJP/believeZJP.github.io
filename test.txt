@@ -1,1 +1,2 @@
-Hi,GitCafe.
+Hi,GitCafe. test for vi  haha 按i就可以编辑啦。
+  按esc可以退出编辑模式

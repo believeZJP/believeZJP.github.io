@@ -47,6 +47,7 @@ a{
 	height: inherit;
 	padding:0 25px;
 	float: left;
+	transition:background-color 0.8s;
 }
 #menu li:hover{
     background-color: #1E8FC7;
