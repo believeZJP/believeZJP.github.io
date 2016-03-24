@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>SQL技术经验列表</title>
+		<link rel="stylesheet" href="css/normalize.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/experienceStyle.css"/>
+	</head>
+	<body>
+		<header>
+			<h1 class="pageTitle">SQL经验积累</h1>
+		</header>
+		<ul>
+			<li class="liHeader">1. SQL查询优化：如何写出高性能SQL语句</li>
+			<div>
+				<h2 class="h2Title">1.查询的模糊匹配</h2>
+				<p class="pText">
+					尽量避免在一个复杂查询里面使用 LIKE '%parm1%'—— 红色标识位置的百分号会导致相关列的索引无法使用，最好不要用.<br />
+
+					解决办法:<br />
+					
+					其实只需要对该脚本略做改进，查询速度便会提高近百倍。改进方法如下：<br />
+					
+					a、修改前台程序——把查询条件的字段名称由原来的文本输入改为下拉列表，用户模糊输入字段值时，直接在前台就帮忙定位到具体的值，这样在调用后台程序时，这列就可以直接用等于来关联了。<br />
+					
+					b、直接修改后台——根据输入条件，先查出符合条件的值，并把相关记录保存在一个<strong>临时表</strong>里头，然后再用临时表去做复杂关联<br />
+				</p>
+				<h2 class="h2Title">2.索引问题</h2>
+				<p class="pText">
+					在做性能跟踪分析过程中，经常发现有不少后台程序的性能问题是因为缺少合适索引造成的，有些表甚至一个索引都没有。这种情况往往都是因为在设计表时，没去定义索引，而开发初期，由于表记录很少，索引创建与否，可能对性能没啥影响，开发人员因此也未多加重视。然一旦程序发布到生产环境，随着时间的推移，表记录越来越多<br />
+
+					这时缺少索引，对性能的影响便会越来越大了。<br />
+					
+					这个问题需要数据库设计人员和开发人员共同关注<br />
+					
+					法则：不要在建立的索引的数据列上进行下列操作:<br />
+					
+					◆避免对索引字段进行计算操作<br />
+					
+					◆避免在索引字段上使用not，<>，!=<br />
+					
+					◆避免在索引列上使用IS NULL和IS NOT NULL<br />
+					
+					◆避免在索引列上出现数据类型转换<br />
+					
+					◆避免在索引字段上使用函数<br />
+					
+					◆避免建立索引的列中使用空值。<br />
+				</p>
+				<h2 class="h2Title">3.复杂操作</h2>
+				<p class="pText">
+					部分UPDATE、SELECT 语句 写得很复杂（经常嵌套多级子查询）——可以考虑适当拆成几步，先生成一些临时数据表，再进行关联操作
+				</p>
+			</div>
+		</ul>
+	</body>
+</html>

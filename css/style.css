@@ -1,21 +1,6 @@
 body{
 	overflow: hidden;
-	height: 100%;
-	font-family: "microsoft yahei";
 }
-li{
-	list-style: none;
-}
-ul{
-	margin:0;
-	padding:0;
-}
-a{
-	text-decoration: none;
-}
-
-
-
 .header,.footer{
 	height:50px;
 	position: fixed;
@@ -41,12 +26,15 @@ a{
 #menu{
 	float: left;
 	height: inherit;
+    width: 50%;
 }
 #menu li {
 	line-height: 50px;
 	height: inherit;
-	padding:0 25px;
+	/*padding:0 25px;*/
 	float: left;
+	width: 20%;
+    text-align: center;
 	transition:background-color 0.8s;
 }
 #menu li:hover{
@@ -58,4 +46,9 @@ a{
 #menu li a {
 	color:#FFF;
 	
+}
+
+
+.insideBlock{
+	height:inherit;background-color: red;line-height: inherit;margin:50px 0;
 }
