@@ -15,4 +15,106 @@ $(document).ready(function(){
 		
 		css3: true
 	});
+	
+	var secondDataOption = {
+		"前端":{
+	            name:'前端',
+	            type:'pie',
+	            radius: ['40%', '55%'],
+	            data:[
+	                {value:4, name:'html&html5'},
+	                {value:4, name:'css&css3'},
+	                {value:3, name:'JavaScript'},
+	                {value:2, name:'node'},
+	                {value:3, name:'angularJs'},
+	                {value:4, name:'react'},
+	                {value:4, name:'less'}
+	            ]
+	        },
+		"后端":{
+	            name:'后端',
+	            type:'pie',
+	            radius: ['40%', '55%'],
+	            data:[
+	                {value:4, name:'java'},
+	                {value:1, name:'php'}
+	            ]
+	        },
+		"数据库":{
+	            name:'数据库',
+	            type:'pie',
+	            radius: ['40%', '55%'],
+	            data:[
+	                {value:3, name:'MYSQL',href:'SQLList.html'},
+	                {value:1, name:'MONGODB'},
+	                {value:1, name:'NOSQL'},
+	                {value:1, name:'其他',href:''}
+	            ]
+	        }
+	};
+	var option =   {
+		backgroundColor:'#FFFF99',
+	    tooltip: {
+	        trigger: 'item',
+	        formatter: "{a} <br/>{b}: {c} ({d}%)"
+	    },
+	    legend: {
+	        orient: 'vertical',
+	        x: 'left',
+	        data:['前端','后端','数据库','邮件营销','联盟广告','视频广告','百度','谷歌','必应','其他']
+	    },
+	    series: [
+	    	{
+	            name:'技术体系',
+	            type:'pie',
+	            selectedMode: 'single',
+	            radius: [0, '30%'],
+	
+	            label: {
+	                normal: {
+	                    position: 'inner'
+	                }
+	            },
+	            labelLine: {
+	                normal: {
+	                    show: false
+	                }
+	            },
+	            data:[
+	                {value:4, name:'前端'},
+	                {value:4, name:'后端'},
+	                {value:3, name:'数据库'}
+	            ]
+	        }
+	    	,
+	        secondDataOption["前端"]
+	    ]
+	};
+	var myChart = echarts.init(document.getElementById('techPieChart'));
+	resetPieChart();
+	//重置echarts的方法
+	function resetPieChart(){
+		myChart.setOption(option);
+		myChart.resize();
+	}
+	//暂时只会用click事件来处理
+	myChart.on("click",function(param){
+		console.log(param);
+		var data = param.data;
+		if(param.seriesIndex == 0){
+			if (data.selected) {
+				option.series[1] = secondDataOption[data.name];
+			} else{
+				option.series.splice(1,1);
+			}
+			resetPieChart();
+		}else if(param.seriesIndex == 1){
+			var href = data.href;
+			if (href) {
+				window.open(href); 
+			}
+		}
+	});
+	
+	
 });

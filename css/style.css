@@ -50,5 +50,10 @@ body{
 
 
 .insideBlock{
-	height:inherit;background-color: red;line-height: inherit;margin:50px 0;
+	height:inherit;line-height: inherit;margin:50px 0;
+}
+
+
+#techPieChart{
+	height: inherit;
 }
