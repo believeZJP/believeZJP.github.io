@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Filters 过滤器</title>
+		<style type="text/css">
+			textarea{width:100%;height: 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>AngularJS Filters 过滤器</h1>
+		<p class="intro">过滤器可以使用一个管道字符（|）添加到表达式和指令中,可用于转换数据：</p>
+	
+		<p>过滤器</p>
+		<ul>
+			<li>currency ： 格式化数字为货币格式。</li>
+			<li>lowercase : 格式化字符串为小写。</li>
+			<li>uppercase : 格式化字符串为大写。</li>
+			<li>filter : 从数组项中选择一个子集。</li>
+			<li>orderBy : 根据某个表达式排列数组。</li>
+		</ul>
+	
+		<hr />
+		<h1>代码演示</h1>
+		<div ng-app="myApp" ng-controller="namesCtrl">
+		<!--
+			/****
+			 * 本来想在一个textarea中放代码，然后点按钮在另一个div中显示效果
+			 * 但是在textarea中，就直接把代码给转成效果了，
+			 * 可以不把代码div放到ng-app中，但是这样添加绑定事件就不好公用了， 
+			 * 期待有别的办法解决，
+			 * 先做遗留问题
+			 * */
+				<div>
+				<textarea name="" id="" width="100%">
+					<div>
+						<p>姓名为 { { lastName | lowercase }}</p>
+					</div>
+				</textarea>
+		
+				<button class="btnForShow">点我看效果！</button>
+				<div class="show"></div>
+			</div>
+			-->
+			<hr />
+			请输入名字: <input type="text" ng-model="lastName" />
+			<p>名字转为小写：{{lastName | lowercase}}</p>
+			<p>名字转为大写：{{lastName | uppercase}}</p>
+			
+			
+			
+			<hr />
+			<h2>currency 过滤器</h2>
+			<p>将数字格式化为货币格式：</p>
+			<input type="number" ng-model="quantity" ng-init="quantity=0">
+			<input type="number" ng-model="price"  ng-init="price=0">
+			
+			<p>总价 = {{ (quantity * price) | currency }}</p>
+			
+			<hr />
+			<h2>向指令添加过滤器</h2>
+			<p>过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中。</p>
+			<p>orderBy 过滤器根据表达式排列数组：(此处根据country过滤)</p>
+			<ul>
+			  <li ng-repeat="x in names | orderBy:'country'">
+			    {{ x.name + ', ' + x.country }}
+			  </li>
+			</ul>
+			
+			
+			
+			<hr />
+			<h2>过滤输入</h2>
+			<p>输入过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中，该过滤器后跟一个冒号和一个模型名称。</p>
+			<p>输入过滤条件，查看效果：</p>
+			<p><input type="text" ng-model="test"></p>
+			<ul>
+			  <li ng-repeat="x in names | filter:test | orderBy:'country'">
+			    {{ (x.name | uppercase) + ', ' + x.country }}
+			  </li>
+			</ul>
+		</div>
+		
+	
+		
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/CommonUtils.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			angular.module('myApp', []).controller('namesCtrl', function($scope) {
+			   	$scope.firstName = "John",
+			    $scope.lastName = "Doe",
+			    $scope.fullName = function() {
+			        return $scope.firstName + " " + $scope.lastName;
+			    }
+				
+			    $scope.names = [
+			        {name:'Jani',country:'Norway'},
+			        {name:'Hege',country:'Sweden'},
+			        {name:'Kai',country:'Denmark'}
+			    ];
+			});
+		</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+</html>

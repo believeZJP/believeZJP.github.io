@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Table 表格</title>
+		<style>
+			table, th , td {
+			  border: 1px solid grey;
+			  border-collapse: collapse;
+			  padding: 5px;
+			}
+			table tr:nth-child(odd) {
+			  background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  background-color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<div ng-controller="myCtrl">
+			<h2>在表格中显示数据</h2>
+			<table>
+				<tr ng-repeat="x in names">
+					<td>{{x.Name}}</td>
+					<td>{{x.Country}}</td>
+				</tr>
+			</table>
+			
+			<hr />
+			<p>使用过滤器orderBy</p>
+			<table >
+				<tr ng-repeat="x in names | orderBy :'Country'">
+					<td>{{x.Name}}</td>
+					<td>{{x.Country}}</td>
+				</tr>
+			</table>
+			
+			
+			<hr />
+			<p>使用uppercase过滤器</p>
+			<table >
+				<tr ng-repeat="x in names">
+					<td>{{x.Name}}</td>
+					<td>{{x.Country | uppercase }}</td>
+				</tr>
+			</table>
+			
+			<hr />
+			<p>序号$index</p>
+			<table>
+			  <tr ng-repeat="x in names">
+			    <td>{{ $index + 1 }}</td>
+			    <td>{{ x.Name }}</td>
+			    <td>{{ x.Country }}</td>
+			  </tr>
+			</table>
+			
+			<hr />
+			<p>$even,$odd</p>
+			<table>
+			  <tr ng-repeat="x in names">
+			    <td ng-if="$odd" style="background-color:#70d9ad;">{{ x.Name }}</td>
+			    <td ng-if="$even" style="background-color:#70d9ad;">{{ x.Country }}</td>
+			    <td ng-if="$odd" >{{ x.Name }}</td>
+			    <td ng-if="$even" >{{ x.Country }}</td>
+			  </tr>
+			</table>
+			
+			
+			
+			
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			app.controller('myCtrl', function($scope, $http) {
+			    $http.get("Customers_JSON.json")
+			    .success(function (response) {$scope.names = response.records;});
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Scope作用域</title>
+	</head>
+	<body>
+		<h1>AngularJS Scope(作用域)</h1>
+		<p>Scope是应用在HTML(视图)和JavaScript(控制器)之间的纽带。</p>
+		<p>是一个对象，有可用的方法和属性</p>
+		
+		
+		<h2>如何使用Scope</h2>
+		<p>创建控制器时，将$scope对象作为一个参数传递</p>
+		<!--<a href="../firstApp.html" target="_blank">详见这里</a>-->
+		
+		<h2>Scope概述</h2>
+		<p>AngularJS 应用组成如下：</p>
+		<ul>
+			<li>View(视图), 即 HTML。</li>
+			<li>Model(模型), 当前视图中可用的数据。</li>
+			<li>Controller(控制器), 即 JavaScript 函数，可以添加或修改属性。</li>
+		</ul>
+		<p>scope 是模型。</p>
+		<p>scope 是一个 JavaScript 对象，带有属性和方法，这些属性和方法可以在视图和控制器中使用。</p>
+		
+		
+		
+		<h2>Scope 作用范围</h2>
+		<p>在大型项目中， HTML DOM 中有多个作用域，这时你就需要知道你使用的 scope 对应的作用域是哪一个。</p>
+		
+		
+		<hr />
+		<h2>根作用域</h2>
+		<p>所有的应用都有一个 <b>$rootScope</b>，它可以作用在 <b>ng-app</b> 指令包含的所有 HTML 元素中。</p>
+		<p><b>$rootScope</b> 可作用于整个应用中。是各个 controller 中 scope 的桥梁。用 rootscope 定义的值，可以在各个 controller 中使用。</p>
+		
+		<p>示例代码详见 <a href="../test/test_Scope.html" target="_blank">点我</a></p>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

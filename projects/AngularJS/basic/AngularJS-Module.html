@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Module 模块</title>
+	</head>
+	<body>
+		<div ng-controller="myCtrl">
+			<h2>AngularJS 模块</h2>
+			<p>模块定义了一个应用程序。 </p>
+			<p>模块是应用程序中不同部分的容器。</p>
+			<p>模块是应用控制器的容器。</p>
+			<p>控制器通常属于一个模块。</p>
+			<p>AngularJS 模块让所有函数的作用域在该模块下，避免了该问题。</p>
+			<hr />
+			<p>创建模块：var app = angular.module("myApp", []); </p>
+			<p>说明："myApp" 参数对应执行应用的 HTML 元素。</p>
+			<p>	在模块定义中 [] 参数用于定义模块的依赖关系。中括号[]表示该模块没有依赖，如果有依赖的话会在中括号写上依赖的模块名字。</p>
+			
+			<p>在 AngularJS 应用中添加控制器，指令，过滤器等。</p>
+			<code>
+				app.controller("myCtrl", function($scope) {
+				    $scope.firstName = "John";
+				    $scope.lastName = "Doe";
+				});
+
+			</code>
+			
+			<hr />
+			<h3>添加指令</h3>
+			<p  runoob-directive></p>
+			
+			
+			
+			
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			app.directive("runoobDirective", function() {
+			    return {
+			        template : "我在指令构造器中创建!"
+			    };
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Table 表格</title>
+	</head>
+	<body>
+		<div ng-controller="myCtrl">
+			<h2>ng-disabled 指令</h2>
+			<p>绑定应用程序数据到 HTML 的 disabled 属性。</p>
+			<h3>示例：</h3>
+			<p>switchFlag 为true, 按钮将不可用,switchFlag 为false, 按钮则可用</p>
+			<p>
+				<button ng-disabled="switchFlag">点我！</button>
+			</p>
+			<p>
+				<input type="checkbox" ng-model="switchFlag" />
+			</p>
+			<p>{{switchFlag}}</p>
+			
+			<hr />
+			<h2>ng-show 指令</h2>
+			<p>隐藏或显示一个 HTML 元素</p>
+			<p ng-show="true">可见元素</p>
+			<p>
+				这里的被隐藏了：<p ng-show="false"> 我被隐藏了……</p>
+			</p>			
+			<p ng-init="hour = 15">
+				ng-show可以用表达式。这里也被隐藏了：<p ng-show="hour > 124"> 我被隐藏了……</p>
+			</p>
+			
+			<hr />
+			<h2>ng-hide 指令</h2>
+			<p>隐藏或显示一个 HTML 元素</p>
+			<p ng-hide="true">可见元素</p>
+			<p>
+				这里的可见：<p ng-hide="false"> 我是可见的……</p>
+			</p>
+			<p>
+				这里的不可见：<p ng-hide="true"> 我是不可见的……</p>
+			</p>
+			
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			app.controller('myCtrl', function($scope) {
+				$scope.switchFlag = true;
+			});
+			
+		</script>
+	</body>
+</html>

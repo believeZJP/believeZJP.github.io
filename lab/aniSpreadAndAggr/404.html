@@ -1,0 +1,99 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>404页面</title>
+<style type="text/css">
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+body {
+	font-family: "微软雅黑";
+	background: #fff;
+	height: auto!important;
+	height: 580px;
+	min-height: 580px;
+}
+.box {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin: -290px 0 0 -490px;
+	width: 980px;
+	height: 580px;
+	overflow: hidden;
+}
+.box .text {
+	position: absolute;
+	z-index: 10;
+	width: 298px;
+	overflow: hidden;
+	left: 570px;
+	top: 94px;
+	color: #fff;
+}
+.box p {
+	margin-bottom: 12px;
+	line-height: 28px;
+	font-size: 14px;
+	font-weight: 700;
+}
+.box p.big {
+	font-size: 18px;
+	line-height: 36px;
+}
+.box a:link,
+.box a:visited {
+	color: #f90;
+	text-decoration: none;
+}
+.box a:hover {
+	text-decoration: underline;
+}
+</style>
+<script type="text/javascript">
+ function a(){
+	refurl = document.referrer;
+	if(refurl!="" && (refurl.indexOf("baidu.com")>0 || refurl.indexOf("360.cn")>0)){
+	
+		arrurl = refurl.split("word="); 
+		if(arrurl.length==1){
+			arrurl = refurl.split("wd="); 
+		}
+		arrkw = arrurl[1].split('&');
+		strkw = arrkw[0];
+		
+		document.location.href="http://www.kankanews.com/search/index.php?q="+decodeURIComponent(strkw);
+		
+	}else{
+		document.location.href="http://www.kankannews.com";
+	}
+ }
+ //window.setTimeout("a()",5000);
+</script>
+</head>
+
+<body>
+<div class="box">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><img src="img/404_01.jpg" width="490" height="290" /></td>
+		<td><img src="img/404_02.jpg" width="490" height="290" /></td>
+	</tr>
+	<tr>
+		<td><img src="img/404_03.jpg" width="490" height="290" /></td>
+		<td><img src="img/404_04.jpg" width="490" height="290" /></td>
+	</tr>
+</table>
+<div class="text">
+	<p class="big">抱歉！您要访问的页面可能已经删除、失效或者暂时不可用。</p>
+	<p>请尝试一下操作：<br />· 确保浏览器地址栏中显示的网站地址的拼写和格式正确无误。<br />· 如果通过单击链接而到达了该网页，请与<a href="#">网站管理员</a>联系，通知我们该链接不正确。</p>
+	<p class="big">5 秒后自动转入首页，如果网页没有自动跳转，请点<a href="#">这里</a>返回首页。</p>
+</div>
+</div>
+<a id="bc2" style="display:none;">404</a>
+</body>
+</html>

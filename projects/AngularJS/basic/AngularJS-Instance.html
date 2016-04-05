@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>AngularJS 实例</title>
+	</head>
+	<body ng-app="memoNoteApp">
+		
+		<div ng-controller="todoCtrl">
+			<h2>备忘录</h2>
+			<form ng-submit="todoAdd()">
+				<input type="text" ng-model="todoInput" size="50" placeholder="请输入备忘内容" />
+				<input type="submit" value="新增" />
+			</form>
+			</br>
+			<div ng-repeat="x in todoList">
+				<input type="checkbox" ng-model="x.done" /><span ng-bind="x .todoText"></span>
+			</div>
+			
+			
+			<p><button ng-click="remove()">删除记录</button></p>
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("memoNoteApp",[]);
+			app.controller("todoCtrl",function($scope){
+				$scope.todoList = [{todoText:"写篇博文",done:false}];
+				$scope.todoAdd = function(){
+					$scope.todoList.push({todoText:$scope.todoInput,done:false});
+					$scope.todoInput = "";
+				};
+				$scope.remove = function(){
+					var oldList = $scope.todoList;
+					$scope.todoList = [];
+					angular.forEach(oldList,function(x){
+						if(!x.done) $scope.todoList.push(x);
+					});
+				};
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			});
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

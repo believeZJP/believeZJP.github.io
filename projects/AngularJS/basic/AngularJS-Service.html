@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Service 服务</title>
+	</head>
+	<body>
+		<div ng-controller="serviceCtrl">
+			<h1>AngularJS Service(服务)</h1>
+			<h2>什么是服务？</h2>
+			<p>在 AngularJS 中，服务是一个函数或对象，可在你的 AngularJS 应用中使用。</p>
+			<p>AngularJS 内建了30 多个服务。</p>
+			
+			
+			<h3>$location 服务</h3>
+			<p>用来监听、操作URL包括如下功能：</p>
+			<ul>
+			    <li>获取、监听、改变地址栏的URL</li>
+			    <li>与URL实现双向数据绑定（地址栏变动、前进后退或者点击页面的链接均会触发）。</li>
+			    <li>将URL对象封装成了一套方法（protocol、host、port、path、search和hash）</li>
+			</ul>
+					
+			<h4>特点</h4>
+			<p>支持链式写法），与URL实现了双向绑定，内部集成了HTML5的History API，所以建议使用$location服务。</p>
+			<p>$location处于Angular的生命周期内，单个周期内的改变会统一在周期结束时生效，所以不必担心每次改变了$location，URL都会立刻变化。</p>
+			<p><b>注意：</b>$location无法使整个页面重新加载。如果改变URL后希望重新加载页面，请使用$window.location.href。</p>
+			
+			<hr />
+			<p>根据$location 获取当前网址</p>
+			<p >当前网址：{{currUrl}}</p>
+			
+			
+			<hr />
+			<h3>$http 服务</h3>
+			<p>$http是AngularJS提供的一个核心Service，
+				通过浏览器的XMLHttpRequest或JSONP与服务器进行交互。
+				 这是一个非常常用的Service，类似于jQuery提供的AJAX。
+				 与jQuery类似，$http也采用了deferred/promise模式，
+				 不同的是Angular的deferred/promise模式是由Angular的$qService来提供的。
+			</p>
+			<p>在Angular应用中尽量使用$http而不是jQuery函数来进行AJAX请求，
+				因为$http会在响应到达时触发Angular更新视图（$digest循环）。 
+				与此同时，$http还可以通过$httpBackend来Mock和单元测试。
+			</p>
+			
+			<h3>示例代码</h3>
+			<div >
+				<p>获取welcome.html的内容并展示出来：</p>
+				<p>welcome.html文件中的内容：{{myWelcome}}</p>
+			</div>
+			
+			<hr />
+			<h3>$timeout 服务</h3>
+			<p>AngularJS <b>$timeout</b> 服务对应了 JS <b>window.setTimeout</b> 函数。</p>
+			
+			<h3>示例代码</h3>
+			<p>这里是动态的时间{{theTime}}</p>
+			
+			
+			<hr />
+			<h2>创建自定义服务</h2>
+			<p>可以创建自定义服务，链接到你的模块中：</p>
+			<code>
+				app.service('hexafy', function() {
+				    this.myFunc = function (x) {
+				        return x.toString(16);
+				    }
+				});
+			</code>
+			
+			<p>这里是自定义方法处理的结果：{{myfunVal}}</p>
+			
+			<h3>服务中自定义过滤器</h3>
+			<p>此处使用自定义过滤器：{{initPara | myFormat}}</p>
+			
+			
+			<p>示例代码详见 <a href="../test/test_Scope.html" target="_blank">点我</a></p>
+			
+		
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			/**
+			 * 自定义服务
+			 */
+			app.service("myService",function(){
+				/*** 自定义服务中的自定义方法   */
+				this.myFunction = function(x){
+					return x+" 这是我的方法(字符串后面加done!)处理后的x: "+x +" done! ";
+				}
+			});
+			
+			/**
+			 * 自定义过滤器
+			 */
+			app.filter("myFormat",["myService",function(myService){
+				return function(x){
+					return myService.myFunction(x);
+				};
+			}]);
+			
+			
+			app.controller("serviceCtrl",function($scope,$location,$http,$interval,myService){
+				$scope.currUrl = $location.absUrl();
+				
+				
+				
+				$http.get("welcome.html").then(function(response){
+					$scope.myWelcome = response.data;
+				});
+				
+				$scope.theTime = new Date().toLocaleTimeString();
+			    $interval(function () {
+			        $scope.theTime = new Date().toLocaleTimeString();
+			    }, 1000);
+				
+				/*******   此处使用自定义方法来处理数据          ***********/
+				$scope.myfunVal = myService.myFunction("origin val!");
+				
+				/******    使用自定义过滤器                         *****/
+				
+				$scope.initPara  = "yy";
+				
+				
+				
+				
+				
+			});
+		</script>
+	</body>
+</html>

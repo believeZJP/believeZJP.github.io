@@ -2,7 +2,7 @@ body{
 	overflow: hidden;
 }
 .header,.footer{
-	height:50px;
+	height:48px;
 	position: fixed;
 	display: block;
 	width: 100%;
@@ -20,7 +20,7 @@ body{
 .header h1{
 	float:left;
 	margin:0;
-	line-height: 50px;
+	line-height: 48px;
 	padding:0 20px;
 }
 #menu{
@@ -29,7 +29,7 @@ body{
     width: 50%;
 }
 #menu li {
-	line-height: 50px;
+	line-height: 48px;
 	height: inherit;
 	/*padding:0 25px;*/
 	float: left;
@@ -45,7 +45,10 @@ body{
 }
 #menu li a {
 	color:#FFF;
-	
+    line-height: inherit;
+    height: inherit;
+    display: inline-block;
+    width: 100%;
 }
 
 
@@ -56,4 +59,14 @@ body{
 
 #techPieChart{
 	height: inherit;
+}
+
+
+/*实验室的样式*/
+.lab-title{
+    padding: 18px;
+    background-color: #00ccff;
+    display: inline-block;
+    font-size: 22px;
+    margin: 18px;
 }

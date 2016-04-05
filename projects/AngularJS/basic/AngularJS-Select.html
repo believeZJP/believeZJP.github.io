@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Select 选择框</title>
+	</head>
+	<body>
+		<div ng-controller="myCtrl">
+			<p>使用 ng-options 指令来创建一个下拉列表，列表项通过对象和数组循环输出，如下实例:</p>
+			
+			
+			<hr />
+			<h2>用数组循环输出（演示了 ng-options 指令的使用）</h2>
+			<p>定义数组names = ["Google", "Runoob", "Taobao"]</p>
+			<select ng-model="selectName" ng-options="x for x in names">
+				<option value=""></option>
+			</select>
+			<h4>您刚才选择的是：{{selectName}}</h4>
+			
+			
+			<hr />
+			<h2>用ng-repeat指令来创建下拉列表</h2>
+			<select ng-model="repeatName">
+				<option ng-repeat="x in names">{{x}}</option>
+			</select>
+			<h4>您刚才选择的是：{{repeatName}}</h4>
+			
+			
+			<hr />
+			<h2>ng-options与ng-repeat的区别</h2>
+			<p>ng-repeat 指令是通过数组来循环 HTML 代码来创建下拉列表，但 ng-options 指令更适合创建下拉列表，它有以下优势：</p>
+			<p>使用 ng-options 的选项的一个对象，ng-repeat 是一个字符串。</p>
+			<p><b>ng-repeat</b> 有局限性，选择的值是一个字符串:</p>
+			<p>使用 <b>ng-options</b> 指令，选择的值是一个对象：</p>
+			<p>当选择值是一个对象时，我们就可以获取更多信息，应用也更灵活。</p>
+			
+			<hr />
+			<h3>实例：循环对象</h3>
+			<p>1.用ng-repeat循环一个对象</p>
+			<select ng-model="selectedSite">
+				<option ng-repeat="x in sites">{{x.site}}</option>
+			</select>
+			<h4>您选择的是：{{selectedSite}}</h4>
+			
+			
+			<p>2.用ng-options指令，循环一个对象</p>
+			<select ng-model="optSite" ng-options="x.site for x in sites"></select>
+			<h4>您选择的是:{{optSite.site}}</h4>
+			<h4>实际值是:{{optSite.url}}</h4>
+			
+			<hr />
+			<h2>使用ng-options循环对象的特殊示例：使用for(x,y)</h2>
+			<select ng-model="forSite1" ng-options="x for (x,y) in sitesObj"></select>
+			<h4>您选择的是：{{forSite1}}</h4>
+			
+			<hr />
+			<select ng-model="selectedCar1" ng-options="x for (x, y) in cars"></select>
+
+			<h4>你选择的是: {{selectedCar1.brand}}</h4>
+			<h4>模型: {{selectedCar1.model}}</h4>
+			<h4>颜色: {{selectedCar1.color}}</h4>
+			
+			<p>注意选中的值是一个对象。</p>
+						
+			<hr />
+			<p>选择一辆车:</p>
+			
+			<select ng-model="selectedCar2" ng-options="y.brand for (x, y) in cars">
+			</select>
+			
+			<h4>你选择的是: {{selectedCar2.brand}}</h4>
+			<h4>模型: {{selectedCar2.model}}</h4>
+			<h4>颜色: {{selectedCar2.color}}</h4>
+			
+			<p>下拉列表中的选项也可以是对象的属性。</p>
+
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			app.controller("myCtrl",function($scope){
+				$scope.names = ["Google", "Runoob", "Taobao"];
+				$scope.sites = [
+					{site:"Google",url:"http://www.google.com"},
+					{site:"Github",url:"http://www.github.com"},
+					{site:"baidu",url:"http://www.baidu.com"}
+				];
+				$scope.sitesObj = {
+								    site01 : "Google",
+								    site02 : "Runoob",
+								    site03 : "Taobao"
+								};
+				
+				$scope.cars = {
+			        car01 : {brand : "Ford", model : "Mustang", color : "red"},
+			        car02 : {brand : "Fiat", model : "500", color : "white"},
+			        car03 : {brand : "Volvo", model : "XC90", color : "black"}
+			    }
+				
+			});
+			
+		</script>
+	</body>
+</html>

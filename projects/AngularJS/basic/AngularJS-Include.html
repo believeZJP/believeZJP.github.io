@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>include 包含</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+	</head>
+	<body>
+		<div ng-controller="userCtrl">
+			<h2>AngularJS include</h2>
+			<p>使用 ng-include 指令来包含 HTML 内容:</p>
+			
+			<div class="container">
+			  <div ng-include="'myUsers_List.html'"></div>
+			  <div ng-include="'myUsers_Form.html'"></div>
+			</div>
+			
+			
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/myUsers.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*var app = angular.module("myApp",[]);
+			app.controller('myCtrl', function($scope) {
+			    $scope.str = 'One World,One Dream!';
+			    $scope.strL = angular.lowercase($scope.str);
+			    $scope.strU = angular.uppercase($scope.str);
+			    $scope.strS = angular.isString($scope.str);
+			    $scope.strN = angular.isNumber($scope.str);
+			    $scope.strN5 = angular.isNumber(5);
+			    
+			});
+			*/
+		</script>
+	</body>
+</html>

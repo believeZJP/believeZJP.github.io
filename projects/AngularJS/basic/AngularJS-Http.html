@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Http 网络</title>
+	</head>
+	<body>
+		<div ng-controller="customersCtrl">
+			<p>AngularJS $http 是一个用于读取web服务器上数据的服务。 </p>
+			<p>$http.get(url) 是用于读取服务器数据的函数。 </p>
+			
+			
+			<hr />
+			<p>读取服务器中的JSON文件</p>
+			<p >JSON内容：</p>
+			<ul>
+				<li ng-repeat="x in name">
+					{{x.Name+" , "+x.Country}}
+					
+				</li>
+			</ul>
+			
+			<hr />
+			
+		
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			app.controller("customersCtrl",function($scope,$http){
+				$http.get("Customers_JSON.json").success(function(response){
+					$scope.name = response.records;
+				});
+			});
+			
+		</script>
+	</body>
+</html>

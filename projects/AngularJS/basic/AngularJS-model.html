@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<meta charset="utf-8">
+		<title>AngularJS ng-model指令</title>
+	</head>
+	<body>
+		<h1>ng-model</h1>
+		<p>ng-model是指用于抱你规定应用程序数据到html控制器(input select,textarea)的值</p>
+		<h2>ng-model指令</h2>
+		<p>ng-model可以将输入域的值和创建的变量绑定</p>
+		<a href="../firstApp.html" target="_blank">案例见此</a>
+		
+		<h2>双向绑定</h2>
+		<p>修改输入域的值，AngularJS属性的值也改变</p>
+		<div class="codeShowArea">
+			<input type="text" ng-model="name"/>
+			<h4>您刚才输入的是:{{name}}</h4>
+			<p>修改输入框的值，标题的名字也会相应修改。</p>
+		</div>
+		
+		<h2>验证用户输入</h2>
+		<div class="codeShowArea">
+			<form name="myForm">
+				Email: <input type="email" name="myAddress" ng-model="text" />
+				<span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+				<p>提示信息会在 ng-show 属性返回 true 的情况下显示</p>
+				<!--测试没反应，不知道为啥
+				Tel: <input type="tel" name="myTel" ng-model="text1" />
+				<span ng-show="myForm.myTel.$error.tel">不是一个合法的电话号码</span>
+				-->
+			</form>
+		</div>		
+		
+		<h2>应用状态</h2>
+		<p>ng-model可以为应用数据提供状态值(invalid,dirty,touched,error)</p>
+		<div class="codeShowArea">
+			<form name="statusForm" ng-init="emailText = 'test@qq.com'">
+				Email: <input type="email" name="emailName" ng-model="emailText" required/>
+				<h4>状态：</h4>
+				验证通过:{{statusForm.emailName.$valid}}
+				验证未通过:{{statusForm.emailName.$invalid}}
+				焦点是否被触发:{{statusForm.emailName.$touched}}
+				焦点是否未被触发:{{statusForm.emailName.$untouched}}
+				已进行交互操作:{{statusForm.emailName.$dirty}}
+				还没有进行交互操作:{{statusForm.emailName.$pristine}}
+				<p>
+				$untouched True if control has not lost focus yet.
+				$touched True if control has lost focus.
+				$pristine True if user has not interacted with the control yet.
+				$dirty True if user has already interacted with the control.
+				</p>
+			</form>
+		</div>
+		
+		
+		
+		<h2>css类</h2>
+		<p>ng-model基于他们的状态为HTML元素提供了css类</p>
+		<style type="text/css">
+			.username.ng-invalid{
+				background-color: red;
+			}
+			.username.ng-valid{
+				background-color: green;
+			}
+			
+		</style>
+		请输入用户名：
+			<input class="username" type="text" ng-model="username" required />
+		
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

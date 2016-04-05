@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Event 事件</title>
+	</head>
+	<body>
+		<div ng-controller="myCtrl">
+			<h2>ng-click 指令</h2>
+			<p>定义了 AngularJS 点击事件。</p>
+			
+			<p>示例：单击一次，自动加1</p>
+			<button ng-click="count = count + 1">点我！</button>
+			<p>结果：{{count}}</p>
+			
+			<hr />
+			<h3>自定义click执行方法</h3>
+			<button ng-click="toggle()">隐藏/显示</button>
+			<p ng-hide="myVar">
+				名: <input type="text" ng-model="firstName"><br>
+				姓: <input type="text" ng-model="lastName"><br>
+				<br>
+				全名: {{firstName + " " + lastName}}
+			</p>
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			app.controller('myCtrl', function($scope) {
+				$scope.count = 0;
+				
+				$scope.firstName = "Kobe";
+				$scope.lastName = "Bryant";
+				$scope.myVar = false;
+				$scope.toggle = function(){
+					$scope.myVar = !$scope.myVar;
+				};
+				
+			});
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="utf-8">
+		<title>API</title>
+	</head>
+	<body>
+		<div ng-controller="myCtrl">
+			<h2>AngularJS API</h2>
+			<p>全局 API 函数使用 angular 对象进行访问。</p>
+			<p>
+				<ul>
+					<li>angular.lowercase():转小写</li>
+					<li>angular.uppercase():转大写</li>
+					<li>angular.isString():是否是字符串</li>
+					<li>angular.isNumber():是否是数字</li>
+				</ul>
+			</p>
+			<h3>验证示例：</h3>
+				<p>字符串：One World,One Dream!</p>
+				<p>转小写：{{strL}}</p>
+				<p>转大写：{{strU}}</p>
+				<p>是否是字符串：{{strS}}</p>
+				<p>是否是数字：{{strN}}</p>
+				<p>5是否是数字：{{strN5}}</p>
+		</div>
+		<script src="../js/angular-1.5.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var app = angular.module("myApp",[]);
+			app.controller('myCtrl', function($scope) {
+			    $scope.str = 'One World,One Dream!';
+			    $scope.strL = angular.lowercase($scope.str);
+			    $scope.strU = angular.uppercase($scope.str);
+			    $scope.strS = angular.isString($scope.str);
+			    $scope.strN = angular.isNumber($scope.str);
+			    $scope.strN5 = angular.isNumber(5);
+			    
+			});
+			
+		</script>
+	</body>
+</html>

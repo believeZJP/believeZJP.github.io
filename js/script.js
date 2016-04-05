@@ -26,9 +26,10 @@ $(document).ready(function(){
 	                {value:4, name:'css&css3'},
 	                {value:3, name:'JavaScript'},
 	                {value:2, name:'node'},
-	                {value:3, name:'angularJs'},
-	                {value:4, name:'react'},
-	                {value:4, name:'less'}
+	                {value:3, name:'AngularJS',href:'projects/AngularJS/index.html'},
+	                {value:4, name:'React',href:'React.html'},
+	                {value:4, name:'less'},
+	                {value:1, name:'其他',href:'others.html'}
 	            ]
 	        },
 		"后端":{
