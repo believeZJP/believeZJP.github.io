@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>响应式页面_JS版本</title>
+		<style type="text/css">
+			*{
+				margin:0;padding:0;
+			}
+			header{
+				background-color: aquamarine;
+			}
+			footer{
+				background-color: #6495ED;
+			}
+			header,footer{
+				height:48px;
+				line-height: 48px;
+			}
+			.container{
+				background-color: burlywood;
+			}
+		</style>
+	</head>
+	<body>
+		<header> 我是头部</header>
+		<div class="container">
+			中间区域
+		</div>
+		
+		<footer> 我是尾部</footer>
+		<script src="js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var winHeight = $(window).height();
+			var headerHeight = $("header").outerHeight(true);
+			var footerHeight = $("footer").outerHeight(true);
+			$(".container").height(winHeight-headerHeight-footerHeight);
+			
+			/**
+			 * 注释：
+			 * 中间区域的高度等于页面高度，减去头部高度和尾部高度
+			 * 
+			 * 也可以这样一句话写出来，效果一样
+			 * $(".container").height(winHeight-$("header").outerHeight(true)-$("footer").outerHeight(true));
+			 * 
+			 * 知识点：
+			 * 获取一个元素的高度，
+			 * $(".container").height();
+			 * $("footer").outerHeight(true);
+			 * 
+			 * outerHeight 与height的区别
+			 * 详见页面：
+			 * http://zhidao.baidu.com/link?url=i1fadgO0DQsXrWP-l1WUWspSA3lEaT_zWuC5F_BhK5pgcOi5UO8TXIehfimNM4X09sHpeqJror1lFZ7a1CSpWq
+			 * ***/
+			
+		</script>
+	</body>
+</html>

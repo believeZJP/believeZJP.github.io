@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>响应式页面_JS版本</title>
+		<style type="text/css">
+			*{
+				margin:0;padding:0;
+			}
+			header{
+				background-color: aquamarine;
+			}
+			footer{
+				background-color: #6495ED;
+			}
+			header,footer{
+				height:48px;
+				line-height: 48px;
+			}
+			.container{
+				background-color: burlywood;
+			}
+		</style>
+	</head>
+	<body>
+		<header> 我是头部</header>
+		<div class="container">
+			中间区域
+		</div>
+		
+		<footer> 我是尾部</footer>
+		<script src="js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			function initPage(){
+				var winHeight = $(window).height();
+				var headerHeight = $("header").outerHeight(true);
+				var footerHeight = $("footer").outerHeight(true);
+				$(".container").height(winHeight-headerHeight-footerHeight);
+	
+			}
+			initPage();	
+			
+			window.onresize = initPage;
+			/**
+			 * 注释：
+			 * 每次页面大小发生改变，都调用页面重置的方法来修改页面大小
+			 * 
+			 * 知识点：
+			 * 页面发生改变执行的方法
+			 * 
+			 * 
+			 * ***/
+			
+		</script>
+	</body>
+</html>

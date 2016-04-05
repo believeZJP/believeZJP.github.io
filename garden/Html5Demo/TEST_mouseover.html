@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试鼠标移入移出事件的监听</title>
+		<style type="text/css">
+			.container{
+				background-color: aquamarine;
+			}
+			.area,.failArea{
+				height:300px;
+				width:200px;
+				background-color: cornflowerblue;
+				display: none;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div class="container">
+			<h1>原因：要显示的dom元素，需要包含在鼠标划过的dom元素内部</h1>
+			
+			<hr />
+			<h1>这个是成功的！</h1>
+			<div class="link" href="#">测试链接
+				<div class="area"></div>
+			
+			
+			</div>
+			<hr />
+			<div>
+				<h1>这个是不成功的</h1>
+				<a href="#" class="failLink">测试链接
+				</a>
+				<div class="failArea">
+				</div>
+				
+			</div>
+		</div>
+		<script src="js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$(".link").mouseover(function(){
+					$(".area").show();
+				});
+				$(".link").mouseleave(function(){
+					$(".area").hide();
+				});
+				$(".failLink").mouseover(function(){
+					$(".failArea").show();
+				});
+				$(".failLink").mouseleave(function(){
+					$(".failArea").hide();
+				});
+			});
+		</script>
+	</body>
+</html>

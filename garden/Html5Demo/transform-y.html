@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>transform-style的3D效果测试</title>
+<style>
+
+
+#parent {
+margin: 10px;
+width: 950px;
+height: 480px;
+font-size:150px;
+background-color:red;
+animation: spin 2s infinite linear normal;
+perspective: 500;
+-webkit-perspective :500;
+transform:perspective(900px) rotateX(0deg);
+}
+.box2,.box1{
+	height:240px;
+	background-color:green;
+}
+.box1{
+	background-color:red;
+}
+
+/*执行Y轴旋转360度动画*/
+@-webkit-keyframes spin {
+from {-webkit-transform:perspective(1000px)  rotateX(0);
+	
+}
+to {-webkit-transform:perspective(1000px)  rotateX(360deg);}
+}
+</style>
+</head>
+<body>
+<div id="container">
+<div id="parent">
+<div class="box1"><a href="http://www.liuxiaofan.com/">热人↑↑↑</a></div>
+<div class="box2"></div>
+</div>
+</div>
+</body>
+</html>

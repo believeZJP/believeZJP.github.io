@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>响应式页面_JS版本</title>
+		<style type="text/css">
+			*{
+				margin:0;padding:0;
+			}
+			header{
+				background-color: aquamarine;
+			}
+			footer{
+				background-color: #6495ED;
+			}
+			header,footer{
+				height:48px;
+				line-height: 48px;
+			}
+			.container{
+				background-color: burlywood;
+			}
+		</style>
+	</head>
+	<body>
+		<header> 我是头部</header>
+		<div class="container">
+			中间区域
+		</div>
+		
+		<footer> 我是尾部</footer>
+		<script src="js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//定义一个页面初始化的方法，将所有需要初始化的东西都放到这个方法中
+			function initPage(){
+				var winHeight = $(window).height();
+				var headerHeight = $("header").outerHeight(true);
+				var footerHeight = $("footer").outerHeight(true);
+				$(".container").height(winHeight-headerHeight-footerHeight);
+	
+			}
+			//首次进入页面，执行这个方法
+			//可以注释掉，看看不执行的效果
+			initPage();	
+			
+			/**
+			 * 注释：
+			 * 将初始化页面的内容放在一个方法中，这个方法就是初始化页面的方法
+			 * 刚进入页面后先执行一次这个方法
+			 * 
+			 * 知识点：
+			 * 定义一个方法
+			 * 
+			 * ***/
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Document</title>
+ <style>
+ 	*{margin: 0;padding: 0;}
+   #main{width:100px;height:100px;background:#ffccff;position:absolute;}
+   .outer{width:500px;height:500px;border:1px solid blue;}
+ </style>
+ <script>
+  /*1：拖拽的时候有文字选中会有问题；
+          原因：这是浏览器的默认拖拽文字的行为
+          解决方案：标准浏览器下：阻止默认行为,在onmousedown结尾加上return false即可
+                    ie8及其以下版本：设置全局捕获，方法如下设置全局捕获setCapture最后释放releaseCapture*/
+       window.onload = function(){
+           var oDiv = document.getElementById("main");
+           var odiv = document.getElementById("div");
+           var outerDiv = document.getElementsByClassName("outer")[0];
+           var outerW = outerDiv.offsetWidth;
+           var outerH = outerDiv.offsetHeight;
+           oDiv.onmousedown = function(ev){
+                 
+                   var ev = ev || event;
+                   var disX = ev.clientX - this.offsetLeft;
+                   var disY = ev.clientY - this.offsetTop;
+ 
+                   if(oDiv.setCapture){
+                     oDiv.setCapture();
+                   }
+                document.onmousemove = function(ev){
+                    //这里为什么使用document，是因为快速拖拽的话会鼠标丢失，
+                    var ev = ev || event;
+                    var finalX = ev.clientX - disX;
+                    var finalY = ev.clientY - disY;
+                    if(finalX<0){
+                    	finalX = 0;
+                    }
+                    if(finalY<0){
+                    	finalY = 0;
+                    }
+                    if(finalX>outerW-100){
+                    	finalX = outerW-100;
+                    }
+                     if(finalY>outerH-100){
+                    	finalY = outerH-100;
+                    }
+                    console.log(outerW+"--,--"+outerH);
+                    console.log(finalX+","+finalY);
+                    oDiv.style.left = finalX +"px";
+                    oDiv.style.top = finalY +"px";
+                }
+ 
+                document.onmouseup = function(ev){
+                    document.onmousemove = document.onmouseup = null;
+                    //为何不用oDiv.onmouseup是因为被挡住之后会无视掉遮挡的元素
+                    if(oDiv.releaseCapture){
+                     
+                      oDiv.releaseCapture();
+                    }
+                }
+                return false;
+           }
+       }
+   </script>
+  </head>
+  <body>
+    <div class="outer">
+	   <div id="main"></div>
+    </div>
+  </body>
+</html>
