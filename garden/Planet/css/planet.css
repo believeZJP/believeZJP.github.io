@@ -1,0 +1,60 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	background-color: black;
+}
+.planet{
+	width: 800px;
+	height: 600px;
+	background-color: black;
+	position: relative;
+	border: 1px solid white;
+}
+.planet div{
+	position: absolute;
+}
+.sun{
+	top: 250px;
+	left: 350px;
+	width: 100px;
+	height: 100px;
+	background: url(../img/sun.png) 0 0 no-repeat;
+}
+.earth{
+	top: 0;
+	left: 370px;
+	width: 60px;
+	height: 60px;
+	background: url(../img/earth.png) 0 0 no-repeat;
+	transform-origin: 30px 400px;
+	animation: rotation 8s linear infinite;
+}
+
+.earth:hover,.moveY:hover{
+	animation-play-state:paused ;
+	-webkit-animation-play-state:paused;
+}
+.moveY{
+	animation: moveY 4s ease-in-out infinite alternate;
+}
+@keyframes moveY{
+	to{
+		transform: translateY(-200px);
+	}
+}
+@keyframes rotation{
+	to{
+		transform:rotate(1turn);
+	}
+}
+
+.track{
+	width: 740px;
+	height: 540px;
+	left: 30px;
+	top: 30px;
+	border: 1px solid darkgray;
+	border-radius: 50%;
+}
