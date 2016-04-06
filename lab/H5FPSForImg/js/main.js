@@ -1,21 +1,20 @@
-/*var can1 = document.getElementById("loop"); 
-var ctx1 = can1.getContext("2d");
-var canWidth = can1.width;
-var canHeight = can1.height;
-var img = new Image();
-img.src = "img/3.png";
-ctx1.clear();
-ctx1.save();
-ctx1.drawImage(img, 0, 0, canWidth, canHeight);
-ctx1.restore();*/
 
-//window.onload 不能使用
+/**
+ * 经验：
+ * 1.图片要先加载出来，否则会导致js执行的时候，图片还没有，无法绘制
+ * 2.js要写在window.onload之后，
+ * 3.window.onload 比 document.body.onload早，等图片加载完再执行js，必须用document.body.onload
+ * 4.当然也可以用$(function(){   });
+ * 5.也可用$(document).ready(function(){   });
+ **/
+//$(function(){	
 
 document.body.onload = function() {
 	var num = 0;
 	var FPS = 500;//动画帧频率，
 	//图片数组
-	var imgArr = ["img/1.jpg", "img/2.jpg", "img/3.png"];
+	var imgArr = $(".imgArea img");
+//	var imgArr = ["img/1.jpg", "img/2.jpg", "img/3.png"];
 	var can = document.getElementById("loop");
 	var ctx = can.getContext("2d");
 	var canWidth = can.width;
@@ -26,7 +25,7 @@ document.body.onload = function() {
 		if (num == imgArr.length) {
 			num = 0;
 		}
-		img.src = imgArr[num];
+		img.src = imgArr[num].src;
 		ctx.clearRect(0, 0, canWidth, canHeight);
 		ctx.drawImage(img, 0, 0, canWidth, canHeight);
 		num++;
@@ -48,19 +47,6 @@ document.body.onload = function() {
 	var inter = setInterval(drawImg,  FPS);
 	//初始绘制一次
 	drawImg();
-
-};
-
-/*
-$(function(){
-	var c=document.getElementById("loop");
-	var ctx=c.getContext("2d");
-	var canWidth = c.width;
-	var canHeight = c.height;
-//	var img=document.getElementById("tulip");
-	var img =new Image();
-	img.src = "img/3.png";
-	ctx.drawImage(img,0,0,canWidth,canHeight);
 	
-});
-*/
+};
+//});

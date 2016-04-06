@@ -3,11 +3,30 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>背景帧动画</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#loop{
+				background-color: lavender;
+			}
+			.imgArea{
+				display: none;
+			}
+		</style>
 	</head>
 	<body>
 		<canvas id="loop" width="500" height="500">
 			您的浏览器不支持HTML5 canvas标签~~
 		</canvas>
+		<div class="imgArea">
+			<img src="img/1.jpg"/>
+			<img src="img/2.jpg"/>
+			<img src="img/3.png"/>
+			
+		</div>
+	<script src="js/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/main.js" type="text/javascript" charset="utf-8"></script>		
 	</body>
 </html>

@@ -10,7 +10,7 @@ ctx1.drawImage(img, 0, 0, canWidth, canHeight);
 ctx1.restore();*/
 
 //window.onload 不能使用
-
+//这个方法在别的地方会导致图片无法绘制
 document.body.onload = function() {
 	var num = 0;
 	var FPS = 1;//动画帧频率，
