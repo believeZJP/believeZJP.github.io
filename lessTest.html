@@ -3,52 +3,24 @@
 	<head>
 		<meta charset="utf-8">
 		<title>less使用demo</title>
-		<script src="http://cdn.bootcss.com/less.js/1.7.0/less.min.js"></script>
 		<script src="js/checkUserAgent.js" type="text/javascript" charset="utf-8"></script>
-<!--		<link rel="stylesheet/less" type="text/less" href="less/lessStyle.less">
--->			<style type="text/less">
-				@height:200px;
-@color:black;
-@fontColor:#FFF;
-.relative{
-    position:relative;
-}
-*{
-    margin: 0;
-    padding: 0;
-}
-.header,.footer{
-    height:@height;
-    background-color: @color;
-    color:@fontColor;
-    
-}
-.header{
-    top:0;
-    .relative;
-}
-.footer{
-    bottom: 0;
-    .relative;
-}
-.content{
-    height:@height;
-    background-color: darkgoldenrod;
-}
-
-
-			</style>
+		<link rel="stylesheet/less" type="text/less" href="less/lessStyle.less">
 	</head>
 	<body>
 		<div class="header">
 			头部
+			<br />
+			CSS 预处理器是一种语言用来为 CSS 增加一些编程的的特性，无需考虑浏览器的兼容性问题，例如你可以在 CSS 中使用变量、简单的程序逻辑、函数等等在编程语言中的一些基本技巧，可以让你的 CSS 更见简洁，适应性更强，代码更直观等诸多好处。
 		</div>
 		<div class="content">
 			中间区域
+			<br />
+			详细的比较<a target="_blank" href="http://www.oschina.net/question/12_44255?sort=default&p=4">Sass、LESS 和 Stylus:css预处理器的比较</a>
 		</div>
 		<div class="footer">
 			尾部
 		</div>
 		
+		<script src="less/less.min.js"></script>
 	</body>
 </html>
