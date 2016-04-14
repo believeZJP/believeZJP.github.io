@@ -69,4 +69,8 @@ body{
     display: inline-block;
     font-size: 22px;
     margin: 18px;
+    border-radius: 18px;
+}
+.lab-title a{
+	color:#FFF;
 }
