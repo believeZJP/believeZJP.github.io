@@ -16,7 +16,9 @@ body{
 .footer{
 	bottom: 0;
 }
-
+.none{
+	display: none;
+}
 .header h1{
 	float:left;
 	margin:0;
