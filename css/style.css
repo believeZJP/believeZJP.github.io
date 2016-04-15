@@ -25,6 +25,14 @@ body{
 	line-height: 48px;
 	padding:0 20px;
 }
+.headIcon{
+	margin-right: 10px;	
+}
+.footerIcon{
+	font-size: 30px;
+	line-height: 48px;
+	width: 8%;
+}
 #menu{
 	float: left;
 	height: inherit;
@@ -72,6 +80,10 @@ body{
     font-size: 22px;
     margin: 18px;
     border-radius: 18px;
+    transition:background-color 0.5s;
+}
+p.lab-title:hover {
+    background-color: #4285f4;
 }
 .lab-title a{
 	color:#FFF;
