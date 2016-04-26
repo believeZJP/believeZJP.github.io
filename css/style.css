@@ -3,6 +3,7 @@ body{
 }
 .header,.footer{
 	height:48px;
+    line-height: 48px;
 	position: fixed;
 	display: block;
 	width: 100%;
@@ -87,4 +88,17 @@ p.lab-title:hover {
 }
 .lab-title a{
 	color:#FFF;
+}
+
+.footer_a{
+	line-height: inherit;
+	height: inherit;
+}
+.footer_a:link,.footer_a:visited,.footer_a:hover,.footer_a:active{
+	color:#fff;	
+}
+.qrcodeForGZH{
+	display: none;
+	position:absolute;
+	bottom: 0;
 }

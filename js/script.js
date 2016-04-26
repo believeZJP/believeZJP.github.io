@@ -120,5 +120,14 @@ $(document).ready(function(){
 		}
 	});
 	
+	$(".footer_a").on("mouseover",function(){
+		$(this).find("img").show();
+	});
+	$(".footer_a").on("mouseout",function(){
+		$(this).find("img").hide();
+	});
+	
+	
+	
 	
 });
