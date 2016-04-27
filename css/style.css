@@ -1,6 +1,8 @@
 body{
 	overflow: hidden;
+	min-width: 320px;
 }
+html {-webkit-text-size-adjust:none;}
 .header,.footer{
 	height:48px;
     line-height: 48px;
@@ -75,11 +77,11 @@ body{
 
 /*实验室的样式*/
 .lab-title{
-    padding: 18px;
+    padding: 0.7em;
     background-color: #00ccff;
     display: inline-block;
-    font-size: 22px;
-    margin: 18px;
+    font-size: 1em;
+    margin: 0.7em;
     border-radius: 18px;
     transition:background-color 0.5s;
 }
@@ -100,7 +102,8 @@ p.lab-title:hover {
 .qrcodeForGZH{
 	display: none;
 	position:absolute;
-	bottom: 0;
+	bottom: 48px;
+	width:30%;
 }
 
 .footerUL li{
@@ -121,6 +124,42 @@ p.lab-title:hover {
 .gzh:hover{
 	animation-name: bounceInDown;
 }
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:480px) {
+        h1{font-size: 1em;}
+        #menu li a {font-size: 12px;}
+        #menu li {
+        	line-height: 24px;
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @keyframes zoomInDown {
     0% {
