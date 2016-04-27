@@ -2,7 +2,10 @@ body{
 	overflow: hidden;
 	min-width: 320px;
 }
-html {-webkit-text-size-adjust:none;}
+html {
+	-webkit-text-size-adjust:none;
+	min-width: 320px;
+}
 .header,.footer{
 	height:48px;
     line-height: 48px;
@@ -12,6 +15,14 @@ html {-webkit-text-size-adjust:none;}
 	color: #FFF;
 	background-color:#38A9E1;
 	z-index: 2;
+}
+::selection {
+    color: white;
+    background: #0aa284
+}
+::-moz-selection {
+    color: white;
+    background: #0aa284
 }
 .header{
 	top: 0;
