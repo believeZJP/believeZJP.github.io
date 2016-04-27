@@ -2,6 +2,8 @@
 	添加mediaquery，设置二维码弹出的大小；
 	设置lab-title的字体和margin,padding 为em,不再用px
 	添加导航条的响应式样式
+2016-04-28 02:17:18
+ git commit -m "find bug:the animation doesn't work well in the latest chrome and firefox ,but it worked in the 360 Internet Exporler.add baidu fe interview;add fis to the echarts""
 	
 
 TODO
