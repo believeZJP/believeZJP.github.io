@@ -30,6 +30,8 @@ $(document).ready(function(){
 	                {value:1, name:'React',href:'React.html'},
 	                {value:4, name:'less',href:'lessTest.html'},
 	                {value:4, name:'Echarts'},
+	                {value:1, name:'Framework7',href:'http://framework7.io/get-started/'},
+	                {value:1, name:'Ionic',href:'http://ionicframework.com/'},
 	                {value:1, name:'Vue.js',href:'http://cn.vuejs.org'},
 	                {value:1, name:'fis',href:'http://fis.baidu.com/fis3/index.html'},
 	                {value:1, name:'Backbone.js',href:'http://www.zhihu.com/question/19720745'},
