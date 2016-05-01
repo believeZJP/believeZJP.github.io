@@ -9,3 +9,4 @@
 TODO
 1.导航栏缩小后的样式不好看
 2.最小宽度设了320px，但不起作用。
+3.write a mobile page.
