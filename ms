@@ -234,8 +234,11 @@
     项目中功能拆分，js,css,html
     
     
-    
-    
+    //冒泡和捕获的执行示例
+    addEventListener("click",callback,false);
+  	addEventListener("click",callback,true);//两者的区别
+  	
+  	sass的举例
 		
-		
+	new 一个对象时发生了什么	
 		
