@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>代码积累</title>
+    <style type="text/css">
+    body {
+        padding: 5px;
+        font-family: "microsoft yahei";
+    }
+    p,pre {
+        margin: 0;
+        border: 0;
+    }
+    .start-up-code {
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .start-up-code > p {
+        background-color: #E18728;
+        padding-left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 2;
+        color: white;
+    }
+    .start-up-code > pre {
+        padding-left: 5px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        webkit-box-sizing: border-box;
+        display: block;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+        width: 100%;
+        overflow-x: auto;
+        background-color: #FFFAE8;
+        /*background-color: #1D1F21;*/
+        color: #3E4B53;
+        line-height: 1.5;
+        font-size: 16px;
+        font-weight: bold;
+        /*letter-spacing: 1px;*/
+        font-family: "microsoft yahei", Times, serif;
+    }
+    </style>
+</head>
+
+<body>
+    <br />
+    <hr width="80%" />
+    <div class="start-up-code">
+        <P>笔记</P>
+        <pre>
+			<code>
+	<!-- 新定义对象的方法-->
+	//1.字面量定义 literal
+	var site = {
+		name:"Tom",
+		site :"believezjp",
+		city:"beijing"
+	}
+	//2.
+	var site = new Object();
+	site.name = "Tom";
+	site.site = "believezjp";
+	site.city = "beijing";
+	
+	//3.
+	function Site(){
+		var I = {
+			name:"Tom",
+			site :"believezjp",
+			city:"beijing"
+		}
+		return I;
+	}
+	var site = new Site();
+	
+	//4.
+	function NSite(){
+		this.name:"Tom",
+		this.site :"believezjp",
+		this.city:"beijing"
+	}
+	NSite();
+	
+	var obj = {};
+	NSite.call(obj);
+	console.log(obj);
+	
+	
+	String.prototype.trimNew = function(){
+		return this.trim();
+	}
+	//new操作符具体干了什么呢?
+	1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
+	2、属性和方法被加入到 this 引用的对象中。
+	3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。
+	
+	var obj  = {};//初始化一个对象obj
+	obj.__proto__ = Base.prototype;//将对象obj的__proto__设置为Base.prototype
+	Base.call(obj);//调用构造函数Base来初始化obj
+	obj instanceof Base //true
+	
+	//js继承
+	1.instanceof 表示的就是一种继承关系，或者原型链的结构
+	2.访问一个对象的属性时，先在基本属性中找
+	3.如果没有，再沿着__proto__这条链向上找，这就是原型链
+	4.什么是继承
+			--在原有对象的基础上，略作修改，得到一个新对象
+			--不影响原有对象的功能
+	如何添加继承
+			---属性：call
+			---方法：for in
+	例子，继承的拖拽
+	
+	
+	var user = {
+		"form":"hunan",
+		"name":"xiaoming"
+	};
+	function NewUser(){
+		this.country = "China";
+	}
+	NewUser.call(user);
+	//此时的user,三个属性都有
+	user.__proto__ = NewUser;
+	user instanceof NewUser //false
+	
+	user.__proto__ = NewUser.prototype;
+	user instanceof NewUser //true
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	CommonJS标准规范
+		1.目标是成为一个通用的JavaScript开发标准库
+		2.标准库不仅应用在浏览器端开发，更应用在服务端开发等地方
+		3.解除JS本身的一些天生的缺陷？是什么？(模块，标签库，包管理，标准接口)
+		4.典型案例，Node.js,Sea.js
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+					
+			</code>
+		</pre>
+    </div>
+</body>
+
+</html>

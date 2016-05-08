@@ -4,7 +4,10 @@
 	添加导航条的响应式样式
 2016-04-28 02:17:18
  git commit -m "find bug:the animation doesn't work well in the latest chrome and firefox ,but it worked in the 360 Internet Exporler.add baidu fe interview;add fis to the echarts""
-	
+
+2016-05-09 00:40:59
+	添加	box-sizing,flexBase,flexBase2.html
+	添加听课笔记
 
 TODO
 1.导航栏缩小后的样式不好看

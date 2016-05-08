@@ -228,6 +228,37 @@
     网页中的SEO，
     
     angularjs的缺点
+    	答：方便的REST,
+    		  MVVM救星：
+    		  		Model将和ViewModel互动（通过$scope对象），将监听Model的变化。
+    		  		这些可以通过View来发送和渲染，由HTML来展示你的代码。
+    		  		View可以通过$routeProvider对象来支配，
+    		  		所以你可以深度的链接和组织你的View和Controller，
+    		  		将他们变成导航URL。AngualrJS同时提供了无状态的Controller，可以用来初始化和控制$scope对象。
+    		  数据绑定和依赖注入：
+    		  		在MVVM设计模式中的任何东西无论发生任何事情都自动的和UI通信。
+    		  		这帮助我们去除了wrapper，getter/setter方法或者class定义。
+    		  		AngularJS将帮助我们处理所有的这些内容，
+    		  		所以你可以处理数据像处理基本javascript数据类型，
+    		  		例如，数组一样简单。当然你也可以通过自定义处理复杂数据。
+    		  		正因为所有事情的发生都是自动的，
+    		  		所以你不必调用一个main()来执行你的代码，而是通过依赖关系来驱动。
+    		  可扩展的html
+    		  		可以操作XML一样操作HTML，用无穷的方式来完成标签和属性定义。
+    		  		AngularJS通过自己的编译器和directives来完成相关的设置。
+    		  使用html模版
+    		  企业级别的测试
+    		  		Angular的单元测试和Scenario Runner
+    		  
+    		  
+    		  缺点：
+    		  		Angular 太笨重了，没有让用户选择一个轻量级的版本，
+    		  		，学习曲线陡峭，不支持IE6~8，
+    		  		实现机制极其复杂，比如脏检查，性能低。由于跳崖式的更新，学习更加陡峭，
+    				
+    				在 Controller 里面如果要定时更新一个东西，
+    				用 setInterval / setTimeout 是不可以的，要用它自己的 $interval / $timeout，这算是设计缺陷吧。
+    
     
     项目文件目录架构
     
@@ -242,3 +273,305 @@
 		
 	new 一个对象时发生了什么	
 		
+		
+	css:
+	
+	bfc:	
+		
+	box-sizing:
+		1.border-box:		width=border+padding+content	
+									为元素指定的任何内边距和边框都将在已设定的宽度和高度内进行绘制。
+		2.content-box:   	width=content  
+									在宽度和高度之外绘制元素的内边距和边框。
+	
+	
+	transition:
+	animation:
+	transform:
+	什么时候触发
+	
+	两列布局，左边一个图片，右边文字，文字只在右边，不在左边，宽度不固定，
+	先是宽度固定，然后是宽度不固定，
+	overflow:hidden;来解决。
+	
+	png 和jpg的格式有什么区别，分别在什么情况下使用
+	png格式各个区别
+	
+	mediaquery
+	
+	line,block 区别
+	
+	
+	js:
+	
+		作用域，
+		原型链，
+		this
+		
+		
+		//js变量有哪些
+		1、用typeof检测js变量类型
+		typeof(8) //number
+		typeof(true) //boolean
+		typeof("abc")	//string
+		typeof(abc) 		//undefined
+		typeof(function(){})		//function
+		typeof([1,2,3])				//object
+		typeof(new Number(8))	//object
+		typeof(null)					//object
+		
+		2、typeof只能判断值类型，如何检测object类型
+		instanceof
+		
+		var obj = [];
+		obj instanceof Object		//true
+		obj instanceof Array			//true
+		var func = function(){};
+		console.log(func instanceof Object);			//true
+		
+		
+		3、对象都是通过函数创建的
+		eg:var a = [1,2]; 
+			//等价于
+			var a = new Array();
+			a[0] = 1;a[1] = 2;
+		
+		4、函数也是对象，函数也是通过函数创建的
+		eg:
+			var func = function(x){alert("hello"+x);}	
+			var func = new Function('x','alert("hello"+x);'}
+			console.log(func("xiaoming"));
+			
+		5、js对象
+			对象只有属性，方法也是属性，属性可以是对象
+			可以任意添加属性-------重要的特点
+			eg：
+				var obj = {
+						a:3,
+						b:function(){console.log(this.a);},
+						c:{num:8}		
+				};
+		
+			eg:
+				var func = function(){console.log('xiaoming')}
+				func.a = 3;
+				func.b = {num:8};
+			
+			jQuery 的$是个函数，当然也是对象
+			typeof($)//function
+		
+		6、js原型
+			1、每个函数都有一个prototype属性
+			2、每个对象都有一个__proto__隐式原型
+			3、__proto__指向创建函数的prototype
+			
+			function func(){}
+			var f = new func();
+			f.a = 8;
+			func.prototype.a = 9;
+			func.prototype.b = 'ming';
+			console.log(f.a);//f的属性
+			console.log(f.b);//f的原型的属性
+			console.log(f.hasOwnProperty('a'));
+			
+			var func = function(){}
+			var obj = {};
+			func.prototype //func{}
+			obj.prototype  //undefined
+			obj.__proto__	//Object{}
+			func.__proto__	//function Empty(){}
+			Object.prototype //Object{}
+			Function.prototype  //function Empty(){}
+		7、js原型链
+			var a = {a:'a'};
+			function B(){}
+			B.prototype = a;
+			var b = new B();
+			b.b = 'b';
+			function C(){};
+			C.prototype = new B();
+			//C.prototype = b;
+			var c = new C();
+			//c.prototype = b;
+			c.c = 'c';
+			console.log(c.a+','+c.b+','+c.c);
+			
+		8、js原型判断
+			//instanceof 判断对象类型
+			console.log(Function instanceof Object);
+			console.log(Object instanceof Function);
+			console.log(Function instanceof Function);
+			
+			
+		call，apply
+		参数传递不同，
+		技巧：apply,array ,所以apply传数组
+		func.call(obj,'ming');
+		func.apply(obj,['ming'])
+		
+		1、apply的好处
+		eg:	
+			//取最大值函数
+			alert(Math.max(1,3,5));
+			//不能传数组
+			alert(Math.max([1,3,5]));//×
+			//多个值传递都要放到参数里
+			alert(Math.max.call(null,1,3,5));
+			//apply 传数组
+			alert(Math.max.call(null,[1,3,5]));
+		
+			var a1 = [1,2];
+			var a2 = [3,4];
+			//数组合并，用push，push不能传数组
+			a1.push(a2);//[1,2,[3,4]]
+			//apply所有参数作为数组传递
+			Array.prototype.push.apply(a1,a2);//[1,2,3,4]
+		
+		
+		this实现继承,多重继承
+			eg:
+				function Parent(){
+					this.add = function(a,b){console.log(a+b);}
+				}
+				function Child(){
+					Parent.call(this);
+			//		Parent.apply(this,arguments);
+				}
+				var cls = new Child();
+				cls.add(3,2);
+		
+		原型链实现继承
+		function Parent(){ this.add = function(a,b){console.log(a+b);}}
+		Parent.prototype.sub = function(a,b){console.log(a-b);}
+		function Child(){}
+		Child.prototype = new Parent();
+		var cls = new Child();
+		cls.__proto__.constructor = Child
+		cls.add(3,2);
+		cls.sub(3,2);
+		
+		
+		
+		原型链与call继承区别
+		1、call继承相当于类继承，原型链继承相当于组合继承
+		2、call继承会复制父类的所有属性，原型链是引用
+		3、call继承无法继承父类的原型链，原型链是链式继承
+		
+		js作用域
+		eg:
+			var a = 8;
+			function func(){console.log(a);}
+			function callfunc(f){
+				var a = 9;
+				f();
+			}
+			callfunc(func);//8
+			//函数定义时确定作用域，而不是由调用的时候来确定的
+			
+			var obj = {
+				a:8,
+				func:function(){
+					console.log(this.a);
+				}	
+			}
+			//作为对象属性
+			obj.func();//8
+			//作为独立函数
+			var f = obj.func;
+			f();//undefined;
+			
+			
+			var a = 8;
+			var obj = {
+				a:9,
+				func:function(){
+					function f(){
+						console.log(this.a);
+					}
+					f();
+				}
+			}
+			obj.func();//8
+			//obj不是作用域，不会在obj中找
+			//作用域只有函数作用域和全局作用域！！！
+			
+			var a = 8;
+			function func(){
+				var a =9;
+				function func2(){console.log(a);}
+				return func2();
+			}
+			var f = func();
+			f();//9
+			//创建函数时确定作用域
+			
+			var a = 8;
+			function func(){
+				var a =9;
+				function func2(){console.log(a);}
+				return func2();
+			}
+			(function(f){
+				var a = 10;
+				f();
+			})(func1);//a= 9;创建函数的作用域决定，而不是调用作用域
+			
+			var a = 8;
+			function func(a){
+				return function(){
+					console.log(a);
+				}
+			}
+			var f = func(9);
+			f();//a = 9;闭包
+			
+			
+			js闭包
+			函数执行上下文
+			闭包的外层上下文不能释放
+			使用闭包会增加内存开销
+			
+			function func1(){
+				var n = 1;
+				funcAdd = function(){n+=1;console.log(n);}
+				function func2(){alert(n);}
+				return func2;
+			}
+			var result = func1();
+			result();//1
+			funcAdd();//2 ,闭包的上下文都需要保存
+			result();//2
+			
+			jQuery 闭包运行
+			var a = 8;
+			(function(window){
+				var a = 9;
+				console.log(a);
+			})(window);
+			
+			
+			常见js面试题
+			1、js函数是不是对象？有什么区别
+				答：是，是一种特殊的对象，并且所有的对象都是通过函数创建的
+			2、js如何实现继承
+				答：call,原型
+			3、多个js,避免函数名冲突
+				答：命名空间，模块开发
+			4、
+				f = function(){return true;};
+				g = function(){return false;};
+				(function(){
+					if(g() && ([] == ![])){
+						f = function(){return false;};
+						 function g(){return true;};
+						//g = function (){return true;};
+					}
+				})();	
+				console.log(f());//false
+				//初始化运行时，已经将f和g改写了，
+				所以运行f()时，g已经成了return true;,f也成了return false;
+			
+			
+			
+			
+			
