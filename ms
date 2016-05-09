@@ -269,6 +269,8 @@
     addEventListener("click",callback,false);
   	addEventListener("click",callback,true);//两者的区别
   	
+  	
+  	捕获，从外到内，冒泡，从内到外
   	sass的举例
 		
 	new 一个对象时发生了什么	
