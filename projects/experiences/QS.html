@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>一问一答</title>
+    <style type="text/css">
+    body {
+        padding: 5px;
+        font-family: "microsoft yahei";
+    }
+    p,pre {
+        margin: 0;
+        border: 0;
+    }
+    .start-up-code {
+        padding-left: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .start-up-code > p {
+        background-color: #E18728;
+        padding-left: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 2;
+        color: white;
+    }
+    .start-up-code > pre {
+        padding-left: 5px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        webkit-box-sizing: border-box;
+        display: block;
+        white-space: pre-wrap;
+        white-space: -moz-pre-wrap;
+        white-space: -pre-wrap;
+        white-space: -o-pre-wrap;
+        word-wrap: break-word;
+        width: 100%;
+        overflow-x: auto;
+        background-color: #FFFAE8;
+        /*background-color: #1D1F21;*/
+        color: #3E4B53;
+        line-height: 1.5;
+        font-size: 16px;
+        font-weight: bold;
+        /*letter-spacing: 1px;*/
+        font-family: "microsoft yahei", Times, serif;
+    }
+    </style>
+</head>
+
+<body>
+    <br />
+    <hr width="80%" />
+    <div class="start-up-code">
+        <P>疑难解惑</P>
+        <pre>
+			<code>
+				
+1.caller和callee的区别
+	答：<a href="http://blog.csdn.net/laijieyao/article/details/43404953" target="_blank">查看</a>
+	caller
+	caller返回一个函数的引用，这个函数调用了当前的函数。
+	使用这个属性要注意:
+	1 这个属性只有当函数在执行时才有用
+	2 如果在javascript程序中，函数是由顶层调用的，则返回null
+	
+	functionName.caller: functionName是当前正在执行的函数。
+	
+	var a = function() { 
+		console.log(a.caller); 
+	} 
+	var b = function() { 
+		a(); 
+	} 
+	b();	
+	
+	上面的代码中，b调用了a，那么a.caller返回的是b的引用，可运行查看结果。
+	如果直接调用a(即a在任何函数中被调用，也就是顶层调用),返回null:
+	
+	callee
+	callee放回正在执行的函数本身的引用，它是arguments的一个属性
+	使用callee时要注意:
+	1 这个属性只有在函数执行时才有效
+	2 它有一个length属性，可以用来获得形参的个数，因此可以用来比较形参和实参个数是否一致，即比较arguments.length是否等于arguments.callee.length
+	3 它可以用来递归匿名函数。
+	
+	var a = function() { 
+		console.log(arguments.callee); 
+	} 
+	var b = function() { 
+		a(); 
+	} 
+	b();
+	
+	a在b中被调用，但是它返回了a本身的引用，可运行查看结果。
+	
+	<hr />
+2.为什么有的轮巡技术会使用setTimeOut,而不是用setInterval
+	答：
+	   http://www.tuicool.com/articles/BV7viq
+	       轮询请求如果不需要等待结果返回，那么完全可以使用setInterval来发起定时请求。
+	       但很显然长轮询是需要等待结果返回，然后再次发起请求的。
+	       轮询本质就是递归，递归和循环可是两码事。
+		
+		function test() {
+		    var date = new Date();
+		    console.log("test:" + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds());
+		}
+		var num = 0;
+		var i = setTimeout(function() {
+		    num++;
+		    test();
+		    //var date = new Date();
+		    //console.log("间隔：" + date.getMinutes() + ':' + date.getSeconds() + ':' + date.getMilliseconds());
+		    if (num <= 10) {
+		        i = setTimeout(arguments.callee, 1000);//关键
+		    }
+		    
+		}, 1000);
+		
+		//这样数出来是每隔2s输出一次，
+		//1000都改成500是每隔1s都输出一次
+3.javascript是多线程吗?
+	答：javascript只有单线程，不存在同时执行！！！！	
+		JS采用一种队列(event loop)的机制来处理各个事件.
+		比如用户的点击，ajax异步请求,所有的事件都被放入一个队列中，然后先进先出，逐个执行。
+		
+		另一方面，浏览器还有一个GUI渲染线程，当需要重绘页面时渲染页面。
+		但问题是GUI渲染线程与JS引擎是互斥的，当JS引擎执行时GUI线程会被挂起，
+		GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。
+
+		所以,在脚本中执行对界面进行更新操作,如添加结点,删除结点或改变结点的外观等更新并不会立即体现出来,
+		这些操作将保存在一个队列中,待JavaScript引擎空闲时才有机会渲染出来.
+		
+		
+		
+		
+		
+			</code>
+		</pre>
+    </div>
+</body>
+
+</html>
