@@ -209,20 +209,6 @@
 	
 	http://www.travisup.com/post/index/28
 	
-    typeof 会返回几种类型
-	    typeof(1): number
-		typeof(NaN): number
-		typeof(Number.MIN_VALUE): number
-		typeof(Infinity): number
-		typeof("123"): string
-		typeof(true): boolean
-		typeof(window): object
-		typeof(document): object
-		typeof(null): object
-		typeof(eval): function
-		typeof(Date): function
-		typeof(sss): undefined
-		typeof(undefined): undefined
     
     
     网页中的SEO，
@@ -583,5 +569,6 @@
 			
 			问题积累：
 				1.AngularJS 数据双向绑定揭秘，怎么实现的？
-			
+				2.事件委托
+			//	3.live,bind,click ,delegate区别
 						

@@ -136,10 +136,106 @@
 		所以,在脚本中执行对界面进行更新操作,如添加结点,删除结点或改变结点的外观等更新并不会立即体现出来,
 		这些操作将保存在一个队列中,待JavaScript引擎空闲时才有机会渲染出来.
 		
+4.live,bind,click ,delegate区别		
+		答：bind( )方法用于将一个处理程序附加到每个匹配元素的事件上并返回jQuery对象。
+  			  live( )方法将一个事件处理程序附加到与当前选择器匹配的所有元素
+  			  	（包含现有的或将来添加的）的指定事件上并返回jQuery对象。
+			  one()方法将事件处理程序附加到匹配元素的指定事件并返回jQuery对象。
+				所附加的事件处理程序最多只能执行一次。
+			  delegate()方法基于一组特定的根元素将处理程序附加到匹配选择器的所有元素
+			  （现有的或将来的）的一个或多个事件上。
+			
+			区别：
+				bind方法只能给当前存在的元素绑定事件，对于事后采用JS等方式新生成的元素无效，
+				而live方法则正好弥补了bind方法的这个缺陷，它可以对后生成的元素也可以绑定相应的事件。
+				原理实现？---→<a href="http://www.jb51.net/article/40838.htm" target="_blank">点我</a>
+				
+			delegate比live好用的优点：
+				速度、灵活性和链能力、　live仅支持CSS选择器
+				<a href="http://justcoding.iteye.com/blog/1457883" target="_blank">详细内容，点我</a>
+			
+6、写出程序运行的结果？
+	alert(typeof(null))      object
+	alert(typeof(undefined))    undefined
+	alert(typeof(NaN))				number
+	alert(NaN == undefined)				false
+	
+	var str = "123abc"
+	alert(typeof(str++))			number	//此时输出str++为NaN
+	alert(str)							NaN
+	
+	-----------------------
+	var x =1,y=z=0;
+	function add(n){
+		return n = n + 1;
+	}
+	y = add(x);		//2
+	z = add(x);		//2
+	--------------------
+	var myObject = {
+		num:2,
+		add:function(){
+			this.num = 3;
+			(function(){
+				alert(this.num);			//undefined
+				this.num = 4;
+			})();
+			alert(this.num);				//3
+		}
+	}
+	myObject.add();//先 是undefined，然后是3
+	-------------------------
+	
+	var i =0;
+	for(i =0;i++<3;){
+		setTimeout(function(){
+			return function(){console.log(i);}
+		}(),0);
+	}
+	//输出23，3个4，继续执行输出26，3个4；
+
+    typeof 会返回几种类型
+	    typeof(1): number
+		typeof(NaN): number
+		typeof(Number.MIN_VALUE): number
+		typeof(Infinity): number
+		typeof("123"): string
+		typeof("abc")	//string
+		typeof(undefined): undefined
+		typeof(abc) 		//undefined
+		typeof(true): boolean
+		typeof(null)					//object
+
+		typeof(window): object
+		typeof(document): object
+		typeof(eval): function
+		typeof(Date): function
+		typeof(function(){})		//function
+		typeof([1,2,3])				//object
+		typeof(new Number(8))	//object
+
+8、写出一个给数组排重的函数
+		function unique(arr) {
+		  var ret = []
+		  var hash = {}
 		
+		  for (var i = 0; i < arr.length; i++) {
+		    var item = arr[i]
+		    var key = typeof(item) + item
+		    if (hash[key] !== 1) {
+		      ret.push(item)
+		      hash[key] = 1
+		    }
+		  }
 		
-		
-		
+		  return ret;
+		}
+
+			
+			
+			
+			
+			
 			</code>
 		</pre>
     </div>
