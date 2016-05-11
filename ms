@@ -571,4 +571,8 @@
 				1.AngularJS 数据双向绑定揭秘，怎么实现的？
 				2.事件委托
 			//	3.live,bind,click ,delegate区别
-						
+				4.api按照restful风格设计
+				5.前端架构选型
+				6.gitflow工作流
+				
+				
