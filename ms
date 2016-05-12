@@ -283,6 +283,9 @@
 	overflow:hidden;来解决。
 	
 	png 和jpg的格式有什么区别，分别在什么情况下使用
+	
+内容照片基本都是jpg的，就是颜色很丰富的图片基本都是用jpg的，但界面的上因为颜色较少，用png或gif会更小，并且质量也会比jpg高。
+	
 	png格式各个区别
 	
 	mediaquery
