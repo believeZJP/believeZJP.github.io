@@ -212,6 +212,7 @@
     
     
     网页中的SEO，
+    http://jingyan.baidu.com/article/915fc414c5f3d351384b206b.html
     
     angularjs的缺点
     	答：方便的REST,
