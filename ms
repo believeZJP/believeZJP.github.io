@@ -542,6 +542,46 @@
 			})(window);
 			
 			
+			
+php:
+	tcp udp 区别
+	php调试用什么
+	定义一个常量
+	xss csrf
+db:
+	设计一个表，users,用来表示用户之间的关联，
+	筛选出朋友大于100的男性用户
+	having,groupby ,
+css:
+	display visibility区别
+	margin,padding;
+	加载页面时，让一个元素隐藏
+	display各属性区别
+	举出平常用到的css在各浏览器间差异的例子，
+http:
+	状态分别是什么，
+	401，403
+js:
+	单例模式，应用场景
+	amd,cmd，
+	常用的js
+	vue.js
+	socket.io
+	cdn
+	
+unix ：0
+
+
+
+
+
+
+
+
+
+			
+			
+			
 			常见js面试题
 			1、js函数是不是对象？有什么区别
 				答：是，是一种特殊的对象，并且所有的对象都是通过函数创建的
@@ -565,10 +605,16 @@
 			
 			
 			
-			
-			
-			
-			
+			我用过的插件列表：
+				1.superslider  http://www.superslide2.com/
+				2.滚动条：http://manos.malihu.gr/jquery-custom-content-scroller/
+						注意，要引用mousewheel.min.js
+				3.遮罩层，弹出框  layer   http://layer.layui.com/
+				4.左右滑块	Ion.RangeSlider  
+						http://ionden.com/a/plugins/ion.rangeSlider/demo.html
+				5.滑块滚动条	http://refreshless.com/nouislider/  项目用的
+				6.颜色选择器	http://www.andreacrofts.codes/spectrum/
+				7.jscrollbar https://github.com/daiying-zhang/jquery.jscrollbar
 			
 			
 			问题积累：

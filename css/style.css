@@ -18,7 +18,9 @@ html {
 }
 ::selection {
     color: white;
-    background: #0aa284
+    /*background: #0aa284;*/
+    background: #FD5D3C;
+    
 }
 ::-moz-selection {
     color: white;
