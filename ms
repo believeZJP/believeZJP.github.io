@@ -442,7 +442,7 @@
 		cls.add(3,2);
 		cls.sub(3,2);
 		
-		
+		http://www.108js.com/article/article1/10201.html?id=1092
 		
 		原型链与call继承区别
 		1、call继承相当于类继承，原型链继承相当于组合继承
