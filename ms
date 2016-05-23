@@ -255,7 +255,7 @@
     //冒泡和捕获的执行示例
     addEventListener("click",callback,false);
   	addEventListener("click",callback,true);//两者的区别
-  	
+  	http://www.tuicool.com/articles/emiEfmz
   	
   	捕获，从外到内，冒泡，从内到外
   	sass的举例
@@ -624,5 +624,5 @@ unix ：0
 				4.api按照restful风格设计
 				5.前端架构选型
 				6.gitflow工作流
-				
-				
+				基础面试题：
+				http://t240178168.iteye.com/blog/1633344
