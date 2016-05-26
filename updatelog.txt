@@ -9,6 +9,13 @@
 	添加	box-sizing,flexBase,flexBase2.html
 	添加听课笔记
 
+2016-05-26 18:25:20
+	添加Echarts的展示页面，
+	以及itemList.css的通用样式
+	添加echats的柱状图和markpoint 和markLine相结合的demo页面
+	
+
+
 TODO
 1.导航栏缩小后的样式不好看
 2.最小宽度设了320px，但不起作用。

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Echarts Demo演示页面</title>
+		<link rel="stylesheet" type="text/css" href="../css/itemList.css"/>
+	</head>
+	<body>
+		<div>
+			<pre>
+			<code>
+	难点：
+	1.柱状图之间没有箭头这东西；
+	  	解决方案：柱状图上可以添加点(markPoint)，点可以用自带的或图片或svg
+	2.图片的定位symbolOffset 偏移量的设置在不同屏幕下不同，需根据屏幕大小计算
+	3.markPoint显示值的时候，只能获取到当前柱子的值，无法获取到前一个或后一个的值
+		导致在计算百分比的时候，获取不到数据，
+		解决方案：
+			用闭包，将数组传入。
+			</code>
+			</pre>
+			<p><a href="../projects/EchartsProjects/EchartsDemo/bar-markPoint.html" target="_blank">柱状图结合markPoint</a></p>
+			<p><a href="../projects/EchartsProjects/EchartsDemo/bar-markLine.html" target="_blank">柱状图结合markLine</a></p>
+			<p><a href="../projects/EchartsProjects/EchartsDemo/testForSvg.html" target="_blank">测试SVG文件在html中显示</a></p>
+		</div>
+	</body>
+</html>

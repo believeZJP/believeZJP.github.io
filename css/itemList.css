@@ -1,0 +1,27 @@
+*{
+	font-family: "microsoft yahei";
+}
+pre{
+	border:2px solid #D2C5B4;
+}
+code{
+	font-size: 16px;
+}
+p{
+	padding:10px;
+	background-color: #404153;
+	display: inline-block;
+	border-radius: 10px;
+}
+p:hover{
+	background-color: #01B194;
+}
+p a {
+	color: #FFF;text-decoration: none;
+}
+pre, code {/**这个css解决了pre 和code无法自动换行的问题*/
+	display: block;
+	overflow: auto;
+	word-wrap:break-word; /* Internet Explorer 5.5+ */ 
+	white-space: pre-wrap; /* Firefox */
+}

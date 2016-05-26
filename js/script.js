@@ -29,7 +29,7 @@ $(document).ready(function(){
 	                {value:3, name:'AngularJS',href:'projects/AngularJS/index.html'},
 	                {value:1, name:'React',href:'React.html'},
 	                {value:4, name:'less',href:'lessTest.html'},
-	                {value:4, name:'Echarts'},
+	                {value:4, name:'Echarts',href:'views/EchartsDemo.html'},
 	                {value:1, name:'Framework7',href:'http://framework7.io/get-started/'},
 	                {value:1, name:'Ionic',href:'http://ionicframework.com/'},
 	                {value:1, name:'Vue.js',href:'http://cn.vuejs.org'},
