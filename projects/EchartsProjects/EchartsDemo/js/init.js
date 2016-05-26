@@ -1,14 +1,11 @@
 $(document).ready(function() {
-
 	myChartInit();
 	window.onresize = function() {
-		console.log(1);
-		$("#bar").width(	$(window).width()-200);
-		console.log($("#bar").width());
 		myChartInit();
 	};
 
 	function myChartInit() {
+		$("#bar").width(	$(window).width());
 		var myChart = echarts.init(document.getElementById('bar'));
 		var option = {
 			color: ['#9dc6b3'],
