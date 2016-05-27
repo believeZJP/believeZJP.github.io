@@ -45,7 +45,7 @@ $(document).ready(function(){
 	            radius: ['40%', '55%'],
 	            data:[
 	                {value:4, name:'java'},
-	                {value:1, name:'php'}
+	                {value:1, name:'php',href:'views/backEnd/phpLearning.html'}
 	            ]
 	        },
 		"数据库":{
@@ -107,7 +107,6 @@ $(document).ready(function(){
 	}
 	//暂时只会用click事件来处理
 	myChart.on("click",function(param){
-		console.log(param);
 		var data = param.data;
 		if(param.seriesIndex == 0){
 			if (data.selected) {

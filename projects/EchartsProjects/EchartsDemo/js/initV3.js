@@ -9,10 +9,14 @@ $(document).ready(function() {
 		var winWidth = $(window).width();
 		$("#bar").width(	winWidth);
 		var myChart = echarts.init(document.getElementById('bar'));
-//		var dataArr = [1570, 1018,1017,1016,1015];
-		var dataArr = [1570, 1018,1017,1016,1015,1014,1013, 1012,1011,1010];
+//		var dataArr = [10, 10,10,10,5];
+		var dataArr = [1570, 1018,1017,1016,1015];
+//		var dataArr = [1570, 1018,1017,1016,1015,1014,1013, 1012,1011,1010];
 //		var dataArr = [1570, 1018,1017,1016];
+//		var dataArr = [1570, 1018,1017];
+//		var dataArr = [1570, 1018];
 		
+		var coordY   = Math.round(Math.max.apply(Math,dataArr)/4);
 		var allPer = (dataArr[dataArr.length-1]/dataArr[0]*100).toFixed(2)+ ' %';//总转化率
 		var perArr = [];
 		var pointData = [];
@@ -20,7 +24,7 @@ $(document).ready(function() {
 			perArr.push( (dataArr[i+1]/dataArr[i] * 100).toFixed(2) + ' %');
 			var obj = {
 				name: '转换率',
-				coord: [i, 500]
+				coord: [i, coordY]
 			}
 			pointData.push(obj);
 		}
@@ -37,7 +41,6 @@ $(document).ready(function() {
 		picDom.push(picWidth);
 		picDom.push(60);		
 		picWid = (winWidth-winWidth*0.03-40)/dataArr.length/2;
-//		picWid = (winWidth-winWidth*0.03-40)/dataArr.length/2-picWidth/2;
 		console.log(picWid);
 		var option = {
 			color: ['#9dc6b3'],
