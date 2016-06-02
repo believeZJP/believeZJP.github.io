@@ -1,0 +1,198 @@
+.button {
+	color: #666;
+	background-color: #EEE;
+	border-color: #EEE;
+	font-weight: 300;
+	font-size: 16px;
+	font-family: "microsoft yahei";
+	text-decoration: none;
+	text-align: center;
+	line-height: 40px;
+	height: 40px;
+	padding: 0 40px;
+	margin: 10px;
+	display: inline-block;
+	appearance: none;
+	cursor: pointer;
+	border: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition-property: all;
+	transition-property: all;
+	-webkit-transition-duration: .3s;
+	transition-duration: .3s;
+}
+
+.button:visited {
+	color: #666;
+}
+
+.button:hover,
+.button:focus {
+	background-color: #f6f6f6;
+	text-decoration: none;
+	outline: none;
+}
+
+.button:active,
+.button.active,
+.button.is-active {
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+	text-decoration: none;
+	background-color: #eeeeee;
+	border-color: #cfcfcf;
+	color: #d4d4d4;
+	-webkit-transition-duration: 0s;
+	transition-duration: 0s;
+	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-action,
+.button-action-flat {
+	background-color: #A5DE37;
+	border-color: #A5DE37;
+	color: #FFF;
+}
+
+.button-action:visited,
+.button-action-flat:visited {
+	color: #FFF;
+}
+
+.button-action:hover,
+.button-action:focus,
+.button-action-flat:hover,
+.button-action-flat:focus {
+	background-color: #b9e563;
+	border-color: #b9e563;
+	color: #FFF;
+}
+
+.button-action:active,
+.button-action.active,
+.button-action.is-active,
+.button-action-flat:active,
+.button-action-flat.active,
+.button-action-flat.is-active {
+	background-color: #a1d243;
+	border-color: #a1d243;
+	color: #8bc220;
+}
+
+.button-royal,
+.button-royal-flat {
+	background-color: #7B72E9;
+	border-color: #7B72E9;
+	color: #FFF;
+}
+
+.button-royal:visited,
+.button-royal-flat:visited {
+	color: #FFF;
+}
+
+.button-royal:hover,
+.button-royal:focus,
+.button-royal-flat:hover,
+.button-royal-flat:focus {
+	background-color: #a49ef0;
+	border-color: #a49ef0;
+	color: #FFF;
+}
+
+.button-royal:active,
+.button-royal.active,
+.button-royal.is-active,
+.button-royal-flat:active,
+.button-royal-flat.active,
+.button-royal-flat.is-active {
+	background-color: #827ae1;
+	border-color: #827ae1;
+	color: #5246e2;
+}
+
+.button-3d {
+	position: relative;
+	top: 0;
+	-webkit-box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d:hover,
+.button-3d:focus {
+	-webkit-box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 7px 0 #bbbbbb, 0 8px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d:active,
+.button-3d.active,
+.button-3d.is-active {
+	top: 5px;
+	-webkit-transition-property: all;
+	transition-property: all;
+	-webkit-transition-duration: .15s;
+	transition-duration: .15s;
+	-webkit-box-shadow: 0 2px 0 #bbbbbb, 0 3px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 0 #bbbbbb, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d.button-action {
+	-webkit-box-shadow: 0 7px 0 #8bc220, 0 8px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 7px 0 #8bc220, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-action:hover,
+.button-3d.button-action:focus {
+	-webkit-box-shadow: 0 7px 0 #84b91f, 0 8px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 7px 0 #84b91f, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-action:active,
+.button-3d.button-action.active,
+.button-3d.button-action.is-active {
+	-webkit-box-shadow: 0 2px 0 #6b9619, 0 3px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 0 #6b9619, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-3d.button-royal {
+	-webkit-box-shadow: 0 7px 0 #5246e2, 0 8px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 7px 0 #5246e2, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-royal:hover,
+.button-3d.button-royal:focus {
+	-webkit-box-shadow: 0 7px 0 #493de1, 0 8px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 7px 0 #493de1, 0 8px 3px rgba(0, 0, 0, 0.3);
+}
+
+.button-3d.button-royal:active,
+.button-3d.button-royal.active,
+.button-3d.button-royal.is-active {
+	-webkit-box-shadow: 0 2px 0 #2f21d4, 0 3px 3px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 0 #2f21d4, 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.button-pill {
+	border-radius: 200px;
+}
+
+.form-control {
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.form-control:focus {
+	border-color: #66afe9;
+	outline: 0;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
+}

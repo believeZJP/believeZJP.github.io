@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试代理页面</title>
+		<link rel="stylesheet" type="text/css" href="css/button.css"/>
+	</head>
+	<body>
+		<div>	
+			<label for="mobile">手机号：<input type="text" name="mobile" class="form-control" id="mobile" value="" /></label>
+			<button class="post button-3d button-action button button-pill">post请求</button>
+			<button class="get button-3d button-royal button button-pill">get请求</button>
+		</div>
+		<div class="msg" id="msg">
+			
+		</div>
+		<script src="jquery-1.11.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+		function get(val){
+			$.ajax({
+				type:"get",
+				url:"proxy5.php?url=http://api.91cha.com/phone?key=950603b21647469e913e5c1bcc1d5b82&tel="+val,
+				async:true,
+				success:function(data){
+					$("#msg").html("当前请求为:GET.返回数据为：<br/>"+data);
+				}
+			});
+		}
+		
+		function post (val) {
+			$.ajax({
+				type:"post",
+				url:"proxy5.php?url=http://api.91cha.com/phone",
+				data:{key:"950603b21647469e913e5c1bcc1d5b82","tel":val},
+				async:true,
+				success:function(data){
+					$("#msg").html("当前请求为:POST.返回数据为：<br/>"+data);
+				}
+			});
+		}
+		var mobileDom = document.getElementById("mobile");
+		document.getElementsByClassName("get")[0].onclick = function(){
+			var mobileVal = mobileDom.value;
+			get(mobileVal);
+		}
+		document.getElementsByClassName("post")[0].onclick = function(){
+			var mobileVal = mobileDom.value;
+			post(mobileVal);
+		}
+		
+		/**
+		 * get请求：
+		 * 		参数写在url后面
+		 * post请求：
+		 * 		参数写在data中
+		 */
+			
+		</script>
+	</body>
+</html>

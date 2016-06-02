@@ -6,40 +6,171 @@
 		<link rel="stylesheet" type="text/css" href="../../css/itemList.css"/>
 	</head>
 	<body>
-		<h1>php安装教程</h1>
-		<pre>
-			<code>
-	安装XAMPP
-		1.下载:
-			个人电脑是64位的，从官网上没有windows版64位的，最后从百度软件里找到了，
-			32位的可以直接从官网下载，下载地址：
-			官网：https://www.apachefriends.org/zh_cn/index.html
-			百度软件：http://rj.baidu.com/soft/detail/12489.html?ald
+		<div>
+			<h1>php安装教程</h1>
+			<pre><code>
+		安装XAMPP
+			1.下载:
+				个人电脑是64位的，从官网上没有windows版64位的，最后从百度软件里找到了，
+				32位的可以直接从官网下载，下载地址：
+				官网：https://www.apachefriends.org/zh_cn/index.html
+				百度软件：http://rj.baidu.com/soft/detail/12489.html?ald
+				
+			安装之前可能需要安装C++的运行环境，
+			用到的工具：
+			DirectX_Repair-v3.2
+		
+		遇到的坑：
+			多次安装失败，各种原因。
+		爬坑经验：
+			如果没有安装成功，建议将安装文件全部删除，重新安装，如果某些进程正在执行，直接用文件粉碎机粉碎即可。
 			
-		安装之前可能需要安装C++的运行环境，
-		用到的工具：
-		DirectX_Repair-v3.2
+		由于刚开始没有XAMPP 64的安装包，于是安装了WAMP。
+		遇到的坑：
+			也是没有C++等运行环境，缺少msvcr110.dll 等，
+		爬坑经验：
+			DirectX_Repair-v3.2
+			
+		运行：
+			启动，正常点击start即可，端口被占用什么的，把相关的关掉，重启一下即可。
+		
+		运行项目(存放目录)：
+			XAMPP:D:\software\xampp\htdocs
+			WAMP:wamp/www
+				</code></pre>
+		</div>
+		
+		<hr />
+		
+		<div>
+			<h1>php获取post参数</h1>
+			<pre><code>
+	PHP获取POST数据的几种方法：
+	　　方法1、最常见的方法是：$_POST['fieldname'];
+	　　说明：只能接收Content-Type: application/x-www-form-urlencoded提交的数据。
 	
-	遇到的坑：
-		多次安装失败，各种原因。
-	爬坑经验：
-		如果没有安装成功，建议将安装文件全部删除，重新安装，如果某些进程正在执行，直接用文件粉碎机粉碎即可。
-		
-	由于刚开始没有XAMPP 64的安装包，于是安装了WAMP。
-	遇到的坑：
-		也是没有C++等运行环境，缺少msvcr110.dll 等，
-	爬坑经验：
-		DirectX_Repair-v3.2
-		
-	运行：
-		启动，正常点击start即可，端口被占用什么的，把相关的关掉，重启一下即可。
+	　　方法2、file_get_contents("php://input");
+	　　说明：
+	　　允许读取 POST 的原始数据。
+	　　和 $HTTP_RAW_POST_DATA 比起来，它给内存带来的压力较小，并且不需要任何特殊的 php.ini 设置。
+	　　php://input 不能用于 enctype="multipart/form-data"。
 	
-	运行项目(存放目录)：
-		XAMPP:D:\software\xampp\htdocs
-		WAMP:wamp/www
+	　　方法3、$GLOBALS['HTTP_RAW_POST_DATA'];
+	　　说明：
+	　　总是产生 $HTTP_RAW_POST_DATA 变量包含有原始的 POST 数据。
+	　　此变量仅在碰到未识别 MIME 类型的数据时产生。
+				</code></pre>
+		</div>
+		<hr />
+		
+		<div>
+			<h1>PHP判断http请求是get还是post</h1>
+			<pre><code>
+		$_SERVER['REQUEST_METHOD']
+		可用$_SERVER['REQUEST_METHOD']=="POST"判断 
+			</code></pre>
+		</div> 
+		<hr />
+		
+		<div>
+			<h1>php常用代码</h1>
+			<pre><code>
+		1.新建一个Object
+			$data =  new stdClass();
+			$data->physicalDeviceId = "3C4EBEB6EEA6D82E";
+		2.新建一个数组并赋值
+			$post_data = array("key" => "fadf","tel" => "15245663241");
+		3.调试常用
+			echo :用于输出一个字符串
+			var_dump : 用于输出一个对象，可以是数组
+		4.定义一个变量
+			$a = "";//前面一定要用$!!!!
+		5.字符串拼接
+			只能用 . 来拼接！！！！！
+			严重区别于js和java.
+			eg:
+			echo "abc"."defg";
+			$a .= "higkl";//区别与js中的+=;
+		6.http请求到php，获取请求中的cookie,获取浏览器的信息：
+			$_COOKIE
+			$_SERVER['HTTP_USER_AGENT']
+		7.查看http请求方式：
+			$_SERVER['REQUEST_METHOD']
+			返回GET 或 POST
+		8.循环数组的几种方式，
+			$i =0;
+			foreach ($data as $key=>$val) {
+				if($i == 0){}else{
+					$url_get  .="&".$key."=".$val;
+				}
+				$i ++;
+			}
+			
+			//用for 
+			$shuzu=array("ni","wo","ta","php","mysql"); 
+			$count=count($shuzu); 
+			echo "使用for遍历数组"; 
+			for($i=0;$i<$count;$i++){ 
+				$j=$i+1; 
+				echo "第{$j}个元素是: $shuzu[$i]"; 
+			} 
+		9.获取数组的长度
+			count($shuzu); 
+			</code></pre>
+		</div> 
+		<hr />
 		
 		
-			</code>
-		</pre>
+		<div>
+			<h1>用cURL实现Get和Post</h1>
+			<pre><code>
+		   //初始化   GET方式
+	　　$ch = curl_init();
+	　　//设置选项，包括URL
+	　　curl_setopt($ch, CURLOPT_URL, "http://www.jb51.net");
+	　　curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	　　curl_setopt($ch, CURLOPT_HEADER, 0);
+	　　//执行并获取HTML文档内容
+	　　$output = curl_exec($ch);
+	　　//释放curl句柄
+	　　curl_close($ch);
+	　　//打印获得的数据
+	　　print_r($output);
+	
+		//POST请求
+		$url = "http://api.91cha.com/phone";
+		echo("请求连接为：".$url);
+		$post_data = array("key" => "950603b21647469e913e5c1bcc1d5b82","tel" => "15245663241");
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($curl, CURLOPT_POST, 1);// post数据
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $post_data);// post的变量
+		$output = curl_exec($curl);//打印获得的数据
+		var_dump($post_data);
+		
+		curl_close($curl);
+		print_r($output);
+			</code></pre>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var h1s = document.getElementsByTagName("h1");
+			for (var i = 0; i < h1s.length; i++) {
+				(function(i){  
+					var temp = h1s[i];
+					console.log(temp);
+					temp.onclick = function(i){
+						var dis =  temp.nextElementSibling.style.display ;
+						if(dis === "none"){
+							temp.nextElementSibling.style.display = 'block';
+						}else{
+							temp.nextElementSibling.style.display = 'none';
+						}
+					};
+				})(i);  
+			}
+		</script>
 	</body>
 </html>
