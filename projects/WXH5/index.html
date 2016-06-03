@@ -46,9 +46,8 @@
 			window.setTimeout(function() {
 				console.log("2s以后输出");
 				//以下显示遮罩层
-				var winHeight = window.screen.availHeight;
+				var winHeight = document.documentElement.clientHeight;
 //				var winHeight = window.screen.height;
-				console.log(winHeight);
 				var mask = document.getElementsByClassName("mask")[0];
 				mask.style.height = winHeight + "px";
 				document.getElementsByClassName("mask")[0].style.display = "block";
