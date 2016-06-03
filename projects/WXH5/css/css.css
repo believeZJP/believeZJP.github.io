@@ -64,9 +64,14 @@
 	width:50%;
 	margin: 0 auto;
 	position: absolute;
-  bottom: 13%;
-  left: 42%;
+  bottom: 11%;
+  left: 45%;
 }
 .none{
 	display: none;
+}
+.guesgif{
+	  width: 34px;
+    height: 47px;
+    opacity: 0.8;
 }
