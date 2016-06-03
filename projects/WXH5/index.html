@@ -50,7 +50,8 @@
 				
 				
 //				var winHeight = document.getElementsByClassName("islider-pic")[0].scrollHeight;
-				document.getElementById("msg").textContent ="差距"+gap+"<br/>li的高度"+ winHeight+"screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
+				document.getElementById("msg").textContent 
+				var str ="<br/>li的高度"+ winHeight+"screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
 				var flag = false;
 				var gap = 0;
 				if(winHeight>=1280){
@@ -61,6 +62,7 @@
 					gap = winHeight - winHeight2;
 					winHeight = winHeight2;
 				}
+				document.getElementById("msg").textContent  = "差距"+gap+str;
 				console.log(winHeight);
 //				console.log(winHeight +":"+winHeight2);
 				var mask = document.getElementsByClassName("mask")[0];
