@@ -1,7 +1,7 @@
   body {
   	margin: 0;
   	padding: 0;
-  	background: #333;
+  	background: #82ddf9;
   	overflow: hidden;
   }
   /*ul wrapper*/
@@ -11,6 +11,7 @@
   	width: 100%;
   	overflow: hidden;
   	position: absolute;
+  	margin-top:64px;
   }
   
   #iSlider-wrapper ul {
@@ -60,6 +61,6 @@
 	width:50%;
 	margin: 0 auto;
 	position: absolute;
-    bottom: 13%;
-    left: 42%;
+  bottom: 13%;
+  left: 42%;
 }
