@@ -46,14 +46,16 @@
 			window.setTimeout(function() {
 				console.log("2s以后输出");
 				//以下显示遮罩层
-				var winHeight = window.screen.height;
+				var winHeight = window.screen.availHeight;
+//				var winHeight = window.screen.height;
+				console.log(winHeight);
 				var mask = document.getElementsByClassName("mask")[0];
 				mask.style.height = winHeight + "px";
 				document.getElementsByClassName("mask")[0].style.display = "block";
 				window.setTimeout(function() {
 					S.unhold();//可以拖动
 					//删除遮罩层
-					mask.style.display = 'none';
+//					mask.style.display = 'none';
 					//添加手势指引
 					document.getElementsByClassName("guideGesture")[0].style.display = "block";
 				}, 2000);
