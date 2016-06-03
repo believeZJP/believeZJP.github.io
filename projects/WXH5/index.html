@@ -47,7 +47,10 @@
 				//以下显示遮罩层
 				var winHeight2 = document.documentElement.clientHeight;
 				var winHeight = window.screen.height;
-				document.getElementById("msg").textContent = "screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
+				
+				
+				var winHeight = document.getElementsByClassName("islider-pic")[0].scrollHeight;
+				document.getElementById("msg").textContent ="li的高度"+ winHeight+"screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
 				if(winHeight>winHeight2){
 					winHeight = winHeight2;
 				}
