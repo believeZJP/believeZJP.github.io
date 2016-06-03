@@ -49,9 +49,13 @@
 				var winHeight = window.screen.height;
 				
 				
-				var winHeight = document.getElementsByClassName("islider-pic")[0].scrollHeight;
+//				var winHeight = document.getElementsByClassName("islider-pic")[0].scrollHeight;
 				document.getElementById("msg").textContent ="li的高度"+ winHeight+"screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
+				var flag = false;
+				var gap = 0;
 				if(winHeight>winHeight2){
+					flag = true;
+					gap = winHeight - winHeight2;
 					winHeight = winHeight2;
 				}
 				console.log(winHeight);
@@ -60,7 +64,11 @@
 				mask.style.height = winHeight + "px";
 				mask.style.display = "block";
 				//判断屏幕和实际图片的缩放比
-				var rate = parseInt((winHeight/1334)*800)+"px";
+				var rate = parseInt((winHeight/1334)*800);
+				if(flag){
+					rate += gap;
+				}
+				rate = parseInt(rate)+"px";
 				mask.getElementsByClassName("guidArea")[0].style.top = rate;
 				
 				
@@ -70,7 +78,12 @@
 					mask.style.display = 'none';
 					//添加手势指引
 					var guide = document.getElementsByClassName("guideGesture")[0];
-					guide.style.top = parseInt((winHeight/1334)*982)+"px";
+					var rate2 = (winHeight/1334)*982;
+					if(flag){
+						rate2 += gap;
+					}
+					
+					guide.style.top = parseInt(rate2)+"px";
 					guide.style.display = "block";
 				}, 2000);
 			}, 2000);
