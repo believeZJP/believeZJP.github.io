@@ -53,6 +53,9 @@
 				document.getElementById("msg").textContent ="li的高度"+ winHeight+"screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
 				var flag = false;
 				var gap = 0;
+				if(winHeight>=1280){
+					winHeight = winHeight2 + 64;
+				}
 				if(winHeight>winHeight2){
 					flag = true;
 					gap = winHeight - winHeight2;
