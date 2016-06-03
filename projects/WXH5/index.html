@@ -47,10 +47,11 @@
 				//以下显示遮罩层
 				var winHeight2 = document.documentElement.clientHeight;
 				var winHeight = window.screen.height;
-				if(window>winHeight2){
-					winHeight = winHeight2;
-				}
 				document.getElementById("msg").textContent = "screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
+				if(winHeight>winHeight2){
+					winHeight = winHeight;
+				}
+				console.log(winHeight);
 //				console.log(winHeight +":"+winHeight2);
 				var mask = document.getElementsByClassName("mask")[0];
 				mask.style.height = winHeight + "px";
