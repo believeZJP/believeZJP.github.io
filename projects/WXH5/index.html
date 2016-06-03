@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div id="iSlider-wrapper"></div>
-		
+		<div id="msg" style="position: absolute; top: 0;left: 0; z-index: 10000;"></div>
 		
 		<div class="mask">
 			<div class="guidArea">
@@ -45,8 +45,12 @@
 		function initCall(){
 			window.setTimeout(function() {
 				//以下显示遮罩层
-//				var winHeight = document.documentElement.clientHeight;
+				var winHeight2 = document.documentElement.clientHeight;
 				var winHeight = window.screen.height;
+				if(window>winHeight2){
+					winHeight = winHeight2;
+				}
+				document.getElementById("msg").textContent = "screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
 //				console.log(winHeight +":"+winHeight2);
 				var mask = document.getElementsByClassName("mask")[0];
 				mask.style.height = winHeight + "px";
