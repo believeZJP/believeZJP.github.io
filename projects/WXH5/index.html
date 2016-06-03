@@ -20,6 +20,8 @@
 		<div class="guideGesture">
 			<img src="img/handGif.gif" alt="" />
 		</div>
+		<img src="img/bg02.png" class="none"/>
+		<img src="img/bg03.png" class="none"/>
 	<script src="js/iSlider.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		var list = [{
@@ -38,11 +40,8 @@
 				isOverspread: 1,
 				oninitialized: initCall
 			});
-			
 			S.hold();//刚开始不可以拖动;
 		}
-		
-		
 		function initCall(){
 			window.setTimeout(function() {
 				console.log("2s以后输出");
@@ -51,28 +50,21 @@
 				var mask = document.getElementsByClassName("mask")[0];
 				mask.style.height = winHeight + "px";
 				document.getElementsByClassName("mask")[0].style.display = "block";
-
 				window.setTimeout(function() {
 					S.unhold();//可以拖动
 					//删除遮罩层
 					mask.style.display = 'none';
 					//添加手势指引
 					document.getElementsByClassName("guideGesture")[0].style.display = "block";
-					
 				}, 2000);
-				
 			}, 2000);
 			console.log('加载完了');
 		}
-		
-		
 		S.on('slide', slideCallBack);
-		
 		function slideCallBack(num, dom) {
 			var gesture = document.getElementsByClassName("guideGesture")[0];
 			gesture.style.display = "none";
 			S.off("slide",slideCallBack);
-
 		}
 	</script>
 			

@@ -35,7 +35,6 @@
   	-webkit-box-pack: center;
   	-webkit-box-align: center;
   	list-style: none;
-  	top:64px;
   }
   
   #iSlider-wrapper li img {
@@ -67,4 +66,7 @@
 	position: absolute;
   bottom: 13%;
   left: 42%;
+}
+.none{
+	display: none;
 }
