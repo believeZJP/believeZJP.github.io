@@ -50,7 +50,7 @@
 				
 				
 //				var winHeight = document.getElementsByClassName("islider-pic")[0].scrollHeight;
-				document.getElementById("msg").textContent ="li的高度"+ winHeight+"screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
+				document.getElementById("msg").textContent ="差距"+gap+"<br/>li的高度"+ winHeight+"screenHeight"+winHeight+"__clientHeight:"+winHeight2+""+"innerHeight"+window.innerHeight;
 				var flag = false;
 				var gap = 0;
 				if(winHeight>=1280){
@@ -68,6 +68,7 @@
 				mask.style.display = "block";
 				//判断屏幕和实际图片的缩放比
 				var rate = parseInt((winHeight/1334)*800);
+				
 				if(flag){
 					rate += gap;
 				}
@@ -89,7 +90,7 @@
 					guide.style.top = parseInt(rate2)+"px";
 					guide.style.display = "block";
 				}, 2000);
-			}, 2000);
+			}, 500);
 		}
 		S.on('slide', slideCallBack);
 		function slideCallBack(num, dom) {
