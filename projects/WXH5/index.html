@@ -44,22 +44,28 @@
 		}
 		function initCall(){
 			window.setTimeout(function() {
-				console.log("2s以后输出");
 				//以下显示遮罩层
-				var winHeight = document.documentElement.clientHeight;
-//				var winHeight = window.screen.height;
+//				var winHeight = document.documentElement.clientHeight;
+				var winHeight = window.screen.height;
+//				console.log(winHeight +":"+winHeight2);
 				var mask = document.getElementsByClassName("mask")[0];
 				mask.style.height = winHeight + "px";
-				document.getElementsByClassName("mask")[0].style.display = "block";
+				mask.style.display = "block";
+				//判断屏幕和实际图片的缩放比
+				var rate = parseInt((winHeight/1334)*800)+"px";
+				mask.getElementsByClassName("guidArea")[0].style.top = rate;
+				
+				
 				window.setTimeout(function() {
 					S.unhold();//可以拖动
 					//删除遮罩层
 					mask.style.display = 'none';
 					//添加手势指引
-					document.getElementsByClassName("guideGesture")[0].style.display = "block";
+					var guide = document.getElementsByClassName("guideGesture")[0];
+					guide.style.top = parseInt((winHeight/1334)*982)+"px";
+					guide.style.display = "block";
 				}, 2000);
 			}, 2000);
-			console.log('加载完了');
 		}
 		S.on('slide', slideCallBack);
 		function slideCallBack(num, dom) {
