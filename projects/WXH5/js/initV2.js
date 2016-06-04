@@ -42,7 +42,7 @@
 				mask.style.display = "block";
 				//判断屏幕和实际图片的缩放比
 				var rate = parseInt((winHeight/1334)*800);
-				rate = parseInt(rate)+"px";
+				rate = parseInt(rate-3)+"px";
 				mask.getElementsByClassName("guidArea")[0].style.top = rate;
 				var guideTime = window.setTimeout(function() {
 					window.clearTimeout(guideTime);
