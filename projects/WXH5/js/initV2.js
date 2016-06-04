@@ -47,7 +47,7 @@
 				isLooping: 1,
 				animateTime: 800, // ms
 				isOverspread: 1,
-				 animateType: 'rotate',
+//				 animateType: 'rotate',
 				oninitialized: initCall
 			});
 			S.hold();//刚开始不可以拖动;
@@ -62,10 +62,19 @@
 				mask.style.height = winHeight + "px";
 				mask.style.display = "block";
 				//判断屏幕和实际图片的缩放比
-				var rate = parseInt((winHeight/1334)*800 - 5 );
-				var rateWidth = parseInt((winWidth/750)*384-20);
-				var rateLeft = parseInt((winWidth/750)*190 +10);
-				var imgHeight = parseInt((winHeight/1334)*186 -11);
+				var isWX = isWeiXin();
+				if(isWX){
+					var rate = parseInt((winHeight/1334)*800 - 5 );
+					var rateWidth = parseInt((winWidth/750)*384-20);
+					var rateLeft = parseInt((winWidth/750)*190 +10);
+					var imgHeight = parseInt((winHeight/1334)*186 -11);
+				}else{
+					var rate = parseInt((winHeight/1334)*800);
+					var rateWidth = parseInt((winWidth/750)*384);
+					var rateLeft = parseInt((winWidth/750)*190);
+					var imgHeight = parseInt((winHeight/1334)*186);
+				}
+				
 				rate = parseInt(rate);
 				var guideArea = mask.getElementsByClassName("guidArea")[0];
 				var guideImg0 = guideArea.getElementsByTagName("img")[0];
@@ -91,4 +100,13 @@
 			var gesture = document.getElementsByClassName("guideGesture")[0];
 			gesture.style.display = "none";
 			S.off("slide",slideCallBack);
+		}
+		
+		function isWeiXin(){
+		    var ua = window.navigator.userAgent.toLowerCase();
+		    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		        return true;
+		    }else{
+		        return false;
+		    }
 		}
