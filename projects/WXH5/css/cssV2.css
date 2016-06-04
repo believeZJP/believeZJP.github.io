@@ -51,7 +51,10 @@
 	line-height: 100%;
 	overflow: hidden;
 	position:absolute;
+	top:0;
+	left:0;
 	z-index: 1;
+	display: none;
 } 
 .guidArea{
 	width:52%;
@@ -81,7 +84,7 @@
     opacity: 0.8;
 }
 .picItem{
-		/*display: none;*/
+		display: none;
 		height:100%;
 		width:100%;
 }
