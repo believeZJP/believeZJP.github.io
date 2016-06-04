@@ -62,10 +62,10 @@
 				mask.style.height = winHeight + "px";
 				mask.style.display = "block";
 				//判断屏幕和实际图片的缩放比
-				var rate = parseInt((winHeight/1334)*800);
-				var rateWidth = parseInt((winWidth/750)*386);
+				var rate = parseInt((winHeight/1334)*800 +12);
+				var rateWidth = parseInt((winWidth/750)*384);
 				var rateLeft = parseInt((winWidth/750)*190);
-				var imgHeight = parseInt((winHeight/1334)*186);
+				var imgHeight = parseInt((winHeight/1334)*186 - 15);
 				rate = parseInt(rate);
 				var guideArea = mask.getElementsByClassName("guidArea")[0];
 				var guideImg0 = guideArea.getElementsByTagName("img")[0];
