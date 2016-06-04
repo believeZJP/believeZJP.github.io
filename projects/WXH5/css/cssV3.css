@@ -1,0 +1,104 @@
+  body {
+  	margin: 0;
+  	padding: 0;
+  	background: #82ddf9;
+  	overflow: hidden;
+    touch-action: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+  /*ul wrapper*/
+  
+  #iSlider-wrapper {
+  	height: 100%;
+  	width: 100%;
+  	overflow: hidden;
+  	position: absolute;
+  }
+  
+  #iSlider-wrapper ul {
+  	list-style: none;
+  	margin: 0;
+  	padding: 0;
+  	height: 100%;
+  	overflow: hidden;
+  }
+  
+  #iSlider-wrapper li {
+  	position: absolute;
+  	margin: 0;
+  	padding: 0;
+  	height: 100%;
+  	overflow: hidden;
+  	display: -webkit-box;
+  	-webkit-box-pack: center;
+  	-webkit-box-align: center;
+  	list-style: none;
+  }
+  
+  #iSlider-wrapper li img {
+  	max-width: 100%;
+  	/*max-height: 100%;*/
+  	background-position: 50% 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+.mask{
+	background-color: #000;
+	opacity: 0.5;
+	width: 100%;
+	height: 100%;
+	line-height: 100%;
+	overflow: hidden;
+	position:absolute;
+	top:0;
+	left:0;
+	z-index: 1;
+	display: none;
+	background-image: url(../img/dragonShip001.png);
+} 
+.mask img{
+	width: 100%;
+	/*height: 100%;*/
+}
+.guidArea{
+	width:52%;
+	margin:0 auto;
+	position: absolute;
+	bottom: 15%;
+	left: 25%;
+}
+.guidArea img{
+	width:100%;
+}
+.guideGesture{
+	display: none;
+	width:50%;
+	margin: 0 auto;
+	position: absolute;
+  bottom: 11%;
+  left: 45%;
+  z-index: 1;
+}
+.none{
+	display: none;
+}
+.guesgif{
+	  width: 34px;
+    height: 47px;
+    opacity: 0.8;
+}
+
+.picItem{
+		/*display: none;*/
+		height:100%;
+		width:100%;
+}
+.picItem img{
+	width:100%;
+	background-position: 50% 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
