@@ -29,7 +29,8 @@
 			S.hold();//刚开始不可以拖动;
 		}
 		function initCall(){
-			window.setTimeout(function() {
+			var maskTime = window.setTimeout(function() {
+				window.clearTimeout(maskTime);
 				//以下显示遮罩层
 				var winHeight2 = document.documentElement.clientHeight;
 				var winHeight = window.screen.height;
@@ -43,7 +44,8 @@
 				var rate = parseInt((winHeight/1334)*800);
 				rate = parseInt(rate)+"px";
 				mask.getElementsByClassName("guidArea")[0].style.top = rate;
-				window.setTimeout(function() {
+				var guideTime = window.setTimeout(function() {
+					window.clearTimeout(guideTime);
 					S.unhold();//可以拖动
 					//删除遮罩层
 					mask.style.display = 'none';
@@ -52,10 +54,12 @@
 					var rate2 = (winHeight/1334)*982;
 					guide.style.top = parseInt(rate2)+"px";
 					guide.style.display = "block";
+					
+					S.slideTo(0);
+					S.on('slide', slideCallBack);
 				}, 2000);
 			}, 2000);
 		}
-		S.on('slide', slideCallBack);
 		function slideCallBack(num, dom) {
 			var gesture = document.getElementsByClassName("guideGesture")[0];
 			gesture.style.display = "none";
