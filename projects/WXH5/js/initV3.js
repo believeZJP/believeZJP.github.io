@@ -94,7 +94,7 @@
 					guide.style.display = "block";
 					S.on('slide', slideCallBack);
 				}, 2000);
-			}, 200);
+			}, 2000);
 		}
 		function slideCallBack(num, dom) {
 			var gesture = document.getElementsByClassName("guideGesture")[0];
