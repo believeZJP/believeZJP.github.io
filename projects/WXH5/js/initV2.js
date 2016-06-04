@@ -22,8 +22,7 @@
 				data: list,
 				isLooping: 1,
 				animateTime: 800, // ms
-				fillSeam:true,
-//				isOverspread: 1,
+				isOverspread: 1,
 				oninitialized: initCall
 			});
 			S.hold();//刚开始不可以拖动;
