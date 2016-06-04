@@ -89,12 +89,12 @@
 					mask.style.display = 'none';
 					//添加手势指引
 					var guide = document.getElementsByClassName("guideGesture")[0];
-					var rate2 = (winHeight/1334)*982;
-					guide.style.top = parseInt(rate2)+"px";
+//					var rate2 = (winHeight/1334)*987;
+//					guide.style.top = parseInt(rate2)+"px";
 					guide.style.display = "block";
 					S.on('slide', slideCallBack);
 				}, 2000);
-			}, 2000);
+			}, 200);
 		}
 		function slideCallBack(num, dom) {
 			var gesture = document.getElementsByClassName("guideGesture")[0];
