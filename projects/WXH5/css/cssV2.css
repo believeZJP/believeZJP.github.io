@@ -82,3 +82,14 @@
     height: 47px;
     opacity: 0.8;
 }
+
+.picItem{
+		/*display: none;*/
+		height:100%;
+		width:100%;
+}
+.picItem img{
+	width:100%;
+	background-position: 50% 0;
+	background-size: cover;
+}
