@@ -47,14 +47,13 @@
 	opacity: 0.8;
 	height: 100%;
 	line-height: 100%;
-	overflow: hidden;
 	position:relative;
 } 
 .guidArea{
 	width:52%;
 	margin:0 auto;
 	position: absolute;
-	bottom: 8%;
+	bottom: 17%;
 	left: 25%;
 }
 .guidArea img{
@@ -65,7 +64,7 @@
 	width:50%;
 	margin: 0 auto;
 	position: absolute;
-  bottom: 11%;
+  bottom: 9%;
   left: 45%;
 }
 .none{
@@ -75,14 +74,4 @@
 	  width: 34px;
     height: 47px;
     opacity: 0.8;
-}
-.picItem{
-		display: none;
-		height:100%;
-		width:100%;
-}
-.picItem img{
-	width:100%;
-	background-position: 50% 0;
-	background-size: cover;
 }

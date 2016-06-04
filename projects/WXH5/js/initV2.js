@@ -3,26 +3,19 @@
 		}, {
 			content: document.getElementById('pic2')
 		}];
+		/*
 		var list = [{
 			content: 'img/bg03.png'
 		}, {
 			content: 'img/bg02.png'
 		}];
-		/*var list = [{
-			content: document.querySelector("#pic1")
-		}, {
-			content: 'img/bg02.png'
-		},{
-			content: document.querySelector("#pic1")
-		}, {
-			content: 'img/bg02.png'
-		}
-		];*/
+		*/
 		var S;
+		
 		initSlider();
 		function initSlider() {
-//			document.querySelector("#pic2").style.display = "block";
-//			document.querySelector("#pic1").style.display = "block";
+			document.querySelector("#pic2").style.display = "block";
+			document.querySelector("#pic1").style.display = "block";
 			
 			S = new iSlider({
 				dom: document.getElementById('iSlider-wrapper'),
