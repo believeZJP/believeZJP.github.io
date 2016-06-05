@@ -1,0 +1,122 @@
+/*public style*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,button,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video{ margin: 0;padding: 0;vertical-align: baseline;border:0;outline:none;font-family: "Microsoft YaHei",Arial,"Helvetica";}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display:block;}
+a{color:#000;text-decoration:none;vertical-align:baseline;background:transparent;}
+a:hover{cursor:pointer;}
+button:focus,input:focus,input{outline:none;}
+
+/*clearfix */
+.clearfix:after{content: "."; display: block; height: 0; clear: both; visibility: hidden;}
+.clearfix{display: inline-block;}
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}
+.clear{clear:both;}
+
+html,body{
+	width: 100%;
+	height: 100%;
+	font-size: 14px;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
+	min-width: 320px;
+	overflow: hidden;
+	position: relative;
+	margin: 0;
+    padding: 0;
+}
+img{display: block;width: 100%;height: 100%;}
+.rel{position: relative;}
+/************************public style*****************************/
+
+#myAudioWrapper{
+	width: 25px;
+	height: 25px;
+	position: fixed;
+	z-index: 100;
+	top:4%;
+	right:5%;
+}
+.myAudio{
+	width: 25px;
+	height: 25px;
+	background:url(../images/m_star.png) no-repeat;
+	/*background-size: cover;*/
+	background-size:100% 100%;
+}
+.myAudio.stop{
+	background:url(../images/m_stop.png);
+	background-size:cover;
+}
+.shareP,.hp{
+	top:0;
+	left:0;
+	display: none;
+	z-index: 10;
+}
+.hp{
+	background: rgba(0,0,0,0.4);
+	font-size: 24px;
+	text-align: center;
+}
+.hp div{
+	margin-top: 20%;
+}
+
+/****首页动画加载****/
+.swiper-slide{
+	text-align: center;
+	font-size:18px ;
+	background: #fff;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	position: relative;
+}
+.swiper-slide > div,.pageHome > div{
+	position:absolute;
+}
+
+.p_f{
+	width: 55%;
+	left:22.5%;
+	top: 10%;
+	-webkit-animation-delay: 0.1s;
+}
+.p_i1{
+	width: 46%;
+	left:17%;
+	top:45%;
+	-webkit-animation-delay: 1.5s;
+}
+.p_i2{
+	width: 75%;
+	left:17%;
+	top:52%;
+	-webkit-animation-delay: 1s;
+}
+.star{
+	width: 35%;
+	bottom: 5%;
+	left:32.5%;
+	-webkit-animation: fadeInUp 1s,rubberBand 1s 1s;
+}
+
+
+
+
+
+
+
+
+
