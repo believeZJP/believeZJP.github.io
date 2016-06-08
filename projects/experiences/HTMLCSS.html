@@ -191,7 +191,32 @@
 	
 </code>
 
+<h2>CSS设置input placeholder文本的样式 </h2>
+<code class="codeArea">
+	#field3::-webkit-input-placeholder {
+	    font-style:italic;
+	    text-decoration:overline;
+	    letter-spacing:3px;
+	    color:#999;
+	}
+	/* 火狐浏览器 */
+	#field1::-moz-placeholder { color:#00f; }
+	input::-webkit-input-placeholder{
+		color:red;
+		font-style:normal;
+	}
+</code>
 
+<h2>overflow:hidden区域position:absolute的超出后也会隐藏</h2>
+<pre></pre><code class="codeArea">
+	这个没有什么好的解决方案。
+	<div style="position:relative;width:200px;">
+<div style="height:200px;position:relative;background:red;overflow:hidden;">
+	给你的父元素A外加一个容器C，并将A的width值给C，再在C的内部添加绝对定位的B元素。
+</div>
+<div style="position:absolute;width:500px;height:500px;left:-50px;top:0px;height:100px;background:green;"></div>
+</div>
+</code></pre>
 		</code>
     </div>
 </body>

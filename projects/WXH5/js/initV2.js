@@ -110,3 +110,91 @@
 		        return false;
 		    }
 		}
+		
+
+
+
+var wxShare = {
+    setting : {
+        debug: true,
+        jsApiList: [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo'
+        ],
+        title : '',
+        desc : '',
+        link : '',
+        imgUrl : '',
+		appId:'wx3cea6ad8692ecf3f',//5103cac349d77403be92c8ed5f32e870 
+//		appId:'wx795f8c6714bc112f',//5103cac349d77403be92c8ed5f32e870 
+		nonceStr:'PXHDWZvSPXbPklCr',
+		timestamp:'1465211918',
+		signature:'6ab00d01c2027db67baa0a77633ce28768b1d46d'
+		
+    },
+    init : function (options){
+//      if (options)
+//      {
+//          $.extend(this.setting, options);
+//      }
+        console.log(this.setting);
+        wx.config({
+            debug: this.setting.debug,
+            appId: this.setting.appId,
+            timestamp: this.setting.timestamp,
+            nonceStr: this.setting.nonceStr,
+            signature: this.setting.signature,
+            jsApiList: this.setting.jsApiList
+        });
+
+        wx.ready(function () {
+            wx.checkJsApi({
+                jsApiList: [
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo'
+                ],
+                success: function (res) {
+                    //alert(JSON.stringify(res));
+                }
+            });
+
+            var title = 'AbleCloud祝您端午节快乐！';
+            var desc = '物联网时代做个粽子需要几步？访问www.ablecloud.cn，加速硬件联网智能化。AbleCloud，让物联网想法变成现实。';
+            var link = 'http://www.baidu.com';
+			
+            var shareObj = {
+                title : title,
+                desc : desc,
+                link : link,
+                imgUrl : '../img/bg03.png',
+                trigger: function (res) {
+                    //alert('用户点击发送给朋友');
+                },
+                success: function (res) {
+                    //alert('已分享');
+                },
+                cancel: function (res) {
+                    //alert('已取消');
+                },
+                fail: function (res) {
+                    alert(JSON.stringify(res));
+                }
+            };
+            wx.onMenuShareAppMessage(shareObj); //分享朋友
+            wx.onMenuShareTimeline(shareObj);  //分享朋友圈
+            wx.onMenuShareQQ(shareObj);//分享到qq
+            wx.onMenuShareWeibo(shareObj); //分享到腾讯微博
+        });
+        wx.error(function(res){
+        });
+    }
+}
+var options = {
+	
+}
+wxShare.init(options);
