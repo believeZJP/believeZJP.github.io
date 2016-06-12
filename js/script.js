@@ -27,16 +27,17 @@ $(document).ready(function(){
 	                {value:3, name:'JavaScript'},
 	                {value:2, name:'node'},
 	                {value:3, name:'AngularJS',href:'projects/AngularJS/index.html'},
-	                {value:1, name:'React',href:'React.html'},
-	                {value:4, name:'less',href:'lessTest.html'},
+	                {value:1, name:'React',href:'views/fe/React.html'},
+	                {value:4, name:'less',href:'views/fe/lessTest.html'},
 	                {value:4, name:'Echarts',href:'views/EchartsDemo.html'},
 	                {value:1, name:'Framework7',href:'http://framework7.io/get-started/'},
 	                {value:1, name:'Ionic',href:'http://ionicframework.com/'},
 	                {value:1, name:'Vue.js',href:'http://cn.vuejs.org'},
-	                {value:1, name:'fis',href:'http://fis.baidu.com/fis3/index.html'},
+	                {value:1, name:'fis3',href:'http://fis.baidu.com/fis3/index.html'},
 	                {value:1, name:'Backbone.js',href:'http://www.zhihu.com/question/19720745'},
+	                {value:1, name:'gulp.js',href:''},
 	                {value:1, name:'前端脚手架',href:'views/scaffold.html'},
-	                {value:1, name:'其他',href:'others.html'}
+	                {value:1, name:'其他',href:'views/fe/others.html'}
 	            ]
 	        },
 		"后端":{
@@ -53,7 +54,7 @@ $(document).ready(function(){
 	            type:'pie',
 	            radius: ['40%', '55%'],
 	            data:[
-	                {value:3, name:'MYSQL',href:'SQLList.html'},
+	                {value:3, name:'MYSQL',href:'views/database/SQLList.html'},
 	                {value:1, name:'MONGODB'},
 	                {value:1, name:'NOSQL'},
 	                {value:1, name:'其他',href:''}
