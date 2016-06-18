@@ -154,7 +154,55 @@
 			</code></pre>
 		</div>
 		
-		
+		<div>
+			<h1>php配置debug，打印格式化的日志</h1>
+			<pre><code>
+	   zend_extension="php_xdebug.dll"
+　　xdebug.remote_enable = On
+　　xdebug.remote_host = "localhost"
+　　xdebug.remote_port = 9000
+　　xdebug.remote_handler = "dbgp"
+　　xdebug.auto_trace = 1
+　　xdebug.collect_includes = 1
+　　xdebug.collect_params = 1
+　　xdebug.collect_return = 1
+　　xdebug.default_enable = 1
+　　xdebug.collect_assignments = 1
+　　xdebug.collect_vars = 1
+　　xdebug.remote_autostart = 1
+　　xdebug.remote_connect_back = 1
+　　xdebug.show_local_vars = 1
+　　xdebug.show_exception_trace = 0
+//后面三个用于var_dump()函数输出不完整，有省略号的解决办法-----放到php.ini中
+	xdebug.var_display_max_children=128
+	xdebug.var_display_max_data=512
+	xdebug.var_display_max_depth=5
+	
+	
+	
+	
+	array_push($openIdList,array("openId" => $openIds[$k]['openId'],"$provider" => $openIds[$k]['provider']));
+	
+	php根据某个字段排序
+	function sortArrByField($array, $field, $desc = false){
+	  $fieldArr = array();
+	  foreach ($array as $k => $v) {
+	    $fieldArr[$k] = $v[$field];
+	  }
+	  $sort = $desc == false ? SORT_ASC : SORT_DESC;
+	  array_multisort($fieldArr, $sort, $array);
+	}
+	
+	
+	php数组合并
+	
+	$fruits = array("apple","banana","pear");  
+$numbered = array("1","2","3");  
+$cards = array_merge($fruits, $numbered);  
+	
+	
+			</code></pre>
+		</div> 
 		<script type="text/javascript">
 			var h1s = document.getElementsByTagName("h1");
 			for (var i = 0; i < h1s.length; i++) {
