@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS算法积累</title>
+		<link rel="stylesheet" type="text/css" href="../../css/itemList.css"/>
+	</head>
+	<body>
+		<div>
+			<h1>根据浏览器获取地址</h1>
+			<pre><code>
+				if(navigator.geolocation){
+				    navigator.geolocation.getCurrentPosition(function(position){
+				      console.log("latitude:"+position.coords.latitude+"<br>longitude:"+position.coords.longitude);
+				    })
+				  }
+			</code></pre>
+			<hr />
+			
+			<h1>使用JavaScript截断字符串</h1>
+			<pre><code>
+				详解：http://www.w3cplus.com/javascript/truncate-a-string-with-javascript.html
+				truncateString("A-", 1) should return "A...".
+				truncateString("Absolutely Longer", 2) should return "Ab...".
+				truncateString("A-tisket a-tasket A green and yellow basket", "A-tisket a-tasket A green and yellow basket".length) should return "A-tisket a-tasket A green and yellow basket".
+						
+				
+				function truncateString(str, num) {
+				    return str.length <= num ? str : num <= 3 ? str.slice(0, num).trim() + '...' : str.slice(0, num - 3).trim() + '...';
+				}
+			</code></pre>
+			<hr />
+			
+			<h1>重复字符串</h1>
+			<pre><code>
+				详解：http://www.w3cplus.com/javascript/repeat-string-javascript.html
+				
+				repeatStringNumTimes("abc", 1)返回abc
+				repeatStringNumTimes("*", 8)返回********
+				repeatStringNumTimes("abc", -2)返回
+				
+				
+				function repeat(str, num) {
+				    var array = [];
+				    for (var i = 1; i <= num;) {
+				        array[i++] = str;
+				    }
+				    return array.join('');
+				}
+			</code></pre>
+			<hr />
+
+			<h1>字尾确认</h1>
+			<pre><code>
+				详解：http://www.w3cplus.com/javascript/confirm-the-ending.html
+				end("Bastian", "n")返回true
+				end("Connor", "n")返回false
+				end("Walking on water and developing software from a specification are easy if both are frozen", "specification")返回false
+				end("He has to give me a new name", "name")返回true
+				end("He has to give me a new name", "me")返回true
+				end("He has to give me a new name", "na")返回false
+				
+				
+				
+				function end(str, target) {
+				    var endingPart = str.substr(-(target.length)); 
+				    return target === endingPart;
+				}
+				
+				// 或简化为
+				
+				function end(str, target) {
+				    return str.substr(-target.length) === target;
+				}
+				
+				function end(str,target) {
+				    var endingPart = str.slice(-target.length);
+				
+				    return target === endingPart;
+				}
+			</code></pre>
+			<hr />
+
+			<h1>字符串反转</h1>
+			<pre><code>
+				function reverseString(str) {
+				    return str.split("").reverse().join("");
+				}
+				reverseString("hello"); // => olleh
+				
+				
+				function reverseString (str) {
+				    var newString = '';
+				    var i = str.length;
+				
+				    while (i > 0) {
+				        newString += str.substring(i - 1, i);
+				        i--;
+				    }
+				
+				    return newString;
+				}
+				
+				reverseString("hello"); // => olleh
+			</code></pre>
+			<hr />
+
+			<h1>阶乘</h1>
+			<pre><code>
+				详解：http://www.w3cplus.com/javascript/factorial-function-in-javascript.html
+				function factorial (num) {
+				    if (num < 0) {
+				        return -1;
+				    } else if (num === 0 || num === 1) {
+				        return 1;
+				    } else {
+				        return (num * factorial(num - 1));
+				    }
+				}
+				
+				
+				function factorial (num) {
+				    var result = num;
+				    if (num < 0) {
+				        return -1;
+				    } else if (num === 0 || num === 1) {
+				        return 1;
+				    } else {
+				        while (num > 1) {
+				            num--;
+				            result *= num;
+				        }
+				    }
+				    return result;
+				}
+			</code></pre>
+			<hr />
+
+			<h1>回文判断</h1>
+			<pre><code>
+				详解:http://www.w3cplus.com/javascript/palindrome-check-in-javascript.html
+				palindrome("My age is 0, 0 si ega ym.");
+				function palindrome(str) {
+				    var re = /[\W_]/g; // 或者 var re = /[^A-Za-z0-9]/g;
+				
+				    var lowRegStr = str.toLowerCase().replace(re,'');
+				
+				    var reverseStr = lowRegStr.split('').reverse().join('');
+				
+				    return reverseStr === lowRegStr;
+				}
+				
+				function palindrome(str) {
+				  return str.replace(/[\W_]/g, '').toLowerCase() ===
+				         str.replace(/[\W_]/g, '').toLowerCase().split('').reverse().join('');
+				}
+				
+				function palindrome (str) {
+				    var re = /[\W_]/g;
+				    var lowRegStr = str.toLowerCase().replace(re, '');
+				    var len = lowRegStr.length;
+				
+				    for (var i = 0, halfLen = len / 2; i < halfLen; i++){
+				        if (lowRegStr[i] !== lowRegStr[len - 1 - i]) {
+				            return false;
+				        }
+				    }
+				    return true;
+				}
+			</code></pre>
+			<hr />
+			
+			
+			<h1>获取字符串中最长单词</h1>
+			<pre><code>
+				详解：http://www.tuicool.com/articles/Ib2qmqY
+		function findLongestWord(str) {
+		  str = str.split(" ");
+		  var newArr = [];
+		  for(var i=0;i < str.length ; i++){
+		    newArr.push(str[i].length);
+		  }
+		  console.log(newArr);
+		  var num = Math.max.apply(null,newArr);
+		  console.log(num);
+		  return num;
+		}
+		
+		findLongestWord("The quick brown fox jumped over the lazy dog");
+
+			</code></pre>
+			<hr />
+			
+			<h1>将一串字符串的每个单词首字母大写</h1>
+			<pre><code>
+		function titleCase(str) {
+		  str = str.split(" ");
+		  var newArr = [];
+		  for(var i=0;i < str.length ; i++){
+		    var temp = str[i];
+		    var tempStr  = temp.substring(0,1).toUpperCase()+temp.substring(1,temp.length).toLowerCase();
+		    newArr.push(tempStr);
+		  }
+		  str = newArr.join(" ");
+		  
+		  return str;
+		}
+		
+		titleCase("I'm a little tea pot");
+			</code></pre>
+			<hr />
+			
+			<h1>多维数组中获取最大值</h1>
+			<pre><code>
+			详细讲解：http://www.tuicool.com/articles/y2Uzq2
+			
+			基本解决方案
+
+			function largestOfFour(arr) {
+			    var results = []; // 创建一个results变量来存储
+			
+			    // 创建一个外层循环，遍历外层数组
+			    for (var n = 0; n < arr.length; n++) {
+			        var largestNumber = 0; // 创建第二个变量，存储最大的数
+			
+			        // 创建另一个循环，遍历子数组
+			        for (var sb = 0; sb < arr[n].length; sb++) {
+			            //检查子数组的元素是否大于当前存储的最大值
+			            if (arr[n][sb] > largestNumber) {
+			                // 如果为真，将这个值赋予给变量largestNumber
+			                largestNumber = arr[n][sb];
+			            }
+			        }
+			
+			        // 内部循环后，将每个子数组中的值保存到数组results中
+			        results[n] = largestNumber;
+			    }
+			
+			    // 返回数组
+			    return results;
+			}
+			
+			largestOfFour([[1,34],[456,2,3,44,234],[4567,1,4,5,6],[34,78,23,1]]); //[34, 456, 4567, 78]
+			
+			中级解决方案
+			
+			function largestOfFour (arr) {
+			    // 通过map()方法，并通过回调函数，将子数组中最大值组合在一起，得到一新数组
+			    return arr.map(function (group) {
+			        // 通过reduce方法，把每个子数组中最大值返回到group数组中
+			        return group.reduce(function (prev, current) {
+			            // 如果current 大于prev，返回current，否则返回prev
+			            return (current > prev) ? current : prev;
+			        });
+			    });
+			}
+			
+			largestOfFour([[1,34],[456,2,3,44,234],[4567,1,4,5,6],[34,78,23,1]]); // [34, 456, 4567, 78]
+			
+			
+			最佳解决方案
+
+			function largestOfFour (arr) {
+			    return arr.map(Function.apply.bind(Math.max, null));
+			}
+			
+			largestOfFour([[1,34],[456,2,3,44,234],[4567,1,4,5,6],[34,78,23,1]]); //[34, 456, 4567, 78]
+			
+				</code></pre>
+		</div>
+		<hr />
+		
+		
+		</div> 
+		<script type="text/javascript">
+			var h1s = document.getElementsByTagName("h1");
+			for (var i = 0; i < h1s.length; i++) {
+				(function(i){  
+					var temp = h1s[i];
+					console.log(temp);
+					temp.onclick = function(i){
+						var dis =  temp.nextElementSibling.style.display ;
+						if(dis === "none"){
+							temp.nextElementSibling.style.display = 'block';
+						}else{
+							temp.nextElementSibling.style.display = 'none';
+						}
+					};
+				})(i);  
+			}
+		</script>
+	</body>
+</html>
