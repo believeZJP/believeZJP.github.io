@@ -271,6 +271,42 @@
 		<hr />
 		
 		
+		<hr />
+		<h1>中级算法</h1>
+		<hr />
+		<hr />
+		
+		<h1></h1>
+		<pre>Sum All Numbers in a Range<code>
+			知识点：Math.max()
+						Math.min()
+						Array.prototype.reduce()
+						
+			测试用例：
+				sumAll([1, 4]) should return a number.
+				sumAll([1, 4]) should return 10.
+				sumAll([4, 1]) should return 10.
+				sumAll([5, 10]) should return 45.
+				sumAll([10, 5]) should return 45.
+			
+function sumAll(arr) {
+	  var max1 = Math.max(arr[0],arr[1]);
+	  var min1 = Math.min(arr[0],arr[1]);
+	  var newArr = [];
+	  for(var i = min1;i <= max1;i++){
+	    newArr.push(i);
+	  }
+	  var total = newArr.reduce(function(a,b){
+	    return a+b;
+	  });
+	  return total;
+}
+
+sumAll([1, 4]);
+
+		</code></pre>
+		
+		
 		</div> 
 		<script type="text/javascript">
 			var h1s = document.getElementsByTagName("h1");
