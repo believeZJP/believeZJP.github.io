@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>分页</title>
+		<style type="text/css">
+			.page-span{
+			    border: #dde0e1 solid 1px;
+			    font-size: 12px;
+			    color: #506470;
+			    cursor: pointer;
+			    width: auto;
+			    margin-left: 10px;
+			    padding-left: 10px;
+			    padding-right: 10px;
+			    height: 30px;
+			    line-height: 30px;
+			    text-align: center;
+			    display: inline-block;
+			    border-radius: 3px;
+			}
+			.page-span.selected{
+				color:#fff;
+				background-color: #00bcbf;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="pageBox"></div>
+		
+		<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		var total = 350;
+			function createPage(start,range,totalCount){
+				start = parseInt(start);
+				range = parseInt(range);
+				totalCount = parseInt(totalCount);
+				if(start<1){
+					start = 1;
+				}
+				var disNum = 5;//每页显示数量
+				var totalPage = 0;//总页数
+				var prePage = 1;
+				if(start>1){
+					prePage = start - 1;
+				}
+				var html = "<span class='page-span' data='1'>首页</span><span class='page-span' data='"+prePage+"'>上一页</span>";
+				if(totalCount%range==0){
+				    totalPage = totalCount/range;
+				}else{
+				    totalPage = Math.ceil(totalCount/range);
+				} 
+				for (var i=start;i<=totalPage;i++) {
+					if(i < start+disNum){
+						if(i == start){
+							html += "<span class='page-span selected' data='"+i+"'>"+i+"</span>";
+						}else{
+							html += "<span class='page-span' data='"+i+"'>"+i+"</span>";
+							
+						}
+					}else{
+						html += "<span class='page-span'>...</span>";
+						break;
+					}
+				}
+				html += "<span class='page-span'>下一页</span><span class='page-span' data='"+totalPage+"'>尾页</span>";
+				$("#pageBox").empty().append(html);
+			}
+			
+			createPage(9,10,total);
+			$(document).on("click",".page-span",function(){
+				var page = $(this).attr("data");
+				if(!page){return;}
+				createPage(page,10,total);
+			});
+		</script>
+	</body>
+</html>
