@@ -19,87 +19,125 @@
 			    display: inline-block;
 			    border-radius: 3px;
 			}
-			.page-span.selected,.page-span:hover{
+			.page-span.page-selected,.page-span:hover{
 				color:#fff;
 				background-color: #00bcbf;
 			}
 			.page-omit{
 				cursor:auto;
+				margin-left:10px;
 			}
 			.page-omit:hover{
 				color: #506470;
 				background-color: #fff;
 			}
+			.page-dis:hover{
+				cursor: not-allowed;
+				background-color: #f1eff0;	
+				color: #bbb;
+			}
+			#pageBox{
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-webkit-user-select: none;
+			}
+			.page-dis{
+				background-color: #f1eff0;	
+				color: #bbb;
+			}
+			
 		</style>
 	</head>
 	<body>
 		<div id="pageBox"></div>
 		
-		<script src="js/jquery-2.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-		var total = 350;
-			function createPage(start,range,totalCount){
+		var total = 110;
+			function createPage(dom,start,range,totalCount){
+				this.options = {
+					selectCSS:" page-selected",//当前页
+					disPage:"page-dis",//禁用按钮的样式
+					disNum:5,//每页展示数量
+					startRange : 1,
+					endRange:1
+				};
 				start = parseInt(start);
 				range = parseInt(range);
 				totalCount = parseInt(totalCount);
 				if(start<1){
 					start = 1;
 				}
-				var disNum = 5;//每页显示数量
 				var totalPage = 0;//总页数
 				var prePage = 1;
 				var nextPage = 1;
+				var noStart = "";
+				var noEnd = "";
+				if (start == 1) {
+					noStart = this.options.disPage;
+				}
 				if(start>1){
 					prePage = start - 1;
 				}
-				var html = "<span class='page-span' data='1'>首页</span><span class='page-span' data='"+prePage+"'>上一页</span>";
+				var html = [];
+				html.push("<span class='page-span "+noStart+"' data='1'>首页</span><span class='page-span "+noStart+"' data='"+prePage+"'>上一页</span>");
 			    totalPage = Math.ceil(totalCount/range);
+			    totalPage<1 ? totalPage = 1 : totalPage = totalPage;
 				if(totalPage == start){
 					nextPage = start;
 				}else{
 					nextPage = start + 1;
 				}
-				
-				
-				this.options = {startRange : 1,endRange:1};
-				
-				html += "<span class='page-span' data='1'>1</span>";
-				for (var i=start;i<=totalPage;i++) {
-					/*if(i < start+disNum){
-						if(i == start){
-							html += "<span class='page-span selected' data='"+i+"'>"+i+"</span>";
+				html.push("<span class='page-span "+(start ==1 ?this.options.selectCSS:"")+"' data='1'>1</span>");
+				/***for 循环全部***/
+				var i = 2;//从2开始
+				var itemCount = 0;
+				for (; i <= totalPage-1; i++) {//到总页数-1截止
+					if(start < this.options.disNum-2){//开始没有省略号
+						if(i >this.options.disNum-2+1){
+							html.push("<span class='page-omit'>...</span>");
+							break;
 						}else{
-							html += "<span class='page-span' data='"+i+"'>"+i+"</span>";
+							html.push("<span class='page-span "+(i ==start ?this.options.selectCSS:"")+"' data='"+i+"'>"+i+"</span>");
 						}
-					}else{
-						html += "<span class='page-span page-omit'>...</span>";
-						break;
-					}*/
-					if ((i > this.options.startRange && i <= totalPage - this.options.endRange)){
-						if (i<= totalPage-this.options.endRange || i>) {
-							html += "<span class='page-span' data='"+i+"'>"+i+"</span>";
-						} else{
-							html += "<span>...</span>";
-							
+					}else if(totalPage-start < this.options.disNum-2){//结尾没有省略号
+						if(i == totalPage - (this.options.disNum-2)-1){
+							html.push("<span class='page-omit'>...</span>");
 						}
-						
-					}else{
-						html += "<span class='page-span' data='"+i+"'>"+i+"</span>";
-						
+						if(i >= totalPage - (this.options.disNum-2)){
+							html.push("<span class='page-span "+(i ==start ?this.options.selectCSS:"")+"' data='"+i+"'>"+i+"</span>");
+						}
+					}else {//两边都有省略号
+							var count = Math.ceil((this.options.disNum-2-1)/2);
+							if (i == start-count-1) {
+								html.push("<span class='page-omit'>...</span>");
+							}
+							if (i >=start -count  && i <= start+count) {
+								html.push( "<span class='page-span "+(i ==start ?this.options.selectCSS:"")+"' data='"+i+"'>"+i+"</span>");
+							}
+							if(i == start+count+1){
+								html.push("<span class='page-omit'>...</span>");
+								break;
+							}
 					}
-					if (i === this.options.startRange || i === totalPage - this.options.endRange)
-          				html += "<span>...</span>";
+			    }
+				if (totalPage>1) {
+					html.push( "<span class='page-span "+(totalPage==start ?this.options.selectCSS:"")+"' data='"+totalPage+"'>"+totalPage+"</span>");
 				}
-				html += "<span class='page-span' data='"+totalPage+"'>"+totalPage+"</span>";
-				html += "<span class='page-span' data='"+nextPage+"'>下一页</span><span class='page-span' data='"+totalPage+"'>尾页</span>";
-				$("#pageBox").empty().append(html);
+				var noEnd = "";
+				if (start == totalPage) {
+					noEnd = this.options.disPage;
+				}
+				html.push( "<span class='page-span "+noEnd+"' data='"+nextPage+"'>下一页</span><span class='page-span "+noEnd+"' data='"+totalPage+"'>尾页</span>");
+				html = html.join("");
+				$(dom).empty().append(html);
 			}
 			
-			createPage(1,10,total);
+			createPage("#pageBox",1,10,total);
 			$(document).on("click",".page-span",function(){
 				var page = $(this).attr("data");
 				if(!page){return;}
-				createPage(page,10,total);
+				createPage("#pageBox",page,10,total);
 			});
 		</script>
 	</body>
