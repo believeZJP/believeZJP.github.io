@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>webpack学习</title>
+	</head>
+	<body>
+		基本知识积累：
+			1.npm i -g   和npm install -g 是一样的，i 只是install的简写。
+		2.查看path:
+			在cmd下，直接执行path,可以看到path的所有配置。
+			
+		3.先安装node.js node.js会自带npm包管理工具 。
+		node.js
+			Install node.js.
+			node.js comes with a package manager called npm.	
+			
+			
+		4.检查node和npm版本呢
+		
+		node -v 
+		npm -v
+		
+		
+		5.node js 返回中文乱码
+			1.确保文件是utf-8格式
+			2.在头部添加
+				response.writeHead(200,{'Content-Type':'text/plain;charset=utf-8'});
+
+		6.查看cmd的日志窗口不够大时解决办法
+			命令行窗口左上角图标->属性->布局，然后适当增大屏幕缓冲区高度大小即可
+			
+		
+		7.npm root：查看当前包的安装路径
+			npm root -g：查看全局的包的安装路径
+		
+		8.查看所有全局安装的模块：
+			npm ls -g
+		9.npm 安装模块
+			npm install 模块名字
+		10.npm卸载模块
+			npm uninstall 模块名字
+			卸载后，可以在/node_modules目录下查看包是否存在，或使用命令行查看：
+				npm ls
+		11.更新模块
+			npm update 模块名字
+		12.npm 搜索模块
+			npm search 模块名字
+		13.npm install <name> [–save|–save-dev|–save-optional]
+			其中：
+			添加–save 参数安装的模块的名字及其版本信息会出现在package.json的dependencies选项中
+			添加–save-dev 参数安装的模块的名字及其版本信息会出现在package.json的devDependencies选项中
+			添加–save-optional 参数安装的模块的名字及其版本信息会出现在package.json的optionalDependencies选项中
+		
+		14.显示npm的bin目录
+			npm bin
+		
+		
+		
+		
+			webpack 
+		
+		1.安装
+			npm i -g webpack webpack-dev-server
+
+		2.写一个cats.js
+				var cats = ['dave', 'henry', 'martha'];
+				module.exports = cats;
+			写一个app.js
+				cats = require('./cats.js');
+				console.log(cats);
+			在项目文件路径下，运行webpack app.js app.bundle.js
+			会生成一个app.bundle.js
+			运行node app.bundle.js
+			
+			可以看到输出结果['dave', 'henry', 'martha']
+		
+		
+		工程化构建
+		将源码放到src目录下
+			src
+				app.js
+				cats.js
+		最后生成的文件放到build目录下。
+		
+		npm init 
+		npm install --save-dev webpack
+		
+		添加一个webpack.config.js
+		
+		直接运行webpack
+			即可生成build好的文件，
+			运行node bin/app.bundle.js 即可看到输出的结果。
+		
+		
+	</body>
+</html>

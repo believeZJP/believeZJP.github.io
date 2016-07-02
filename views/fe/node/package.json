@@ -1,0 +1,18 @@
+{
+  "name": "testnpminit",
+  "version": "1.0.0",
+  "description": "just test",
+  "main": "helloworld.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "zjp",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "webpack": "^1.13.1"
+  }
+}
