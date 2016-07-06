@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<script src="js/require.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			require.config({
+				/*shim: {
+			        'mod1': {
+			            deps : ['mod2']//模块1依赖于模块2，加了这个再看加载顺序，可以看出加载顺序的不同，但console hello执行顺序一样
+			        }
+			    },*/
+				
+			    baseUrl: 'js'
+			});
+		
+			require(['mainV2'],function(main){
+				main.hello();
+			})
+		</script>
+	</body>
+</html>
