@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue MarkDown示例</title>
+		<script src="../../../js/libs/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h1>Vue.js 实现简易的markdown的</h1>
+		<hr />
+		<div id="editor">
+			<textarea v-model="content" ></textarea>
+			<!--实时生成效果            -->
+			<div v-html="content"></div>
+		</div>
+		<h1>js报错，暂时搞不定，待解决  TODO </h1>
+		<script>
+
+		</script>
+		<script src="vue/markdown.js"></script>
+	</body>
+</html>
