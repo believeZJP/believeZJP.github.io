@@ -3,32 +3,80 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Vue Git历史记录查询</title>
+		<style type="text/css">
+			#demo{
+				font-family: "microsoft yahei";
+			}
+			a{
+				text-decoration: none;
+				color: #f66;
+			}
+			li{
+				line-height: 1.5em;
+				margin-bottom: 20px;
+			}
+			.author,.date{
+				font-weight: bolder;
+			}
+			
+		</style>
 		<script src="../../../js/libs/vue.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<hr />
 		<div id="demo">
 			<h1>Vue.js Git历史记录查询</h1>
-			<template  v-for="">
-				
-				
+			<hr />
+			<template  v-for="branch in branches">
+				<input type="radio" name="branch" :id="branch" :value="branch" v-model="currentBranch" />
+				<label :for="branch">{{branch}}</label>
 			</template>
-
-
+			<p>vuejs/vue@{{currentBranch}}</p>
+			<ul>
+				<li v-for="record in commits">
+					<a :href="record.html_url" target="_blank" class="commit">{{record.sha.slice(0,7)}}</a>
+					- <span class="message">{{record.commit.message | truncate }}</span><br />
+					by <span class="author">{{record.commit.author.name}}</span>
+					at <span class="date">{{record.commit.author.date | formatDate}}</span>
+				</li>
+			</ul>
 		</div>
 		<script>
-			new Vue({
-				el:"#editor",
+			var apiURL = 'https://api.github.com/repos/vuejs/vue/commits?per_page=3&sha=';
+			
+			var demo = new Vue({
+				el:"#demo",
 				data:{
-					content:'# Hello'
+					branches:['master','dev'],
+					currentBranch:'master',
+					commits:null
+				},
+				created:function(){
+					this.fetchData()
+				},
+				watch:{
+					currentBranch:'fetchData'	
 				},
 				filters:{
-
+					truncate: function(v){
+						var newLine = v.indexOf("\n");
+						return newLine > 0 ? v.slice(0,newLine) : v
+					},
+					formateDate: function(v){
+						return v.replace(/T|Z/g,' ')
+					}
+				},
+				methods: {
+					fetchData: function(){
+						var xhr = new XMLHttpRequest();
+						var self = this;
+						xhr.open('GET',apiURL + self.currentBranch);
+						xhr.onload = function(){
+							self.commits = JSON.parse(xhr.responseText);
+						}
+						xhr.send();
+					}
 				}
 			});
-			function ableCloud (fds ,fasd ){
-
-			}
 		</script>
 	</body>
 </html>
