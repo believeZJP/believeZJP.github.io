@@ -88,10 +88,58 @@
 		
 		添加一个webpack.config.js
 		
-		直接运行webpack
+		直接运行 webpack
+		在build 里找到index.html即可看到效果。
 			即可生成build好的文件，
 			运行node bin/app.bundle.js 即可看到输出的结果。
 		
 		
+		安装webpack-dev-server
+
+		npm install webpack-dev-server --save-dev
+		安装完毕后 在config中添加配置
+		
+		module.exports = {
+		  ....
+		  devServer: {
+		    historyApiFallback: true,
+		    hot: true,
+		    inline: true,
+		    progress: true,
+		  },
+		  ...
+		}
+		然后再package.json里面配置一下运行的命令,npm支持自定义一些命令
+		
+		...
+		"scripts": {
+		  "start": "webpack-dev-server --hot --inline"
+		},
+		
+		然后再package.json里面配置一下运行的命令    (npm支持自定义一些命令)
+
+		...
+		"scripts": {
+		  "start": "webpack-dev-server --hot --inline"
+		},
+		...
+		好了，万事具备了，在项目根目录下输入npm start,
+		一堆花花绿绿的信息后server已经起来了，
+		在浏览器里面输入http://localhost:8080 
+		发现伟大的hello world出现了，在js里面随便修改一些输出然后保存, boom!浏览器自动刷新，新的结果出现了。
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		目标是把这两个js文件合并成一个文件. 我们可以自己在build文件夹里面手动建一个index.html文件夹，然后再把合并以后的js引用在里面，但是这样有些麻烦，所以我们这里安装一个plugin，可以自动快速的帮我们生成HTML。
+
+		npm install html-webpack-plugin --save-dev
+
 	</body>
 </html>
