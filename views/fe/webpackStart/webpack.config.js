@@ -39,7 +39,16 @@ module.exports = {
      {
         test: /\.(png|jpg)$/,
         loader: 'url?limit=40000'
-      }
+      },
+      //添加ES6的支持
+      {
+        test: /\.jsx?$/,
+        loader: 'babel',
+        include: APP_PATH,
+        query: {
+          presets: ['es2015']
+        }
+      },
      
     ]
   },
