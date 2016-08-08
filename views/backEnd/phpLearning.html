@@ -208,6 +208,164 @@ $cards = array_merge($fruits, $numbered);
 	
 			</code></pre>
 		</div> 
+		
+		<div>
+			<h1>
+				php实现统计接口
+			</h1>
+			<pre><code>
+				支持对多个统计量的查询和增减操作
+				完整写出输入，计算，输出，输出，容错的代码
+				
+				
+				Php接口文件（check.php）:
+
+				<?php
+				$jsonp_supporter = $_GET[‘callback’];
+				$p_name=$_GET[‘p_name’];
+				$result=array(‘err’=>0,’data’=>$p_name);
+				echo $jsonp_supporter,”(“.json_encode($result).”)”;
+				?>
+				
+				Js/jquery通过ajax技术调用接口:
+				
+				$.get(“http://***/check.php”,{p_name:’ddd’},function(data){
+				console.log(data.data);
+				},’jsonp’);
+				
+				这里使用了query中的get方法与接口进行数据交互。
+				
+				简单统计访问量类
+				<?php
+				/**
+				* 统计访问量类
+				*
+				* 表:
+				* CREATE TABLE `meng_stats` (
+				* `type` char(16) NOT NULL,
+				* `variable` char(20) NOT NULL,
+				* `count` int(12) unsigned NOT NULL default '0',
+				* PRIMARY KEY (`type`,`variable`)
+				* ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+				*
+				* type:统计类型
+				* variable统计标识量
+				* count统计值
+				*/
+				class Stats {
+				    /**
+				     * 统计需要用session
+				     *
+				     */
+				    function __construct() {
+				        if (session_id() == '') {
+				            session_start();
+				        }
+				    }
+				    /**
+				     * 验证该统计是否已经存在
+				     *
+				     * @param string $type
+				     * @param string $variable
+				     * @return bool
+				     */
+				    private function _verify($type, $variable) {
+				        $sql = "select count from " . $GLOBALS['cms']->table('stats') ."
+				     where `type` = '$type' and `variable` = '$variable';";
+				        $qr = $GLOBALS['db']->query($sql);
+				        if ($rs = $GLOBALS['db']->fetchArray($qr)) {
+				            return true; // 该统计已经存在
+				        } else {
+				            return false; // 该统计尚未存在
+				        }
+				    }
+				    /**
+				     * 新建统计
+				     *
+				     * @param string $type 统计分类
+				     * @param string $variable 统计标志变量
+				     * @return bool
+				     */
+				    public function _create($type, $variable) {
+				        $sql = "INSERT INTO " . $GLOBALS['cms']->table('stats') ."
+				         VALUES ('$type', '$variable', 1);";
+				        if ($qr = $GLOBALS['db']->query($sql)) {
+				            return true; // 创建统计成功
+				        } else {
+				            return false; // 创建统计失败
+				        }
+				    }
+				    /**
+				     * 获取统计信息
+				     *
+				     * @param string $type
+				     * @param string $variable
+				     * @return string
+				     */
+				    public function get($type, $variable, $verify = true, $update = true){
+				        /* 验证是否添加一个统计 */
+				        if ($verify) {
+				            /* 如果还没有该统计,则添加 */
+				            if (!$this->_verify($type, $variable)) {
+				                $this->_create($type, $variable);
+				            }
+				        }
+				        /* 更新统计 */
+				        if ($update) {
+				            $this->_update($type, $variable);
+				        }
+				        /* 获取统计信息 */
+				        $sql = "select count from " . $GLOBALS['cms']->table('stats') ."
+				     where `type` = '$type' and `variable` = '$variable';";
+				        $qr = $GLOBALS['db']->query($sql);
+				        $rs = $GLOBALS['db']->fetchArray($qr);
+				        return $rs['count'];
+				    }
+				    /**
+				     * 更新统计信息
+				     *
+				     * @param string $type
+				     * @param string $variable
+				     * @return bool
+				     */
+				    private function _update($type, $variable) {
+				        /* 防刷新 */
+				        if (isset($_SESSION['stats_' . $type . $variable])) {
+				            return true; // 函数运行完成,不更新数据库
+				        } else {
+				            $_SESSION['stats_' . $type . $variable] = true;
+				        }
+				        /* 更新统计 */
+				        $sql = "UPDATE " . $GLOBALS['cms']->table('stats') ."
+				         SET `count` = ' ". ($this->get($type, $variable)+1) . "'
+				         WHERE CONVERT( `type` USING utf8 ) = '$type' AND CONVERT( `variable` USING utf8 ) = '$variable'
+				         LIMIT 1 ";
+				        if ($qr = $GLOBALS['db']->query($sql)) {
+				            return true;
+				        } else {
+				            return false;
+				        }
+				    }
+				}
+				?> 
+			</code></pre>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		<script type="text/javascript">
 			var h1s = document.getElementsByTagName("h1");
 			for (var i = 0; i < h1s.length; i++) {
