@@ -384,7 +384,56 @@ http://zhangyaochun.iteye.com/blog/1270659
 
 目标指的就是包裹得最深的那个元素。
 
+<h2>js获取当前元素的文本</h2>
+目前在<a>a的文本<span>span的文本</span></a>
+获取文本时，用innerText,jQuery的text(),textContent()时，都会把span中的也获取到。
+解决方案：
+ 	var aDom = document.getElementsByTagName("a")[0];
+ 	var text = aDom.firstChild.nodeValue;
 
+
+<h2>css单独一行添加省略号</h2>
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
+
+<h2>插件编写</h2>
+(function($){
+	$.fn.changeStyle = function(option){
+		//接受参数。
+		var defaultSetting = {//默认参数缺省值
+			colorStr: 'green',
+			fontSize:12
+		};
+		var setting = $.extend(defaultSetting,option);
+		this.css('color',setting.colorStr).css('fontSize',setting.fontSize+'px');
+		return this;//满足链式调用的jQuery插件
+		
+	}
+})(jQuery);//防止$符号污染的jQuery插件
+
+(function($){
+	$.fn.extend({
+		changeStyle : function(option){
+			var defaultSetting = {
+				colorStr: 'green',
+				fontSize:12
+			};
+			var setting = $.extend(defaultSetting,option);
+			this.css('color',setting.colorStr).css('fontSize',setting.fontSize+'px');
+			return this;
+		}
+	});
+})(jQuery);
+
+PS:
+	$.extend 和$.fn.extend都可以扩展jQuery功能。
+	$.extend 是在jQuery全局对象上扩展方法
+	$.fn.extend是在$选择符选择的jQuery对象上扩展方法。
+	扩展jQuery的公共方法一般用$.extend方法，
+	定义插件一般用$.fn.extend方法。
 
 		</code>
     </div>
