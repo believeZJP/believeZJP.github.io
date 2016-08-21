@@ -276,8 +276,8 @@
 		<hr />
 		<hr />
 		
-		<h1></h1>
-		<pre>Sum All Numbers in a Range<code>
+		<h1>Sum All Numbers in a Range</h1>
+		<pre><code>
 			知识点：Math.max()
 						Math.min()
 						Array.prototype.reduce()
@@ -305,6 +305,71 @@ function sumAll(arr) {
 sumAll([1, 4]);
 
 		</code></pre>
+		
+		
+		<h1>从两个数组中找出不同的，返回一个数组Diff Two Arrays Incomplete   *</h1>
+		<pre><code>
+			
+			思路：先循环，将第一个数组的所有放到一个对象中，
+					再循环第二个， 有相同的删除，没有的放进去，
+					最后返回一个数组。
+			
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  // Same, same; but different.
+  var obj = {};
+  for(var i=0,il=arr1.length;i<il;i++){
+    obj[arr1[i]] = arr1[i];
+  }
+  for(var j=0,jl=arr2.length;j<jl;j++){
+    if(obj[arr2[j]]){
+      delete obj[arr2[j]]; 
+      
+    }else{
+      obj[arr2[j]] = arr2[j]; 
+    }
+    
+  }
+  for(var k in obj){
+    newArr.push(obj[k]);
+  }
+  console.log(newArr);
+  return newArr;
+}
+
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+
+			
+			
+		</code></pre>
+	
+	<h1>将数字转成罗马数字Roman Numeral Converter Incomplete   *</h1>
+	<pre><code>
+		
+function convertToRoman(num) {
+  if (!num)
+		return false;
+	var	digits = String(+num).split(""),
+		key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+		       "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+		       "","I","II","III","IV","V","VI","VII","VIII","IX"],
+		roman = "",
+		i = 3;
+	while (i--)
+		roman = (key[+digits.pop() + (i * 10)] || "") + roman;
+	return Array(+digits.join("") + 1).join("M") + roman;
+//  return num;
+}
+
+convertToRoman(36);
+
+		
+	</code></pre>
+		
+		
+		
+		
+		
 		
 		
 		</div> 
