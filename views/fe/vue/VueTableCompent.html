@@ -3,6 +3,60 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>vue.js表格组件demo</title>
+		<style type="text/css">
+			body{
+				font-family: Helvetica Neue, Arial, sans-serif;
+				font-size: 14px;
+				color:#444;
+			}
+			table{
+				border:2px solid #42b983;
+				border-radius: 3px;
+				background-color:#fff;
+			}
+			th{
+				background-color: #42b983;
+				color:rgba(255,255,255,0.66);
+				cursor:pointer;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-webkit-user-select: none;
+			}
+			td{
+				background-color: #f9f9f9;
+			}
+			th,td{
+				min-width:120px;
+				padding:10px 20px;
+			}
+			th:active{
+				color:#FFF;
+			}
+			th.active .arrow{
+				opacity:1;
+			}
+			.arrow{
+				display: inline-block;
+				vertical-align: middle;
+				width:0;
+				height:0;
+				margin-left: 5px;
+				opacity: 0.66;
+			}
+			.arrow.asc{
+				border-left:4px solid transparent;
+				border-right: 4px solid transparent;
+				border-bottom: 4px solid #fff;
+			}
+			.arrow.dec{
+				border-left: 4px solid transparent;
+				border-right: 4px solid transparent;
+				border-top: 4px solid #fff;
+			}
+			#search{
+				margin-bottom: 10px;
+			}
+		</style>
 	</head>
 	<body>
 		<!---   表格组件模版              -->
@@ -12,7 +66,7 @@
 					<tr>
 						<th v-for="key in columns" @click="sortBy(key)" :class='{active:sortKey == key}'>
 							{{key | capitalize}}
-							<span class='arrow' :class="sortOrders[key] > 0 ? 'asc' : 'des'"></span>
+							<span class='arrow' :class="sortOrders[key] > 0 ? 'asc' : 'dec'"></span>
 						</th>
 					</tr>
 				</thead>
@@ -34,7 +88,7 @@
 			<demo-grid :data="gridData" :columns="gridColumns" :filter-key="searchQuery">
 			</demo-grid>			
 		</div>
-		<script src="../../../../js/libs/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/libs/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			Vue.component('demo-grid',{
 				template:'#grid-template',
