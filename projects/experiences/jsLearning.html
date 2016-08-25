@@ -365,8 +365,33 @@ convertToRoman(36);
 
 		
 	</code></pre>
+	<hr />
+	<h1>字符串替换Search and Replace</h1>
+	<pre><code>
 		
-		
+function myReplace(str, before, after) {
+  var first = before.charAt(0);
+  if(/^[A-Z]+$/.test(first)){
+    after = after[0].toUpperCase()+after.substr(1,after.length);
+    
+  }else{
+    after = after[0].toLowerCase()+after.substr(1,after.length);
+  }
+  str = str.replace(before,after);
+  return str;
+}
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+
+
+test:
+myReplace("Let us go to the store", "store", "mall") should return "Let us go to the mall".
+myReplace("He is Sleeping on the couch", "Sleeping", "sitting") should return "He is Sitting on the couch".
+myReplace("This has a spellngi error", "spellngi", "spelling") should return "This has a spelling error".
+myReplace("His name is Tom", "Tom", "john") should return "His name is John".
+myReplace("Let us get back to more Coding", "Coding", "algorithms") should return "Let us get back to more 
+
+	</code></pre>
 		
 		
 		
