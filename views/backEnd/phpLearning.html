@@ -206,6 +206,13 @@ $cards = array_merge($fruits, $numbered);
 	echo $s;
 	//输出结果tertwegreen
 	
+	
+	$temp =floatval(12345678.90123456789);
+echo $temp;
+php的floatval最多只支持14位的数字，再多就自动截取了，
+
+这个可以配置，在php.ini中，有
+precision=14  可以配置。
 			</code></pre>
 		</div> 
 		
@@ -350,7 +357,29 @@ $cards = array_merge($fruits, $numbered);
 				?> 
 			</code></pre>
 		</div>
-		
+		<hr />
+		<div>
+			<h1>get、put、post、delete含义与区别</h1>
+			<pre><code>
+1、GET请求会向数据库发索取数据的请求，从而来获取信息，该请求就像数据库的select操作一样，只是用来查询一下数据，不会修改、增加数据，不会影响资源的内容，即该请求不会产生副作用。无论进行多少次操作，结果都是一样的。
+
+2、与GET不同的是，PUT请求是向服务器端发送数据的，从而改变信息，该请求就像数据库的update操作一样，用来修改数据的内容，但是不会增加数据的种类等，也就是说无论进行多少次PUT操作，其结果并没有不同。
+
+3、POST请求同PUT请求类似，都是向服务器端发送数据的，但是该请求会改变数据的种类等资源，就像数据库的insert操作一样，会创建新的内容。几乎目前所有的提交操作都是用POST请求的。
+
+4、DELETE请求顾名思义，就是用来删除某一个资源的，该请求就像数据库的delete操作。
+
+就像前面所讲的一样，既然PUT和POST操作都是向服务器端发送数据的，那么两者有什么区别呢。。。POST主要作用在一个集合资源之上的（url），而PUT主要作用在一个具体资源之上的（url/xxx），通俗一下讲就是，如URL可以在客户端确定，那么可使用PUT，否则用POST。
+
+综上所述，我们可理解为以下：
+
+1、POST    /url      创建  
+2、DELETE  /url/xxx  删除  
+3、PUT     /url/xxx  更新
+
+4、GET     /url/xxx  查看
+			</code></pre>
+		</div>
 		
 		
 		
