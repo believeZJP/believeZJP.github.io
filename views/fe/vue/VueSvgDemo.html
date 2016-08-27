@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>SvgDemo</title>
+		<style type="text/css">
+			body{
+				font-family: Menlo, Consolas, monospace;
+			}
+			polygon{
+				fill:#42b983;
+				opacity: .75;
+			}
+			circle{
+				fill:transparent;
+				stroke:#999;
+			}
+			text{
+				font-family: Helvetica Neue,arial,sans-serif; 
+				font-size: 10px;
+				fill:#666;
+			}
+			label{
+				display: inline-block;
+				margin-left: 10px;
+				width:20px;
+			}
+			#raw{
+				position:absolute;
+				top:0;
+				left:300px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		
+		
+		
+		<script src="../../../js/libs/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/x-template" id="polygraph-template">
+			<g>
+				<polygon :points="points"></polygon>
+				<circle cx="100" cy="100" r="80"></circle>
+				<axis-label	v-for="stat in stats" :stat="stat" 	:index="$index"	:total="stats.length">
+				</axis-label>
+			</g>
+		</script>
+		
+		<!--template for the axis label component. -->
+		<script type="text/x-template" id="axis-label-template">
+			<text :x="point.x" :y="point.y">{{stat.label}}</text>
+			<!--<text :x="point.x" :y="point.y">{{sat.label}}</text>-->
+		</script>
+		
+			
+			
+		<!-- html 开始--->
+
+		<!--demo root element -->
+		<div id="demo">
+			<!-- use the component-->
+			<!--<svg :width="200" height="200">-->
+			<svg width="200" height="200">
+				<!--<polygon :stats="stats"></polygon>-->
+				<polygraph :stats="stats"></polygraph>
+			</svg>
+			<!-- controls  -->
+			<div v-for="stat in stats">
+				<!--<label>{{stat.value}}</label>-->
+				<label>{{stat.label}}</label>
+				<input type="range" v-model="stat.value" min="0" max="100" />
+				<span>{{stat.value}}</span>
+				<button @click="remove(stat)">X</button>
+			</div>
+			<form action="" id="add">
+				<input type="text" name="newlabel" v-model="newLabel" />
+				<button @click="add">Add a Stat</button>
+			</form>
+			<pre id="raw">{{stats | json }}</pre>
+		</div>
+		<p>* input[type='range'] requires IE10 or above</p>
+		
+
+	<script type="text/javascript">
+		var stats = [
+			{label:'A', value: 100},
+			{label:'B', value: 100},
+			{label:'C', value: 100},
+			{label: 'D', value: 100 },
+		  	{label: 'E', value: 100 },
+		  	{label: 'F', value: 100 }
+		]
+	
+	
+		Vue.component('polygraph',{
+			props:['stats'],
+			template:'#polygraph-template',
+			replace:true,
+			computed:{
+				//a computed property for the polygon's points
+				points: function(){
+					var total = this.stats.length;
+					return this.stats.map(function(stat,i){
+						var point = valueToPoint(stat.value,i,total);
+						return point.x+','+point.y;
+					}).join(' ')
+//					}).join(' ');
+				}
+			},
+			components:{
+				//a sub component for the labels
+				'axis-label':{
+					props:{
+						stat:Object,
+						index:Number,
+						total:Number
+					},
+					template:'#axis-label-template',
+					replace:true,
+					computed:{
+						point:function(){
+							return valueToPoint(
+								+this.stat.value +10,
+								this.index,
+								this.total
+							)
+						}
+					}
+				}
+			}
+		});
+		
+		//math helper
+		function valueToPoint(value,index,total){
+			var x = 0
+			var y = -value*0.8
+			var angle = Math.PI *2 / total * index
+			var cos = Math.cos(angle)
+			var sin = Math.sin(angle)
+			var tx = x * cos - y * sin + 100
+			var ty = x * sin + y * cos +100
+			return {
+				x: tx,
+				y:ty
+			}
+		}
+		
+		//bootstrap the demo
+		new Vue({
+			el: '#demo',
+			data:{
+				newLabel:'',
+				stats:stats
+			},
+			methods:{
+				add: function(e){
+					e.preventDefault()
+					if(!this.newLabel) return
+					this.stats.push({
+						label: this.newLabel,
+						value: 100
+					})
+					this.newLabel = ''
+				},
+				remove: function(stat){
+					if(this.stats.length > 3){
+						this.stats.$remove(stat)
+					}else{
+						alert('Can\'t delete more!');
+					}
+				}
+			}
+		})
+		
+		
+		
+		
+		
+		
+		
+	</script>
+	</body>
+</html>
