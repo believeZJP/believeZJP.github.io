@@ -94,10 +94,11 @@
     <br />
     <hr width="80%" />
     <div class="con">
-        <P>疑难解惑</P>
+        <p>疑难解惑</p>
         <code class="desc">
 				
 	<h2>1.caller和callee的区别</h2>
+	<div class="h2Area">
 	答：<a href="http://blog.csdn.net/laijieyao/article/details/43404953" target="_blank">查看</a>
 	caller
 	caller返回一个函数的引用，这个函数调用了当前的函数。
@@ -134,8 +135,11 @@ var b = function() {
 b();
 </code>	
 	a在b中被调用，但是它返回了a本身的引用，可运行查看结果。
+		
+	</div>
 	<hr />
 <h2>2.为什么有的轮巡技术会使用setTimeOut,而不是用setInterval</h2>
+<div class="h2Area">
 	答：http://www.tuicool.com/articles/BV7viq
 	http://www.jb51.net/article/35535.htm
        轮询请求如果不需要等待结果返回，那么完全可以使用setInterval来发起定时请求。
@@ -160,8 +164,10 @@ var i = setTimeout(function() {
 		</code>
 		//这样数出来是每隔2s输出一次，
 		//1000都改成500是每隔1s都输出一次
+</div>
 		<hr />
 <h2>3.javascript是多线程吗?</h2>
+<div class="h2Area">
 	答：javascript只有单线程，不存在同时执行！！！！	
 		JS采用一种队列(event loop)的机制来处理各个事件.
 		比如用户的点击，ajax异步请求,所有的事件都被放入一个队列中，然后先进先出，逐个执行。
@@ -172,8 +178,12 @@ var i = setTimeout(function() {
 
 		所以,在脚本中执行对界面进行更新操作,如添加结点,删除结点或改变结点的外观等更新并不会立即体现出来,
 		这些操作将保存在一个队列中,待JavaScript引擎空闲时才有机会渲染出来.
-		
+	
+</div>
+<hr />
+
 <h2>4.live,bind,click ,delegate区别</h2>	
+<div class="h2Area">
 		答：bind()向匹配元素添加一个或多个事件处理器
   			  live() 向当前或未来的匹配元素添加一个或多个事件处理器；
   			  	（包含现有的或将来添加的）的指定事件上并返回jQuery对象。
@@ -221,8 +231,11 @@ var i = setTimeout(function() {
 			delegate比live好用的优点：
 				速度、灵活性和链能力、　live仅支持CSS选择器
 				<a href="http://justcoding.iteye.com/blog/1457883" target="_blank">详细内容，点我</a>
-			
+	
+</div>
+<hr />			
 <h2>6、写出程序运行的结果？</h2>
+<div class="h2Area">
 	typeof 会返回几种类型:
 	<code class="codeArea">
 	typeof(null) 					//object
@@ -283,7 +296,11 @@ var i = setTimeout(function() {
 	}
 	//输出23，3个4，继续执行输出26，3个4；
 	</code>
+	
+</div>
+<hr />
 <h2>8、写出一个给数组排重的函数</h2>
+<div class="h2Area">
 第一种是比较常规的方法
 思路：
 1.构建一个新的数组存放结果
@@ -356,8 +373,11 @@ function unique3(){
 var arr = [112,112,34,'你好',112,112,34,'你好','str','str1'];
 alert(arr.unique3());
 </code>
-
+	
+</div>
+<hr />
 <h2>事件委托</h2>
+<div class="h2Area">
 	事件委托，就是事件目标自身不处理事件，而是把处理任务委托给其父元素或者祖先元素，甚至根元素。
 事件委托主要是利用事件冒泡现象来实现的，对于事件委托的精准的掌握，可以有利于提高代码的执行效率。
 遍历单元格和为每一个单元格绑定事件处理函数将会大大降低代码的性能，如果让单元格的父元素监听事件，只要判断最初触发事件的DOM元素是否是td即可。
@@ -365,9 +385,12 @@ alert(arr.unique3());
 
 http://www.jb51.net/Special/205.htm
 http://www.jb51.net/article/28770.htm
-
+	
+</div>
+<hr />
 
 <h2>浏览器默认是事件冒泡</h2>
+<div class="h2Area">
 浏览器默认的为冒泡型事件触发机制,
 http://www.cnblogs.com/Ren_Lei/archive/2010/09/26/1836130.html
 
@@ -383,19 +406,50 @@ http://zhangyaochun.iteye.com/blog/1270659
 捕获阶段，目标阶段，冒泡阶段
 
 目标指的就是包裹得最深的那个元素。
-
+	
+</div>
+<hr />
 <h2>js获取当前元素的文本</h2>
-目前在<a>a的文本<span>span的文本</span></a>
-获取文本时，用innerText,jQuery的text(),textContent()时，都会把span中的也获取到。
-解决方案：
- 	var aDom = document.getElementsByTagName("a")[0];
- 	var text = aDom.firstChild.nodeValue;
-
+<div class="h2Area">
+	目前在<a>a的文本<span>span的文本</span></a>
+	获取文本时，用innerText,jQuery的text(),textContent()时，都会把span中的也获取到。
+	解决方案：
+	 	var aDom = document.getElementsByTagName("a")[0];
+	 	var text = aDom.firstChild.nodeValue;
+	
+</div>
+<hr />
 
 <h2>css单独一行添加省略号</h2>
+<div class="h2Area">
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+	
+</div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 遇到的问题，
 由于加了overflow后导致li中的input错位
@@ -444,6 +498,22 @@ PS:
 
 		</code>
     </div>
+<script type="text/javascript">
+		var h2s = document.getElementsByTagName("h2");
+		for (var i = 0; i < h2s.length; i++) {
+			(function(i){  
+				var temp = h2s[i];
+				temp.onclick = function(i){
+					var dis =  temp.nextElementSibling.style.display ;
+					if(dis === "none"){
+						temp.nextElementSibling.style.display = 'block';
+					}else{
+						temp.nextElementSibling.style.display = 'none';
+					}
+				};
+			})(i);  
+		}
+	</script>
 </body>
 
 </html>

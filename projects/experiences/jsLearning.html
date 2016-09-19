@@ -8,13 +8,14 @@
 	<body>
 		<div>
 			<h1>根据浏览器获取地址</h1>
-			<pre><code>
-				if(navigator.geolocation){
-				    navigator.geolocation.getCurrentPosition(function(position){
-				      console.log("latitude:"+position.coords.latitude+"<br>longitude:"+position.coords.longitude);
-				    })
-				  }
-			</code></pre>
+<pre><code>
+	if(navigator.geolocation){
+	    navigator.geolocation.getCurrentPosition(function(position){
+	      console.log("latitude:"+position.coords.latitude+"</br>"+
+	      "longitude:"+position.coords.longitude);
+	    })
+	  }
+</code></pre>
 			<hr />
 			
 			<h1>使用JavaScript截断字符串</h1>
@@ -403,7 +404,6 @@ myReplace("Let us get back to more Coding", "Coding", "algorithms") should retur
 			for (var i = 0; i < h1s.length; i++) {
 				(function(i){  
 					var temp = h1s[i];
-					console.log(temp);
 					temp.onclick = function(i){
 						var dis =  temp.nextElementSibling.style.display ;
 						if(dis === "none"){
