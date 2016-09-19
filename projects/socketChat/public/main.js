@@ -1,6 +1,6 @@
 $(function(){
 	var FADE_TIME = 150;//毫秒
-	var TYPING_TIMER_LEGNTH = 400;//毫秒
+	var TYPING_TIMER_LENGTH = 400;//毫秒
 	var COLORS = [
 		'#e21400', '#91580f', '#f8a700', '#f78b00',
 	    '#58dc00', '#287b00', '#a8f07a', '#4ae8c4',
@@ -10,7 +10,7 @@ $(function(){
 	//初始化变量
 	var $window = $(window);
 	var $usernameInput = $('.usernameInput');//用户名输入框
-	var $message = $('.message');//消息区
+	var $messages = $('.messages');//消息区
 	var $inputMessage = $('.inputMessage');//输入信息的box
 	
 	var $loginPage = $('.login.page');//登录页
@@ -24,7 +24,7 @@ $(function(){
 	var $currentInput = $usernameInput.focus();
 	
 	var socket = io();
-	
+	console.log(socket);
 	//用户数量通知
 	function addParticipantsMessage(data){
 		var message = '';
@@ -70,7 +70,7 @@ $(function(){
 	}
 	
 	//显示一条信息
-	function log(message,option){
+	function log(message,options){
 		var $el = $('<li>').addClass('log').text(message);
 		addMessageElement($el,options);
 	}
@@ -85,7 +85,7 @@ $(function(){
 			$typingMessages.remove();
 		}
 		
-		var $usernameDiv = $('<span class"username"/>').text(data.username)
+		var $usernameDiv = $('<span class="username"/>').text(data.username)
 										.css('color',getUsernameColor(data.username));
 		var $messageBodyDiv = $('<span class="messageBody">')
 												.text(data.message);
@@ -102,13 +102,13 @@ $(function(){
 	//添加形象的正在打字信息
 	function addChatTyping(data){
 		data.typing = true;
-		data.mesage = 'is typing';
+		data.message = 'is typing';
 		addChatMessage(data);
 	}
 	
 	//移除正在打字的信息
 	function removeChatTyping(data){
-		getTypingMessages(data).fadeout(function(){
+		getTypingMessages(data).fadeOut(function(){
 			$(this).remove();
 		});
 	}
@@ -137,9 +137,9 @@ $(function(){
 			$el.hide().fadeIn(FADE_TIME);
 		}
 		if(options.prepend){
-			$message.append($el);
+      		$messages.prepend($el);
 		}else{
-			$message.append($el);
+			$messages.append($el);
 		}
 		$messages[0].scrollTop = $messages[0].scrollHeight;
 	}
@@ -161,23 +161,23 @@ $(function(){
 			setTimeout(function(){
 				var typingTimer = (new Date()).getTime();
 				var timeDiff = typingTimer - lastTypingTime;
-				if(timeDiff >= TYPING_TIMER_LEGNTH && typing){
+				if(timeDiff >= TYPING_TIMER_LENGTH && typing){
 					socket.emit('stop typing');
 					typing = false;
 				}
-			},TYPING_TIMER_LEGNTH);
+			},TYPING_TIMER_LENGTH);
 		}
 	}
 	
 	//获取一个用户正在输入的信息
-	function getTypingMessage(data){
+	function getTypingMessages(data){
 		return $('.typing.message').filter(function(i){
 			return $(this).data('username') === data.username;
 		});
 	}
 	
 	//通过hash值获取到一个用户的颜色属性???
-	function getUsrnameColor(username){
+	function getUsernameColor(username){
 		//计算hash值
 		var hash = 7;
 		for(var i = 0; i < username.length; i++){
@@ -197,11 +197,12 @@ $(function(){
 		//当用户输入回车时
 		if(event.which === 13){
 			if(username){
+				console.log('回车事件触发了^')
 				sendMessage();
 				socket.emit('stop typing');
 				typing = false;
 			}else{
-				setUsername(;)
+				setUsername();
 			}
 		}
 	});
@@ -225,7 +226,7 @@ $(function(){
 	//socket 事件
 	
 	//'login事件'，显示登录信息
-	socket.on('loign',function(data){
+	socket.on('login',function(data){
 		connected = true;
 		//展示欢迎信息
 		var message = 'Welcome to 赵建鹏的 Socket.IO Chat - ';

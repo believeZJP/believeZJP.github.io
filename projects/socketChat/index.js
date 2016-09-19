@@ -2,24 +2,27 @@
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
-var io = require('../..')(server);
+var io = require('socket.io')(server);
+//var io = require('../..')(server);
 var port = process.env.PORT || 3000;
 
-server.listener(port,function(){
+server.listen(port,function(){
 	console.log('Server listening at port %d',port);
 });
 
 //Routing
 app.use(express.static(__dirname + '/public'));
-
+console.log(__dirname);
 //Chatroom
 
 var numUsers = 0;
-io.on('conneciton',function(socket){
+io.on('connection',function(socket){
+	console.log('connection loaded!!');
 	var addedUser = false;
 	//当客户端触发‘新信息’,开始监听并执行以下代码
 	socket.on('new message',function(data){
 		//告诉客户端广播 ‘new message’
+		console.log('broadcast new message!! ');
 		socket.broadcast.emit('new message',{
 			username: socket.username,
 			message: data
