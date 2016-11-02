@@ -4,6 +4,8 @@ import App from './App.vue'
 import vueRouter from 'vue-router'
 import vueResource from 'vue-resource'
 
+import TimeEntries form './components/TimeEntries.vue'
+
 //注册两个插件
 Vue.use(vueRouter)
 Vue.use(vueResource)
@@ -12,8 +14,11 @@ const router = new VueRouter()
 
 //路由map
 router.map({
-	'/hello': {
-		compent: Hello
+	'/home': {
+		compent: Home
+	},
+	'/time-entries': {
+		component: TimeEntries
 	}
 })
 
