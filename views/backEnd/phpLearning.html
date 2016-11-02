@@ -213,6 +213,33 @@ php的floatval最多只支持14位的数字，再多就自动截取了，
 
 这个可以配置，在php.ini中，有
 precision=14  可以配置。
+
+
+
+
+isset(var) 和empty(var)
+PHP的isset()函数 一般用来检测变量是否设置 
+格式：bool isset ( mixed var [, mixed var [, ...]] ) 
+
+功能：检测变量是否设置 
+
+返回值： 
+
+若变量不存在则返回 FALSE 
+若变量存在且其值为NULL，也返回 FALSE 
+若变量存在且值不为NULL，则返回 TURE 
+同时检查多个变量时，每个单项都符合上一条要求时才返回 TRUE，否则结果为 FALSE 
+
+
+
+PHP的empty()函数 判断值为否为空
+功能：检查一个变量是否为空 
+
+返回值： 
+
+若变量不存在则返回 TRUE 
+若变量存在且其值为""、0、"0"、NULL、、FALSE、array()、var $var; 以及没有任何属性的对象，则返回 TURE 
+若变量存在且值不为""、0、"0"、NULL、、FALSE、array()、var $var; 以及没有任何属性的对象，则返回 FALSE 
 			</code></pre>
 		</div> 
 		

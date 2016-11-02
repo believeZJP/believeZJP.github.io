@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="main" style="height:1000px;width:1000px;">
+			
+		</div>
+		<script src="echarts.min (1).js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="china.js"></script>-->
+		<script src="beijing.js"></script>
+		
+		<script type="text/javascript">
+
+		var chart = echarts.init(document.getElementById('main'));
+		var option = {
+		    tooltip: {
+		        trigger: 'item',
+		        formatter: '{b}'
+		    },
+		    series: [
+		        {
+		            name: '中国',
+		            type: 'map',
+		            mapType: '北京',
+		            selectedMode : 'multiple',
+		            label: {
+		                normal: {
+		                    show: true
+		                },
+		                emphasis: {
+		                    show: true
+		                }
+		            },
+		            data:[
+		                {name:'广东', selected:true}
+		            ]
+		        }
+		    ]
+		};
+			chart.setOption(option);
+			
+		</script>
+	</body>
+</html>

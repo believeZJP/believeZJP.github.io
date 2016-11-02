@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试input的disable属性时复制粘贴</title>
+		<style>
+			input:disabled{
+				/**cursor: not-allowed;**/
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" disabled value="这是一个disabled的输入框" />
+		<input type="text" readonly value="这是一个disabled的输入框" />
+		<input type="text" value="这是一个disabled的输入框" />
+	</body>
+</html>

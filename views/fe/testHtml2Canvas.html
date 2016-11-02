@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<iframe src="" width="100%" height="">
+			<div id="a" style="background: red;height:200px">
+				
+			</div>
+			
+		</iframe>
+		<div id="b" style="background: blue;height:200px">
+			
+		</div>
+		<hr />
+		
+		<script src="../../js/libs/html2canvas.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		console.log(document.querySelector('#a'));
+			html2canvas(document.querySelector('#b'), {
+			  onrendered: function(canvas) {
+			  	console.log(canvas);
+			    document.body.appendChild(canvas);
+//		        document.body.insertBefore(canvas,document.body.firstChild);
+			  },
+			  width: 300,
+			  height: 600
+			});
+		</script>
+	</body>
+</html>
