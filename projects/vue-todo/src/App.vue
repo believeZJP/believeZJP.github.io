@@ -6,15 +6,24 @@
   						<i class="glyphicon glyphicon-time"></i>
   					</a>
   					<ul class="nav navbar-nav">
-  						<li><a v-link="'/home'">首页</a></li>
-  						<li><a v-link="'/time-entries'">计划列表</a></li>
+  						<li>
+  							<router-link to="/home">
+	  							<a>首页</a>
+  							</router-link>
+  						</li>
+  						
+  						<li>
+  							<router-link  to="/time-entries">
+	  							<a>计划列表</a>
+  							</router-link>
+  						</li>	
   					</ul>
   				</div>
   			</nav>
   			<div class="container">
   				<div class="row">
   					<div class="col-sm-3">
-  						
+  						<sidebar :time="totalTime"></sidebar>
   					</div>
   					<div class="col-sm-9">
   						<router-view>
@@ -29,14 +38,24 @@
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
+
+  	import Sidebar from './components/Sidebar.vue'
+	export default {
+		components: {'sidebar': Sidebar},
+		data () {
+		    return {
+		      totalTime: 1.5
+		    }
+		},
+		events: {
+			timeUpdate (timeEntry) {
+				this.totalTime += parseFloat(timeEntry.totalTime)
+			},
+			deleteTime (timeEntry) {
+				this.totalTime -= parseFloat(timeEntry.totalTime)
+			}
+		}
+	}
 </script>
 
 <style>

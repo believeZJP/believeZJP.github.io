@@ -1,20 +1,20 @@
 <template>
 	<div>
-		//`v-if`是vue的一个指令
-		//`$.route.path`是当前路由对象的路径，会被解析成为绝对路径
-		/**
+		<!--/**
+		`v-if`是vue的一个指令
+		`$.route.path`是当前路由对象的路径，会被解析成为绝对路径
 		 * 当$.route.path !== 'time-entries/log-time'为true时显示
 		 * false,不显示
 		 * v-link 路由跳转地址
-		 */
+		 */-->
 		
-		<button
-			v-if="$.route.path !=='/time-entries/log-time' "
-			v-link="'/time-entries/log-time'"
-			class="btn btn-primary"
-			>
-			创建
-		</button>
+		<router-link to="/time-entries/log-time">
+			<button
+				v-if="$route.path !=='/time-entries/log-time' "
+				class="btn btn-primary">
+				创建
+			</button>
+		</router-link>
 		
 		<div v-if="$route.path === '/time-entries/log-time'">
 			<h3>创建</h3>
@@ -25,16 +25,18 @@
 		<router-view></router-view>
 		
 		<div class="time-entries">
-			<p v-if="!timesEntries.length"><strong>还没有任何任务</strong></p>
+			<p v-if="!timeEntries.length"><strong>还没有任何任务</strong></p>
 			
 			<div class="list-group">
-				//v-for 循环渲染
+				<!--v-for 循环渲染-->
 				<a class="list-group-item" v-for="timeEntry in timeEntries">
 					<div class="row">
 						<div class="col-sm-2 user-details">
-							// `:src`属性，这个是vue的属性绑定简写
-							// `:` 是`v-bind`的简写
-							//在vue的指令里就不一定要写插值表达式了(`:src={{xx}}`),vue会自己解析
+						<!--
+							`:src`属性，这个是vue的属性绑定简写
+							`:` 是`v-bind`的简写
+							在vue的指令里就不一定要写插值表达式了(`:src={{xx}}`),vue会自己解析
+							-->
 							<img :src="timeEntry.user.image" class="avatar img-circle img-responsive" />
 							<p class="text-center">
 								<strong>
@@ -59,7 +61,7 @@
 						</div>
 						
 						<div class="col-sm-1">
-								//事件绑定简写 @xxx
+								<!--事件绑定简写 @xxx-->
 							<button
 								class="btn btn-xs btn-danger delete-button"
 								@click="deleteTimeEntry(timeEntry)">
