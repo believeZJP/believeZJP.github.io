@@ -62,7 +62,7 @@
 		methods: {
 			save () {
 				let timeEntry = this.timeEntry
-				this.$dispatch('timeUpdate',timeEntry)
+				this.$store.commit('timeUpdate',timeEntry)
 				this.timeEntry = {}
 			}
 		}

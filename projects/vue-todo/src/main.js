@@ -15,6 +15,36 @@ Vue.use(VueResource)
 Vue.use(Vuex)
 
 
+const store = new Vuex.Store({
+	state: {
+	  	timeEntries: [],
+	    totalTime: 0
+	},
+	mutations: {
+	    setTotalTime (state, time){
+	    	state.totalTime = time
+	    },
+	    timeUpdate (state, timeEntry){
+	    	//mutate state
+	    	state.timeEntries.push(timeEntry)
+	    	state.totalTime += parseFloat(timeEntry.totalTime)
+	    },
+	    fetchData (state, data){
+	    	state.timeEntries = data
+	    },
+	    deleteTimeEntry (state, timeEntry){
+	    	state.totalTime -= parseFloat(timeEntry.totalTime)
+	    	
+	    	let index = state.timeEntries.indexOf(timeEntry)
+	    	state.timeEntries.splice(index, 1)
+	    }
+	},
+	actions: {
+	    timeUpdate (context,timeEntry) {
+	      context.commit('timeUpdate', timeEntry)
+	    }
+	}
+})
 
 
 
@@ -51,6 +81,6 @@ const router = new VueRouter({
 new Vue({
 	router,
 	// ES6新语法，箭头函数
-//	store,
+	store,
 	render: h => h(App)
 }).$mount('#app')

@@ -25,11 +25,11 @@
 		<router-view></router-view>
 		
 		<div class="time-entries">
-			<p v-if="!timeEntries.length"><strong>还没有任何任务</strong></p>
+			<p v-if="!$store.state.timeEntries.length"><strong>还没有任何任务</strong></p>
 			
 			<div class="list-group">
 				<!--v-for 循环渲染-->
-				<a class="list-group-item" v-for="timeEntry in timeEntries">
+				<a class="list-group-item" v-for="timeEntry in $store.state.timeEntries">
 					<div class="row">
 						<div class="col-sm-2 user-details">
 						<!--
@@ -37,10 +37,10 @@
 							`:` 是`v-bind`的简写
 							在vue的指令里就不一定要写插值表达式了(`:src={{xx}}`),vue会自己解析
 							-->
-							<img :src="timeEntry.user.image" class="avatar img-circle img-responsive" />
+							<img src="https://avatars1.githubusercontent.com/u/10184444?v=3&s=460" class="avatar img-circle img-responsive" />
 							<p class="text-center">
 								<strong>
-									{{timeEntry.user.name}}
+									mikelkl
 								</strong>
 							</p>
 						</div>
@@ -99,23 +99,27 @@
 			}
 		},
 		methods: {
+			fetchData (){
+				this.$store.commit('fetchData',existingEntry)
+			},
 			deleteTimeEntry(timeEntry){
 				//这个方法用于删除某一项计划
 				let index = this.timeEntries.indexOf(timeEntry)
 				if(window.confirm('确定要删除吗？')){
 					this.timeEntries.splice(index,1)
 					//这里会派发到父组件上，执行父组件events里的deleteTime方法
-					this.dispatch('deleteTime',timeEntry)
+					this.$store.commit('deleteTimeEntry',timeEntry)
 				}
 			}
-		},
+		}
+		/*,
 		events: {
 			timeUpdate (timeEntry) {
 				this.timeEntries.push(timeEntry)
 				//继续向上派发
 				return true
 			}
-		}
+		}*/
 	}
 </script>
 

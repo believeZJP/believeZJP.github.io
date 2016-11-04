@@ -23,7 +23,7 @@
   			<div class="container">
   				<div class="row">
   					<div class="col-sm-3">
-  						<sidebar :time="totalTime"></sidebar>
+  						<sidebar :time="$store.state.totalTime"></sidebar>
   					</div>
   					<div class="col-sm-9">
   						<router-view>
@@ -44,16 +44,11 @@
 		components: {'sidebar': Sidebar},
 		data () {
 		    return {
-		      totalTime: 1.5
+		      totalTime: 0
 		    }
 		},
-		events: {
-			timeUpdate (timeEntry) {
-				this.totalTime += parseFloat(timeEntry.totalTime)
-			},
-			deleteTime (timeEntry) {
-				this.totalTime -= parseFloat(timeEntry.totalTime)
-			}
+		mounted () {
+			this.$store.commit('setTotalTime',0)
 		}
 	}
 </script>
