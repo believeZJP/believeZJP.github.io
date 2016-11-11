@@ -27,3 +27,7 @@ function setDataTimeLength(d){
 	 if(String(d).length==1)return "0"+d;
 	 else return d;
 }
+
+
+//各种正则表达式
+
