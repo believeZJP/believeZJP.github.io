@@ -1,4 +1,9 @@
+/****
+ * 学习来源：
+ 	https://github.com/yyx990803/zoomerang/blob/master/zoomerang.js
+*/
 (function(){
+	
 	
 	// webkit prefix helper 判断css前缀模式
 	var prefix = 'WebkitAppearance' document.documentElement.style ? '-webkit-' : ''
@@ -162,11 +167,175 @@
 		return ph
 	}
 	
+	var api = {
+		config: function (opts){
+			if(!opts) return options
+			for(var key in opts){
+				options[key] = opts[key]
+			}
+			setStyle(overlay,{
+				backgroundColor: options.bgColor,
+				transition: 'opacity ' + 
+						options.transitionDuration + ' '+
+						options.transitionTimingFunction
+			})
+			return this
+		},
+		open: function(el, cb){
+			
+			if(shown || lock) return
+			
+			target = typeof el === 'string'
+					? document.querySelector(el)
+					: el
+					
+			// onBeforeOpen event 打开前的回调事件
+			if(options.onBeforeOpen) options.onBeforeOpen(target)
+			
+			shown = true
+			lock = true
+			parent = target.parentNode
+			
+			var p = target.getBoundingRect(),
+				  scale = Math.min(options.maxWidth / p.width, options.maxHeight / p.height),
+				  dx = p.left - (window.innerWidth - p.width) / 2,
+				  dy = p.top - (window.innerHeight - p.height) / 2
+			
+			placeholder = copy(target, p)
+			
+			originalStyles = setStyle(target, {
+				position: 'absolute',
+				top: 0,
+				left: 0,
+				right: '',
+				bottom: '',
+				whiteSpace: 'nowrap',
+				marginTop: -p.height / 2 + 'px',
+				marginLeft: -p.width / 2 + 'px',
+				cursor: prefix + 'zoom-out',
+				transform: 'translate(' + dx + 'px, ' + dy + 'px)',
+				transition: ''
+			},true)
+			
+			//deal with % width and height
+			var wPctMatch = target.style.width.match(percentangeRE),
+				  hPctMatch = target.style.height.match(percentangeRE)
+			if(wPctMatch || hPctMatch){
+				var wPct = wPctMatch ? + wPctMatch[1] / 100 : 1,
+					  hPct = hPctMatch ? +hPctMatch[1] / 100 : 1
+				setStyle(wrapper,{
+					width: ~~(p.width / wPct) + 'px',
+					height: ~~(p.height / hPct) + 'px'
+				})
+			}
+			
+			//insert overlay & placeholder
+			parent.appendChild(overlay)
+			parent.appendChild(wrapper)
+			parent.insertBefore(placeholder, target)
+			wrapper.appendChild(target)
+			overlay.style.display = 'block'
+			
+			//force layout 
+			var force = target.offsetHeight
+			
+			//trigger transition 
+			overlay.style.opacity = options.bgOpacity
+			setStyle(target, {
+				transition: transformCssProp + ' ' + 
+					options.transitionDuration + ' ' + 
+					options.transitionTimingFunction,
+				transform: 'scale(' + scale + ')'
+			})
+			
+			target.addEventListener(transEndEvent, function onEnd(){
+				target.removeEventListener(transEndEvent, onEnd)
+				lock = false
+				cb = cb || options.onOpen
+				if(cb) cb(target)
+			})
+			
+			return this
+			
+		},
+		
+		close: function(cb){
+			
+			if(shown || lock) return
+			lock = true
+			
+			//onBeforeClose event 
+			if(options.onBeforeClose) options.onBeforeClose(target)
+				
+			var p = placeholder.getBoundingClientRect(),
+				  dx = p.left - (window.innerWidth - p.width) / 2,
+				  dy = p.top - (window.innerHeight - p.height) / 2
+			
+			overlay.style.opacity  = 0
+			setStyle(target, {
+				transform: 'translate(' + dx + 'px, ' + dy + 'px)'
+			})
+			
+			target.addEventListener(transEndEvent, function onEnd(){
+				target.removeEventListener(transEndEvent, onEnd)
+				setStyle(target, originalStyles)
+				parent.insertBefore(target, placeholder)
+				parent.removeChild(placeholder)
+				parent.removeChild(overlay)
+				parent.removeChild(wrapper)
+				overlay.style.display = 'none'
+				placeholder = null
+				shown = false
+				lock = false
+				cb = typeof cb === 'function'
+						? cb :
+						options.onClose
+				if(cb) cb(target)		
+			})
+			
+			return this	
+		},
+		
+		listen: function(el){
+			if(typeof el === 'string'){
+				var els = document.querySelector(el),
+					  i = els.length
+				while(i--){
+					listen(els[i])
+				}
+				return
+			}
+			
+			setStyle(el, {
+				cursor: prefix + 'zoom-in'
+			})
+			
+			el.addEventListener('click', function(e){
+				e.stopPropagation()
+				if(shown){
+					api.close()
+				}else{
+					api.open(el)
+				}
+			})
+			
+			return this
+		}
+	}
 	
 	
+	overlay.addEventListener('click', api.close)
+	wrapper.addEventListener('click', api.close)
 	
 	
-	
+	//umd expose
+	if(typeof exports == 'object'){
+		module.exports = api
+	}else if(typeof define == 'function' && define.amd){
+		define(function(){return api})
+	}else{
+		this.Zoomrang = api
+	}
 	
 	
 	
