@@ -6,7 +6,7 @@
 	
 	
 	// webkit prefix helper 判断css前缀模式
-	var prefix = 'WebkitAppearance' document.documentElement.style ? '-webkit-' : ''
+	var prefix = 'WebkitAppearance' in document.documentElement.style ? '-webkit-' : ''
 	
 	//regex 匹配百分号的正则
 	var percentangeRE = /^([\d\.]+)%$/
@@ -19,8 +19,8 @@
 		  placeholder
 	
 	//state 一些状态的定义
-	var shown = false
-		  lock = false
+	var shown = false,
+		  lock = false,
 		  originalStyles
 		 
 	// options 配置信息
@@ -38,7 +38,7 @@
 	}
 	
 	//compatibility stuff  兼容问题  ???
-	var trnas = sniffTransition(),
+	var trans = sniffTransition(),
 		transitionProp = trans.transition,
 		transformProp = trans.transform,
 		transformCssProp = transformProp.replace(/(.*)Transform/,'-$1-transform'),
@@ -78,7 +78,7 @@
 	 * 此处的remember不太明白
 	 */
 	function setStyle(el, styles, remember){
-		checkTrans(style)
+		checkTrans(styles)
 		var s = el.style,
 			  original = {}
 		for(var key in styles){
@@ -128,7 +128,7 @@
 		if(styles.transition){
 			value = styles.transition
 			delete styles.transition
-			styles[transitonProp] =  value
+			styles[transitionProp] =  value
 		}
 		
 		if(styles.transform){
@@ -196,7 +196,8 @@
 			lock = true
 			parent = target.parentNode
 			
-			var p = target.getBoundingRect(),
+//			var p = target.getBoundingRect(),
+			var p = target.getBoundingClientRect(),
 				  scale = Math.min(options.maxWidth / p.width, options.maxHeight / p.height),
 				  dx = p.left - (window.innerWidth - p.width) / 2,
 				  dy = p.top - (window.innerHeight - p.height) / 2
@@ -261,7 +262,8 @@
 		
 		close: function(cb){
 			
-			if(shown || lock) return
+//			if(shown || lock) return
+			if(!shown || lock) return
 			lock = true
 			
 			//onBeforeClose event 
@@ -296,9 +298,10 @@
 			return this	
 		},
 		
-		listen: function(el){
+//		listen: function (el){  //用这个没法在方法内部调用listen会报错说listen未定义，但return 什么也不返回吗???
+		listen: function listen(el){
 			if(typeof el === 'string'){
-				var els = document.querySelector(el),
+				var els = document.querySelectorAll(el),
 					  i = els.length
 				while(i--){
 					listen(els[i])

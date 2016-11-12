@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Zoomerang.js</title>
+        <title>com-select.js下拉框组件</title>
         <meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <style type="text/css">
@@ -67,39 +67,9 @@
              By 
              <a href="http://believezjp.oriht.com" taget="_blank">believezjp</a>
         </div>
-        <script src="zoomRange.js"></script>
+        <script src="com-select.js"></script>
         <script>
-            Array.prototype.forEach.call(document.querySelectorAll('p'), function (p, i) {
-                p.style.marginLeft = i * 6 + '%'
-            })
-            Zoomrang
-                .config({
-                    maxHeight: 400,
-                    maxWidth: 400,
-                    bgColor: '#000',
-                    bgOpacity: .75,
-                    onOpen: openCallback,
-                    onClose: closeCallback,
-                    onBeforeOpen: beforeOpenCallback,
-                    onBeforeClose: beforeCloseCallback
-                })
-                .listen('.zoom')
-            function openCallback (el) {
-                console.log('zoomed in on: ')
-                console.log(el)
-            }
-            function closeCallback (el) {
-                console.log('zoomed out on: ')
-                console.log(el)
-            }
-            function beforeOpenCallback (el) {
-            	console.log('on before zoomed in on:')
-            	console.log(el)
-            }
-            function beforeCloseCallback (el) {
-            	console.log('on before zoomed out on:')
-            	console.log(el)
-            }
+            
         </script>
     </body>
 </html>
