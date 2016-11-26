@@ -79,6 +79,7 @@
 			$data =  new stdClass();
 			$data->physicalDeviceId = "3C4EBEB6EEA6D82E";
 		2.新建一个数组并赋值
+			$post_data = array();
 			$post_data = array("key" => "fadf","tel" => "15245663241");
 		3.调试常用
 			echo :用于输出一个字符串
@@ -116,6 +117,44 @@
 			} 
 		9.获取数组的长度
 			count($shuzu); 
+			
+			
+		10.时间获取
+			1. 获取时间戳
+				date('U')
+			2. 获取年月日  (需要考虑时间区间的问题,先设置一下时区,可以根据实际情况取舍)
+				ini_set('date.timezone','Asia/Shanghai');
+				date("Y-m-d H:i:s"); 
+				date('Y-m-d H:i:s',time())
+				
+				
+				
+				
+		11. 去除csv头部的bom,
+			//原因:由于导出csv的时候,自动在csv文件前面添加了bom信息,导致再次导入的时候识别到了别的信息,无法正常的解析csv字段信息.
+			解决办法:
+			
+			public function check_file_bom($filename,$remove = true) {
+		        global $auto;
+		        $contents = file_get_contents($filename);
+		        $charset[1] = substr($contents, 0, 1);
+		        $charset[2] = substr($contents, 1, 1);
+		        $charset[3] = substr($contents, 2, 1);
+		        if (ord($charset[1]) == 239 && ord($charset[2]) == 187 && ord($charset[3]) == 191) {
+		            if($remove) {
+		                $rest = substr($contents, 3);
+		                $filenum = fopen($filename, "w");
+		                flock($filenum, LOCK_EX);
+		                fwrite($filenum, $rest);
+		                fclose($filenum);
+		            }
+		            return true;
+		        }
+		        return false;
+		    }
+		    
+		    
+				
 			</code></pre>
 		</div> 
 		<hr />
