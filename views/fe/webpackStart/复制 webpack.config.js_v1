@@ -12,8 +12,7 @@ module.exports = {
   output: {
     path: BUILD_PATH,
 //  filename: 'bundle.js'
-//   filename: '[name].[hash].js'
-     filename: '[name].[chunkhash].js'
+     filename: '[name].[hash].js'
   },
   //安装webpack-dev-server后添加
   devServer: {

@@ -1,0 +1,24 @@
+{
+  "name": "webpackpractice",
+  "version": "1.0.0",
+  "description": "learning css,js add hash ,replace html link",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^1.14.0"
+  },
+  "devDependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
+    "webpack": "^1.14.0"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "webpack",
+    "html",
+    "css",
+    "js"
+  ],
+  "author": "",
+  "license": "ISC"
+}
