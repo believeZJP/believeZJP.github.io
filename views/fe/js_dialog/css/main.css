@@ -1,0 +1,99 @@
+*{margin: 0;padding: 0;}
+html,body{
+	height:100%;
+}
+/**dialog.css***/
+.dialog-boundingBox{
+	position: fixed;
+	border: 1px solid #000;
+	width: 500px;
+	height: 300px;
+	left: 50%;
+	/*margin-left: -250px;*/
+	top: 100px;
+	box-shadow: 0 0 12px rgba(0,0,0,.5);
+	background-color: #FFF;
+}
+.dialog-mask{
+	width: 100%;
+	height:100%;
+	position: absolute;
+	background-color: #000;
+	opacity: .3;
+	left:0;
+	top:0;
+}
+
+.dialog-header{
+	background-color: #333;
+	color: #FFF;
+	text-align: center;
+	padding: 5px;
+	font-size: 20px;
+}
+.dialog-closeBtn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 5px 10px;
+	font-size:22px;
+	background-color: blue;
+	cursor: pointer;
+}
+.dialog-body{
+	padding: 10px;
+}
+
+
+
+.dialog-alert-btn{
+	width:100px;
+	position: absolute;
+	bottom:10px;
+	left: 50%;
+	margin-left: -50px;
+	
+}
+
+
+/***  定制皮肤样式***/
+
+.dialog-skin-a.dialog-boundingBox{
+	border-shadow: none;
+	border:10px solid rgba(0,0,0,.3);
+	border-radius: 8px;
+	border-top-right-radius: 30px;
+}
+.dialog-skin-a .dialog-header{
+	background-color: red;
+	text-align: left;
+	padding: 10px;
+	font-weight:bold;
+}
+.dialog-skin-a .dialog-alert-btn{
+	width:50px;
+	left:auto;
+	right:20px;
+	margin-left: 0;
+	background-color: red;
+	border:none;
+}
+.dialog-skin-a .dialog-closeBtn{
+	width:45px;
+	height:45px;
+	border-radius: 45px;
+	line-height: 45px;
+	padding:0;
+	font-weight:bold;
+	text-align: center;
+	background-color: blue;
+	font-size: 20px;
+	/*right:-15px;*/
+	/*top:-15px;*/
+}
+
+
+
+
+
+

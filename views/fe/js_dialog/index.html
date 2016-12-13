@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js 弹窗组件测试</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css"/>
+	</head>
+	<body>
+		<div>
+			<button id="alert">alert</button>
+		</div>
+		<script src="../../../js/jquery.1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/dialog_v1.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v2.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v3.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v4.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v5.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v6.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v7.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v8.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v9.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v10.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="js/dialog_v11.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		/*$('#alert').click(function(){
+				new Dialog().alert('弹框框');
+			});*/
+
+			//v2
+			/*
+			$('#alert').click(function(){
+				new Dialog().alert('弹框框',function () {
+					alert('you click the button');
+				});
+			});
+			*/
+
+			//v3
+			/*
+			$('#alert').click(function(){
+				new Dialog().alert('弹框框',function () {
+					alert('you click the button');
+				},{
+					width: 300,
+					height: 150,
+					y: 50
+				});
+			});
+			*/
+
+//			v4
+		/*
+			$('#alert').click(function(){
+				new Dialog().alert({
+					content: '弹框框',
+					handler: function () {
+						alert('you click the button');
+					},
+					width: 300,
+					height: 150,
+					y: 50
+				});
+			});
+		*/
+
+//		v5
+		/*
+		$('#alert').click(function(){
+			new Dialog().alert({
+				title: '提示',
+				content: '弹框框',
+				handler: function () {
+					alert('you click the button');
+				},
+				width: 300,
+				height: 150,
+				y: 50
+			});
+		});
+		*/
+
+//		v6
+		/*
+		$('#alert').click(function(){
+			new Dialog().alert({
+				title: '提示',
+				content: '弹框框',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+				handler4AlertBtn: function () {
+					alert('you click the alert button');
+				},
+				handler4CloseBtn: function () {
+					alert('you click the close button');
+				},
+
+			});
+		});
+
+
+		*/
+
+//		v7
+		/*$('#alert').click(function(){
+			new Dialog().alert({
+				title: '提示',
+				content: '弹框框',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+				skinClassName: 'dialog-skin-a',
+				handler4AlertBtn: function () {
+					alert('you click the alert button');
+				},
+				handler4CloseBtn: function () {
+					alert('you click the close button');
+				},
+
+			});
+		});*/
+
+//		v8
+		/*$('#alert').click(function(){
+			new Dialog().alert({
+				title: '提示',
+				content: '弹框框',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+//				skinClassName: 'dialog-skin-a',
+				text4AlertBtn: 'OK',
+				handler4AlertBtn: function () {
+					alert('you click the alert button');
+				},
+				handler4CloseBtn: function () {
+					alert('you click the close button');
+				},
+
+			});
+		});*/
+
+		//v9 同v8
+
+		//v10
+		/*$('#alert').click(function(){
+			new Dialog().alert({
+				title: '提示',
+				content: '弹框框',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+				dragHandle: '.dialog-header',
+//				skinClassName: 'dialog-skin-a',
+				text4AlertBtn: 'OK',
+				handler4AlertBtn: function () {
+					alert('you click the alert button');
+				},
+				handler4CloseBtn: function () {
+					alert('you click the close button');
+				},
+
+			});
+		});*/
+
+		//		v11
+		$('#alert').click(function(){
+			var win = new Dialog();
+			win.alert({
+				title: '提示',
+				content: '弹框框',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+				dragHandle: '.dialog-header',
+//				skinClassName: 'dialog-skin-a',
+				text4AlertBtn: 'OK',
+				handler4AlertBtn: function () {
+					alert('you click the alert button');
+				},
+				handler4CloseBtn: function () {
+					alert('you click the close button');
+				},
+
+			});
+			win.on('alert',function () {
+				alert('the second alert handler');
+			});
+			win.on('alert',function () {
+				alert('the third alert handler');
+			});
+			win.on('close',function () {
+				alert('the second close handler');
+			});
+		});
+
+
+
+
+
+
+
+		</script>
+	</body>
+</html>
