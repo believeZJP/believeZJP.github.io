@@ -20,7 +20,11 @@
 		<!--<script src="js/dialog_v8.js" type="text/javascript" charset="utf-8"></script>-->
 		<!--<script src="js/dialog_v9.js" type="text/javascript" charset="utf-8"></script>-->
 		<!--<script src="js/dialog_v10.js" type="text/javascript" charset="utf-8"></script>-->
-		<script src="js/dialog_v11.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/dialog_v11.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v12.js" type="text/javascript" charset="utf-8"></script>-->
+
+		<script src="js/Widget.js"></script>
+		<script src="js/dialog_v13.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 		/*$('#alert').click(function(){
 				new Dialog().alert('弹框框');
@@ -168,7 +172,7 @@
 		});*/
 
 		//		v11
-		$('#alert').click(function(){
+		/*$('#alert').click(function(){
 			var win = new Dialog();
 			win.alert({
 				title: '提示',
@@ -197,9 +201,38 @@
 			win.on('close',function () {
 				alert('the second close handler');
 			});
+		});*/
+
+//		v12
+		$('#alert').click(function(){
+			var win = new Dialog();
+			win.alert({
+				title: '提示',
+				content: '弹框框',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+				dragHandle: '.dialog-header',
+//				skinClassName: 'dialog-skin-a',
+				text4AlertBtn: 'OK',
+				handler4AlertBtn: function () {
+					alert('you click the alert button');
+				},
+				handler4CloseBtn: function () {
+					alert('you click the close button');
+				},
+
+			}).on('alert',function () {
+				alert('the second alert handler');
+			}).on('close',function () {
+				alert('the second close handler');
+			});
+
+			win.on('alert',function () {
+				alert('the third alert handler');
+			});
 		});
-
-
 
 
 
