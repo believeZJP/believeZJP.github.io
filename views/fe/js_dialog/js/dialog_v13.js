@@ -94,10 +94,10 @@
 		},
 		bindUI: function () {
 			var that = this;
-			this.boundingBox.delegate('.dialog-alert-btn','click', function () {
+			this.boundingBox.on('click', '.dialog-alert-btn', function () {
 				that.fire('alert');
 				that.destory();
-			}).delegate('.dialog-closeBtn','click',function () {
+			}).on('click', '.dialog-closeBtn', function () {
 				that.fire('close');
 				that.destory();
 			});

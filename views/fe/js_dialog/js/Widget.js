@@ -107,7 +107,7 @@ defined(function () {
         },
         destory: function(){        //方法： 销毁组件
             this.destructor();
-            this.boundingBox().off();
+            this.boundingBox.off();
             this.boundingBox.remove();
         }
     };
