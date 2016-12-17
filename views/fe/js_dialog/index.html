@@ -9,6 +9,9 @@
 	<body>
 		<div>
 			<button id="alert">alert</button>
+			<button id="confirm">confirm</button>
+			<button id="prompt">prompt</button>
+			<button id="common">common</button>
 		</div>
 		<script src="../../../js/jquery.1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
 		<!--<script src="js/dialog_v1.js" type="text/javascript" charset="utf-8"></script>-->
@@ -25,7 +28,10 @@
 		<!--<script src="js/dialog_v12.js" type="text/javascript" charset="utf-8"></script>-->
 
 		<script src="js/Widget.js"></script>
-		<script src="js/dialog_v13.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/dialog_v13.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v14.js" type="text/javascript" charset="utf-8"></script>-->
+		<!--<script src="js/dialog_v15.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="js/dialog_v16.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 		/*$('#alert').click(function(){
 				new Dialog().alert('弹框框');
@@ -204,7 +210,7 @@
 			});
 		});*/
 
-//		v12
+//		v12 和13 一样
 		$('#alert').click(function(){
 			var win = new Dialog();
 			win.alert({
@@ -222,7 +228,7 @@
 				},
 				handler4CloseBtn: function () {
 					alert('you click the close button');
-				},
+				}
 
 			}).on('alert',function () {
 				alert('the second alert handler');
@@ -236,8 +242,79 @@
 		});
 
 
+		//v14
+		$('#confirm').click(function(){
+			var win = new Dialog();
+			win.confirm({
+				title: '提示',
+				content: '弹框框',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+				dragHandle: '.dialog-header',
+//				skinClassName: 'dialog-skin-a',
+				text4ConfirmBtn: '是',
+				text4CancelBtn: '否',
+				handler4ConfirmBtn: function () {
+					alert('确定');
+				},
+				handler4CancelBtn: function () {
+					alert('取消');
+				}
+
+			}).on('confirm',function () {
+				alert('确定');
+			}).on('cancel',function () {
+				alert('取消');
+			});
 
 
+		});
+
+
+
+		//v15
+		$('#prompt').click(function(){
+			var win = new Dialog();
+			win.prompt({
+				title: '请输入您的名字',
+				content: '我们将会为您保密您输入的信息。',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+				dragHandle: '.dialog-header',
+				text4PromptBtn: '提交',
+				text4CancelBtn: '取消',
+				defaultValue4PromptInput: '张三',
+				handler4PromptBtn: function (inputValue) {
+					alert('您输入的内容是'+ inputValue);
+				},
+				handler4CancelBtn: function () {
+					alert('取消');
+				}
+
+			});
+
+
+		});
+
+
+		//v15
+		$('#common').click(function(){
+			var win = new Dialog();
+			win.common({
+				content: '我是一个通用的弹框框。',
+				width: 300,
+				height: 150,
+				y: 50,
+				hasCloseBtn: true,
+				dragHandle: '.dialog-header'
+			});
+
+
+		});
 
 		</script>
 	</body>
