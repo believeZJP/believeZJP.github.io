@@ -1,0 +1,13 @@
+
+h2{
+	font-size: 16px;
+	color:#00CCFF;
+	text-align: center;
+}
+.log{
+	padding:20px 10px;
+    background-color: #7a7b84;
+    color: #FFF;
+    border-bottom: 1px solid #f3a4a4;
+	text-indent: 2em;
+}
