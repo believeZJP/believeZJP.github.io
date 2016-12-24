@@ -1,0 +1,325 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 1em;
+    font-family: "Microsoft Yahei", Arial, sans-serif;
+}
+
+html {
+    height: 100%;
+}
+body {
+    background: #f69562;
+}
+a{
+    text-decoration: none;
+}
+ul,li{
+    list-style-type: none;
+}
+img{
+    vertical-align: middle;
+}
+.f-banner img {
+    display: block;
+    width: 100%;
+}
+.wrapper {
+    width: 12rem;
+    overflow: hidden;
+    margin: 0 auto;
+    padding-bottom: 1rem;
+}
+section {
+    display: block;
+}
+.resulth5 {
+    width: 94%;
+    margin: 0 auto;
+}
+.result .fail-over {
+    line-height: 3.2rem;
+    font-weight: bold;
+    color: #818181;
+    font-size: 1.3rem;
+    font-style: italic;
+}
+.result .result-inner {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 3.8rem;
+    padding: .26rem .6rem .26rem 2.75rem;
+    background: url(/images/faHongBao/index/result-bg.png) center center no-repeat;
+    background-size: 100% auto;
+    margin: 0 auto;
+    text-align: center;
+    width: 85%;
+}
+.content-bg {
+    width: 92%;
+    margin: 0px auto;
+    background: rgba(255,255,255,0.4);
+    padding: .3rem 0px;
+    border-radius: 5px;
+    margin-top: .5rem;
+}
+.dlbtn {
+    background-color: #fff;
+    color: #333333;
+    line-height: 1.5rem;
+}
+.downloadbtn {
+    margin: 0px auto;
+}
+.combtn {
+    display: block;
+    color: #333;
+    border: none;
+    font-size: .64rem;
+    height: 1.5rem;
+    width: 100%;
+    margin: .5rem auto 0;
+    border-radius: 5px;
+}
+.downloadbtn {
+    width: 91%;
+}
+.rule {
+    margin: 0 auto;
+    margin-top: .6rem;
+    padding: .2rem 0px;
+}
+.sec-sub-title {
+    line-height: 1.42rem;
+    background: url(/images/faHongBao/index/sub-title-bg.png) center center no-repeat;
+    background-size: 100% auto;
+    background-position: 0px;
+    font-size: .6rem;
+    color: #333333;
+    text-align: center;
+    font-weight: normal;
+}
+.rule ul {
+    width: 90%;
+    margin: .5rem auto 0;
+}
+.rule li {
+    font-size: .45rem;
+    line-height: .58rem;
+    color: #333333;
+}
+/*
+two
+*/
+.friends_box{
+    position: relative;
+}
+.friends_pic{
+    position: absolute;
+    left: 0.5em;
+    top: 0.25em;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    display: inline-block;
+}
+.friends_tit{
+    display: inline-block;
+    width:70%;
+    padding-left: 5em;
+    padding-top: 1em;
+    font-size:0.45em;
+    line-height: .58rem;
+}
+.friends_tit h4{
+    display: inline-block;
+}
+.friends_money{
+    display: inline;
+    width: 14%;
+    line-height: 2em;
+    font-size: .5em;
+    right: 1em;
+    position: absolute;
+    top: 1em;
+    color:brown;
+}
+.content_money_box{
+    width:91%;
+    margin:0 auto;
+    background: #fff;
+    height:2.5em;
+    opacity: 1;
+    clear: both;
+}
+.content_money_one{
+    display: inline-block;
+    width:30%;
+
+}
+.content_money_one{
+    margin: .5em 0;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: #f33;
+    padding-left: 0.3em;
+    border-right: 2px solid #f90;
+    height: 1.5em;
+    float: left;
+}
+.content_money_two{
+    float: left;
+    display: inline-block;
+    width:70%;
+    padding-left: 0.3em;
+    padding-top: .4em;
+}
+.content_money_two h4{
+    line-height: 1.5em;
+    font-size: .55em;
+    color: #333;
+    background: #f90;
+    text-align: center;
+    border-radius: 12px;
+    color: #fff;
+    width: 52%;
+}
+.content_money_two p{
+    line-height: 2em;
+    font-size: .5em;
+    color: #333;
+}
+.content_box{
+    width:92%;
+    background: rgba(255,255,255,0.4);
+    margin:0 auto;
+    padding: .5em 0;
+}
+.userName_phone{
+    font-size: .5em;
+    padding-top: 1.5em;
+    line-height: 1em;
+    width: 80%;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+}
+.userName_phone a,.userName_phone span{
+    color:#b2160e;
+    font-size: 1em;
+    line-height: 1em;
+}
+.userName_phone_land{
+    text-align: center;
+    font-size: .5em;
+    line-height: 2em;
+    color: #fff000;
+}
+/*
+领域优惠券
+*/
+.content_phone_box{
+    width:91%;
+    margin:0 auto;
+}
+.content_phone_one{
+    width: 70%;
+    text-align: center;
+    display: inherit;
+    margin: 0 auto;
+    font-size: 0.6em;
+    line-height: 1.5em;
+    height: 1.5em;
+    font-weight: 100;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.4);
+}
+.content_phone_two{
+    width: 70%;
+    text-align: center;
+    display: inherit;
+    margin: 0 auto;
+    font-size: 0.6em;
+    line-height: 1.5em;
+    height: 1.5em;
+    font-weight: 100;
+    color: #fff;
+    margin-top: .5em;
+    border: none;
+    border-radius: 10px;
+    background: #f90;
+}
+/*
+修改
+*/
+.content_phone_one_a{
+    background: rgba(255,255,255,1);
+}
+.userName_phone_modify_one{
+    color: #fff;
+    font-size: .5em;
+    line-height: 1em;
+}
+.userName_phone_modify_two{
+    color: #fff;
+    font-size: .5em;
+    line-height: 1.5em;
+    padding-bottom: .5em;
+}
+.userName_phone_modify{
+    width: 91%;
+    margin: 0 auto;
+    text-align: center;
+}
+.content_phone_box_a{
+    padding:.3em;
+    background: rgba(255,255,255,.4);
+}
+.userName_phone_modify_one span{
+    color:#f90;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

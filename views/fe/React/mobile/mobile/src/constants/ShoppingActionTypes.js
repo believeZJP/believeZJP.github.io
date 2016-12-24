@@ -1,0 +1,74 @@
+
+export const URL_BASE = 'http://'+window.location.host+'/';
+export const URL_BASE_TOKEN = '%replaceTOKEN';
+export const URL_GET_WEL_BANNERS = 'api/shopping/getWelBanners?tk='+URL_BASE_TOKEN;
+export const RECEIVE_WEL_BANNERS = 'RECEIVE_WEL_BANNERS';
+export const URL_UPLOAD_WEL_BANNER = 'api/shopping/uploadWelBanner?tk='+URL_BASE_TOKEN+'&id=%i';
+export const UPLOAD_WEL_BANNER = 'UPLOAD_WEL_BANNER';
+export const URL_DELETE_WEL_BANNER = 'api/shopping/deleteWelBanner?tk='+URL_BASE_TOKEN+'&id=%i';
+export const DELETE_WEL_BANNER = 'DELETE_WEL_BANNER';
+export const URL_GET_WEL_PRODUCTS = 'api/shopping/getWelProducts?tk='+URL_BASE_TOKEN;
+export const RECEIVE_WEL_PRODUCTS = 'RECEIVE_WEL_PRODUCTS';
+export const URL_UPLOAD_WEL_PRODUCTS = 'api/shopping/uploadWelProduct?tk='+URL_BASE_TOKEN+'&pid=%i&title=%t';
+export const UPLOAD_WEL_PRODUCTS = 'UPLOAD_WEL_PRODUCTS';
+export const URL_GET_PRODUCT_DETAILS = 'api/shopping/getProductDetail?tk='+URL_BASE_TOKEN+'&pid=%i';
+export const RECEIVE_PRODUCT_DETAILS = 'RECEIVE_PRODUCT_DETAILS';
+export const URL_GET_USER_INFO = 'api/getUserInfo?tk='+URL_BASE_TOKEN+'&user_id=%u';
+export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO';
+export const URL_GET_USER_INFO_LIST = 'api/getUserInfoWithPortraitUrl?tk='+URL_BASE_TOKEN+'&user_ids=%u';
+export const URL_GET_PRODUCT_COMMENTS = 'api/shopping/getProductComments?tk='+URL_BASE_TOKEN+'&pid=%p&page=%g&count=15';
+export const RECEIVE_PRODUCT_COMMENTS = 'RECEIVE_PRODUCT_COMMENTS';
+export const RECEIVE_MORE_PRODUCT_COMMENTS = 'RECEIVE_MORE_PRODUCT_COMMENTS';
+export const URL_GET_PRODUCT_CART = 'api/shopping/getCarProducts?tk='+URL_BASE_TOKEN;
+export const RECEIVE_PRODUCT_CART = 'RECEIVE_PRODUCT_CART';
+export const CHECK_CART_PRODUCT = 'CHECK_CART_PRODUCT';
+export const CHECK_CART_ALL_PRODUCTS = 'CHECK_CART_ALL_PRODUCTS';
+export const URL_DEL_PRODUCT_CART = 'api/shopping/delFromCar?tk='+URL_BASE_TOKEN+"&car_ids=";
+export const DEL_PRODUCT_CART = 'DEL_PRODUCT_CART';
+export const URL_ADD_PRODUCT_CART = 'api/shopping/addToCar?tk='+URL_BASE_TOKEN+"&pid=%p&cid=%c&tid=%t&count=%n&attach=%a";
+export const ADD_PRODUCT_CART = 'ADD_PRODUCT_CART';
+export const ADD_PRODUCT_CART_AND_BUY = 'ADD_PRODUCT_CART_AND_BUY';
+export const URL_GET_ADDRESS_LIST = 'getAddressList?tk='+URL_BASE_TOKEN+"&parent_id=%i";
+export const RECEIVE_ADDRESS_LIST='RECEIVE_ADDRESS_LIST';
+export const SET_ADDRESS_SELECTED_INDEX='SET_ADDRESS_SELECTED_INDEX';
+export const SET_ADDRESS_DETAIL='SET_ADDRESS_DETAIL';
+export const URL_SUBMIT_PAY_ORDER = 'api/shopping/submitAndPayOrder?tk='+URL_BASE_TOKEN+"&name=%1&phone=%2&address=%3&province=%4&city=%5&county=%6&town=%7&carts=%8&pay_type=%9";
+export const RECEIVE_SUBMIT_PAY_ORDER = 'RECEIVE_SUBMIT_PAY_ORDER';
+export const URL_SUBMIT_PAY_ORDER_NOW = 'api/shopping/submitAndPayOrderNow?tk='+URL_BASE_TOKEN+"&name=%1&phone=%2&address=%3&province=%4&city=%5&county=%6&town=%7&pay_type=%8&pid=%9&cid=%10&tid=%11&count=%12&attach=%13";
+export const RECEIVE_SUBMIT_PAY_ORDER_NOW = 'RECEIVE_SUBMIT_PAY_ORDER_NOW';
+export const URL_GET_ORDER_LIST = 'api/shopping/getOrderList?tk='+URL_BASE_TOKEN+"&page=%1&count=15";
+export const RECEIVE_ORDER_LIST = 'RECEIVE_ORDER_LIST';
+export const URL_DELETE_ORDER = 'api/shopping/deleteOrder?tk='+URL_BASE_TOKEN+"&order_num=%n";
+export const RECEIVE_DELETE_ORDER = 'RECEIVE_DELETE_ORDER';
+export const URL_UPLOAD_COMMENT_SCORE = 'api/shopping/uploadComments?tk='+URL_BASE_TOKEN+"&order_id=%n";
+export const RECEIVE_UPLOAD_COMMENT_SCORE = 'RECEIVE_UPLOAD_COMMENT_SCORE';
+export const URL_GET_ORDER_EXPRESS = 'api/shopping/getOrderExpress?tk='+URL_BASE_TOKEN+"&order_num=%n";
+export const RECEIVE_ORDER_EXPRESS = 'RECEIVE_ORDER_EXPRESS';
+export const URL_GET_PRODUCT_DETAIL_PICS = 'api/shopping/getProductDetailPics?tk='+URL_BASE_TOKEN+"&pid=%1";
+export const URL_GET_LATEST_EXPRESS_INFO = 'api/shopping/getLatestExpressInfo?tk='+URL_BASE_TOKEN;
+export const URL_GET_RED_POCKET_LIST = 'api/shopping/social/getRedPocketList?tk='+URL_BASE_TOKEN+"&page=%1&count=%2";
+export const URL_GET_BONUS_POCKET_LIST = 'api/shopping/social/getBonusPocketList?tk='+URL_BASE_TOKEN+"&page=%1&count=%2";
+
+
+export const ON_PRODUCT_DETAILS_CHANGE = 'ON_PRODUCT_DETAILS_CHANGE';
+export const ON_PRODUCT_DETAILS_ADD = 'ON_PRODUCT_DETAILS_ADD';
+export const ON_PRODUCT_DETAILS_DEL = 'ON_PRODUCT_DETAILS_DEL';
+
+
+//view操作
+export const TOGGLE_DETAILS_CHOOSE_VIEW = 'TOGGLE_DETAILS_CHOOSE_VIEW';
+export const TOGGLE_ADDRESS_LIST_CHOOSE_VIEW = 'TOGGLE_ADDRESS_LIST_CHOOSE_VIEW';
+export const ADD_CHOOSE_PRODUCT_QUANTITY = 'ADD_CHOOSE_PRODUCT_QUANTITY';
+export const MINUS_CHOOSE_PRODUCT_QUANTITY = 'MINUS_CHOOSE_PRODUCT_QUANTITY';
+export const CHOOSE_PRODUCT_COLOR = 'CHOOSE_PRODUCT_COLOR';
+export const CHOOSE_PRODUCT_TYPE = 'CHOOSE_PRODUCT_TYPE';
+export const TOGGLE_PAY = 'TOGGLE_PAY';
+export const CHANGE_ORDER_LIST_TAB = 'CHANGE_ORDER_LIST_TAB';
+export const SELECT_COMMENT_SCORE = 'SELECT_COMMENT_SCORE';
+export const INPUT_COMMENT_TEXT = "INPUT_COMMENT_TEXT";
+export const SET_BROWSER_VERSION="SET_BROWSER_VERSION";
+export const CHANGE_CHOOSE_DEGREE_TYPE="CHANGE_CHOOSE_DEGREE_TYPE";
+export const CHECK_RED_POCKET="CHECK_RED_POCKET";
+export const CHECK_BONUS_POCKET="CHECK_BONUS_POCKET";
+export const CONFIRM_CHECK_RED_POCKET="CONFIRM_CHECK_RED_POCKET";
+export const CONFIRM_CHECK_BONUS_POCKET="CONFIRM_CHECK_BONUS_POCKET";

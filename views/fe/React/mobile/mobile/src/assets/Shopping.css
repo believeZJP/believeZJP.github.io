@@ -1,0 +1,111 @@
+.open-animation {
+    animation-name:myfirst;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    /* Firefox: */
+    -moz-animation-name:myfirst;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    /* Safari and Chrome: */
+    -webkit-animation-name:myfirst;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    /* Opera: */
+    -o-animation-name:myfirst;
+    animation-duration:1s;
+    animation-timing-function:linear;
+}
+
+@keyframes myfirst
+{
+    0%   {bottom:-100;opacity:0}
+    100% {bottom:0;opacity:1}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+    0%   {bottom:-100;opacity:0}
+    100% {bottom:0;opacity:1}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+    0%   {bottom:-100;opacity:0}
+    100% {bottom:0;opacity:1}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+    0%   {bottom:-100;opacity:0}
+    100% {bottom:0;opacity:1}
+}
+.close-animation {
+    animation-name:myfirst;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    /* Firefox: */
+    -moz-animation-name:myfirst;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    /* Safari and Chrome: */
+    -webkit-animation-name:myfirst;
+    animation-duration:1s;
+    animation-timing-function:linear;
+    /* Opera: */
+    -o-animation-name:myfirst;
+    animation-duration:1s;
+    animation-timing-function:linear;
+}
+
+@keyframes myfirst
+{
+    0%   {opacity:1}
+    100% {opacity:0}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+    0%   {opacity:1}
+    100% {opacity:0}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+    0%   {opacity:1}
+    100% {opacity:0}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+    0%   {opacity:1}
+    100% {opacity:0}
+}
+/*验光单*/
+.user-optometry { width: 100%!important; border: 1px solid rgba(169, 168, 168, 0.43); }
+.optometry-grid table { margin:0; width: 100%; background: #fff;border-collapse:collapse;border-spacing:0; }
+.optometry-grid thead { background: #eee; }
+.optometry-grid th, .optometry-grid td { padding: 4px; border: 1px solid #ddd; }
+.optometry-grid th { font-weight: 400; }
+.optometry-grid select { padding: 2px 4px; width: 100%; border: 1px solid #EFEFEF; }
+select { appearance: none; -moz-appearance: none; -webkit-appearance: none; border: none; margin:0}
+.select { display: block; position: relative; overflow: hidden; background: white; border: 1px solid #d2e2e7; border-bottom-color: #c5d4d9; border-radius: 2px; background-image: -webkit-linear-gradient(top, #fcfdff, #f2f7f7); background-image: -moz-linear-gradient(top, #fcfdff, #f2f7f7); background-image: -o-linear-gradient(top, #fcfdff, #f2f7f7); background-image: linear-gradient(to bottom, #fcfdff, #f2f7f7); -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06); }
+.select:before, .select:after { content: ''; position: absolute; right: 11px; width: 0; height: 0; border-left: 3px outset transparent; border-right: 3px outset transparent; }
+.select:before { top: 4px; border-bottom: 3px solid #7f9298; }
+.select:after { top: 12px; border-top: 3px solid #7f9298; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">  
+<html>  
+<head>  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+<title>右边固定宽度和左边自适应宽度的布局</title>  
+<style type="text/css">  
+    body {  
+        padding: 0;  
+        margin: 0;  
+    }  
+      
+    #wrapper {  
+        border: 1px solid #333;  
+        margin: 0 auto;  
+    }  
+      
+    #nav {  
+        width: 200px;  
+        float: right;  
+        border-left: 1px solid #007AFF;
+        box-sizing: border-box;
+    }  
+      
+    #content-wrapper {  
+        margin-right: -200px;  
+        float: left;  
+        width: 100%;  
+    }  
+      
+    #content {  
+        margin-right: 200px;  
+        padding: 0 10px;  
+    }  
+      
+    .clearfix:after {  
+        height: 0;  
+        content: ".";  
+        display: block;  
+        clear: both;  
+        visibility: hidden;  
+    }  
+    
+    
+    /******     第二种     **************/
+    .wrap {
+        overflow: hidden;
+        background: #EEE;
+    }
+    
+    .wrap-right {
+        width: 300px;
+        /*position: relative;*/
+        float: right;
+        margin-left: -300px;
+        background: #AAA;
+    }
+    
+    .wrap-left {
+        width: 100%;
+        float: left;
+    }
+    
+    .left-con {
+        margin-right: 300px;
+        background: #DDD;
+    }
+    
+    .left-con,
+    .wrap-right {
+        height: 300px;
+    }
+</style>  
+</head>  
+<body>  
+    <div id="wrapper" class="clearfix">  
+        <div id="content-wrapper">  
+            <div id="content">  
+                <p> 
+                	我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo
+                </p>  
+                                  
+            </div>  
+        </div>  
+        <div id="nav">  
+            <p>菜单1</p>  
+            <p>菜单2</p>  
+            <p>菜单3</p>  
+            <p>菜单4</p>  
+        </div>  
+    </div>  
+    
+    
+    <hr />
+    
+    <div class="wrap">
+            <div class="wrap-left">
+                <div class="left-con">
+                    我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo
+                </div>
+            </div>
+            <div class="wrap-right">
+                <a href="" target="_blank">我是mmmmmm</a>
+            </div>
+        </div>
+</body>  
+</html>  
