@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="Keywords" content="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html"/>
+		<title>用flex写经典布局</title>
+		<style type="text/css">
+			*{margin:0;padding:0;}
+			.Grid{
+				display: flex;
+				margin-bottom: 10px;
+			}
+			.Grid-cell{
+				flex: 1;/**关键**/
+				background-color: #EEBB55;
+				background-color: #555;
+				color: #aaa;
+				border:1px solid #DDDD88;
+				padding: 10px;
+				box-sizing: border-box;
+			}
+			
+			/**按百分比布局**/
+			.Grid-cell.u-full {
+			  	flex: 0 0 100%;
+			}
+			
+			.Grid-cell.u-1of2 {
+			  	flex: 0 0 50%;
+			}
+			
+			.Grid-cell.u-1of3 {
+			  	flex: 0 0 33.3333%;
+			}
+			
+			.Grid-cell.u-1of4 {
+			  	flex: 0 0 25%;
+			}
+			/**  固定宽度的写法*/
+			.Grid-cell.u-200p{
+				flex: 0 0 200px;
+			}
+			.Grid-cell.u-300p{
+				flex: 0 0 300px;
+			}
+			.wid200p{
+				width: 200px;
+			}
+			.wid300p{
+				width: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>一、基本网格布局</h1>
+		
+		<div class="Grid">
+		  	<div class="Grid-cell">1/3</div>
+		  	<div class="Grid-cell">1/3</div>
+		  	<div class="Grid-cell">1/3</div>
+		</div>
+		<div class="Grid">
+		  	<div class="Grid-cell">1/2</div>
+		  	<div class="Grid-cell">1/2</div>
+		</div>
+		
+		<div class="Grid">
+		  	<div class="Grid-cell">1/4</div>
+		  	<div class="Grid-cell">1/4</div>
+		  	<div class="Grid-cell">1/4</div>
+		  	<div class="Grid-cell">1/4</div>
+		</div>
+		
+		
+		<div class="Grid">
+		  	<div class="Grid-cell">
+		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
+		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
+		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
+		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
+		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
+		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
+		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
+		  	</div>
+		  	<div class="Grid-cell">1/4</div>
+		</div>
+		
+		
+		<h1>二、百分比布局</h1>
+		<h2>百分比的写法：flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;</h2>
+		<h2>flex-basis	项目的长度。合法值："auto"、"inherit" 或一个后跟 "%"、"px"、"em" 或任何其他长度单位的数字。</h2>
+		<div class="Grid">
+			<div class="Grid-cell u-full">
+				我独自占一行<br />
+			</div>
+		</div>
+		
+		<div class="Grid">
+			<div class="Grid-cell u-1of2">我独自占50%</div>
+			<div class="Grid-cell u-1of4">我独自占25%</div>
+			<div class="Grid-cell u-1of4">我独自占25%</div>
+		</div>
+		
+		<div class="Grid">
+			<div class="Grid-cell u-1of3">我独自占33%</div>
+			<div class="Grid-cell u-1of3">我独自占33%</div>
+			<div class="Grid-cell u-1of3">我独自占33%</div>
+		</div>
+		
+		
+		
+		<div class="Grid">
+			<div class="Grid-cell u-1of4">我独自占25%</div>
+			<div class="Grid-cell u-1of3">我独自占33%</div>
+			<div class="Grid-cell">我自适应</div>
+		</div>
+		<div class="Grid">
+			<div class="wid200p">我占200px</div>
+			<div class="Grid-cell">我自适应</div>
+			<div class="wid300p">我独自占300px</div>
+		</div>
+		
+		<div class="Grid">
+			<div class="Grid-cell u-200p">我占200px</div>
+			<div class="Grid-cell">我自适应</div>
+			<div class="Grid-cell u-300p">我独自占300px</div>
+		</div>
+		
+		<h1>三、圣杯布局</h1>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<hr  style="margin-top:800px"/>
+		
+		
+		<div class="Grid">
+			<div class="Grid-cell u-1of3">
+<pre><code>
+	flex-basis
+	该属性来设置该元素的宽度。
+	当然，width也可以用来设置元素宽度。
+	如果元素上同时设置了width和flex-basis,那么flex-basis会覆盖width的值。                                               faf               fad
+</code></pre>
+			</div>
+			<div class="Grid-cell u-1of3">
+<pre><code>
+	flex-grow
+	该属性来设置，当父元素的宽度大于所有子元素的宽度的和时（即父元素会有剩余空间），
+	子元素如何分配父元素的剩余空间。
+	flex-grow的默认值为0，意思是该元素不索取父元素的剩余空间，如果值大于0，表示索取。
+	值越大，索取的越厉害。
+	举个例子:
+	父元素宽400px，有两子元素：A和B。A宽为100px，B宽为200px。
+	则空余空间为 400-（100+200）= 100px。
+	如果A，B都不索取剩余空间，则有100px的空余空间。
+	如果A索取剩余空间:设置flex-grow为1，B不索取。
+	则最终A的大小为 自身宽度（100px）+ 剩余空间的宽度（100px）= 200px
+	如果A，B都设索取剩余空间，A设置flex-grow为1，B设置flex-grow为2。
+	则最终A的大小为 自身宽度（100px）+ A获得的剩余空间的宽度（100px (1/(1+2))）,
+	最终B的大小为 自身宽度（200px）+ B获得的剩余空间的宽度（100px (2/(1+2))）
+</code></pre>
+			</div>
+			<div class="Grid-cell u-1of3">
+<pre><code>
+	flex-shrink
+	该属性来设置，当父元素的宽度小于所有子元素的宽度的和时（即子元素会超出父元素），
+	子元素如何缩小自己的宽度的。
+	flex-shrink的默认值为1，当父元素的宽度小于所有子元素的宽度的和时，
+	子元素的宽度会减小。值越大，减小的越厉害。如果值为0，表示不减小。
+	举个例子:
+	父元素宽400px，有两子元素：A和B。A宽为200px，B宽为300px。
+	则A，B总共超出父元素的宽度为(200+300)- 400 = 100px。
+	如果A，B都不减小宽度，即都设置flex-shrink为0，则会有100px的宽度超出父元素。
+	如果A不减小宽度:设置flex-shrink为0，B减小。
+	则最终B的大小为 自身宽度(300px)- 总共超出父元素的宽度(100px)= 200px
+	如果A，B都减小宽度，A设置flex-shirk为3，B设置flex-shirk为2。
+	则最终A的大小为 
+	自身宽度(200px)- A减小的宽度(100px * (200px * 3/(200 * 3 + 300 * 2))) = 150px,
+	最终B的大小为 
+	自身宽度(300px)- B减小的宽度(100px * (300px * 2/(200 * 3 + 300 * 2))) = 250px
+	
+</code></pre>
+			</div>
+		</div>
+	</body>
+</html>

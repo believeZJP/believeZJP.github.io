@@ -69,6 +69,27 @@
     .wrap-right {
         height: 300px;
     }
+    
+    
+    
+    /**  左固定，右自动***/
+   #left-fixed-nav {  
+        width: 200px;  
+        float: left;  
+        border-left: 1px solid #007AFF;
+        box-sizing: border-box;
+    }  
+      
+    #left-content-wrapper {  
+        margin-left: -200px;  
+        float: right;  
+        width: 100%;  
+    }  
+      
+     #left-content-wrapper #content {  
+        margin-left: 200px;  
+        padding: 0 10px;  
+    }  
 </style>  
 </head>  
 <body>  
@@ -93,14 +114,39 @@
     <hr />
     
     <div class="wrap">
-            <div class="wrap-left">
-                <div class="left-con">
-                    我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo
-                </div>
-            </div>
-            <div class="wrap-right">
-                <a href="" target="_blank">我是mmmmmm</a>
+        <div class="wrap-left">
+            <div class="left-con">
+                我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo我是cocococococococo
             </div>
         </div>
+        <div class="wrap-right">
+            <a href="" target="_blank">我是mmmmmm</a>
+        </div>
+    </div>
+    
+    <!--  左固定，右自动  -->
+   	<div id="wrapper" class="clearfix">  
+        <div id="left-fixed-nav">  
+            <div id="content">  
+                <p> 
+                	 左固定，右自动
+                </p>  
+                                  
+            </div>  
+        </div>  
+        <div id="left-content-wrapper">
+        	<div id="content">  
+	            <p>菜单1</p>  
+	            <p>菜单2</p>  
+	            <p>菜单3</p>  
+	            <p>菜单4</p>  
+            </div>  
+        </div>  
+    </div>  
+    
+    
+    <hr />
+    
+    
 </body>  
 </html>  
