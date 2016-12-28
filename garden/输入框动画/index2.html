@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://demo.sc.chinaz.com//Files/DownLoad/webjs1/201604/jiaoben4161/ -->
+<html class=" -webkit-"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  
+
+  <title>CSS3实现动态输入框input框特效 - 站长素材</title>
+
+  <style>
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}table{border-collapse:collapse;border-spacing:0}
+
+</style>
+
+    <style>
+@charset "UTF-8";
+/* 重置*/
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+/*容器设置*/
+#container {
+  counter-reset: counterA;
+}
+
+/*布局实现*/
+div.row {
+  position: relative;
+  width: 100%;
+  height: 20vw;
+  padding-left: 15vw;
+  counter-increment: counterA;
+  /*设置背景色，随机颜色*/
+}
+div.row:before {
+  content: counter(counterA);
+  color: rgba(255, 255, 255, 0.05);
+  font-size: 10vw;
+  position: absolute;
+  left: 0px;
+}
+div.row label {
+  position: relative;
+  display: block;
+  float: left;
+  margin: 8vw 2vw;
+}
+div.row label input {
+  width: 160px;
+  height: 30px;
+  line-height: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  outline: none;
+  border: 1px solid #fff;
+  color: #377D6A;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-indent: 38px;
+  transition: all .3s ease-in-out;
+}
+div.row label input ::-webkit-input-placeholder {
+  color: transparent;
+}
+div.row label input + span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  background: #7AB893;
+  display: inline-block;
+  padding: 7px 4px;
+  transform-origin: left center;
+  transform: perspective(300px);
+  transition: all .3s ease-in-out;
+  border-radius: 4px 0 0 4px;
+}
+div.row label input:focus,
+div.row label input:active {
+  text-indent: 0;
+  background: rgba(255, 255, 255, 0.2);
+}
+div.row label input:focus ::-webkit-input-placeholder,
+div.row label input:active ::-webkit-input-placeholder {
+  color: #f00;
+}
+div.row label input:focus + span,
+div.row label input:active + span {
+  background: #478560;
+}
+div.row:nth-child(1) {
+  background: #1f3c7a;
+}
+div.row:nth-child(2) {
+  background: #2b7a1f;
+}
+div.row:nth-child(3) {
+  background: #1f537a;
+}
+div.row:nth-child(4) {
+  background: #507a1f;
+}
+div.row:nth-child(5) {
+  background: #7a461f;
+}
+div.row:nth-child(6) {
+  background: #1f687a;
+}
+div.row:nth-child(7) {
+  background: #1f7a40;
+}
+div.row:nth-child(8) {
+  background: #6d7a1f;
+}
+div.row:nth-child(9) {
+  background: #1f6e7a;
+}
+div.row:nth-child(10) {
+  background: #567a1f;
+}
+div.row:nth-child(11) {
+  background: #1f2e7a;
+}
+div.row:nth-child(12) {
+  background: #7a371f;
+}
+div.row:nth-child(13) {
+  background: #1f327a;
+}
+div.row:nth-child(14) {
+  background: #671f7a;
+}
+div.row:nth-child(15) {
+  background: #591f7a;
+}
+div.row:nth-child(1) input:focus,
+div.row:nth-child(1) input:active {
+  border-radius: 0 4px 4px 0;
+}
+div.row:nth-child(1) input:focus + span,
+div.row:nth-child(1) input:active + span {
+  border-radius: 4px 0 0 4px;
+  transform: translateX(-100%);
+}
+div.row:nth-child(2) input:focus + span,
+div.row:nth-child(2) input:active + span {
+  border-radius: 0 4px 4px 0;
+  transform: translateX(300%);
+}
+div.row:nth-child(3) input:focus,
+div.row:nth-child(3) input:active {
+  text-indent: 0px;
+}
+div.row:nth-child(3) input:focus + span,
+div.row:nth-child(3) input:active + span {
+  background-color: transparent;
+  transform: translateY(-100%);
+}
+div.row:nth-child(4) input:focus,
+div.row:nth-child(4) input:active {
+  text-indent: 0px;
+}
+div.row:nth-child(4) input:focus + span,
+div.row:nth-child(4) input:active + span {
+  background-color: transparent;
+  transform: translateY(100%);
+}
+div.row:nth-child(5) input + span {
+  transform-origin: left bottom;
+}
+div.row:nth-child(5) input:focus,
+div.row:nth-child(5) input:active {
+  border-radius: 0 4px 4px 0;
+  text-indent: 20px;
+}
+div.row:nth-child(5) input:focus + span,
+div.row:nth-child(5) input:active + span {
+  transform: rotate(-60deg);
+  border-radius: 0 4px 4px 0;
+}
+div.row:nth-child(6) input + span {
+  transform-origin: left bottom;
+}
+div.row:nth-child(6) input:focus,
+div.row:nth-child(6) input:active {
+  border-radius: 0 4px 4px 0;
+}
+div.row:nth-child(6) input:focus + span,
+div.row:nth-child(6) input:active + span {
+  animation: swing 1s;
+  animation-fill-mode: forwards;
+  border-radius: 0 4px 4px 0;
+}
+@keyframes swing {
+  0% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(116deg);
+  }
+  40% {
+    transform: rotate(60deg);
+  }
+  60% {
+    transform: rotate(98deg);
+  }
+  80% {
+    transform: rotate(76deg);
+  }
+  100% {
+    transform: rotate(82deg);
+  }
+}
+div.row:nth-child(7) input + span {
+  transform-origin: right center;
+}
+div.row:nth-child(7) input:focus,
+div.row:nth-child(7) input:active {
+  border-radius: 0 4px 4px 0;
+}
+div.row:nth-child(7) input:focus + span,
+div.row:nth-child(7) input:active + span {
+  transform: perspective(300px) translateX(-100%) rotateY(60deg);
+}
+div.row:nth-child(8) input:focus,
+div.row:nth-child(8) input:active {
+  border-radius: 0 4px 4px 0;
+}
+div.row:nth-child(8) input:focus + span,
+div.row:nth-child(8) input:active + span {
+  transform: rotateY(180deg);
+  border-radius: 0 4px 4px 0;
+}
+div.row:nth-child(9) input + span {
+  background: transparent;
+}
+div.row:nth-child(9) input + span:before {
+  content: "";
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 20px;
+  bottom: -10px;
+  border: 5px solid #000;
+  border-color: #478560 transparent transparent transparent;
+  transition: all .3s;
+  opacity: 0;
+}
+div.row:nth-child(9) input:focus + span,
+div.row:nth-child(9) input:active + span {
+  padding: 3px 10px;
+  border-radius: 6px;
+  transform: translateY(-150%);
+}
+div.row:nth-child(9) input:focus + span:before,
+div.row:nth-child(9) input:active + span:before {
+  opacity: 1;
+}
+div.row:nth-child(10) input {
+  border-width: 1px 0;
+  border-radius: 0;
+}
+div.row:nth-child(10) input + span {
+  background: transparent;
+}
+div.row:nth-child(10) input:focus,
+div.row:nth-child(10) input:active {
+  border-width: 2px 0;
+  border-color: #000;
+}
+div.row:nth-child(10) input:focus + span,
+div.row:nth-child(10) input:active + span {
+  background: transparent;
+  transform: translateY(-120%);
+}
+div.row:nth-child(11) input {
+  border-radius: 0;
+  border-width: 1px 0;
+}
+div.row:nth-child(11) input + span {
+  background: transparent;
+}
+div.row:nth-child(11) input:focus + span,
+div.row:nth-child(11) input:active + span {
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 0;
+  border-width: 0 0 0 1px;
+  animation: halfLeft .6s ease-in;
+  animation-fill-mode: forwards;
+}
+@keyframes halfLeft {
+  20% {
+    transform: translateX(-60%);
+  }
+  40% {
+    transform: translateX(-42%);
+  }
+  60% {
+    transform: translateX(-56%);
+  }
+  80% {
+    transform: translateX(-46%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+div.row:nth-child(12) input {
+  border-radius: 0;
+  border-width: 0;
+  background: transparent;
+}
+div.row:nth-child(12) input + span {
+  background: transparent;
+}
+div.row:nth-child(12) input + span:before {
+  content: "";
+  width: 160px;
+  height: 1px;
+  background-color: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+div.row:nth-child(12) input:focus + span,
+div.row:nth-child(12) input:active + span {
+  background: transparent;
+  transform: translateY(-100%);
+}
+div.row:nth-child(13) input {
+  border-radius: 0;
+  border: 1px solid #fff;
+  border-top-color: rgba(255, 255, 255, 0);
+  border-right-color: rgba(255, 255, 255, 0);
+  border-bottom-color: white;
+  border-left-color: rgba(255, 255, 255, 0);
+  background: transparent;
+}
+div.row:nth-child(13) input + span {
+  background: transparent;
+}
+div.row:nth-child(13) input:focus,
+div.row:nth-child(13) input:active {
+  transition: none;
+  animation: borderAnim 3s;
+  animation-fill-mode: forward;
+  border: 1px solid #fff;
+}
+div.row:nth-child(13) input:focus + span,
+div.row:nth-child(13) input:active + span {
+  background: transparent;
+  transform: translateY(-100%);
+}
+@keyframes borderAnim {
+  25% {
+    border-top-color: rgba(255, 255, 255, 0);
+    border-right-color: white;
+    border-bottom-color: white;
+    border-left-color: rgba(255, 255, 255, 0);
+  }
+  50% {
+    border-top-color: white;
+    border-right-color: white;
+    border-bottom-color: white;
+    border-left-color: rgba(255, 255, 255, 0);
+  }
+  75% {
+    border-top-color: white;
+    border-right-color: white;
+    border-bottom-color: white;
+    border-left-color: white;
+  }
+}
+div.row:nth-child(14) input {
+  border-radius: 0;
+  border: 1px solid #fff;
+  transform-origin: left center;
+  color: #fff;
+}
+div.row:nth-child(14) input + span {
+  background: transparent;
+}
+div.row:nth-child(14) input:focus,
+div.row:nth-child(14) input:active {
+  transform: scale(1.2);
+  box-shadow: 0px 0px 2px #000;
+  color: #fff;
+  border: 2px solid #fff;
+}
+div.row:nth-child(14) input:focus + span,
+div.row:nth-child(14) input:active + span {
+  background: transparent;
+  transform: translateY(-100%) scale(0.8);
+}
+div.row:nth-child(15) input {
+  border-radius: 0;
+  border: 1px solid #fff;
+  background-color: #026873;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 50%, transparent 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.13) 50%, transparent 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.17) 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.19) 50%);
+  background-size: 13px, 29px, 37px, 53px;
+  animation: shadowGo 10s linear infinite;
+  animation-play-state: running;
+}
+div.row:nth-child(15) input + span {
+  background: transparent;
+}
+div.row:nth-child(15) input:focus,
+div.row:nth-child(15) input:active {
+  background-color: #137884;
+  background-size: 13px, 29px, 37px, 53px;
+  animation-play-state: paused;
+}
+div.row:nth-child(15) input:focus + span,
+div.row:nth-child(15) input:active + span {
+  transform: translateY(-100%) scale(0.8);
+  background: transparent;
+  color: #137884;
+}
+@keyframes shadowGo {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -600% 0%;
+  }
+}
+
+</style>
+
+    <script src="./CSS3实现动态输入框input框特效 - 站长素材_files/prefixfree.min.js.下载"></script>
+
+</head>
+
+<body>
+
+  <div id="container">
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+  <div class="row">
+    <label>
+      <input type="text">
+      <span>姓名</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>性别</span>
+    </label>
+    <label>
+      <input type="text">
+      <span>邮箱</span>
+    </label>
+  </div>
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px &#39;MicroSoft YaHei&#39;;">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+
+
+</body></html>
