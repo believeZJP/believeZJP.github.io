@@ -31,3 +31,21 @@ function setDataTimeLength(d){
 
 //各种正则表达式
 
+
+
+/**keyup模糊搜索提示框实现原理**/
+var lastTime;
+$("#search").keyup(function(event){
+    //我们可以用jQuery的event.timeStamp来标记时间，这样每次的keyup事件都会修改lastTime的值，lastTime必需是全局变量
+    lastTime = event.timeStamp;
+    setTimeout(function(){
+        //如果时间差为0，也就是你停止输入0.5s之内都没有其它的keyup事件产生，这个时候就可以去请求服务器了
+        if(lastTime - event.timeStamp == 0){
+            /*
+             在这里可以执行ajax请求
+             */
+            var $val = $("#search").val();
+            $("#tip").html($val);
+        }
+    },500);
+});

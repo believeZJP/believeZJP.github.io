@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="学习网站" content="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html"/>
 		<meta name="学习网站" content="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html"/>
 		<meta name="坑" content="https://segmentfault.com/a/1190000006559564"/>
 		<title>用flex写经典布局</title>
@@ -99,6 +100,48 @@
 			}
 			.inputAddOn-item{
 				flex: 0 0 20px;
+			}
+			
+			/** 悬挂式布局*/
+			.media{
+				display: flex;
+				align-items: flex-start;
+			}
+			.media-figure{
+				margin-right:1em;
+				width:100px
+			}
+			.media-body{
+				flex:1;
+			}
+			
+			/**六、固定的底栏**/
+			.site{
+				display: flex;
+				min-height: 100vh;				
+				flex-direction: column;
+			}
+			.site-content{
+				flex:1;
+			}
+			
+			/**七，流式布局***/
+			.parent{
+				width:200px;
+				height:150px;
+				margin-bottom: 10px;
+				background-color: black;
+				display: flex;
+				flex-flow: row wrap;
+				align-content: flex-start;
+				overflow-y: auto;
+			}
+			.child{
+				box-sizing: border-box;
+				background-color: #FFF;
+				flex:0 0 25%;
+				height:50px;
+				border:1px solid red;
 			}
 		</style>
 	</head>
@@ -215,14 +258,64 @@
 		</div>
 		
 		
+		<h1>五、悬挂式布局</h1>
 		
+		<div class="media">
+			<img class="media-figure" src="https://www.baidu.com/img/bd_logo1.png" alt="" />
+			<p class="media-body">
+				有时，主栏的左侧或右侧，需要添加一个图片栏
+				三、容器的属性
+以下6个属性设置在容器上。
+flex-direction
+flex-wrap
+flex-flow
+justify-content
+align-items
+align-content
+			</p>
+		</div>
 		
+		<h1>六、固定的底栏</h1>
+		<div class="site">
+			<header>
+				这里是头部
+			</header>
+			<main class="site-content ">
+				有时，页面内容太少，无法占满一屏的高度，底栏就会抬高到页面的中间。这时可以采用Flex布局，让底栏总是出现在页面的底部。<br />
+				没搞懂要干嘛，感觉是最小
+			</main>
+			<footer>这里是底部</footer>
+		</div>
 		
-		
-		
-		
-		
-		
+		<h1>七，流式布局</h1>
+		<h2>不论有多少个child,都会自动排开，</h2>
+		<div class="parent">
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+		</div>
+		<div class="parent">
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+			<div class="child"></div>
+		</div>
 		
 		
 		
