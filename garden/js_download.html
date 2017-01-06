@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul>
+			<li>aaa</li>
+			<li>bbb</li>
+			<li>ccc</li>
+			<li>ddd</li>
+		</ul>
+		<a href="" id="a">click here to download your file</a>
+		<button onclick="download('file text', 'myfilename.txt', 'text/plain')">Create file</button>
+		<button id="autoDownload">aaa执行自动绑定事件下载</button>
+		<button id="appendClick">bbb添加元素到页面再自动点击下载</button>
+		<button id="btn1">测试绑定事件</button>
+		<script src="FileSaver.js"></script>
+		<script type="text/javascript">
+			function dispatch(el, type){    
+			 	try{    
+			       var evt = document.createEvent('Event');    
+			        evt.initEvent(type,false,false);    
+			        el.dispatchEvent(evt);    
+			 	}catch(e){
+			       alert(e);
+			  	};    
+			}
+			var btn1 = document.getElementById('btn1');    
+			btn1.onclick = function(){
+				console.log(111);
+			}
+			dispatch(btn1, 'click');
+		
+		
+		
+		
+		
+			//var file = new File(["Hello, world!\r\n Hello Word!@#"], "hello world.txt", {type: "text/plain;charset=utf-8"});
+			//saveAs(file);
+			document.getElementById('appendClick').onclick = function(){
+				//自动下载文件
+				download2('file text\r\nfasdf', 'myfilename.txt', 'text/plain'); 
+			}
+			
+			
+			document.getElementById('autoDownload').onclick = function(){
+				//自动下载文件
+				var lis = document.getElementsByTagName('li');
+				var fileContent = '';
+				for (var i=0,il=lis.length;i<il;i++) {
+					fileContent += lis[i].textContent + "\r\n";
+				}
+				downloadFile('abc.txt', fileContent);				
+			}
+		
+		
+		
+			
+			
+			function downloadFile(fileName, content){
+			    var aLink = document.createElement('a');
+			    aLink.onclick = function(){
+			    	console.log('按钮被点击了~~');
+			    }
+			    var blob = new Blob([content], {type: 'text/plain'});
+			    var evt = document.createEvent("HTMLEvents");
+			    evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+			    aLink.download = fileName;
+			    aLink.href = URL.createObjectURL(blob);
+			    aLink.dispatchEvent(evt);
+			}
+			
+			
+			function download(text, name, type) {
+			  var a = document.getElementById("a");
+			  var file = new Blob([text], {type: type});
+			  a.href = URL.createObjectURL(file);
+			  a.download = name;
+			}
+			
+			
+			
+			
+			// Function to download data to a file
+			function download2(data, filename, type) {
+				var a = document.createElement("a"),
+					file = new Blob([data], {type: type});
+				if (window.navigator.msSaveOrOpenBlob) // IE10+
+					window.navigator.msSaveOrOpenBlob(file, filename);
+				else { // Others
+					var url = URL.createObjectURL(file);
+					a.href = url;
+					a.download = filename;
+					document.body.appendChild(a);
+					a.click();
+					setTimeout(function() {
+						document.body.removeChild(a);
+						window.URL.revokeObjectURL(url);  
+					}, 0); 
+				}
+			}
+			
+			
+			
+			createDownload("download.txt","download file");
+
+			function createDownload(fileName, content){
+			    var blob = new Blob([content]);
+			    var link = document.createElement("a");
+			    link.innerHTML = fileName;
+			    link.download = fileName;
+			    link.href = URL.createObjectURL(blob);
+			    
+			    var evt = document.createEvent("HTMLEvents");
+			    evt.initEvent("click", false, false);//initEvent 不加后两个参数在FF下会报错, 感谢 Barret Lee 的反馈
+			    link.dispatchEvent(evt);
+			    document.getElementsByTagName("body")[0].appendChild(link);
+			}
+			
+		</script>
+	</body>
+</html>
