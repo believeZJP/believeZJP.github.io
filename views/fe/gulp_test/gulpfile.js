@@ -5,6 +5,8 @@
 var gulp = require('gulp'),	//本地安装的gulp
 //	  less = require('gulp-less'),//编译less
 	  cleanCSS = require('gulp-clean-css'),//压缩css
+   	  uglify = require('gulp-uglify');//压缩js
+   	  rename = require('gulp-rename');//重命名文件
 	  cleanDest = require('gulp-clean-dest'),//清除目标文件中的所有内容
 	  rev = require('gulp-rev'),//给文件添加版本号
 //	  revCollector = require('gulp-rev-collector'),//替换html中的文件名
@@ -18,7 +20,13 @@ var gulp = require('gulp'),	//本地安装的gulp
 
 //gulp.src(['./src/**/*','!./src/**/less/**/*'])
 
-
+ //压缩js文件
+ gulp.task('js-min',function(){
+   gulp.src('src/js/*.js')
+       .pipe(uglify())       
+       .pipe(rename({suffix:'.min'}))
+       .pipe(gulp.dest('dest/js'));
+ });
 
 //将html中js和css后缀添加版本号 eg:style.css---> style.css?v=123
 gulp.task('revAppendAll', function(){
@@ -91,5 +99,8 @@ gulp.task('default', function(){
 /***
  * 运行gulp: 默认default中的任务会执行
  * 要单独执行某个任务，运行gulp <task> <other task>
+ * eg:
+ * gulp   //执行default
+ * gulp cleanDest  //执行cleanDest
  * 
  */

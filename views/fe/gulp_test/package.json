@@ -17,8 +17,10 @@
     "gulp": "^3.9.1",
     "gulp-clean-css": "^2.3.2",
     "gulp-clean-dest": "^0.2.0",
+    "gulp-rename": "^1.2.2",
     "gulp-rev": "^7.1.2",
     "gulp-rev-append-all": "^0.1.8",
+    "gulp-uglify": "^2.0.1",
     "run-sequence": "^1.2.2"
   }
 }
