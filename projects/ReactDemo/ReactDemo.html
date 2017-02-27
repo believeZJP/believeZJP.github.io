@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React Demo</title>
+    <script src="assets/react.js"></script>
+    <script src="assets/react-dom.js"></script>
+    <script src="assets/browser.min.js"></script>
+</head>
+<body>
+    <h1>这里显示Hello World!</h1>
+    <div id="example">
+    </div>
+    <hr>
+
+    <h1>html与js混写，循环一个数组</h1>
+    <div id="example2"></div>
+    <hr>
+
+    
+
+    <!-- 这是react独有的语法，必须使用text/babel-->
+    <script type="text/babel">
+        ReactDOM.render(
+                <h1>Hello World!</h1>,
+                document.getElementById('example')
+        );
+
+        var names = ['Alice', 'Emily', 'Kate'];
+        ReactDOM.render(
+                <div>
+                    {
+                        names.map(function(name){
+                            return <div>Hello, {name}!</div>;
+                        })
+                    }
+                </div>,
+                document.getElementById('example2')
+        )
+    </script>
+</body>
+</html>

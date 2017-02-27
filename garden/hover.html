@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标hoverdemo</title>
+    <style>
+        li{
+            float:left;
+            list-style: none;
+            margin:20px;
+        }
+        a{
+            text-decoration: none;
+        }
+        li a,li div{
+        		padding:20px;
+        }
+        li:hover{
+            background-color: green;
+        }
+        li:hover a {
+            text-decoration: underline;
+            color:blue;
+        }
+        li:hover div {
+            color:red;
+        }
+        li.active{
+            background-color: green;
+        }
+        li.active a {
+            text-decoration: underline;
+            color:blue;
+        }
+        li.active div {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+ <ul>
+     <li>
+         <div>方块</div>
+         <a>123</a>
+     </li>
+     <li>
+         <div>方块</div>
+         <a>123</a>
+     </li>
+     <li>
+         <div>方块</div>
+         <a>123</a>
+     </li>
+ </ul>
+
+<nav>
+    <div></div>
+</nav>
+ <script src="../js/jquery.1.11.3.min.js"></script>
+ <script>
+    $('li').click(function(){
+    	
+    		var that = $(this);
+    		$('li').removeClass('active');
+    		that.addClass('active');
+    });
+ </script>
+</body>
+
+</html>
