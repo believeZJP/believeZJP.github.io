@@ -728,11 +728,8 @@ if (jQuery) {
             if(hideTimeOut){
             	clearTimeout(hideTimeOut);
             }
-            console.log('设定定时器');
             hideTimeOut = setTimeout(function(){
-            	console.log('定时器执行，判断有无定时器');
             	if(hideTimeOut){
-            		console.log('执行隐藏');
 		            hideDropdown();
 		            clearTimeout(hideTimeOut);
             	}
@@ -751,7 +748,6 @@ if (jQuery) {
         });
         activates.on('mouseenter', function(e){ // Mouse over
         	activates.stop(true, true);
-        	console.log('鼠标移入下级的菜单，清除定时器')
         	if(hideTimeOut){//如果有定时器，则不隐藏父节点
         		//清除定时器
         		clearTimeout(hideTimeOut);	

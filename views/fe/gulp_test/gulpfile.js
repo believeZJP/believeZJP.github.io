@@ -67,7 +67,7 @@ gulp.task('cleanCss', function(){
         })
 		)
 		.pipe(gulp.dest('./dest/css'));
-});
+}); 
 
 //清除生成目标文件中的所有内容
 //src的第二个参数的{read:false}，是不读取文件加快程序。
@@ -90,6 +90,7 @@ gulp.task('default', function(){
 	
 	//按照顺序执行以下文件
 	runSequence(
+		'cleanDest',
 		'revAppendAll',
 		'cleanCss'
 	);
