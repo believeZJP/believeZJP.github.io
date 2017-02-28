@@ -35,10 +35,37 @@
 	
     <h1>六、PropTypes</h1>
     <p>用来验证组件实例的属性是否符合要求</p>
-	<div id="example6"></div>
-	<hr />
-	
-	
+	  <div id="example6"></div>
+	  <hr />
+
+    <h1>七、获取真实的DOM节点</h1>
+    <p>需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性</p>
+    <p>必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。</p>
+    <div id="example7"></div>
+    <hr>
+
+    <h1>八、this.state</h1>
+    <p>getInitialState 方法用于定义初始状态,这个对象可以通过 this.state 属性读取</p>
+    <p>this.setState 方法就修改状态值，每次修改以后，自动调用 this.render 方法，再次渲染组件。</p>
+    <h3>this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。</h3>
+    <div id="example8"></div>
+    <hr>
+
+    <h1>九、表单</h1>
+    <p>用户在表单填入的内容，属于用户跟组件的互动，所以不能用 this.props 读取</p>
+    <p>要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。textarea 元素、select元素、radio元素都属于这种情况，</p>
+    <div id="example9"></div>
+    <hr>
+
+    <h1>十、组件的生命周期</h1>
+    <p>组件的生命周期分成三个状态：</p>
+    <ol>
+        <li>Mounting：已插入真实 DOM</li>
+        <li>Updating：正在被重新渲染</li>
+        <li>Unmounting：已移出真实 DOM</li>
+    </ol>
+
+
 	
     <!-- 这是react独有的语法，必须使用text/babel-->
     <script type="text/babel">
@@ -117,13 +144,83 @@
             }
         });
         //var data = 123; //此处会报错，提示需要传入字符串
-        var data = '我是字符串~~'
+        var data = '我是字符串~~';
         ReactDOM.render(
-			/*<MyTitle/>,*/
-			<MyTitle title={data} />,
-			document.getElementById('example6')
+			      /*<MyTitle/>,*/
+			      <MyTitle title={data} />,
+			      document.getElementById('example6')
         );
-        
+
+
+        //获取真实dom
+        var MyComponent = React.createClass({
+            handleClick: function () {
+                this.refs.myTextInput.focus();
+            },
+            render: function(){
+                return (
+                  <div>
+                      <input type="text" ref="myTextInput"/>
+                      <input type="button" value="输入框聚焦" onClick={this.handleClick}/>
+                  </div>
+                )
+            }
+        });
+        ReactDOM.render(
+          <MyComponent/>,
+          document.getElementById('example7')
+        );
+
+
+        //this.state
+        var LikeButton = React.createClass({
+            getInitialState: function () {
+                return {liked: false};
+            },
+            handleClick: function (event) {
+                this.setState({liked:!this.state.liked});
+            },
+            render: function(){
+                var text = this.state.liked ? 'like': 'haven\'t liked';
+                return (
+                  <p onClick={this.handleClick}>
+                    我 {text} 陈意涵，点我切换状态。
+                  </p>
+                )
+            }
+        });
+        ReactDOM.render(
+          <LikeButton/>,
+          document.getElementById('example8')
+        );
+
+        //9.表单
+        var Input = React.createClass({
+            getInitialState: function(){
+                return {value: '我是默认值~'};
+            },
+            handleChange: function (event) {
+                this.setState({
+                    value: event.target.value
+                });
+            },
+            render: function () {
+                var value = this.state.value;
+                return (
+                    <div>
+                        <input type="text" value={value} onChange={this.handleChange}/>
+                        <p>{value}</p>
+                    </div>
+                );
+            }
+        });
+        ReactDOM.render(
+          <Input/>,
+          document.getElementById('example9')
+        );
+
+
+
     </script>
 </body>
 </html>
