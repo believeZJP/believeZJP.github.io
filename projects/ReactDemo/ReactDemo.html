@@ -6,8 +6,12 @@
     <script src="assets/react.js"></script>
     <script src="assets/react-dom.js"></script>
     <script src="assets/browser.min.js"></script>
+    <script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
+	<h1><a href="http://www.ruanyifeng.com/blog/2015/03/react.html">React 入门实例教程</a></h1>
+	<h1><a href="http://www.cocoachina.com/webapp/20150721/12692.html">一看就懂的ReactJs入门教程（精华版）</a></h1>
+	<hr />
     <h1>这里显示Hello World!</h1>
     <div id="example">
     </div>
@@ -64,9 +68,18 @@
         <li>Updating：正在被重新渲染</li>
         <li>Unmounting：已移出真实 DOM</li>
     </ol>
-
-
+	<div id="example10"></div>
+	<hr />
 	
+	
+	<h1>十一、Ajax</h1>
+	<p>组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 componentDidMount 方法设置 Ajax 请求，等到请求成功，再用 this.setState 方法重新渲染 UI</p>
+	<h3>这里是在componentDidMount以后调用ajax请求的数据</h3>
+	<div id="example11"></div>
+	
+	<h2>以下演示将Promise对象传入组件</h2>
+	<div id="example12"></div>
+	<hr />
     <!-- 这是react独有的语法，必须使用text/babel-->
     <script type="text/babel">
         ReactDOM.render(
@@ -219,8 +232,117 @@
           document.getElementById('example9')
         );
 
+		//10.组件的生命周期
+		var Hello = React.createClass({
+			getInitialState: function(){
+				return {
+					opacity: 1.0
+				};
+			},
+			componentDidMount: function(){
+				this.timer = setInterval(function(){
+					var opacity = this.state.opacity;
+					opacity -= .05;
+					if(opacity < 0.1){
+						opacity = 1.0;
+					}
+					this.setState({
+						opacity: opacity
+					})
+				}.bind(this),100);
+			},
+			render: function(){
+				return (
+					<div style={{opacity: this.state.opacity}}>
+						Hello,看这里，透明度会变化的。{this.props.name}
+					</div>
+				)
+			}
+		});
+		ReactDOM.render(
+			<Hello name="world!"/>,
+			document.getElementById('example10')
+		);
 
-
+		//11.Ajax
+		var UserGist = React.createClass({
+			getInitialState: function(){
+				return {
+					username: '',
+					lastGistUrl: ''
+				};
+			},
+			componentDidMount: function(){
+				$.get(this.props.source, function(result){
+					var lastGist = result[0];
+					if(this.isMounted()){
+						this.setState({
+							username: lastGist.owner.login,
+							lastGistUrl: lastGist.html_url
+						});
+					}
+				}.bind(this));
+			},
+			render: function(){
+				return (
+					<div>
+						{this.state.username}的最后一个gist 是<a href={this.state.lastGistUrl}>{this.state.lastGistUrl}</a>
+					</div>
+				)
+			}
+		});
+		ReactDOM.render(
+			<UserGist source='https://api.github.com/users/octocat/gists'/>,
+			document.getElementById('example11')
+		);
+		
+		//将Promise传入组件
+		var RepoList = React.createClass({
+			getInitialState: function(){
+				return {
+					loading: true,
+					error: null,
+					data: null
+				};
+			},
+			componentDidMount: function(){
+				this.props.promise.then(
+					value =>this.setState({loading: false, data: value}),
+					error => this.setState({loading: false, error: error})
+				);
+			},
+			render: function(){
+				if(this.state.loading){
+					/** 此处注意，如果是一行的话，return不需要加括号。**/
+					return <span>加载中……</span>;
+				}else if(this.state.error != null){
+					return <span>Error: {this.state.error.message}</span>;
+				}else{
+					var repos = this.state.data.items;
+					var repoList = repos.map(function(repo){
+						return (
+							<li>
+								<a href={repo.html_url}>{repo.name}</a>({repo.stargazers_count} stars)
+								<p>{repo.descripition}</p>
+							</li>
+						)
+					});
+					return (
+						<main>
+							<h1>Github最流行的项目</h1>
+							<ol>
+								{repoList}
+							</ol>
+						</main>
+					);
+				}
+				
+			}
+		});
+		ReactDOM.render(
+			<RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')}/>,
+			document.getElementById('example12')
+		);
     </script>
 </body>
 </html>
