@@ -19,6 +19,7 @@ var gulp = require('gulp'),	//本地安装的gulp
 
 
 //gulp.src(['./src/**/*','!./src/**/less/**/*'])
+//Only for test
 
  //压缩js文件
  gulp.task('js-min',function(){
