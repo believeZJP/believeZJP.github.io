@@ -1,0 +1,40 @@
+{
+  "name": "step-01",
+  "version": "1.0.0",
+  "description": "react-base",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "clean": "rimraf dist",
+    "build:webpack": "webpack --config webpack-pro-config.js --progress --colors",
+    "build": "npm run clean && npm run build:webpack"
+  },
+  "keywords": [
+    "react",
+    "es6",
+    "webpack"
+  ],
+  "author": "minooo",
+  "license": "MIT",
+  "dependencies": {
+    "babel-runtime": "^6.20.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "express": "^4.14.0",
+    "html-webpack-plugin": "^2.22.0",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "redbox-react": "^1.2.10",
+    "rimraf": "^2.5.3",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.1"
+  }
+}

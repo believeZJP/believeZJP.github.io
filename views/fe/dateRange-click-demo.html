@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.time-item-area{
+				display: none;
+			}
+			.time-item-area span{
+				display: inline-block;
+				height:32px;
+				line-height: 32px;
+				text-align: center;
+				border: 1px solid #0090FF;
+				cursor: pointer;
+			}
+			.time-item-area span.active{
+				background-color: #00CCFF;
+				color: #FFF;
+			}
+			#result-show{
+				height:64px;
+				line-height: 64px;
+				font-size: 24px;
+			}
+		</style>
+	</head>
+	<body>
+		日期： <input type="text" />
+		时间： <input type="text" id="time-range-input" />
+		<button id="time-range-btn">点击显示时间范围</button>
+		<div id="result-show">
+			
+		</div>
+		<div class="time-item-area">
+			<span datetime="2017/03/09 9:00">9:00</span>
+			<span datetime="2017/03/09 9:30">9:30</span>
+			<span datetime="2017/03/09 10:00">10:00</span>
+			<span datetime="2017/03/09 10:30">10:30</span>
+			<span datetime="2017/03/09 11:00">11:00</span>
+			<span datetime="2017/03/09 11:30">11:30</span>
+			<span datetime="2017/03/09 12:00">12:00</span>
+			<span datetime="2017/03/09 12:30">12:30</span>
+			<span datetime="2017/03/09 13:00">13:00</span>
+			<span datetime="2017/03/09 13:30">13:30</span>
+		</div>
+		
+		<script src="../../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('#time-range-btn').click(function(){
+				$('.time-item-area').show();
+			});
+		
+			//给每个span绑定事件
+			$('.time-item-area span').click(function(){
+				var that = $(this);//当前点击的这个span
+				//获取所有激活状态的
+				var activeItems = $('.time-item-area span.active');
+				
+				//判断是否有已激活的。
+				if(activeItems.length>0){
+					//已经有一个，则再给点击的这个加active,
+					if(activeItems.length == 1){
+						that.addClass('active');
+						//获取激活状态的两个元素
+						var activeDoms = $('.time-item-area span.active');
+						
+						var date1 = $(activeDoms[0]).attr('datetime'),
+							  date2 = $(activeDoms[1]).attr('datetime');
+						
+						var date3 = (new Date(date2).getTime() - new Date(date1).getTime())/1000/60/60;
+						console.log(date3);
+						
+						
+						$('#result-show').html('您选择的是' +date1 + '-'+ date2 + '相差'+date3+'个小时' );
+//						将两个的值放入输入框中
+						
+						$('#time-range-input').val(date1 + '-'+date2 );
+						$('.time-item-area').hide();
+					}else if(activeItems.length == 2){
+						$('.time-item-area span').removeClass('active');
+						that.addClass('active');
+					}
+				}else{//没有激活的，则加active。
+					that.addClass('active');
+				}
+			});
+		</script>
+	</body>
+</html>

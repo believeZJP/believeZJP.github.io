@@ -1,0 +1,18 @@
+@import "../../../styles/mixins.scss";
+@import "../../../styles/app.scss";
+
+.btnTest {
+  span {
+    line-height: 1;
+  }
+  @mixin btn 200px, 10px;
+  i {
+    color: $main-color;
+  }
+  &:hover {
+    @mixin btn 200px, 10px, $white, $main-color, 14px, 4px, 1px solid $main-color;
+    i {
+      color: $white;
+    }
+  }
+}
