@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试echarts的点击事件</title>
+	</head>
+	<body>
+		<div id="techPieChart" style="height: 600px;">
+			
+		</div>
+		<!--<script src="../../js/echarts-all-3.0.0.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="//cdn.bootcss.com/echarts/3.5.2/echarts.min.js"></script>
+		<script type="text/javascript">
+			var option = {
+			    tooltip: {
+			        trigger: 'item',
+			        formatter: "{a} <br/>{b}: {c} ({d}%)"
+			    },
+			    legend: {
+			        orient: 'vertical',
+			        x: 'left',
+			        data:['已使用配额','未使用配额']
+			    },
+			    series: [
+			        {
+			            name:'设备配额',
+			            type:'pie',
+			            radius: ['35%', '40%'],
+			            avoidLabelOverlap: true,
+			            hoverAnimation: false,
+			            label: {
+			                normal: {
+			                    show: true,
+			                     textStyle: {
+			                        fontSize: '20',
+			                        fontWeight: 'bold'
+			                    },
+								formatter:function(a){
+			                        if(a.dataIndex === 0){
+			                            return a.percent+"%\n"+a.name;
+			                        }
+			                    },
+			                    position: 'center'
+			                }
+			            },
+			            labelLine: {
+			                normal: {
+			                    show: false
+			                }
+			            },
+			            data:[
+			                {value:70, name:'已使用配额'},
+			                {value:310, name:''}
+			            ]
+			        }
+			    ]
+			};
+
+			
+			var myChart = echarts.init(document.getElementById('techPieChart'));
+			myChart.setOption(option);
+			myChart.on('mouseover', function(params){
+				var data = [
+							{value: 70, name:'已使用配额',label:{normal:{show:false},emphasis:{show:false}}},
+							{value:310, name:'未使用配额',label:{normal:{show:true},emphasis:{show:false}}}
+						];
+				if(params.dataIndex === 1){
+					
+				}else{
+					data = [
+							{value: 70, name:'已使用配额',label:{normal:{show:true},emphasis:{show:false}}},
+							{value:310, name:'未使用配额',label:{normal:{show:false},emphasis:{show:false},
+								formatter:function(a){
+		                            return a.percent+"%\n"+a.name;
+			                    }
+							}}
+						];
+				}
+				myChart.setOption({
+					series:[{
+						data: data,
+						label: {
+			                normal: {
+			                    show: true,
+			                     textStyle: {
+			                        fontSize: '20',
+			                        fontWeight: 'bold'
+			                    },
+			                    formatter:function(a,b,c,d){
+		                            return a.percent+"%\n"+a.name;
+			                    },
+			                    position: 'center'
+			                }
+			            },
+					}]
+				});
+			})
+		</script>
+	</body>
+</html>
