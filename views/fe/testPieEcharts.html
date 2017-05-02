@@ -37,7 +37,8 @@
 			                    },
 								formatter:function(a){
 			                        if(a.dataIndex === 0){
-			                            return a.percent+"%\n"+a.name;
+//			                            return a.percent+"%\n"+a.name;
+			                            return a.percent+"%";
 			                        }
 			                    },
 			                    position: 'center'
@@ -59,7 +60,7 @@
 			
 			var myChart = echarts.init(document.getElementById('techPieChart'));
 			myChart.setOption(option);
-			myChart.on('mouseover', function(params){
+			/*myChart.on('mouseover', function(params){
 				var data = [
 							{value: 70, name:'已使用配额',label:{normal:{show:false},emphasis:{show:false}}},
 							{value:310, name:'未使用配额',label:{normal:{show:true},emphasis:{show:false}}}
@@ -71,7 +72,8 @@
 							{value: 70, name:'已使用配额',label:{normal:{show:true},emphasis:{show:false}}},
 							{value:310, name:'未使用配额',label:{normal:{show:false},emphasis:{show:false},
 								formatter:function(a){
-		                            return a.percent+"%\n"+a.name;
+//		                            return a.percent+"%\n"+a.name;
+		                            return a.percent+"%";
 			                    }
 							}}
 						];
@@ -87,14 +89,17 @@
 			                        fontWeight: 'bold'
 			                    },
 			                    formatter:function(a,b,c,d){
-		                            return a.percent+"%\n"+a.name;
+			                    	console.log(a, b, c, d);
+		                            return "81.3%";
+//		                            return a.percent+"%";
+//		                            return a.percent+"%\n"+a.name;
 			                    },
 			                    position: 'center'
 			                }
 			            },
 					}]
 				});
-			})
+			})*/
 		</script>
 	</body>
 </html>
