@@ -16,29 +16,29 @@
 			        trigger: 'item',
 			        formatter: "{a} <br/>{b}: {c} ({d}%)"
 			    },
-			    legend: {
-			        orient: 'vertical',
-			        x: 'left',
-			        data:['已使用配额','未使用配额']
-			    },
+			    color:['#E49095', '#2CC9C0'],
 			    series: [
 			        {
 			            name:'设备配额',
 			            type:'pie',
-			            radius: ['35%', '40%'],
+			            radius: ['55%', '60%'],
 			            avoidLabelOverlap: true,
 			            hoverAnimation: false,
+			            clockwise: false,
 			            label: {
 			                normal: {
 			                    show: true,
 			                     textStyle: {
-			                        fontSize: '20',
-			                        fontWeight: 'bold'
+			                        fontSize: '30',
+			                        fontWeight: 'bold',
+			                        color: 'rgba(0,0,0,.54)'
 			                    },
 								formatter:function(a){
 			                        if(a.dataIndex === 0){
-//			                            return a.percent+"%\n"+a.name;
+			                            return a.percent+"%\n"+a.name;
 			                            return a.percent+"%";
+			                        }else{
+			                        	return '';
 			                        }
 			                    },
 			                    position: 'center'
@@ -50,8 +50,8 @@
 			                }
 			            },
 			            data:[
-			                {value:70, name:'已使用配额'},
-			                {value:310, name:''}
+			                {value:310, name:'未使用配额'},
+			                {value:70, name:'已使用配额'}
 			            ]
 			        }
 			    ]
