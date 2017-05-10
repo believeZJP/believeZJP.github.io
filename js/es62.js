@@ -135,3 +135,190 @@ handler.init();//Handing click for 123456
 
 
 
+ //箭头函数转成es5代码
+//es6
+function foo(){
+	setTimeout(() => {
+		console.log('id:' , this.id);
+	}, 100);
+}
+//es5
+function foo(){
+	var _this = this;
+	setTimeout(function(){
+		console.log('id:' + _this.id);
+	}, 100);
+}
+
+
+function foo(){
+	return () => {
+		return () => {
+			return () =>{
+				console.log('id:', this.id);
+			};
+		};
+	};
+};
+var f= foo.call({id:1});	//id:1
+var t1 = f.call({id:2})()();	//id:1
+var t2 = f().call({id: 3})();	//id:1
+var t3 = f()().call({id: 4});	//id:1
+/**
+ * 上面代码之中，只有一个this，就是函数foo的this，所以t1、t2、t3都输出同样的结果。因为所有的内层函数都是箭头函数，都没有自己的this，它们的this其实都是最外层foo函数的this。
+ */
+
+//除了this, arguments，super,new.target在箭头函数中也不存在，指向外层函数的对应变量。
+
+function foo(){
+	setTimeout(()=> {
+		console.log('args:', arguments);
+	}, 100);
+}
+
+foo(2, 4, 5, 6);
+
+//	箭头函数没有自己的this,不能用call(), apply(), bind() 这些方法去改变this的指向
+(function() {
+	return [
+		(() => this.x).bind({x: 'inner'})()
+	];
+}).call({x: 'outer'});//["outer"]
+//上面代码中，箭头函数没有自己的this，所以bind方法无效，内部的this指向外部的this。
+
+
+//长期以来，JavaScript语言的this对象一直是一个令人头痛的问题，在对象方法中使用this，必须非常小心。箭头函数”绑定”this，很大程度上解决了这个困扰。
+
+
+
+//嵌套的箭头函数
+
+function insert(value){
+	return {into: function(array){
+		return {after: function(afterValue){
+			array.splice(array.indexOf(afterValue)+1, 0, value);
+		}};
+	}};
+}
+insert(2).into([1, 3]).after(1);//[1, 2, 3]
+
+//用箭头函数改写
+let insert = (value) => ({into: (array) => ({after: function(afterValue) => {
+	array.splice(array.indexOf(afterValue) + 1, 0, value);
+	return array;
+}})});
+
+
+// 部署管道机制（pipeline）例子		这个比较困难~~~
+const pipeline = (...funcs) =>
+	val => funcs.reduce((a, b) => b(a), val);
+
+const plus1 = a => a+1;
+const mult2 = a => a*2;
+const addThenMult = pipeline(plus1, mult2);
+
+addThenMult(5);// 12
+
+//可以采用下面的写法
+const plus1 = a => a+1;
+const mult2 = a => a*2;
+mult2(plus1(5));// 12
+
+//	改写λ演算
+fix = λf.(λx.f(λv.x(x)(v)))(λx.f(λv.x(x)(v)))
+
+//es6写法
+var fix = f => (x => f(v => x(x)(v)))
+					  (x => f(v => x(x)(v)));
+
+
+/**
+ * 7. 绑定this
+ *	箭头函数可以绑定this,减少了显示绑定this对象的写法（call、apply、bind）
+ * 但箭头函数并不适用于所有场合。
+ * 
+ * es7提出 函数绑定（funciton bind）运算符
+ * 来取代call,apply,bind.
+ * 
+ * 函数绑定运算符是并排的两个冒号(::),左边是一个对象，右边是一个函数
+ * 会自动将左边的对象，作为上下文环境即this对象，绑定到右边的函数上面。
+ */
+
+foo::bar;
+bar.bind(foo);
+
+foo::bar(...arguments);
+bar.apply(foo, arguments);
+
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+function hasOwn(obj, key){
+	return obj::hasOwnProperty(key);
+}
+
+
+// 如果双冒号左边为空，右边是一个对象的话，则将该方法绑在该对象上。
+var method = obj::obj.foo;
+//等同于 
+var method = ::obj.foo;
+
+let log = ::console.log;
+var log = console.log.bind(console);
+
+//由于双冒号返回的是原对象，可以采用链式写法
+//例1
+import {map, takeWhile, forEach} from 'iterlib';
+getPlayers()
+::map(x => x.character())
+::takeWhile(x => x.strength > 100)
+::forEach(x => console.log(x));
+
+//例二
+let { find, html } = jake;
+
+document.querySelectorAll("div.myClass")
+::find("p")
+::html('hahaha');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
