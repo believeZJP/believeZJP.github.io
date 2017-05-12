@@ -1005,10 +1005,170 @@ function(obj, proto){
 }
 
 
+//例子
+let proto = {};
+let obj = {x:10};
+Object.setPrototypeOf(obj, proto);
+proto.z = 20;
+proto.y = 40;
+
+obj.x;//10
+obj.y;//40
+obj.z;//20
+
+//Object.getPrototypeOf(); 	读取一个对象的原型对象
+
+//eg:
+function Retangle(){
+//	...
+}
+var rec = new Retangle();
+Object.getPrototypeOf(rec) === Retangle.prototype //true
+
+Object.setPrototypeOf(rec, Object.prototype);
+Object.getPrototypeOf(rec) === Retangle.prototype 	//false
+
+/**
+ * 9. Object.keys(), Object.values(), Object.entries()
+ * Object.keys():返回数组，成员是参数对象自身的(不含继承的)所有可遍历(enumerable)属性的键名
+ *
+ */
+
+var obj = {foo:'bar', baz:42};
+Object.keys(obj);	//["foo", "baz"]
 
 
 
+let {keys, values, entries} = Object;
+let obj = {a: 1, b: 2, c: 3};
 
+for(let key of keys(obj)){
+	console.log(key);//'a', 'b', 'c'
+}
+for(let value of values(obj)){
+	console.log(value);// 1, 2, 3
+}
+for(let [key, value] of entries(obj)){
+	console.log([key, value]);// ['a', 1], ['b', 2], ['c', 3]
+}
+
+
+/**
+ * 10. 对象的扩展运算符
+ * 解构赋值
+ * 扩展运算符
+ */
+
+let {x, y, ...z} = {x:1, y:2, a:3, b: 4};
+
+x//1,
+y//2,
+z// { a: 3, b: 4 }
+
+//由于解构赋值要求等号右边是一个对象，所以如果等号右边是undefined或null，就会报错，因为它们无法转为对象。
+let { x, y, ...z } = null; // 运行时错误
+let { x, y, ...z } = undefined; // 运行时错误
+
+// 解构赋值必须是最后一个参数，否则会报错。
+
+let { ...x, y, z } = obj; // 句法错误
+let { x, ...y, ...z } = obj; // 句法错误
+
+// 注意，解构赋值的拷贝是浅拷贝!!!!!!!
+
+
+var o = Object.create({ x: 1, y: 2 });
+o.z = 3;
+
+let { x, ...{ y, z } } = o;
+x // 1
+y // undefined
+z // 3
+
+
+
+// 上面代码中，变量x是单纯的解构赋值，所以可以读取对象o继承的属性；
+// 变量y和z是双重解构赋值，只能读取对象o自身的属性，所以只有变量z可以赋值成功。
+
+
+// 解构赋值的一个用处，是扩展某个函数的参数，引入其他操作。
+
+function baseFunction({ a, b }) {
+	// ...
+}
+function wrapperFunction({ x, y, ...restConfig }) {
+	// 使用x和y参数进行操作
+	// 其余参数传给原始函数
+	return baseFunction(restConfig);
+}
+//函数wrapperFunction在baseFunction的基础上进行了扩展，能够接受多余的参数，并且保留原始函数的行为。
+
+/**
+ * 扩展运算符
+ * 用于取出参数对象的所有可遍历属性，拷贝到当前对象中
+ *
+ */
+let z = {a:3, b:4};
+let n = {...z};
+n// { a: 3, b: 4 }
+
+let aClone = {...a};
+//等同于Object.assign
+let aClone = Object.assign({}, a);
+
+// 扩展运算符可以用于合并两个对象
+let ab = {...a, ...b};
+//等同于
+let ab = Object.assign({}, a, b);
+
+//同名覆盖
+let aWithOverrides = {...a, x:1, y:2};
+//等同于
+let aWithOverrides = {...a, ...{x:1, y:2}};
+
+let x = 1, y = 2, aWithOverrides = {...a, x, y};
+
+let aWithOverrides = Object.assign({}, a, {x:1, y:2});
+
+
+//用来修改现有对象的部分属性很方便
+let newVersion = {
+	...previousVersion,
+	name: 'New Name' //重载name属性
+};
+//以上，只修改了name属性，其他都是直接复制
+
+
+let aWithDefaults = { x: 1, y: 2, ...a };
+// 等同于
+let aWithDefaults = Object.assign({}, { x: 1, y: 2 }, a);
+// 等同于
+let aWithDefaults = Object.assign({ x: 1, y: 2 }, a);
+
+
+// 扩展运算符的参数对象之中，如果有取值函数get，这个函数是会执行的。
+
+// 并不会抛出错误，因为x属性只是被定义，但没执行
+let aWithXGetter = {
+	...a,
+	get x() {
+		throws new Error('not thrown yet');
+	}
+};
+
+// 会抛出错误，因为x属性被执行了
+let runtimeError = {
+	...a,
+	...{
+		get x() {
+			throws new Error('thrown now');
+		}
+	}
+};
+
+// 如果扩展运算符的参数是null或undefined，这两个值会被忽略，不会报错。
+
+let emptyObject = { ...null, ...undefined }; // 不报错
 
 
 
