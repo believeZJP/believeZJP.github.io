@@ -1171,13 +1171,133 @@ let runtimeError = {
 let emptyObject = { ...null, ...undefined }; // 不报错
 
 
+/**
+ * 11. Object.getOwnPropertyDescriptor();
+ * 返回某个对象自身属性（非继承属性）的描述对象（descriptor)
+ *	es6引入了Object.getOwnPropertyDescriptors方法，
+ *	返回指定对象所有自身属性（非继承属性）的描述对象。
+ *	目的：解决Object.assign()无法正确拷贝get属性和set属性的问题
+ */
+
+var obj = {p: 'a'};
+Object.getOwnPropertyDescriptor(obj, 'p');
+//{value: "a", writable: true, enumerable: true, configurable: true}
+
+function getOwnPropertyDescriptors(obj){
+	const result = [];
+	for(let key of Reflect.ownKeys(obj)){
+		result[key] = Object.getOwnPropertyDescriptor(obj, key);
+	}
+	return result;
+}
 
 
 
+const source = {
+	set foo(value){
+		console.log(value)
+	}
+}
+const target1 = {};
+Object.assign(target1, source);
+
+Object.getOwnPropertyDescriptors(target1, 'foo');
+
+// foo	:	Object  configurable:	true enumerable	:	true value	:	undefined writable	:	true
+//上述代码中sourc的foo是一个赋值函数，用了Object.assign，结果foo为undefined，
+//因为Object.assign方法总是拷贝一个属性的值， 而不会拷贝它背后的赋值方法或取值方法
+
+//解决方法：Object.getOwnPropertyDescriptors和Object.defindProperties,可以实现正确拷贝
+const source = {
+	set foo(value){
+		console.log(value)
+	}
+};
+
+const target2 = {};
+Object.defineProperties(target2, Object.getOwnPropertyDescriptors(source));
+Object.getOwnPropertyDescriptor(target2, 'foo');
+
+//es6写法
+const shallowMerge = (target, source) =>
+	Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+
+//用处2：配合Object.create，将对象属性克隆到一个新对象，属于浅拷贝
+const clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
+
+//或者
+const shallowClone = (obj) => Object.create(
+	Object.getPrototypeOf(obj),
+	Object.getOwnPropertyDescriptors(obj)
+);
 
 
+//一个对象集成另一个对象
+const obj = {
+	__proto__: prot,
+	foo: 123
+};
+
+//es6写法
+const obj = Object.ceate(prot);
+obj.foo = 123;
+
+//或
+const obj = Object.assign(
+	Object.create(prot),{
+		foo:123
+	}
+);
+//用Object.getOwnPropertyDescriptors()实现
+const obj = Object.create(
+	prot,
+	Object.getOwnPropertyDescriptors({foo:123})
+);
 
 
+// Object.getOwnPropertyDescriptors()也可以用来实现Mixin(混入)模式
+let mix = (object) => ({
+	with: (...mixins) => mixins.reduce(
+		(c, mixin) => Object.create(
+			c, Object.getOwnPropertyDescriptors(mixin)
+		),object
+	)
+});
+
+//multiple mixins example
+let a = {a: 'a'};
+let b = {b: 'b'};
+let c = {c: 'c'};
+let d = min(c).with(a, b);
+//上述代码中a,b 被混入了c
+
+/**
+ * 12. Null传导运算符
+ * 以前要读取message.body.user.firstName，安全写法
+ * const firstName = (message && message.body && message.body.user && message.body.user.firstName) || 'default';
+ *
+ * 这种层层判断非常麻烦， 所以引入Null传导运算符（Null propagation operator）?.  简化以上写法
+ *“Null 传导运算符”有四种用法。
+
+ 		obj?.prop // 读取对象属性
+ 		obj?.[expr] // 同上
+ 		func?.(...args) // 函数或对象方法的调用
+ 		new C?.(...args) // 构造函数的调用
+ */
+
+const firstName = message?.body?.user?.firstName || 'default';
+//上面代码中的?.有一个返回null或undefined，就会再往下运算，直接返回undefined
+
+// 如果 a 是 null 或 undefined, 返回 undefined
+// 否则返回 a.b.c().d
+a?.b.c().d
+
+// 如果 a 是 null 或 undefined，下面的语句不产生任何效果
+// 否则执行 a.b = 42
+a?.b = 42
+
+// 如果 a 是 null 或 undefined，下面的语句不产生任何效果
+delete a?.b
 
 
 
