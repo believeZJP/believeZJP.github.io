@@ -1004,6 +1004,17 @@ function(obj, proto){
 	return obj;
 }
 
+//eg
+let proto = {};
+let obj = {x: 10};
+Object.setPrototypeOf(obj, proto);
+
+proto.y = 20;
+proto.z = 30;
+obj.x;
+obj.y;
+obj.z;
+
 
 //例子
 let proto = {};
