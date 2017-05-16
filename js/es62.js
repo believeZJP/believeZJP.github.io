@@ -1311,6 +1311,118 @@ a?.b = 42
 delete a?.b
 
 
+/**
+ * 3.消除魔术字符串
+ * 魔术字符串：在代码中出现多次，与代码形成强耦合的某一个具体的字符串或数字
+ * 应该改用变量代替
+ *
+ *
+ */
+
+
+
+function getArea(shape, options){
+	var area = 0;
+	switch (shape){
+		case "Triangle":// 魔术字符串
+			area = .5*options.width*options.height;
+			break;
+		/*** more code ***/
+	}
+	return area;
+}
+getArea('TRiangle', {width:10, height:20});
+
+//字符串Triangle就是魔术字符串
+
+var shapeType = {
+	triangle: 'Triangle'
+};
+
+
+function getArea(shape, options){
+	var area = 0;
+	switch (shape){
+		case shapeType.triangle:// 魔术字符串
+			area = .5*options.width*options.height;
+			break;
+		/*** more code ***/
+	}
+	return area;
+}
+
+getArea(shapeType.triangle, {width:10, height:20});
+
+//可以用Symbol值替代
+
+const shapeType = {
+	triangle: Symbol()
+};
+
+
+/**
+ * 4. 属性名的遍历
+ * Symbol作为属性名，不会出现在for...in ,for...of循环中，
+ * 不会被Object.keys(),Object.getOwnPropertyNames(),JSON.stringify()返回，
+ * 但他也不是私有属性，
+ * 用Object.getOwnPropertySymbols(),获取所有的Symbol属性名
+ */
+
+var obj = {};
+var a = Symbol('A');
+var b = Symbol('b');
+
+obj[a] = "Hello";
+obj[b] = 'World';
+var objectSymbols = Object.getOwnPropertySymbols(obj);
+//[Symbol(A), Symbol(b)]
+
+//Reflect.ownKeys()可以返回所有类型的属性名，包括常规键名和Symbol属性名
+let obj = {
+	[Symbol('myKey')]: 1,
+	enum: 2,
+	noEnum: 3
+};
+Reflect.ownKeys(obj);
+//["enum", "noEnum", Symbol(myKey)]
+
+//可以利用这一特性，为对象定义一些非私有的、但又希望只属于内部的方法
+
+var size = Symbol('size');
+class Collection {
+	constructor (){
+		this[size] = 0;
+	}
+
+	add(item){
+		this[this[size]] = item;
+		this[size]++;
+	}
+
+
+	static sizeOf(instance){
+		return instance[size];
+	}
+
+}
+
+
+var x = new Collection();
+Collection.sizeOf(x);//0
+
+x.add('foo');
+Collection.sizeOf(x);//1
+
+Object.keys(x);//["0"],0作为属性名，值是foo
+Object.getOwnPropertyNames(x);
+Object.getOwnPropertySymbols(x);//[Symbol(size)]
+//对象x的size属性是一个 Symbol 值，
+// 所以Object.keys(x)、Object.getOwnPropertyNames(x)都无法获取它。这就造成了一种非私有的内部方法的效果。
+
+
+
+
+
 
 
 
