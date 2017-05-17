@@ -1542,6 +1542,337 @@ Object.getOwnPropertySymbols(x);//[Symbol(size)]
 //对象x的size属性是一个 Symbol 值，
 // 所以Object.keys(x)、Object.getOwnPropertyNames(x)都无法获取它。这就造成了一种非私有的内部方法的效果。
 
+/**
+ * 5.Symbol.for(), Symbol.keyFor()
+ * 可以指定用同一个Symbol值，Symbol.for接收一个参数，有则返回Symbol值，没有则新建并返回一个以该字符串为名称的Symbol值
+ * 
+ */
+
+var s1 = Symbol.for('foo');
+var s2 = Symbol.for('foo');
+s1 === s2;//true
+
+var s1 = Symbo('foo');
+var s2 = Symbol.for('foo');
+s1 === s2;//false
+
+//Symbol.keyFor方法返回一个已登记的Symbol类型值的key
+var s1 = Symbol.for('foo');
+Symbol.keyFor(s1);//'foo'
+
+var s2 = Symbol('foo');
+Symbol.keyFor(s2);//undefined,变量s2未被登记，所以返回undefined
+
+//Symbol.for的值是全局变量，可以在不同的iframe,或service worker中取到同一个值
+iframe = document.createElement('iframe');
+iframe.src = String(window.location);
+document.body.appendChild(iframe);
+iframe.contentWindow.Symbol.for('foo') === Symbol.for('foo')
+//true
+//iframe中生成的Symbol值,可以在主页面得到
+
+
+/**
+ * 6.实例：模块的Singleton 模式
+ * Singleton模式： 调用同一个类，任何时候都返回同一个实例。
+ * 对node来说，模块文件可以是一个类，要保证每次执行这个模块文件返回同一个实例。
+ * 把实例放到顶层对象global
+ */
+
+/*mod.js*/
+function A(){
+	this.foo = 'hello';
+}
+if(!global._foo){
+	global._foo = new A();
+}
+
+module.exports = global._foo;
+
+//加载上面的mod.js
+var a = require('./mod.js');
+console.log(a.foo);
+
+//有个问题全局变量global._foo是可以改写的，
+var a = require('./mod.js');
+global._foo = '123';
+
+//这样会导致别的模块加载mod.js失真
+//解决方案，用Symbol
+
+/*mod.js*/
+const FOO_KEY =  Symbol.for('foo');
+function A(){
+	this.foo = 'hello';
+}
+
+if(!global[FOO_KEY]){
+	global[FOO_KEY] = new A();
+}
+module.exports = global[FOO_KEY];
+
+//上面代码可以保证global[FOO_KEY]不会被无意间覆盖，但还是可以被改写
+var a = require('./mod.js');
+global[Symbol.for('foo')] = 123;
+
+//如果键名使用Symbol值生成，外部就无法引用这个值，也无法改写
+
+/*mod.js*/
+const FOO_KEY = Symbol('foo');
+//后面相同
+
+//这样会导致其他脚本无法引用FOO_KEY，但多次执行这个脚本，每次得到的FOO_KEY都不一样，
+//node会将脚本执行的结果缓存，一般不会多次执行同一个脚本
+//但用户可以手动清除缓存，所以也不完全可靠
+
+/**
+ * 7.内置的Symbol值
+ * 
+ */
+
+/**
+ * * Symbol.hasInstance
+ * 当其他对象使用instanceof运算符，判断是否为改对象的实例时，会调用这个方法。
+ * 比如：foo instanceof Foo,实际调用的是
+ * Foo[Symbol.hasInstance](foo)
+ */
+
+class MyClass {
+	[Symbol.hasInstance](foo){
+		return foo instanceof Array;
+	}
+}
+[1,2,3] instanceof new MyClass();// true
+
+//该实例的Symbol.hasInstance方法，会在进行instanceof运算时自动调用，判断左侧的运算子是否为Array的实例。?????
+class Even{
+	static [Symbol.hasInstance](obj){
+		return Number(obj) %2 === 0;
+	}
+}
+
+1 instanceof Even;//false
+2 instanceof Even;//true
+12345 instanceof Even;//false
+
+
+/**
+ * Symbol.isConcatSpreadable
+ * 表示该对象使用Array.prototype.concat()是否可以展开
+ */
+
+let arr1 = ['c', 'd'];
+['a', 'b'].concat(arr1, 'e');//["a", "b", "c", "d", "e"]
+arr1[Symbol.isConcatSpreadable]//undefined
+
+let arr2 = ['c', 'd'];
+arr2[Symbol.isConcatSpreadable] = false;
+['a', 'b'].concat(arr2, 'e');//["a", "b", Array[2], "e"]
+
+
+
+class A1 extends Array{
+	constructor(args){
+		super(args);
+		this[Symbol.isConcatSpreadable] = true;
+	}
+}
+class A2 extends Array{
+	constructor(args){
+		super(args);
+		this[Symbol.isConcatSpreadable] = false;
+	}
+}
+let a1 = new A1();
+a1[0] = 3;
+a1[1] = 4;
+
+let a2 = new A2();
+a2[0] = 5;
+a2[1] = 6;
+
+[1, 2].concat(a1).concat(a2);//[1, 2, 3, 4, A2[2]]
+
+
+/**
+ * Symbol.species 指向当前对象的构造函数。
+ * 创造实例时默认会调用这个方法。
+ * 即使用这个属性返回的函数做构造函数，来创造新的实例对象。
+ */
+class MyArray extends Array{
+	//覆盖父类Array的构造函数
+	static get [Symbol.species]() {return Array;}
+}
+//子类MyArray继承了父类Array。
+//创建MyArray的实例对象时，本来会调用它自己的构造函数（本例中被省略了），
+//但是由于定义了Symbol.species属性，所以会使用这个属性返回的的函数，创建MyArray的实例。?????
+
+
+//Symbol.species属性要采用get读取器。默认的Symbol.species属性等同于下面的写法
+static get [Symbol.species](){
+	return this;
+}
+
+class MyArray extends Array{
+	static get [Symbol.species](){return Array;}
+}
+var a = new MyArray(1,2,3);
+var mapped = a.map(x => x*x);
+mapped instanceof MyArray;//false
+mapped instanceof Array;//true
+
+//MyArray的构造函数被替换成了Array,所以mapped的实例不是MyArray，而是Array.
+
+
+
+/**
+ * Symbol.match
+ * 指向一个函数。当执行str.match(myObject)时，如果该属性存在，会调用它，返回该方法的返回值。
+ */
+String.prototype.match(regexp);
+//等同于
+regexp[Symbol.match](this);
+
+class MyMatcher {
+	[Symbol.match](string){
+		return 'hello world'.indexOf(string);
+	}
+}
+'e'.match(new MyMatcher());//1
+
+/**
+ * Symbol.replace
+ * 指向一个方法，当该对象被String.prototype.replace方法调用时，会返回该方法的返回值。
+ * 
+ */
+String.prototype.replace(searchValue, replaceValue);
+//等同于
+searchValue[Symbol.replace](this, replaceValue);
+
+const x = {};
+x[Symbol.replace] = (...s) => console.log(s);
+'hello'.replace(x, 'world');//["hello", "world"]
+
+//Symbol.search
+String.prototype.search(regexp);
+regexp[Symbol.search](this);
+
+//Symbol.split
+String.prototype.split(separator, limit);
+//等同于
+separator[Symbol.split](this, limit);
+
+/*之后巴拉巴拉一堆属性，没心思看了，不知道有什么用@_@*/
+
+
+
+
+
+/***
+ * Set和Map数据结构
+ * 
+ * Set:类似于数组，但成员的值都是唯一的，没有重复的值。
+ * Set本身是一个构造函数，用来生成Set数据结构
+ */
+//没有重复值
+const s = new Set();
+[1,2,4,4,5,6,7,3,5,4,3].forEach(x => s.add(x));
+for(let i of s){
+	console.log(i);
+}
+//初始化
+const set = new Set([1,2,3,4,4,4]);
+[...set]//[1, 2, 3, 4]
+set.size;//4
+
+function divs(){
+	return [...document.querySelectorAll('div')];
+}
+const set = new Set(divs());
+set.size;//8
+//类似于
+divs().forEach(div => set.add(div));
+set.size;
+
+
+//数组去重的另一种方法
+[...new Set(array)];
+
+//Set加入值时，不会发生类型转换，5和'5'是两个不同的值
+//Set内部判断值使用的算法叫做'Same-value equality',类似于精确相等运算符(===),
+//主要区别在于NaN等于自身，而精确相等运算符认为NaN不等于自身
+let set = new Set();
+let a = NaN;
+let b = NaN;
+set.add(a);
+set.add(b);
+//set  Set {NaN}
+
+//另外，两个对象总是不相等的。
+
+let set = new Set();
+
+set.add({});
+set.size // 1
+
+set.add({});
+set.size // 2
+
+/**
+ * Set实例的属性和方法
+ * 属性。
+	Set.prototype.constructor：构造函数，默认就是Set函数。
+	Set.prototype.size：返回Set实例的成员总数
+ * 方法分为两大类：操作方法（用于操作数据）和遍历方法（用于遍历成员）。
+ * 下面先介绍四个操作方法。
+	add(value)：添加某个值，返回Set结构本身。
+	delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+	has(value)：返回一个布尔值，表示该值是否为Set的成员。
+	clear()：清除所有成员，没有返回值。
+ * 
+ * 
+ * 
+ */
+
+let s = new Set();
+s.add(1).add(2).add(2);
+s.size;//2
+
+s.has(1);//true
+s.has(3);//false
+
+//判断是否在一个键上
+//对象的写法
+const properties = {
+	'width': 1,
+	'height':1
+};
+
+if(properties[someName]){
+	//do something
+}
+
+//Set 写法
+const properties = new Set();
+properties.add('width');
+properties.add('height');
+if(properties.has(someName)){
+	//do something.
+}
+
+//Array.from 可以将Set结构转成数组.
+const items = new Set([1, 2, 3, 4, 5]);
+const array = Array.from(items);
+
+//数组的另一种去重方法
+function dedupe(array){
+	return Array.from(new Set(array));
+}
+
+dedupe([1, 1, 2, 3]);
+
+
+
 
 
 
