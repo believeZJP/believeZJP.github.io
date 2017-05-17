@@ -2,18 +2,18 @@ function fetch(url, {body='', method='GET', headers={}}){
 	console.log(method);
 }
 
-// 调用
+// ����
 fetch('http://example.com/',{});
-fetch('http://example.com/');//报错
+fetch('http://example.com/');//����
 
 function fetch(url, {body='', method='GET', headers={}} = {}){
 	console.log(method);
 }
 
-//调用
+//����
 fetch('http://example.com/');
 
-//写法一
+//д��һ
 function m1({x=0, y=0} = {}){
 	return [x, y];
 }
@@ -21,12 +21,12 @@ function m2({x, y} = {x:0, y:0}){
 	return [x, y];
 }
 
-// 函数 length属性 : 该函数预期传入的参数个数。某个参数指定默认值后，预期传入的参数中就不包括这个参数了。length参数中不包括rest参数
+// ���� length���� : �ú���Ԥ�ڴ���Ĳ������ĳ������ָ��Ĭ��ֵ��Ԥ�ڴ���Ĳ����оͲ�������������ˡ�length�����в�����rest����
 
-// 作用域
+// ������
 
-// rest 参数
-// 利用rest参数，可以向该参数传入任意数目的参数
+// rest ����
+// ����rest���������ò�����������Ŀ�Ĳ���
 function add(...values){
 	let sum = 0;
 	for(var val of values){
@@ -37,18 +37,18 @@ function add(...values){
 add(2, 3, 5);
 
 //eg:
-//arguments的写法
+//arguments��д��
 function sortNumbers() {
 	return Array.prototype.slice.call(arguments).sort();
 }
 
-//rest 参数写法
+//rest ����д��
 function sortNumbers(...numbers) {
 	return numbers.sort();
 }
-//rest 箭头函数写法
+//rest ��ͷ����д��
 const sortNumbers = (...numbers) => numbers.sort();
-//改写push
+//��дpush
 function push(array, ...items){
 	items.forEach(function(item){
 		array.push(item);
@@ -59,10 +59,10 @@ function push(array, ...items){
 }
 
 
-//扩展运算符（...） ,将一个数组转为用逗号分隔的参数序列,注意是参数序列！！！
+//��չ�����...�� ,��һ������תΪ�ö��ŷָ��Ĳ�������,ע���ǲ������У�����
 console.log(...[1,2,3]);
 console.log(document.querySelectorAll('div'));
-//主要用于函数调用
+//��Ҫ���ں������
 
 function push(array, ...items) {
 	array.push(...items);
@@ -74,43 +74,43 @@ function add(x, y) {
 var numbers = [4,32];
 add(...numbers);
 
-//替代数组的apply方法
-//es5写法
+//��������apply����
+//es5д��
 function f(x, y, z){
 	//...
 }
 var args = [0,1,2];
 f.apply(null, args);
 
-//es6写法
+//es6д��
 function f(x, y, z) {
 	//...
 }
 var args = [0, 1, 2];
 f(...args);
 
-//实际例子 Math.max
-//es5写法
+//ʵ������ Math.max
+//es5д��
 Math.max.apply(null, [14,3,32])
 
-//es6写法
+//es6д��
 Math.max(...[12,3,22]);
-//等同于
+//��ͬ��
 Math.max(12,3,45);
 
-//另一个例子 push(push的参数不能是数组)
+//��һ������ push(push�Ĳ�����������)
 //es5
 var arr1 = [2,34,5];
 var arr2 = [3,4,5,6];
 Array.prototype.push.apply(arr1, arr2);
-//es6写法
+//es6д��
 arr1.push(...arr2);
 
 
 
 
-//应用
-//1.合并数组
+//Ӧ��
+//1.�ϲ�����
 
 //es5
 var more = [7,9];
@@ -120,13 +120,13 @@ var arr1 = [2,34,4];
 var arr2 = [4,5,6];
 var arr3 = [4,5,6];
 
-//es5合并数组
+//es5�ϲ�����
 arr1.concat(arr2, arr3);
 
-//es6合并数组
+//es6�ϲ�����
 [...arr1,...arr2,...arr3];
 
-//2.与解构赋值结合
+//2.��⹹��ֵ���
 var list = [1,2,3,4,5];
 // es5
 a = list[0], rest = list.slice(1);
@@ -137,24 +137,24 @@ const [first, ...rest] = ["foo"];
 first  // "foo"
 rest   // []
 
-// 如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。
-const [...butLast, last] = [1, 2, 3, 4, 5];//报错
+// �����չ������������鸳ֵ��ֻ�ܷ��ڲ�������һλ������ᱨ�?
+const [...butLast, last] = [1, 2, 3, 4, 5];//����
 
 
-// 3. 函数的返回值
+// 3. ����ķ���ֵ
 
-// 4. 字符串 将字符串转为真正的数组
+// 4. �ַ� ���ַ�תΪ���������
 [...'hello'];//["h", "e", "l", "l", "o"]
-// 这里有个好处，可以识别32位的Unicode字符
-'x\uD83D\uDE80y'.length // 4  JavaScript 会将32位Unicode识别为2个字符，采用扩展运算符就没有这个问题
+// �����и��ô�������ʶ��32λ��Unicode�ַ�
+'x\uD83D\uDE80y'.length // 4  JavaScript �Ὣ32λUnicodeʶ��Ϊ2���ַ������չ������û���������
 [...'x\uD83D\uDE80y'].length // 3
 
-// 正确返回字符串长度的函数
+// ��ȷ�����ַ��ȵĺ���
 function length(str) {
 	return [...str].length;
 }
 
-// 凡是涉及操作32位字符的函数，最好都用扩展运算符改写
+// �����漰����32λ�ַ�ĺ�����ö�����չ������д
 let str = 'x\uD83D\uDE80y';
 
 str.split('').reverse().join('');
@@ -163,11 +163,11 @@ str.split('').reverse().join('');
 	[...str].reverse().join('');
 // 'y\uD83D\uDE80x'
 
-// （5）实现了Iterator接口的对象
+// ��5��ʵ����Iterator�ӿڵĶ���
 
-//（6）Map和Set结构，Generator函数
-//	扩展运算符内部调用的是数据结构的Iterator接口!!!!!!!!!!!，只要有Iterator接口的对象，都可以使用扩展运算符
-let map = new Map([//Map结构
+//��6��Map��Set�ṹ��Generator����
+//	��չ������ڲ����õ�����ݽṹ��Iterator�ӿ�!!!!!!!!!!!��ֻҪ��Iterator�ӿڵĶ��󣬶�����ʹ����չ�����
+let map = new Map([//Map�ṹ
 	[1,'one'],
 	[2,'two'],
 	[3,'three']
@@ -188,19 +188,19 @@ var go = function *() {
 
 
 
-// 4. 严格模式
-// 规定只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。
-// 函数内部的严格模式，同时适用于函数体和函数参数。但是，函数执行的时候，先执行函数参数，然后再执行函数体。
-// 这样就有一个不合理的地方，只有从函数体之中，才能知道参数是否应该以严格模式执行，但是参数却应该先于函数体执行。
+// 4. �ϸ�ģʽ
+// �涨ֻҪ�������ʹ����Ĭ��ֵ���⹹��ֵ��������չ�������ô�����ڲ��Ͳ�����ʽ�趨Ϊ�ϸ�ģʽ������ᱨ�?
+// �����ڲ����ϸ�ģʽ��ͬʱ�����ں�����ͺ�������ǣ�����ִ�е�ʱ����ִ�к������Ȼ����ִ�к����塣
+// �������һ��������ĵط���ֻ�дӺ�����֮�У�����֪�������Ƿ�Ӧ�����ϸ�ģʽִ�У����ǲ���ȴӦ�����ں�����ִ�С�
 
-// 两种方法可以规避这种限制。第一种是设定全局性的严格模式，这是合法的。
+// ���ַ������Թ���������ơ���һ�����趨ȫ���Ե��ϸ�ģʽ�����ǺϷ��ġ�
 'use strict';
 
 function doSomething(a, b = a) {
 	// code
 }
 
-// 第二种是把函数包在一个无参数的立即执行函数里面。
+// �ڶ����ǰѺ������һ���޲��������ִ�к������档
 
 const doSomething = (function () {
 	'use strict';
@@ -208,6 +208,7 @@ const doSomething = (function () {
 		return value;
 	};
 }());
+
 
 
 
