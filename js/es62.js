@@ -1311,6 +1311,129 @@ a?.b = 42
 delete a?.b
 
 
+
+
+
+
+
+
+/**
+ * Symbol  从根本上防止属性名的冲突
+ * Symbol 值通过Symbol函数产生，凡是属性名属于Symbol，就是独一无二的。
+ * 属性名的值可以是字符串，也可以是Symbol类型
+ */
+
+/*
+ * JavaScript 原始数据类型
+ * 前六种：undefined， null，布尔值(Boolean), 字符串(String), 数值(Number), 对象(Object);
+ * 第七种：Symbol(表示独一无二的值)
+ * 
+ */
+
+let s = Symbol();
+typeof s;	//"symbol",表名s是Symbol类型
+
+//Symbol函数前不能用new,
+//Symbol参数只是对当前Symbol值的描述，相同参数的返回值不相同
+//没有参数
+var s1 = Symbol();
+var s2 = Symbol();
+s1 === s2;//false;
+
+//有参数的情况
+var s1 = Symbol('foo');
+var s2 = Symbol('foo');
+s1 === s2;//false
+
+//Symbol值不能与其他值进行运算
+var sym = Symbol('My symbol');
+'you symbol is ' + sym;//Cannot convert a Symbol value to a string
+//`your symbol is ${sym}`;
+
+
+//Symbol 可以转化为布尔值,但不能转化为数值
+
+var sym = Symbol();
+Boolean(sym);//true
+!sym //false
+if(sym){
+	//...
+}
+//以下报错
+//Number(sym)   sym +2;
+
+
+/**
+ * 2.作为属性名
+ * 
+ */
+
+var mySymbol = Symbol();
+//第一种写法
+var a = {};
+a[mySymbol] = 'Hello!';
+
+//第二种写法
+var a = {
+	[mySymbol]: 'Hello!'
+};
+
+//第三种写法
+var a = {};
+Object.defineProperty(a, mySymbol, {value: 'Hello!'});
+
+//以上写法得到的结果
+a[mySymbo];//"Hello!"
+
+//Symbol值作为属性名，不能用点运算符
+var mySymbol = Symbol();
+var a = {};
+a.mySymbol = 'Hello!';
+a[mySymbol] //undefined ，用了点后，会导致这句话取不到值
+a['mySymbol'] // "Hello!"
+
+//因为点运算符后面总是字符串，所以不会取Symbol类型的标识名
+
+//在对象内部，用Symbol定义属性时，Symbol必须放在方括号中
+let s = Symbol();
+let obj = {
+	[s]: function(arg){}
+};
+obj[s](123);
+//如果s不放在方括号中，该属性的键名就是字符串s,而不是s所指的Symbol值
+
+let obj = {
+	[s](arg){console.log(arg);}
+}
+
+//Symbol可以用于定义一组常量,保证常量的值不等
+log.levels = {
+	DEBUG: Symbol('debug'),
+	INFO: Symbol('info'),
+ 	WARN: Symbol('warn')
+}
+
+log(log.levels.DEBUG, 'debug message');
+log(log.levels.INFO, 'info message');
+
+const COLOR_RED = Symbol();
+const COLOR_GREEN = Symbol();
+
+function getComplement(color){
+	switch(color){
+		case COLOR_RED:
+			return COLOR_RED;
+		case COLOR_GREEN:
+			return COLOR_GREEN;
+		default:
+			throw new Error('Undefined color');
+	}
+}
+//最大好处：就是其他任何值都不可能有相同的值了，因此可以保证上面的switch语句会按设计的方式工作。
+//Symbol 值作为属性名时，该属性还是公开属性，不是私有属性。
+
+
+
 /**
  * 3.消除魔术字符串
  * 魔术字符串：在代码中出现多次，与代码形成强耦合的某一个具体的字符串或数字
@@ -1418,6 +1541,11 @@ Object.getOwnPropertyNames(x);
 Object.getOwnPropertySymbols(x);//[Symbol(size)]
 //对象x的size属性是一个 Symbol 值，
 // 所以Object.keys(x)、Object.getOwnPropertyNames(x)都无法获取它。这就造成了一种非私有的内部方法的效果。
+
+
+
+
+
 
 
 
