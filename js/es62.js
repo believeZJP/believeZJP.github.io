@@ -2090,14 +2090,67 @@ item.forEach(
 //任何具有Iterator接口的数据结构都可以当做Map构造函数的参数。
 //Set ,Map 都可以用来生成新的Map。
 
+// 如果对同一个键多次赋值，后面的值将覆盖前面的值。
+
+const map = new Map();
+
+map
+	.set(1, 'aaa')
+	.set(1, 'bbb');
+
+map.get(1) // "bbb"
+
+new Map().get('dfadf');//undefined
+
+//注意：只有对同一个对象的引用，Map结构才会视为同一个值
+const map = new Map();
+map.set(['a'],123);
+map.get(['a']);//undefined
+//这里['a']是两个值
 
 
+//同样，两个实例也是两个键
+const map = new Map();
+
+const k1 = ['a'];
+const k2 = ['a'];
+
+map
+	.set(k1, 111)
+	.set(k2, 222);
+
+map.get(k1) // 111
+map.get(k2) // 222
 
 
+/**
+ * Map 的键实际上是跟内存地址绑定的，
+ * 只要内存地址不一样，就视为两个键。
+ * 这就解决了同名属性碰撞（clash）的问题，
+ * 我们扩展别人的库的时候，如果使用对象作为键名，
+ * 就不用担心自己的属性与原作者的属性同名。
 
+ 	如果 Map 的键是一个简单类型的值（数字、字符串、布尔值），
+ 	则只要两个值严格相等，Map 将其视为一个键，包括0和-0，
+ 	布尔值true和字符串true则是两个不同的键。
+ 	另外，undefined和null也是两个不同的键。
+ 	虽然NaN不严格相等于自身，但 Map 将其视为同一个键。
+ */
+let map = new Map();
 
+map.set(-0, 123);
+map.get(+0) // 123
 
+map.set(true, 1);
+map.set('true', 2);
+map.get(true) // 1
 
+map.set(undefined, 3);
+map.set(null, 4);
+map.get(undefined) // 3
+
+map.set(NaN, 123);
+map.get(NaN) // 123
 
 
 
