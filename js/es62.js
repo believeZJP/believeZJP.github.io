@@ -2039,10 +2039,55 @@ class Foo{
 
 /**
  * Map
- *
+ *JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。
+ * Object结构提供了'字符串-值'的对应，
+ * Map结构提供了'值-值'的对应。
+ * 若需要'键值对'的数据结构，Map比Object更合适。
+ * 
+ * 
+ * 
+ * 
  * */
+const data = {};
+const element = document.getElementById('myDiv');
 
+data[element] = 'metadata';
+data['[object HTMLDivElement]']
 
+//div dom 被转成了 object HTMLDivElement
+
+const m = new Map();
+const o = {p: 'Hello World'};
+m.set(o, 'content');
+m.get(o);
+
+m.has(o);
+m.delete(o);
+m.has(o);
+
+//Map 可以接受一个数组作为参数
+const map = new Map({
+	['name', '张三'],
+	['title', 'Author']
+});
+
+map.size //2
+map.has('name');
+map.get('name');
+map.has('title');
+map.get('title');
+
+//在构建Map实例时，实际上是执行的下面的算法
+const items = [
+	['name', '张三'],
+	['title', 'Author']
+];
+const map = new Map();
+item.forEach(
+	([key, value]) => map.set(key, value)
+);
+//任何具有Iterator接口的数据结构都可以当做Map构造函数的参数。
+//Set ,Map 都可以用来生成新的Map。
 
 
 
