@@ -12,7 +12,7 @@
 		<style type="text/css">
 			#origin{
 				width:100%;
-				height:500px;
+				height:0px;
 			}
 		</style>
 	</head>
@@ -36,6 +36,36 @@
 			 * fasdfa 
 			 */
 			```
+
+
+			### faf
+
+			## fasfa
+
+
+			# 这是 H1
+
+
+
+# 这是H1
+## 这是 H2
+
+###### 这是 H6
+*   Red
+*   Green
+*   Blue
+
+1.  Bird
+1.  McHale
+1.  Parish
+
+3. Bird
+1. McHale
+8. Parish
+
+
+This is [an example](http://example.com/ "Title") inline link.
+
 		</textarea>
 		<pre><code>
 			<div class="content" id="content">
@@ -44,21 +74,59 @@
 			
 		</code></pre>
 		<script type="text/javascript">
-      			var content = document.getElementById('origin');
-//    			markdown.toHTML
-      			var marked = markdown.toHTML;
-      			
-			  	document.getElementById('content').innerHTML =
-      			marked(document.getElementById("origin").textContent);
-      			
-      			content.onkeyup = function(){
-      				document.getElementById('content').innerHTML =
-      			marked(document.getElementById("origin").value);
-	      			 $('pre code').each(function(i, block) {
-					    hljs.highlightBlock(block);
-					  });
-      			}
-      			hljs.initHighlightingOnLoad();
+		function init() {
+			var content = document.getElementById('origin');
+			var marked = Markdown.toHTML;
+
+			document.getElementById('content').innerHTML =
+//				marked(document.getElementById("origin").value);
+				document.getElementById("origin").value;
+
+			content.onkeyup = function(){
+				document.getElementById('content').innerHTML =
+//					marked(document.getElementById("origin").value);
+					document.getElementById("origin").value;
+				$('pre code').each(function(i, block) {
+					hljs.highlightBlock(block);
+				});
+			}
+			hljs.initHighlightingOnLoad();
+		}
+
+		function showData(data) {
+			data = data.responseText;
+//			document.getElementById('content').innerHTML = '```javascript\n' + data + '```';
+//			document.getElementById("origin").value = '`'+'`'+'`javascript' + data + '\`\`\`';
+			document.getElementById("origin").value = '' + data + '';
+			init();
+		}
+
+		getFileContent(showData);
+		function getFileContent(cb) {
+				$.ajax({
+					type: "get",
+					url: "js/es62.js",
+					async: false,
+					dataType: "json",
+					success: function(res) {
+						console.log(res)
+						var data = res.data;
+
+					},
+					error: function(msg) {
+						cb && cb(msg);
+					},
+
+				});
+			}
+
+
 		</script>
 	</body>
 </html>
+<!--
+困惑：
+1. 在js中，想直接给一个路径，(eg:js/es6.js),怎么读取到文件里的内容，
+2. ajax用get请求读取一个文件，读取到以后，为什么在error中，
+
+-->

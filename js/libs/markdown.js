@@ -4,33 +4,8 @@
 // Copyright (c) 2011 Christoph Dorn <christoph@christophdorn.com> (http://www.christophdorn.com)
 // Date: 2013-09-15T16:09Z
 
-
-!function(factory) {
-
-    //factory是一个函数，下面的koExports就是他的参数
-
-    // Support three module loading scenarios
-    if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
-        // [1] CommonJS/Node.js
-        // [1] 支持在module.exports.abc,或者直接exports.abc
-        var target = module['exports'] || exports; // module.exports is for Node.js
-        factory(target);
-    } else if (typeof define === 'function' && define['amd']) {
-        // [2] AMD anonymous module
-        // [2] AMD 规范 
-        //define(['exports'],function(exports){
-           //    exports.abc = function(){}
-        //});
-        define(['exports'], factory);
-    } else {
-        // [3] No module loader (plain <script> tag) - put directly in global namespace
-        factory(window['ko'] = {});
-    }
-}
-
 (function(expose) {
-
-
+// (function(window) {
 
 
   var MarkdownHelpers = {};
@@ -1758,4 +1733,5 @@
   expose.toHTMLTree = Markdown.toHTMLTree;
   expose.renderJsonML = Markdown.renderJsonML;
 
-})/*(exports)*/;
+// })(exports);
+})(window);
