@@ -6,7 +6,7 @@ function showData(data) {
 function getFileContent(filename, async, cb) {
 	$.ajax({
 		type: "get",
-		url: filename,
+		url: filename+'?v='+new Date().getTime(),
 		async: async,
 		dataType: "text",
 		success: function(msg) {
