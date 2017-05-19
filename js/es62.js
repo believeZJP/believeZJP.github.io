@@ -2230,38 +2230,218 @@ map.forEach(function(value, key, map){
 
 //forEach接受第二个参数，绑定this
 const reporter = {
-	report: function(){
-		
+	report: function(key, value){
+		console.log('key: %s, value: %s', key, value);
+	}
+};
+map.forEach(function(value, key, map){
+	this.report(key, value);
+}, reporter);
+
+
+/**
+ * Map结构与其他数据结构互相转换
+ * */
+
+//1.Map 转为其他数组,用扩展运算符(...)
+const myMap = new Map().set(true, 7).set({foo: 3},['abc']);
+[...myMap]
+
+//2.数组转Map  将数组传入Map构造函数中
+new Map([
+	[true, 7],
+	[{foo: 3}, ['abc']]
+]);
+
+//3. Map转对象  如果Map的键都是字符串，它可以转为对象
+function strMapToObj(strMap){
+	let obj = Object.create(null);
+	for(let [k, v] of strMap){
+		obj[k] = v;
+	}
+	return obj;
+}
+const myMap = new Map().set('yes', true).set('no', false);
+strMapToObj(myMap);
+
+//4. 对象转Map
+function objToStrMap(obj){
+	let strMap = new Map();
+	for(let k of Object.keys(obj)){
+		strMap.set(k, obj[k]);
+	}
+	return strMap;
+}
+objToStrMap({'yes':true, 'no':false});
+
+//5. Map转为JSON
+//(1)Map的键名都是字符串，转为对象JSON
+function strMapToJSON(strMap){
+	return JSON.stringify(strMapToObj(strMap));
+}
+let myMap = myMap().set('yes', true).set('no', false);
+strMapToJSON(myMap);
+
+//(2)Map的键名都含有非字符串,转为数组JSON
+function mapToArrayJson(map){
+	return JSON.stringify([...map]);
+}
+
+let myMap = new Map().set(true, 7).set({foo: 3}, ['abc']);
+mapToArrayJson(myMap);
+
+//6. JSON 转Map
+function jsonToMap(jsonstr){
+	return objToStrMap(JSON.parse(jsonstr));
+}
+jsonToMap('{"yes": true, "no": false}');
+
+
+// 有一种特殊情况，整个 JSON 就是一个数组，且每个数组成员本身，又是一个有两个成员的数组。
+// 这时，它可以一一对应地转为Map。这往往是数组转为 JSON 的逆操作。
+function jsonToMap(jsonstr){
+	return new Map(JSON.parse(jsonstr));
+}
+jsonToMap('[[true,7],[{"foo":3},["abc"]]]');
+// Map {true => 7, Object {foo: 3} => ['abc']}
+
+
+/**
+ * 4. WeakMap
+ * WeakMap 与Map的区别
+ * WeakMap只接受对象作为键名(null除外)，
+ * WeakMap的设计目的在于，有时我们想在某个对象上面存放一些数据，但是这会形成对于这个对象的引用。
+ * WeakMap 与 Map 在 API 上的区别主要是两个，
+ * 一是没有遍历操作（即没有key()、values()和entries()方法），也没有size属性。
+ * 因为没有办法列出所有键名，这个键名是否存在完全不可预测，跟垃圾回收机制是否运行相关。
+ * 二是无法清空，即不支持clear方法。
+ * 因此，WeakMap只有四个方法可用：get()、set()、has()、delete()。
+ */
+const wm1 = new WeakMap();
+const key = {foo: 1};
+wm1.set(key, 2);
+wm2.get(key);
+//WeakMap也可以接收一个数组
+const k1 = [1,3,5];
+const k2 = [2,4,6];
+const wm2 = new WeakMap([[k1, 'foo'], [k2, 'bar']]);
+wm2.get(k2);
+
+
+const wm = new WeakMap();
+wm.set(1, 2);//错
+wm.set(Symbol(), 2);//错
+wm.set(null, 2);//错
+
+// WeakMap的键名所指向的对象，不计入垃圾回收机制。
+
+// eg:
+
+const e1 = document.querySelector('foo');
+const e2 = document.querySelector('bar');
+const arr = [
+	[e1, 'foo 元素'],
+	[e2, 'bar 元素']
+];
+
+// e1和e2是两个对象，我们通过arr数组对这两个对象添加一些文字说明。这就形成了arr对e1和e2的引用。
+// 一旦不再需要这两个对象，我们就必须手动删除这个引用，否则垃圾回收机制就不会释放e1和e2占用的内存。
+// 不需要 e1 和 e2 的时候
+// 必须手动删除引用
+arr [0] = null;
+arr [1] = null;
+// 一旦忘了写，就会造成内存泄露。
+
+/**
+ * WeakMap 就是为了解决这个问题而诞生的，
+ * 它的键名所引用的对象都是弱引用，即垃圾回收机制不将该引用考虑在内。
+ * 因此，只要所引用的对象的其他引用都被清除，垃圾回收机制就会释放该对象所占用的内存。
+ * 也就是说，一旦不再需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。
+	 基本上，如果你要往对象上添加数据，又不想干扰垃圾回收机制，
+ 		就可以使用 WeakMap。
+
+ 		一个典型应用场景是，在网页的 DOM 元素上添加数据，
+ 		就可以使用WeakMap结构。当该 DOM 元素被清除，其所对应的WeakMap记录就会自动被移除。
+ */
+
+const wm = new WeakMap();
+const element = document.querySelector('example');
+wm.set(element, 'some information');
+wm.get(element) // "some information"
+
+//WeakMap 里面对element的引用就是弱引用，不会被计入垃圾回收机制
+
+// WeakMap的专用场合就是，它的键所对应的对象，可能会在将来消失。WeakMap结构有助于防止内存泄漏。
+
+// 注意，WeakMap 弱引用的只是键名，而不是键值。键值依然是正常引用。
+const wm = new WeakMap();
+let key = {};
+let obj = {foo: 1};
+
+wm.set(key, obj);
+obj = null;
+wm.get(key)
+// Object {foo: 1}
+
+/**
+ * WeakMap用途
+ * 1.典型场合就是 DOM 节点作为键名。
+ */
+
+//eg1:
+let myElement = document.querySelector('logo');
+let myWeakMap = new WeakMap();
+
+myWeakMap.set(myElement, {timesClicked: 0});
+myElement.addEventListener('click', function(){
+	let logoData = myWeakMap.get(myElement);
+	logoData.timesClicked++;
+}, false);
+
+// 一旦这个 DOM 节点删除，该状态就会自动消失，不存在内存泄漏风险。
+//进一步说，注册监听事件的listener对象，就很合适用 WeakMap 实现。
+let element1 = document.querySelector('element1');
+let element2 = document.querySelector('element2');
+function handler1(){}
+function handler2(){}
+
+const listener = new WeakMap();
+listener.set(element1, handler1);
+listener.set(element2, handler2);
+
+element1.addEventListener('click', listener.get(element1), false);
+element2.addEventListener('click', listener.get(element2), false);
+// 监听函数放在 WeakMap 里面。一旦 DOM 对象消失，跟它绑定的监听函数也会自动消失。
+
+//WeakMap 的另一个用处是部署私有属性。
+
+const _counter = new WeakMap();
+const _action = new WeakMap();
+
+class Countdown {
+	constructor(counter, action) {
+		_counter.set(this, counter);
+		_action.set(this, action);
+	}
+	dec() {
+		let counter = _counter.get(this);
+		if (counter < 1) return;
+		counter--;
+		_counter.set(this, counter);
+		if (counter === 0) {
+			_action.get(this)();
+		}
 	}
 }
 
+const c = new Countdown(2, () => console.log('DONE'));
 
+c.dec()
+c.dec()
+// DONE
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 上面代码中，Countdown类的两个内部属性_counter和_action，是实例的弱引用，
+// 所以如果删除实例，它们也就随之消失，不会造成内存泄漏。
 
 
 
