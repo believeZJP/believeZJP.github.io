@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试markdown转html</title>
+		<link rel="stylesheet" type="text/css" href="../js/libs/highlight/monokai-sublime.css"/>
+		<style type="text/css">
+			body,pre{padding: 0;margin: 0;}
+			*{
+				font-size:18px;
+			}
+			#content{
+				padding:0 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<pre><code>
+			<div class="content" id="content">
+				
+			</div>
+		</code></pre>
+		
+		
+		<script src="../js/jquery.1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/libs/highlight/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/showJSCode.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		
+			getFileContent('../js/es62.js', false, showData);
+			
+		</script>
+	</body>
+</html>
+<!--
+困惑：
+1. 在js中，想直接给一个路径，(eg:js/es6.js),怎么读取到文件里的内容，
+//			var f = new File([''],'js/es6.js');
+//			console.log(f);
+
+2. ajax用get请求读取一个文件，读取到以后，为什么在error中，
+因为dataType的原因。如果只是文本的话，用dataType:'text'。
+
+-->

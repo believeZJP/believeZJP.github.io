@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试markdown转html</title>
+		<script src="../js/libs/markdown.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body{padding:0;margin: 0;}
+			textarea{padding: 10px;}
+			#origin{
+			    width: 50%;
+			    height: 800px;
+			    float: left;
+			    box-sizing: border-box;
+			}
+			#content{
+			    padding: 0 30px;
+				width: 50%;
+				float: left;
+				box-sizing: border-box;
+				overflow-y: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea name="" id="origin">
+# 代码格式
+			```javascript
+			
+			//在构建Map实例时，实际上是执行的下面的算法
+			const items = [
+				['name', '张三'],
+				['title', 'Author']
+			];
+			const map = new Map();
+			item.forEach(
+				([key, value]) => map.set(key, value)
+			);
+			//任何具有Iterator接口的数据结构都可以当做Map构造函数的参数。
+			//Set ,Map 都可以用来生成新的Map。
+			
+			/**
+			 * fasdfa 
+			 */
+			```
+
+
+			### faf
+
+			## fasfa
+
+
+# 这是 H1
+
+
+
+# 这是H1
+## 这是 H2
+
+###### 这是 H6
+
+
+***
+
+# 有序列表
+*   Red
+*   Green
+*   Blue
+
+1.  Bird
+1.  McHale
+1.  Parish
+
+3. Bird
+1. McHale
+8. Parish
+
+1.  Bird
+2.  McHale
+3.  Parish
+
+***
+# 链接
+This is [an example](http://example.com/ "Title") inline link.
+
+
+# 分割线
+
+* * *
+
+***
+
+*****
+
+- - -
+
+---------------------------------------
+
+
+# 字体加粗
+
+*single asterisks*
+
+_single underscores_
+
+**double asterisks**
+
+__double underscores__
+
+
+		</textarea>
+		<!--<pre><code>-->
+			<div class="content" id="content">
+				
+			</div>
+			
+		<!--</code></pre>-->
+		<script type="text/javascript">
+		var winH = (document.body.clientHeight || window.innerHeight )+'px';
+		document.getElementById('origin').style.height  = winH;
+		document.getElementById('content').style.height  = winH;
+		function init() {
+			var content = document.getElementById('origin');
+			var marked = Markdown.toHTML;
+
+			document.getElementById('content').innerHTML =
+				marked(document.getElementById("origin").innerHTML);
+
+			content.onkeyup = function(){
+				document.getElementById('content').innerHTML =
+					marked(document.getElementById("origin").value);
+			}
+		}
+		init();
+		</script>
+	</body>
+</html>
+<!--
+困惑：
+1. 在js中，想直接给一个路径，(eg:js/es6.js),怎么读取到文件里的内容，
+2. ajax用get请求读取一个文件，读取到以后，为什么在error中，
+
+-->

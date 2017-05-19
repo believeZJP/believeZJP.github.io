@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	$("#fullPage").fullpage({
 		anchors: ["firstPage", "secondPage", "3rdPage","4Page","5Page"],
-		sectionsColor: ["#1c1e29", "#1BBC9B", "#0eae6c", '#ff671b', '#7BAABE'],
+//		sectionsColor: ["#1c1e29", "#1BBC9B", "#0eae6c", '#ee6e73', '#7BAABE'],
+		sectionsColor: ["#1c1e29", "#f38958", "#2cc9c1", '#ee6e73', '#7BAABE'],
 		scrollingSpeed: 700,
 		controlArrows: true,
 		menu:"#menu",
@@ -62,7 +63,7 @@ $(document).ready(function(){
 	        }
 	};
 	var option =   {
-		backgroundColor:'#FFFF99',
+		backgroundColor:'#f38958',
 	    tooltip: {
 	        trigger: 'item',
 	        formatter: "{a} <br/>{b}: {c} ({d}%)"

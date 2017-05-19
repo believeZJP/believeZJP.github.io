@@ -2153,6 +2153,87 @@ map.set(NaN, 123);
 map.get(NaN) // 123
 
 
+/**
+ * Map实例的属性
+ * size, set(key, value), get(key), has(key), delete(key), clear();
+ * 遍历方法
+ * keys()：返回键名的遍历器。
+	values()：返回键值的遍历器。
+	entries()：返回所有成员的遍历器。
+	forEach()：遍历 Map 的所有成员。
+ * 
+ * */
+
+const map = new Map([
+	['F', 'foo'],
+	['T', 'Too']
+]);
+
+for(let key of map.keys()){
+	console.log(key);
+}
+
+for(let value of map.values()){
+	console.log(value);
+}
+
+for(let item of map.entries()){
+	console.log(item[0], item[1]);
+}
+
+for(let [key, value] of map.entries()){
+	console.log(key, value);
+}
+
+for(let [key, value] of map){
+	console.log(key, value);
+}
+//Map 默认遍历接口(Symbol.iterator)就是entries方法。
+map[Symbol.iterator] === map.entries//true
+
+/**
+ * Map结构转为数组，使用扩展运算符（...）
+ * 
+ */
+const map = new Map([
+	[1, 'one'],
+  	[2, 'two'],
+  	[3, 'three'],
+])
+
+[...map.keys()];
+[...map.values()];
+[...map.entries()];
+[...map];
+
+
+//结合数组的map,filter，实现Map的遍历和过滤（Map没有map和filter）
+const map0 = new Map()
+  .set(1, 'a')
+  .set(2, 'b')
+  .set(3, 'c');
+
+const map1 = new Map(
+  [...map0].filter(([k, v]) => k < 3)
+);
+// 产生 Map 结构 {1 => 'a', 2 => 'b'}
+
+const map2 = new Map(
+  [...map0].map(([k, v]) => [k * 2, '_' + v])
+    );
+// 产生 Map 结构 {2 => '_a', 4 => '_b', 6 => '_c'}
+
+//Map的forEach方法
+map.forEach(function(value, key, map){
+	console.log('key: %s, value: %s', key, value);
+})
+
+//forEach接受第二个参数，绑定this
+const reporter = {
+	report: function(){
+		
+	}
+}
 
 
 

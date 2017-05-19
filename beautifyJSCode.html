@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>测试markdown转html</title>
+		<link rel="stylesheet" type="text/css" href="js/libs/highlight/default.css"/>
+		<link rel="stylesheet" type="text/css" href="js/libs/highlight/monokai-sublime.css"/>
+		<script src="js/jquery.1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/libs/highlight/highlight.pack.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				font-size:18px;
+			}
+			body,pre{
+				margin:0;padding:0;
+			}
+			#origin{
+			    width: 50%;
+			    float: left;
+			    box-sizing: border-box;
+			}
+			#content{
+			    padding: 10px 30px;
+				width: 50%;
+				float: left;
+				box-sizing: border-box;
+				overflow-y: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea name="" id="origin">
+			//在构建Map实例时，实际上是执行的下面的算法
+			const items = [
+				['name', '张三'],
+				['title', 'Author']
+			];
+			const map = new Map();
+			item.forEach(
+				([key, value]) => map.set(key, value)
+			);
+			//任何具有Iterator接口的数据结构都可以当做Map构造函数的参数。
+			//Set ,Map 都可以用来生成新的Map。
+			function log(){
+				console.log(123);
+			}
+		</textarea>
+		<pre><code id="content">
+			<div class="content" >
+				
+			</div>
+			
+		</code></pre>
+		<script type="text/javascript">
+			var originDom = document.getElementById('origin'),
+				  contentDom = document.getElementById('content');
+			var winH = (window.innerHeight || document.body.clientHeight)+'px';
+			originDom.style.height  = winH;
+			contentDom.style.height  = winH;
+			
+		  	contentDom.innerHTML = originDom.textContent;
+  			
+  			originDom.onkeyup = function(){
+  				contentDom.innerHTML = originDom.value;
+      			 $('pre code').each(function(i, block) {
+				    hljs.highlightBlock(block);
+				  });
+  			}
+  			hljs.initHighlightingOnLoad();
+			
+		</script>
+	</body>
+</html>
