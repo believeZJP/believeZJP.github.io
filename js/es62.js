@@ -2445,6 +2445,423 @@ c.dec()
 
 
 
+/***
+ * Proxy
+ * 目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，
+ * 因此提供了一种机制，可以对外界的访问进行过滤和改写
+ * 
+ */
+
+
+var obj = new Proxy({}, {
+	get: function (target, key, receiver){
+//		console.log(`getting ${key}!`);
+		return Reflect.get(target, key, receiver);
+	},
+	set: function(target, key, vlaue, receiver){
+//		console.log(`setting ${key!}`);
+		return Reflect.set(target, key, value, receiver);
+	}
+});
+
+obj.count = 1;
+++obj.count;
+
+//Proxy 实际上重载（overload）了点运算符，即用自己的定义覆盖了语言的原始定义。
+
+//语法 :
+var proxy = new Proxy(target, handler);
+//target参数表示所要拦截的目标对象，handler参数也是一个对象，用来定制拦截行为。
+
+
+//eg:
+var proxy = new Proxy({}, {
+	get: function(target, property){
+		return 35;
+	}
+});
+
+proxy.name;
+proxy.title;
+proxy.time;//35
+
+//要使得Proxy起作用，必须针对Proxy实例（上例是proxy对象）进行操作，而不是针对目标对象（上例是空对象）进行操作。
+
+var target = {};
+var handler = {};
+var proxy = new Proxy(target, handler);
+proxy.a = 'b';
+target.a //b
+
+//一个技巧，将Proxy对象设置到object.proxy属性上，可以直接在object对象上调用
+var object = {proxy: new Proxy(target, handler)};
+
+//Proxy实例，可以作为其他对象的原型对象
+var proxy = new Proxy({}, {
+	get: function(target, property){
+		return 35;
+	}
+});
+let obj = Object.create(proxy);
+obj.time;
+
+//同一个拦截器，可以设置多个操作。
+
+var handler = {
+	get: function(garget, name){
+		if(name === 'prototype'){
+			return Object.prototype;
+		}
+		return 'Hello, '+ name;
+	},
+	apply: function(target, thisBinding, args){
+		return args[0];
+	},
+	construct: function(target, args){
+		return {value: args[1]};
+	}
+};
+
+var fproxy = new Proxy(function(x, y){
+	return x+y;
+}, handler);
+
+fproxy(1, 2);//1
+new fproxy(1, 2);//{value: 2}
+fproxy.prototype === Object.prototype //true
+fproxy.foo //"Hello, foo"
+
+
+
+//proxy实例的方法
+
+var person = {
+	name: '张三'
+};
+var proxy = new Proxy(person, {
+	get: function(target, property){
+		if(property in target){
+			return target[property];
+		}else {
+			throw new ReferenceError('Property "'+ property +'" does not exist!');
+		}
+	}
+});
+proxy.name;
+proxy.age;
+
+//以上代码如果访问对象不存在会抛出个错误，如果没有拦截，只会返回undefined。
+
+//get 方法可以继承
+let proto = new Proxy({}, {
+	get(target, propertyKey, receiver){
+		console.log('GET ' + propertyKey);
+		return target[propertyKey];
+	}
+});
+
+let obj = Object.create(proto);
+obj.xxx;
+
+//get 拦截，实现数组读取负数索引
+function createArray(...elements){
+	let handler = {
+		get(target, propKey, receiver){
+			let index = Number(propKey);
+			if(index < 0){
+				proKey = String(target.length + index);
+			}
+			return Reflect.get(target, proKey, receiver);
+		}
+	}
+	
+	let target = [];
+	target.push(...elements);
+	return new Proxy(target, handler);
+}
+
+let arr = createArray('a', 'b', 'c');
+arr[-1];
+
+
+//利用Proxy将get转变为某个执行某个函数，从而实现属性的链式操作。
+var pie = (function(){
+	return function(value){
+		var funcStack = [];
+		var oproxy = new Proxy({}, {
+			get: function(pipeObject, fnName){
+				if(fnName === 'get'){
+					return funcStack.reduce(function(val, fn){
+						return fn(val);
+					}, value);
+				}
+				funcStack.push(window[fnName]);
+			}
+		});
+		return oproxy;
+	}
+}());
+
+var double = n => n*2;
+var pow = n => n*n;
+var reverseInt = n => n.toString().split('').reverse().join('') | 0;
+
+pie(3).double.pow.reverseInt.get;//63
+
+//利用get拦截，实现一个生成各种dom节点的通用函数dom
+
+const dom = new Proxy({}, {
+	get(target, property){
+		return function(attrs = {}, ...children){
+			const el = document.createElement(property);
+			for(let prop of Object.keys(attrs)){
+				el.setAttribute(prop, attrs[prop]);
+			}
+			for(let child of children){
+				if(typeof child === 'string'){
+					child = document.createTextNode(child);
+				}
+				el.appendChild(child);
+			}
+			return el;
+		}
+	}
+});
+const el = dom.div({},{
+	'Hello, my name is ',
+	dom.a({href:'//example.com'}, 'Mark'),
+	'. I like:',
+	dom.ul({},
+		dom.li({}, 'The web'),
+		dom.li({}, 'Food'),
+		dom.li({}, '...actually that \'s it')
+	)
+});
+
+document.body.appendChild(el);
+
+//如果一个属性不可配置configurable, 不可写writable,该属性不能被代理。
+const target = Object.defineProperties({},{
+	foo: {
+		value: 123,
+		writable: false,
+		configurable: false
+	}
+});
+const handler = {
+	get(target, propKey){
+		return 'abc';
+	}
+};
+const proxy = new Proxy(target, handler);
+proxy.foo//报错
+
+//set 拦截某个属性的赋值操作
+let validator = {
+	set: function(obj, prop, value){
+		if(prop === 'age'){
+			if(!Number.isInteger(value)){
+				throw new TypeError('The age is not an integer');
+			}
+			if(value > 200){
+				throw new RangeError('The age seems invalid!');
+			}
+		}
+		obj[prop] = value;
+	}
+};
+
+let person = new Proxy({}, validator);
+person.age = 100;
+person.age ;
+person.age = 'young';
+person.age = 300;
+
+//这是数据验证的一种实现方式，利用set，还可以实现数据绑定，
+
+
+//设置内部属性，一般用_开头，结合get,set可以做到防止这些内部属性被外部读写
+var handler = {
+	get(target, key){
+		invariant(key ,'get');
+		return target[key];
+	},
+	set(target, key, value){
+		invariant(key, 'set');
+		target[key] = value;
+		return true;
+	}
+};
+function invariant(key, action){
+	if(key[0] === '_'){
+		throw new Error(`Invalid attempt to ${action} private "${key}" property`);
+	}
+}
+var target = {};
+var proxy = new Proxy(target, handler);
+proxy._prop
+proxy._prop = 'c'
+
+
+
+
+//appl
+y拦截函数的调用，call和apply
+//三个参数，目标对象，目标对象的上下文对象(this),目标对象的参数数组。
+var handler = {
+	apply(target, ctx, args){
+		return Reflect.apply(...arguments);
+	}
+};
+
+//eg:
+var target = function(){return 'I am the target';};
+var handler = {
+	apply: function(){
+		return 'I am the proxy';
+	}
+};
+var p = new Proxy(target, handler);
+p();//"I am the proxy"
+
+
+var twice = {
+	apply(target, ctx, args){
+		return Reflect.apply(...arguments) *2;
+	}
+};
+function sum(left, right) {
+	return left+right;
+}
+var proxy = new Proxy(sum, twice);
+proxy(1, 2);
+proxy.call(null, 5, 6);
+proxy.apply(null, [7,8]);
+
+
+//has ,拦截HasProperty，典型的操作是in运算符
+//隐藏某些属性，不被in运算符发现
+
+var handler = {
+	has(target, key){
+		if(key[0] === '_'){
+			return false;
+		}
+		return key in target;
+	}
+};
+
+var target = {_prop: 'foo', prop:'foo'};
+var proxy = new Proxy(target, handler);
+'_prop' in target;//false
+
+//原对象不可配置或禁止扩展，has拦截会报错。
+
+//has方法拦截的是HasProperty操作，而不是HasOwnProperty操作，
+// 即has方法不判断一个属性是对象自身的属性，还是继承的属性。
+//has对for...in循环不生效
+
+
+//construct() 拦截new命令
+var handler = {
+	construct(target, args, newTarget){
+		return target(...args);
+	}
+}
+
+// eg construct 必须返回一个对象
+var p = new Proxy(function(){}, {
+	construct: function (target, args) {
+		console.log('called: '+args.join(', '));
+		return {value: args[0]*10};
+	}
+});
+new p(1).value;
+
+
+//deleteProperty 拦截delete操作，如果这个方法抛出错误或返回false，当前属性无法被delete.
+// 不可配置(configurable)属性，不可被删除
+var handler = {
+	deleteProperty(target, key){
+		invariant(key, 'delete');
+		return true;
+	}
+};
+function invariant(key, action){
+	if(key[0] === '_'){
+		throw new Error(`Invalid attempt to ${action} private "${key}" property.`);
+	}
+}
+var target = {_prop: 'foo'};
+var proxy = new Proxy(target, handler);
+delete proxy._prop;
+
+
+//definedProperty 拦截Object.definedProperty操作
+
+var handler = {
+	defineProperty(target, key, descriptor){
+		return false;
+	}
+};
+var target = {};
+var proxy = new Proxy(target, handler);
+proxy.foo = 'bar';
+
+
+// gerOwnPerpertyDescriptor() 拦截Object.getOwnPropertyDescriptor()
+var handler = {
+	getOwnPropertyDescriptor(target, key){
+		if(key[0] === '_'){
+			return;
+		}
+		return Object.getOwnPropertyDescriptor(target, key);
+	}
+};
+var target = {_foo:'bar', baz: 'tar'};
+var proxy = new Proxy(target, handler);
+Object.getOwnPropertyDescriptor(proxy, 'wat');
+Object.getOwnPropertyDescriptor(proxy, '_foo');
+Object.getOwnPropertyDescriptor(proxy, 'baz');
+
+//getPrototypeOf(),用来拦截获取对象原型
+/**
+ * 拦截以下操作
+ * Object.prototype.__proto__
+ * Object.prototype.isPrototypeOf()
+ * Object.getPrototypeOf()
+ * Reflect.getPrototypeOf()
+ * instanceof
+ *
+ * getPrototypeOf返回值必须是对象或null,否则报错。
+ * */
+
+var proto = {};
+var p = new Proxy({}, {
+	getPrototypeOf(target){
+		return proto;
+	}
+});
+Object.getPrototypeOf(p) === proto;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
