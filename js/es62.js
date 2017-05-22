@@ -3191,7 +3191,7 @@ fn.apply(obj, args)
 Function.prototype.apply.call(fn, obj, args)
 
 //采用Reflect对象可以简写
-const args [11,33,23];
+const ages = [11,33,23];
 //es5
 const youngest = Math.min.apply(Math, ages);
 const oldest = Math.max.apply(Math, ages);
@@ -3203,11 +3203,91 @@ const oldest = Reflect.apply(Math.max, Math, ages);
 const type = Reflect.apply(Object.prototype.toString, youngest, []);
 
 
+//Reflect.defineProperty等同于Object.defindProperty,用来定义属性
+function MyDate() {
+	
+}
+//es5
+Object.defineProperty(MyDate, 'now', {
+	value: () => Date.now()
+});
+//es6
+Reflect.defineProperty(MyDate, 'now', {
+	value: () => Date.now()
+});
 
 
+//Reflect.getOwnPropertyDescriptor等同于Object.getOwnPropertyDescriptor
+//用于得到指定属性的描述对象
+var myObject = {};
+Object.defineProperty(myObject, 'hidden', {
+	value: true,
+	enumerable: false
+});
+//es5
+var theDescriptor = Object.getOwnPropertyDescriptor(myObject, 'hidden');
+//es6
+var theDescriptor = Reflect.getOwnPropertyDescriptor(myObject, 'hidden');
 
 
+//Reflect.isExtensible 对应Object.isExtensible表示当前对象是否可扩展
+const myObject = {};
+//es5
+Object.isExtensible(myObject);
+//es6
+Reflect.isExtensible(myObject);
 
+
+//Reflect.preventExtensions 对应Object.preventExtensions,让对象变为不可扩展
+var myObject = {};
+//es5
+Object.isExtensible(myObject);
+//es6
+Reflect.preventExtensions(myObject);
+
+
+//Reflect.ownKeys(),用于返回对象的所有属性，
+//基本等同于Object.getOwnPropertyNames与Object.getOwnPropertySymbols之和
+var myObject = {
+	foo: 1,
+	bar: 2,
+	[Symbol.for('baz')]: 3,
+	[Symbol.for('bing')]: 4
+};
+//es5
+Object.getOwnPropertyNames(myObject);
+Object.getOwnPropertySymbols(myObject);
+
+//es6
+Reflect.ownKeys(myObject);
+
+//实例:使用Reflect实现观察者模式
+//观察者模式(Observer mode)：指的是函数自动观察数据对象，一旦对象有变化，函数就自动执行
+const person = observable({
+	name: '张三',
+	age: 20
+});
+
+function print(){
+	console.log(`${person.name}, ${person.age}`);
+}
+observe(print);
+person.name = '李四';
+
+
+const queuedObservers = new Set();
+const observe = fn => queuedObservers.add(fn);
+const observable = obj => new Proxy(obj, {set});
+
+function set(target, key, value, receiver){
+	const result = Reflect.set(target, key, value, receiver);
+	queuedObservers.forEach(observer => observer());
+	return result;
+}
+
+//observable返回一个原始对象的代理，拦截赋值操作，触发充当观察者的各个函数
+//先定一个Set，所有观察者函数都放进这个集合，
+//observable函数返回原始对象的代理，拦截赋值操作，拦截函数set之中，会自动执行所有观察者。
 
 
 
