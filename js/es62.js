@@ -2845,6 +2845,372 @@ var p = new Proxy({}, {
 Object.getPrototypeOf(p) === proto;
 
 
+//isExtensible 拦截 Object.isExtensible 操作.只返回Boolean值
+var p = new Proxy({}, {
+	isExtensible: function (target) {
+		console.log('called');
+		return true;
+	}
+});
+Object.isExtensible(p);
+
+//强限制 返回值必须与目标对象的isExtensible值一样
+Object.isExtensible(proxy) === Object.isExtensible(target);
+
+var p = new Proxy({}, {
+	isExtensible: function (target) {
+		return false;
+	}
+})
+
+Object.isExtensible(p);//报错
+
+
+
+
+//ownKeys() 拦截对象自身属性的操作。
+/**
+ * 拦截以下操作：
+ * Object.getOwnPropertyNames()
+ * Object.getOwnPropertySymbols()
+ * Object.keys()
+ *
+ */
+
+//eg:拦截Object.keys()
+let target = {
+	a: 1,
+	b: 2,
+	c: 3
+};
+let handler = {
+	ownKeys(target){
+		return ['a'];
+	}
+};
+let proxy = new Proxy(target, handler);
+Object.keys(proxy);
+
+//拦截第一个字符为下划线的属性
+let target = {
+	_bar: 'foo',
+	_prop: 'bar',
+	prop: 'baz'
+};
+let handler = {
+	ownKes(target){
+		return Reflect.ownKeys(target).filter(key => key[0] !== '_');
+	}
+};
+
+let proxy = new Proxy(target ,handler);
+for(let key of Object.keys(proxy)){
+	console.log(target[key]);
+}
+
+/**
+ * Object.keys, 有三类属性会被ownKeys自动过滤，
+ * 目标对象上不存在的属性
+ * 属性名为Symbol值
+ * 不可遍历(enumerable)的值
+ */
+
+let target = {
+	a: 1,
+	b: 2,
+	c: 3,
+	[Symbol.for('secret')]: '4'
+};
+Object.defineProperty(target, 'key', {
+	enumerable: false,
+	configurable: true,
+	writable: true,
+	value: 'static'
+});
+let handler = {
+	ownKeys(target){
+		return ['a', 'd', Symbol.for('secret'), 'key'];
+	}
+};
+let proxy = new Proxy(target, handler);
+Object.keys(proxy);
+
+//后面的属性不写了
+
+
+//4. this问题
+//proxy不是对目标对象的透明代理，在Proxy代理情况下，目标对象内部的this会指向Proxy代理
+
+const target = {
+	m: function(){
+		console.log(this === proxy);
+	}
+};
+const handler = {};
+const proxy = new Proxy(target, handler);
+target.m();//false
+proxy.m();//true
+
+//this指向了proxy，而不是target
+
+//eg:由于this指向的变化，导致Proxy无法代理目标对象
+const _name = new WeakMap();
+class Person{
+	constructor(name){
+		_name.set(this, name);
+	}
+	get(name){
+		return _name.get(this);
+	}
+}
+const jane = new Person('Jane');
+jane.name;
+const proxy = new Proxy(jane, {});
+proxy.name //undefined
+//通过proxy.name访问时，this指向proxy，导致无法取到值，
+
+//有些原生对象的内部属性，只有通过正确的this才能拿到，Proxy无法代理这些原生对象的属性
+const target =new Date();
+const handler = {};
+const proxy = new Proxy(target, handler);
+proxy.getDate();//this is not a Date object.
+
+//用this绑定原始对象就可以了
+const target = new Date('2017-5-22');
+const handler = {
+	get(target, prop){
+		if(prop === 'getDate'){
+			return target.getDate.bind(target);
+		}
+		return Reflect.get(target, prop);
+	}
+};
+const proxy = new Proxy(target, handler);
+proxy.getDate();
+
+
+//5.实例： Web服务的客户端
+//Proxy对象可以拦截目标对象的任意属性，很适合用来写Web服务的客户端
+const service = createWebService('http://example.com/data');
+service.employees().then(json => {
+	const employees = JSON.parse(json);
+	//...
+});
+
+function createWebService(baseUrl){
+	return new Proxy({}, {
+		get(target, propKey, receiver){
+			return () => httpGet(baseUrl + '/' + propKey);
+		}
+	})
+};
+
+
+/**
+ * Reflect
+ * 设计目的：
+ * 1. 从Reflect对象上可以拿到语言内部的方法
+ * 2. 修改了某些Object方法的返回结果，变得更合理
+ * 3. 让Object操作都变成函数行为。
+ * 		比如：name in obj, delete obj[name],而Reflect.has(obj, name)，Reflect.deleteProperty(obj, name)
+ * 		让它们变成了函数行为
+ * 4. Reflect对象的方法与Proxy的方法一一对应，
+ * 		这样可以在Proxy对象上调用对应的Reflect方法，
+ * 		不管Proxy怎么修改默认行为，总可以在Reflect上获取默认行为
+ */
+
+//老写法
+try{
+	Object.defineProperty(target, property, attributes);
+	//success
+}catch (e){
+	//failure
+}
+//es6
+if(Reflect.defineProperty(target, property, attributes)){
+	//success
+}else {
+	//failure
+}
+
+
+//es5
+'assign' in Object
+delete myObj.foo;
+//es6
+Reflect.has(Object, 'assign');
+Reflect.deleteProperty(myObj, 'foo');
+
+Proxy(target, {
+	set: function (target, namee, value, receiver) {
+		var success = Refllect.set(target, name, value, receiver);
+		if(success){
+			console.log('property '+ name + ' on ' + target + ' set to ' + value);
+		}
+		return success;
+	}
+});
+//Proxy拦截了set,采用Reflect.set，确保完成原有行为，再部署额外的功能
+
+var loggedObj = new Proxy(obj, {
+	get(target, name){
+		console.log('get', target, name);
+		return Reflect.get(target, name);
+	},
+	deleteProperty(target, name){
+		console.log('delete', name);
+		return Reflect.deleteProperty(target, name);
+	},
+	has(target, name){
+		console.log('has', name);
+		return Reflect.has(target, name);
+	}
+});
+
+//很多操作更易读
+//es5
+Function.prototype.apply.call(Math.floor, undefined, [1.75]);
+//es6
+Reflect.apply(Math.floor, undefined, [1.75]);
+
+/**
+ * 2. 静态方法
+	 *Reflect.apply(target,thisArg,args)
+	 Reflect.construct(target,args)
+	 Reflect.get(target,name,receiver)
+	 Reflect.set(target,name,value,receiver)
+	 Reflect.defineProperty(target,name,desc)
+	 Reflect.deleteProperty(target,name)
+	 Reflect.has(target,name)
+	 Reflect.ownKeys(target)
+	 Reflect.isExtensible(target)
+	 Reflect.preventExtensions(target)
+	 Reflect.getOwnPropertyDescriptor(target, name)
+	 Reflect.getPrototypeOf(target)
+	 Reflect.setPrototypeOf(target, prototype)
+ */
+
+
+//如果name部署了读取函数(getter)，则读取this绑定receiver
+var myObject = {
+	foo: 1,
+	bar: 2,
+	get baz(){
+		return this.foo + this.bar;
+	}
+};
+var myReceiverObject = {
+	foo: 4,
+	bar: 4
+};
+Reflect.get(myObject, 'baz', myReceiverObject);//8
+
+var myObject = {
+	foo: 1,
+	set bar(value){
+		return this.foo = value;
+	}
+};
+myObject.foo //1
+Reflect.set(myObject, 'foo', 2);
+myObject.foo
+
+Reflect.set(myObject, 'bar', 3);
+myObject.foo
+
+
+//name设置了赋值函数，赋值函数的this绑定receiver
+var myObject = {
+	foo: 4,
+	set bar(value){
+		return this.foo = value;
+	}
+};
+var myReceiverObject = {
+	foo: 0
+};
+Reflect.set(myObject, 'bar', 1, myReceiverObject);
+myObject.foo;//4，还是原来的值
+myReceiverObject.foo;//set的值到receiver上了
+
+//因为设置了赋值函数，所以set时，this绑定的是myReceiverObject,不会赋值到myObject上，
+
+//Reflect.set 会触发Proxy.defineProperty拦截
+let p = {
+	a: 'a'
+};
+let handler = {
+	set(target, key, value, receiver){
+		console.log('set');
+		Reflect.set(target, key, value, receiver);
+	},
+	defineProperty(target, key, attribute){
+		console.log('defineProperty');
+		Reflect.defineProperty(target, key, attribute);
+	}
+
+};
+
+let obj = new Proxy(p, handler);
+obj.a = 'A';
+
+
+//Reflect.construct 等同于new target(...args),
+//提供了一种不适用new 来调用构造函数的方法
+function Greeting(name){
+	this.name = name;
+}
+
+//new的写法
+const instance = new Greeting('张三');
+//Reflect.construct的写法
+const instance = Reflect.construct(Greeting, ['张三']);
+
+//Reflect.getPrototypeOf用于读取对象的__proto__属性，对应Object.getPrototypeOf()
+function FancyThing(){};
+const myObj = new FancyThing();
+//es5
+Object.getPrototypeOf(myObj) === FancyThing.prototype;
+//es6
+Reflect.getPrototypeOf(myObj) === FancyThing.prototype;
+
+
+//Reflect.setPrototypeOf用于设置对象的__proto__属性，对应Object.setPrototypeOf(obj, newProto)
+const myObj = new FancyThing();
+//es5
+Object.setPrototypeOf(myObj, OtherThing.prototype);
+//es6
+Reflect.setPrototypeOf(myObj, OtherThing.prototype);
+
+
+// Reflect.apply 等同于Function.prototype.apply.call(func, thisArg, args),用于绑定this对象后执行给定函数
+//要绑定一个函数的this 对象
+fn.apply(obj, args)
+
+//如果函数定义了自己的apply方法
+Function.prototype.apply.call(fn, obj, args)
+
+//采用Reflect对象可以简写
+const args [11,33,23];
+//es5
+const youngest = Math.min.apply(Math, ages);
+const oldest = Math.max.apply(Math, ages);
+const type = Object.prototype.toString.call(youngest);
+
+//es6
+const youngest = Reflect.apply(Math.min, Math, ages);
+const oldest = Reflect.apply(Math.max, Math, ages);
+const type = Reflect.apply(Object.prototype.toString, youngest, []);
+
+
+
+
+
+
+
+
+
+
 
 
 
