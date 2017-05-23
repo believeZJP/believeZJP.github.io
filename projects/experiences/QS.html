@@ -295,6 +295,53 @@ var i = setTimeout(function() {
 		}(),0);
 	}
 	//输出23，3个4，继续执行输出26，3个4；
+
+
+
+
+
+
+
+		var name = "W";
+		(function(){
+		if(typeof name === 'undefined'){
+		var name = 'J';
+		console.log('good '+name);
+		}else{
+		console.log('helo '+name);
+		}
+		})();
+		//good J
+
+		([])?true:false;//true
+		//因为([])是个对象，js中所有对象都是true，所以返回true
+		typeof ([])//object
+
+		[]==false?true:false;//true
+		// ==符号会把两边的类型转换成一样的。这里会转成number， 0==false
+
+
+		[] == false; //true
+		// 这里是因为==符号会把两边的类型转换成一样的。这里会转成number
+		[] == 0 // 把false转为number
+		"" == 0 // 用array的valueOf/toString获取基本类型
+		0 == 0 // 空字符串转成数字之后是0，Number('')
+
+
+		![] == false; //true
+		// javascript中所有对象都是true。
+		!true == false // []也是object，所以是true
+		false == false // true取反是false
+
+
+		({}==false)?true:false//false
+
+		[] == false; //在==判断时，[]被当做Array数组处理，且[]是空数组。空数组在==判断时，转换为0，即false。
+		![] == false; //在==判断前，先做![]运算，此时[]被!当做Array()对象，可以理解为!{}；{}相当于“非undefined”，那么!{}就是“非(非undefined)”，即undefined；undefined在做==运算时，转换为0，即false。
+
+
+
+
 	</code>
 	
 </div>

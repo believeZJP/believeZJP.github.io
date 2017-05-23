@@ -3535,49 +3535,156 @@ promise.then(function(data){//cb
 //第二种写法可以捕获前面then方法中执行的错误。更接近同步的写法(try...catch)
 
 
+var promise = new Promise(function(resolve, reject) {
+	resolve('ok');
+	setTimeout(function() { throw new Error('test') }, 0)
+});
+promise.then(function(value) { console.log(value) });
+// ok
+// Uncaught Error: test
+
+// Promise 指定在下一轮“事件循环”再抛出错误，结果由于没有指定使用try...catch语句，
+// 就冒泡到最外层，成了未捕获的错误。因为此时，Promise的函数体已经运行结束了，
+// 所以这个错误是在Promise函数体外抛出的。
+
+
+//Node有个unhandledRejection，专门监听未捕获的reject错误
+process.on('unhanldedRejection', function (err, p) {
+	console.log(err.stack)
+});
+
+//catch方法返回的是Promise对象，后面还可以接着调用then方法。
+
+var someAsyncThing = function(){
+	return new Promise(function (resolve, reject) {
+		//这一行会报错，x未定义
+		resolve(x+2);
+	})
+};
+someAsyncThing().catch(function (error) {
+	console.log('oh no', error);
+}).then(function () {
+	console.log('carry on');
+});
+// 报错后再执行carry on
+
+Promise.resolve().catch(function (error) {
+	console.log('oh no ', error);
+}).then(function () {
+	console.log('carry on');
+})
+//没有报错会跳过执行后面的then
+//catch可以连写，捕获catch中的错误
 
 
 
-/**
+//Promise.all,用于将多个Promise实例，包装成一个新的Promise
+// 参数可以不是数组，但必须具有Iterator接口，且返回的每个成员都是Promise实例。
 
-var name = "W";
-(function(){
-	if(typeof name === 'undefined'){
-		var name = 'J';
-		console.log('good '+name);
-	}else{
-		console.log('helo '+name);
+var p = new Promise([p1, p2, p3]);
+//p的状态由p1,p2,p3决定，分两种情况
+/*
+1, p1,p2,p3的状态都变成fulfilled的,p的状态才会变成fulfilled,
+	此时p1,p2,p3的返回值组成一个数组,传递给p的回调函数。
+2, 只要有一个被rejected,p的状态就会变成rejected,
+	此时第一个被reject实例的返回值，会传递给p的回调函数。
+
+ */
+
+var promises = [2,3,5,7,11,13].map(function (id) {
+	return getJSON('/post/'+id+'.json');
+});
+Promise.all(promises).then(function (posts) {
+//	...
+}).catch(function (reson) {
+//	...
+});
+
+//eg
+const databasePromise = connectDatabase();
+const bookPromise = databasePromise.then(findAllBooks);
+const userPromise = databasePromise.then(getCurrentUser);
+Promise.all([bookPromise, userPromise])
+	.then(([book, user]) => pickTopRecommentations(book, user));
+
+//Promise.race()
+var p = new Promise([p1, p2, p3]);
+//只要p1,p2,p3之中有个率先改变状态，p的状态就跟着变化。
+//率先改变状态的Promise实例的值，就传递给p的回调函数
+
+const p = Promise.race([
+	fetch('/resource-that-may-take-a-while'),
+	new Promise(function (resolve, reject) {
+		setTimeout(() => reject(new Error('request timeout')), 5000)
+	})
+]);
+p.then(response => console.log(response));
+p.catch(error => console.log(error));
+//5秒内未返回结果，p的状态就会变成rejected,触发catch指定的方法
+
+//Promise.resolve 将现有对象转为Promise对象
+var jsPromise = Promise.resolve($.ajax('whatever.json'));
+//将jQuery生成的deferred,转为一个新的Promise对象
+
+// Promise.resolve等价于下面的写法
+Promise.resolve('foo')
+//等价于
+new Promise(resolve => resolve('foo'));
+
+//Promise.resolve的参数有四种情况
+//1.参数是Promise对象,原封不动返回
+//2. 参数是thenable对象: 具有then方法的对象，
+//Promise.resolve会将这个对象转为Promise对象，然后立即执行thenable对象的then方法
+let thenable = {
+	then: function (resolve, reject) {
+		resolve(42);
 	}
-})();
-//good J
+};
 
-([])?true:false;//true
-//因为([])是个对象，js中所有对象都是true，所以返回true
-typeof ([])//object
+let p1 = Promise.resolve(thenable);
+p1.then(function(value){
+	console.log(value);
+});
+// thenable对象的then方法执行后，对象p1的状态就变为resolved，从而立即执行最后那个then方法指定的回调函数，输出42。
 
-[]==false?true:false;//true
-// ==符号会把两边的类型转换成一样的。这里会转成number， 0==false
+//3. 参数是原始值，Promise.resolve返回一个新的Promise对象，状态为Resolved
+var p = new Promise.resolve('Hello');
+p.then(function (s) {
+	console.log(s);
+});
+
+//4. 不带有任何参数 直接返回Resolved状态的Promise对象
+//要得到一个Promise对象，比较方便的方法是直接调用Promise.resolve方法
+var p = new Promise();
+p.then(function () {
+//...
+});
+//立即resolve的Promise对象，是在本轮事件循环"event loop"的结束时
+//而不是在下一轮'事件循环'的开始时。
+
+setTimeout(function () {
+	console.log('three')
+},0);
+Promise.resolve().then(function(){
+	console.log('two')
+});
+console.log('one');
+// one
+// two
+// three
+
+// setTimeout(fn, 0)在下一轮“事件循环”开始时执行，
+// Promise.resolve()在本轮“事件循环”结束时执行，
+// console.log('one')则是立即执行，因此最先输出。
 
 
-[] == false; //true
-// 这里是因为==符号会把两边的类型转换成一样的。这里会转成number
-	[] == 0 // 把false转为number
-"" == 0 // 用array的valueOf/toString获取基本类型
-0 == 0 // 空字符串转成数字之后是0，Number('')
 
 
-![] == false; //true
-// javascript中所有对象都是true。
-!true == false // []也是object，所以是true
-false == false // true取反是false
 
 
-({}==false)?true:false//false
 
-[] == false; //在==判断时，[]被当做Array数组处理，且[]是空数组。空数组在==判断时，转换为0，即false。
-![] == false; //在==判断前，先做![]运算，此时[]被!当做Array()对象，可以理解为!{}；{}相当于“非undefined”，那么!{}就是“非(非undefined)”，即undefined；undefined在做==运算时，转换为0，即false。
 
-*/
+
 
 
 
