@@ -3293,25 +3293,291 @@ function set(target, key, value, receiver){
 
 
 
+/**
+ * Promise 对象
+ * 1.含义
+ * 异步编程的解决方案。
+ * 简单说是一个容器，保存着某个未来才会结束的事件(通常是异步操作)，从它可以获取异步操作的消息
+ * 两个特点：
+ * （1）状态不受外界影响
+ * 三种状态：pending(进行中),resolved(已完成)，rejected(已失败)
+ * 	只有异步操作的结果可以决定当前是哪一种状态
+ *
+ * （2）一旦状态改变就不会再变，任何时候都可以得到这个结果。
+ * 	状态变化：Pending到Resolved，Pending到Rejected。
+ * 	这与事件(Event)不同，事件是如果错过了，再去监听，得不到结果。
+ *
+ * Promise可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数，
+ * 对外提供统一接口，使得控制异步操作更容易。
+ *
+ * 缺点：
+ * 无法取消Promise，一旦新建就会立即执行，无法中途取消。
+ * 如果不设置回调函数，Promise内部抛出错误，不会反应到外部。
+ * 当处于Pending状态，无法得知目前进展到哪个状态
+ *
+ * 如果时间不断反复发生，一般来说使用stream模式比部署Promise更好
+ *
+* */
+
+//基本用法：
+var promise = new Promise(function(resolve, reject){
+//	some code
+	if(true /*异步操作成功*/){
+		resolve(value);
+	}else{
+		reject(error);
+	}
+});
+
+//resolve:状态从Pending到Resolved，异步操作成功时调用，并将结果作为参数传递出去
+//reject:状态从Pending到Rejected,异步操作失败时调用，并将结果作为参数传递出去
+
+//实例生成后，可用then指定Resolved和Reject
+promise.then(function (value) {
+//	success
+}, function () {
+//	failure
+});
+
+//eg
+function timeout(ms) {
+	return new Promise((resolve, reject) => {
+		setTimeout(resolve, ms, 'done');
+	});
+}
+
+timeout(100).then((value) => {
+	console.log(value);
+});
+
+//Promise 新建后会立即执行
+let promise = new Promise(function(resolve, reject){
+	console.log('Promise');
+	resolve();
+});
+
+promise.then(function () {
+	console.log('Resolved.');
+});
+console.log('Hi!');
+
+// Promise新建后立即执行，所以首先输出的是“Promise”。
+// 然后，then方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以“Resolved”最后输出。
+
+//异步加载图片
+function loadImageAsync(url){
+	return new Promise(function (resolve, reject) {
+		var image = new Image();
+		image.onload = function () {
+			resolve(image);
+		};
+		image.onerror = function () {
+			reject(new Error('Could not load img at '+ url));
+		}
+		image.src = url;
+	})
+}
+
+
+//Promise 实现Ajax
+var getJSON = function(url){
+	var promise = new Promise(function (resolve, reject) {
+		var client = new XMLHttpRequest();
+		client.open('GET', url);
+		client.onreadystatechange = handler;
+		client.responseType = 'json';
+		client.setRequestHeader('Accept', 'application/json');
+		client.send();
+
+		function handler() {
+			if(this.readyState !== 4){
+				return;
+			}
+			if(this.status === 200){
+				resolve(this.response);
+			}else{
+				reject(new Error(this.statusText));
+			}
+		};
+	});
+	return promise;
+}
+
+getJSON('/posts.json').then(function(json){
+	console.log('Contents: ' + json);
+}, function(error){
+	console.error('出错了', error);
+});
+
+//resolve函数的参数除了正常的值外，还可以是另一个Promise实例
+var p1 = new Promise(function(resolve, reject){
+//	...
+});
+var p2 = new Promise(function (resolve, reject) {
+//	...
+	resolve(p1);
+});
+
+//p2的resolve方法将p1作为参数，即一个异步操作的结果是返回另一个异步操作。
+//p1的状态决定了p2的状态。如果p1是pending，p2的回调会等待p1的状态改变，
+//如果p1的状态是Resolved或Rejected，则p2的回调立即执行
+
+var p1 = new Promise(function(resolve, reject){
+	setTimeout(() => reject(new Error('fail')), 3000)
+});
+var p2 = new Promise(function (resolve, reject) {
+	setTimeout(() => resolve(p1), 1000)
+})
+p1.then(result => console.log(result))
+	.catch(error => console.log(error))
+
+/*
+ p1是一个Promise，3秒之后变为rejected。p2的状态在1秒之后改变，resolve方法返回的是p1。
+ 由于p2返回的是另一个 Promise，导致p2自己的状态无效了，由p1的状态决定p2的状态。
+ 所以，后面的then语句都变成针对后者（p1）。
+ 又过了2秒，p1变为rejected，导致触发catch方法指定的回调函数。
+  */
+
+
+/*
+	Promise.prototype.then
+	为Promise实例添加状态改变时的回调函数
+	then方法返回的是一个新的Promise实例(不是原来那个实例)，因此可以采用链式操作
+ */
+
+getJSON('/posts.json').then(function (json) {
+	return json.post;
+}).then(function (post) {
+//	...
+});
+//第一个回调执行完后，将返回结果作为参数，传入第二个回调函数
+
+
+getJSON('/posts.json', function (post) {
+	return getJSON(post.commentURL);
+}).then(function funcA(comments) {
+	console.log('Resolved: '+ comments);
+}, function funcB(err){
+	console.log('Rejected: '+err);
+});
+
+
+//用箭头函数改写
+getJSON('/posts.json').then(
+	post => getJSON(post.commentURL)
+).then(
+	comments => console.log('Resolved: '+ comments),
+	err => console.log('Rejected: '+err)
+);
+
+//第一个then方法返回另一个Promise对象，第二个then等待这个新的Promise发生状态变化
+//成功调用funcA,失败调用funcB
+
+//Promise.prototype.catch
+//是.then(null, rejection)的别名
+p.then(val => console.log('fulfilled: '+val))
+	.catch(err => console.log('rejected: '+ err));
+
+//等同于
+var promise = new Promise(function(resolve, reject){
+	throw new Error('test');
+});
+promise.catch(function(error){
+	console.log(error);
+});
+
+//等同于
+var promise = new Promise(function(resolve, reject){
+	try{
+		throw new Error('test');
+	}catch(e){
+		reject(e);
+	}
+});
+promise.catch(function (error) {
+	console.log(error);
+});
+
+//等同于
+var promise = new Promise(function(resolve, reject){
+	reject(new Error('test'));
+});
+promise.catch(function(error){
+	console.log(error);
+});
+
+//Promise对象的错误具有冒泡性质，会一直向后传递，直到被捕获为止。
+//错误总是会被下一个catch捕获。
+
+getJSON('/posts.json').then(function (post) {
+	return getJSON(post.commentURL);
+}).then(function(comments){
+//	...
+}).catch(function (err) {
+//	处理前面3个Promise产生的错误
+});
+
+
+//一般来说不要在then方法里面定义Reject状态的回调函数，(即第二个参数)，建议使用catch方法
+//bad
+promise.then(function (data) {
+//	success
+}, function(err){
+//	err
+});
+
+//good
+promise.then(function(data){//cb
+//	success
+}).catch(function(err){
+//	err
+});
+//第二种写法可以捕获前面then方法中执行的错误。更接近同步的写法(try...catch)
 
 
 
 
 
+/**
+
+var name = "W";
+(function(){
+	if(typeof name === 'undefined'){
+		var name = 'J';
+		console.log('good '+name);
+	}else{
+		console.log('helo '+name);
+	}
+})();
+//good J
+
+([])?true:false;//true
+//因为([])是个对象，js中所有对象都是true，所以返回true
+typeof ([])//object
+
+[]==false?true:false;//true
+// ==符号会把两边的类型转换成一样的。这里会转成number， 0==false
 
 
+[] == false; //true
+// 这里是因为==符号会把两边的类型转换成一样的。这里会转成number
+	[] == 0 // 把false转为number
+"" == 0 // 用array的valueOf/toString获取基本类型
+0 == 0 // 空字符串转成数字之后是0，Number('')
 
 
+![] == false; //true
+// javascript中所有对象都是true。
+!true == false // []也是object，所以是true
+false == false // true取反是false
 
 
+({}==false)?true:false//false
 
+[] == false; //在==判断时，[]被当做Array数组处理，且[]是空数组。空数组在==判断时，转换为0，即false。
+![] == false; //在==判断前，先做![]运算，此时[]被!当做Array()对象，可以理解为!{}；{}相当于“非undefined”，那么!{}就是“非(非undefined)”，即undefined；undefined在做==运算时，转换为0，即false。
 
-
-
-
-
-
-
+*/
 
 
 
