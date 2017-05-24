@@ -3679,6 +3679,230 @@ console.log('one');
 
 
 
+//8. Promise.reject 返回一个状态为rejected的Promise实例
+var p = Promise.reject('出错了');
+//等同于
+var p = new Promise((resolve, reject) => reject('出错了'));
+p.then(null, function(s){
+	console.log(s)
+});
+
+const thenable = {
+	then(resolve, reject){
+		reject('出错了');
+	}
+}
+Promise.reject(thenable).catch(e => {
+	console.log(e === thenable)
+});
+//Promise.reject的参数是一个thenable对象，后面的catch的参数不是抛出'出错了',
+//而是thenable对象。
+
+
+//9. 两个有用的附加方法
+//done
+//Promise 对象的回调链，不管以then，或catch结尾，最后一个方法抛出错误，都可能无法捕获到
+//可以提供一个done方法总是处于回调链的尾端，保证捕获抛出的错误。
+
+asyncFunc().then(f1).catch(r1).then(f2).done();
+
+//实现代码
+Promise.prototype.done = function(onFulfilled, onRejected){
+	this.then(onFulfilled, onRejected).catch(function (reason) {
+	//	抛出一个全局错误
+		setTimeout(() => {throw reason}, 0)
+	});
+};
+// 不管怎样，done都会捕捉到任何可能出现的错误，并向全局抛出。
+
+
+//finally 用于指定不管Promise最后状态如何，都会执行的操作。
+//与done的区别，接受一个普通的回调函数作为参数，该函数不管怎样都会执行。
+
+//eg: 服务器用Promise处理请求，然后用finally方法关掉服务器
+server.listen(0).then(function(){
+	//run test
+}).finally(server.stop);
+
+//实现
+Promise.prototype.finally = function(callback){
+	let P = this.constructor;
+	return this.then(
+		value => P.resolve(callback()).then(() => value),
+		reason => P.resolve(callback()).then(() => {throw reason})
+	);
+};
+
+
+
+//10. 应用
+
+//加载图片
+//将图片的加载写成一个Promise，一旦加载完成，Promise的状态就发生变化
+const preloadImage = function(path){
+	return new Promise(function(resolve, reject){
+		var image = new Image();
+		image.onload = resolve;
+		image.onerror = reject;
+		image.src = path;
+	});
+};
+
+
+//Generator函数与Promise结合
+//用Generator函数管理流程，遇到异步操作时，通常返回一个Promise对象
+function getFoo(){
+	return new Promise(function(resolve, reject){
+		resolve('foo');
+	});
+}
+
+var g = function* (){
+	try {
+		var foo = yield getFoo();
+		console.log(foo);
+	}catch (e){
+		console.log(e);
+	}
+};
+
+function run(generator) {
+	var it = generator();
+	function go(result){
+		if(result.done) return result.value;
+
+		return result.value.then(function(value){
+			return go(it.next(value));
+		}, function(error){
+			return go(it.throw(error));
+		});
+	}
+
+	go(it.next());
+}
+run(g);
+
+
+//11. Promise.try
+
+/*
+* 实际开发中，不知道或不想区分函数f是同步还是异步，但想用Promise来处理。
+* 因为这样不管同步异步，都会用then来指定下一步流程，用catch处理f抛出的错误。
+*
+* */
+
+//一般写法
+Promise.resolve().then(f)
+
+//上面缺点：如果f是同步函数，它会在本轮事件循环的末尾执行。
+const f = () => console.log('now');
+Promise.resolve().then(f);
+console.log('next');
+//next now
+
+//f是同步的，但是用Promise包装后，成异步执行了。
+
+//让同步函数同步执行，异步函数异步执行，并且具有统一的API。两种写法
+//1.async
+const f = () => console.log('now');
+(async () = f())();
+console.log('next');
+
+//async() => f() 会吃掉f()抛出的错误。想捕获错误，要使用Promise.catch方法
+(async() => f())()
+	.then(
+	//	...
+	)
+	.catch(
+	// ...
+	)
+
+//2.用new Promise()
+const f = () => console.log('now');
+(
+	() => new Promise(
+		resolve => resolve(f())
+	)
+)();
+console.log('next');
+//now next
+//使用立即执行的匿名函数，执行new Promise().这时，同步函数也是同步执行
+
+//用Promise.try 替代上面的方法
+//Promise.try为所有操作提供了统一的处理机制。如果想用then方法管理流程，最好用Promise.try包装一下，
+//好处是可以更好的管理异常
+var database = {}；
+function getUsername(userId){
+	return database.users.get({id: userId})
+		.then(function (user) {
+			return user.name;
+		});
+}
+//database.user.get()返回一个Promise对象，如果抛出异步错误，可以用catch捕获，如下：
+database.users.get({id: userId}).then().catch();
+
+// 但database.users.get可能抛出同步错误，(如数据库连接失败等).这时候不得不用try...catch捕获。
+try {
+	database.users.get({id: userId})
+		.then()
+		.catch()
+} catch(e){
+//	...
+}
+
+//上面的写法笨拙，可以用Promise.try
+Promise.try(
+	database.users.get({id: userId})
+).then()
+	.catch();
+//Promise.try就是模拟try代码块，Promise.catch模拟catch代码块。
+
+
+
+/*
+* Iterator
+* 为各种不同的数据结构提供统一访问的机制
+* 遍历器对象本质上，就是一个指针对象。
+*
+*
+* */
+
+
+
+var it = makeIterator(['a', 'b']);
+it.next();
+it.next();
+it.next();
+
+function makeIterator(array){
+	var nextIndex = 0;
+	return {
+		next: function(){
+			return nextIndex < array.length ?
+			{value: array[nextIndex++], done: false}:
+			{value: undefined, done: true};
+		}
+	};
+}
+
+
+//当使用for...of循环遍历某种数据结构，会自动寻找Iterator接口。
+
+//es6中，有3类数据结构具有原生Iterator接口：数组，某些类似数组的对象，Set和Map结构
+//这3类数据结构，不用自己写遍历器生成函数，for...of会自动遍历。
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
