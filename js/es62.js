@@ -3892,20 +3892,390 @@ function makeIterator(array){
 //这3类数据结构，不用自己写遍历器生成函数，for...of会自动遍历。
 
 
+//遍历器实现指针结构的例子
+function Obj(value){
+	this.value = value;
+	this.next = null;
+}
+
+Obj.prototype[Symbol.iterator] = function(){
+	var iterator = {
+		next: next
+	};
+
+	var current = this;
+
+	function next() {
+		if(current){
+			var value = current.value;
+			current = current.next;
+			return {
+				done: false,
+				value: value
+			};
+		}else{
+			return {
+				done: true
+			};
+		}
+	}
+	return iterator;
+};
+
+var one = new Obj(1);
+var two = new Obj(2);
+var three = new Obj(3);
+
+one.next = two;
+two.next = three;
+
+for(var i of one){
+	console.log(i);
+}
+// 在构造函数的原型链上部署Symbol.iterator方法，调用该方法会返回遍历器对象iterator，
+// 调用该对象的next方法，在返回一个值的同时，自动将内部指针移到下一个实例。
+
+//eg:为另一个对象添加Iterator接口
+let obj = {
+	data: ['hello', 'world'],
+	[Symbol.iterator](){
+		const self = this;
+		let index = 0;
+		return {
+			next(){
+				if(index < self.data.length){
+					return {
+						value: self.data[index++],
+						done: false
+					};
+				}else {
+					return {value: undefined, done: true};
+				}
+			}
+		}
+	}
+}
+
+// 类似数组的对象(存在数组键名和length),部署Iterator接口
+// 用Symbol.iterator方法直接引用数组的iterator接口。
+NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
+NodeList.prototype[Symbol.iterator] = [][Symbol.iterator];
+[...document.querySelectorAll('div')]
+
+//用while循环
+var $iterator = ITERABLE[Symbol.iterator]();
+var $result = $iterator.next();
+while(!$result.done){
+	var x = $result.value;
+//	...
+	$result = $iterator.next();
+}
+
+
+/*调用Iterator接口的场合
+	1.解构赋值
+	2.扩展运算符
+	3.yield*
+
+	for...of
+	Array.from()
+	Map,Set,WeakMap,WeakSet
+	Promise.all
+	Promise.race
+*/
+
+let set = new Set().add('a').add('b').add('c');
+let [x, y] = set;//x=a,y=b
+let [first, ...rest] = set;//first=a,rest=[b,c]
+
+
+var str = 'hello';
+[...str];//['h','e','l','l','o']
+let arr = ['b','c'];
+['a',...arr,'d']// ['a', 'b', 'c', 'd']
+
+
+let generator = function* (){
+	yield 1;
+	yield* [2,3,4];
+	yield 5;
+};
+var iterator = generator();
+iterator.next();// { value: 1, done: false }
+iterator.next();
+iterator.next();
+iterator.next();
+iterator.next();// { value: 5, done: false }
+iterator.next();// { value: undefined, done: true }
 
 
 
+//4. 字符串的iterator接口
+var someString = 'hi';
+typeof someString[Symbol.iterator]//function
+
+var iterator = someString[Symbol.iterator]();
+iterator.next();
+iterator.next();
+iterator.next();
+
+//覆盖原生的Symbol.iterator方法，
+var str = new String('hi');
+[...str]
+str[Symbol.iterator] = function(){
+	return {
+		next: function(){
+			if(this._first){
+				this._first = false;
+				return {value:'bye', done: false};
+			}else{
+				return {done: true};
+			}
+		},
+		_first: true
+	};
+};
+[...str]
+
+
+//5. Iterator接口与Generator函数
+var myIterable = {};
+myIterable[Symbol.iterator] = function* (){
+	yield 1;
+	yield 2;
+	yield 3;
+};
+[...myIterable]
+
+//或者
+let obj = {
+	* [Symbol.iterator](){
+			yield 'hello';
+			yield 'world';
+  	 }
+};
+
+for(let x of obj){
+	console.log(x);
+}
+
+
+//6. 遍历器对象的return(),throw()
+//遍历器除了next,还有return ,throw，
+// return :如果for...of循环提前退出，就会调用return
+//return必须返回一个对象
+function readLinesSync(file){
+	return {
+		next() {
+			if(file.isAtEndOfFile()){
+				file.close();
+				return {done: true};
+			}
+		},
+		return (){
+			file.close();
+			return {done: true};
+		}
+	};
+};
+
+for(let line of readLinesSync(fileName)){
+	console.log(line);
+	break;
+}
+
+
+//7. for...of 循环
+//for...of循环的本质就是调用iterator接口产生的遍历器。
+
+//数组
+const arr = ['red','green','blue'];
+for(let v of arr){
+	console.log(v);
+}
+
+const obj = {};
+obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr);
+for(let v of obj){
+	console.log(v);
+}
+
+
+//for...of可以代替数组的forEach
+const arr = ['red', 'green', 'blue'];
+arr.forEach(function(element, index){
+	console.log(element, index);
+});
+
+
+var arr = ['a', 'b', 'c', 'd'];
+
+for (let a in arr) {
+	console.log(a); // 0 1 2 3
+}
+
+for (let a of arr) {
+	console.log(a); // a b c d
+}
+//for...in循环读取键名，for...of循环读取键值。
+//获取数组的索引，可以借助数组实例的entries方法和keys方法
+
+//for...of循环，只返回具有数字索引的属性。这点和for...in不一样
+let arr = [3,5,7];
+arr.foo = 'hello';
+
+for(let i in arr){
+	console.log(i);// "0", "1", "2", "foo"
+}
+
+for(let i of arr) {
+	console.log(i); //  "3", "5", "7"
+}
+
+
+// Set和Map
+//遍历顺序是添加进去的顺序，
+//Set返回的是一个值，Map返回的是一个数组
+
+var engines = new Set(['Gecko', 'Trident', 'Webkit', 'Webkit']);
+for(var e of engines){
+	console.log(e);
+};
+
+var map = new Map();
+map.set('edition', 6);
+map.set("committee", "TC39");
+map.set("standard", "ECMA-262");
+
+for(var [name, value] of map){
+	console.log(name + ':'+ value);
+}
+
+let map = new Map().set('a', 1).set('b', 2);
+for (let pair of map) {
+	console.log(pair);
+}
+// ['a', 1]
+// ['b', 2]
+
+for (let [key, value] of map) {
+	console.log(key + ' : ' + value);
+}
+// a : 1
+// b : 2
+
+let arr = ['a', 'b', 'c'];
+for (let pair of arr.entries()) {
+	console.log(pair);
+}
+// [0, 'a']
+// [1, 'b']
+// [2, 'c']
+
+// 对于字符串来说，for...of循环还有一个特点，就是会正确识别32位 UTF-16 字符。
+
+for (let x of 'a\uD83D\uDC0A') {
+	console.log(x);
+}
+// 'a'
+// '\uD83D\uDC0A'
+
+// 并不是所有类似数组的对象都具有 Iterator 接口，一个简便的解决方法，就是使用Array.from方法将其转为数组。
+
+let arrayLike = { length: 2, 0: 'a', 1: 'b' };
+
+// 报错
+for (let x of arrayLike) {
+	console.log(x);
+}
+
+// 正确
+for (let x of Array.from(arrayLike)) {
+	console.log(x);
+}
+
+
+//对象
+// 普通的对象，for...of结构不能直接使用，会报错，
+// 必须部署了 Iterator 接口后才能使用。但是，这样情况下，for...in循环依然可以用来遍历键名。
+let es6 = {
+	edition: 6,
+	committee: "TC39",
+	standard: "ECMA-262"
+};
+
+for (let e in es6) {
+	console.log(e);
+}
+// edition
+// committee
+// standard
+
+for (let e of es6) {
+	console.log(e);
+}
+// TypeError: es6 is not iterable
+
+// 一种解决方法是，使用Object.keys方法将对象的键名生成一个数组，然后遍历这个数组。
+for(var key of Object.keys(someObject)){
+	console.log(key + ': '+ someObject[key]);
+}
+
+//另一种方法是用Generator将对象重新包装一下
+function* entries(obj){
+	for(let key of Object.keys(obj)){
+		yield [key, obj[key]];
+	}
+}
+for(let [key, value] of entries(obj)){
+	console.log(key, '->', value);
+}
+
+
+//与其他遍历语法比较
+//最原始的for循环
+//数组提供的forEach, 中途无法跳出forEach循环，break，return都不奏效。
+//for...in 可以遍历数组键名
+//	缺点： 1.数组的键名是数字，for...in已字符串做键名'0','1'等。
+// 				2. for...in不仅遍历数字键名，还会遍历手动添加的其他键，
+//				3. 某些情况下for...in会以任意顺序遍历键名
+
+//for...of的优点
+//语法同for...in一样，但没有for...in的缺点
+//不同于forEach，可以与break，continue，return配合使用
+// 提供了遍历所有数据结构的统一操作接口。
 
 
 
+/*
+	Generator
+	从语法上理解：是一个状态机，封装了多个内部状态
+	还是一个遍历器生成对象，会返回一个遍历器对象，可以依次遍历Generator函数内部的每一次状态
+
+	两个特征：
+	1.function与函数名之间有个*
+	2.函数体内部用yield表达式（产出）,定义不同的状态
+
+
+ 调用 Generator 函数后，该函数并不执行，返回的也不是函数运行结果，
+ 而是一个指向内部状态的指针对象，也就是遍历器对象（Iterator Object）。
+ 下一步，必须调用遍历器对象的next方法，使得指针移向下一个状态。
+ 也就是说，每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，
+ 直到遇到下一个yield表达式（或return语句）为止。
+ 换言之，Generator 函数是分段执行的，yield表达式是暂停执行的标记，而next方法可以恢复执行。
+ */
 
 
 
+function* helloWorldGenerator(){
+	yield 'hello';
+	yield 'world';
+	return 'ending';
+}
+var hw = helloWorldGenerator();
+//函数有3个状态
 
-
-
-
-
+//
 
 
 
