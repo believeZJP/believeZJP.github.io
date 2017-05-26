@@ -4275,7 +4275,324 @@ function* helloWorldGenerator(){
 var hw = helloWorldGenerator();
 //函数有3个状态
 
-//
+//ES6 没有规定，function关键字与函数名之间的星号，写在哪个位置。这导致下面的写法都能通过。
+
+function * foo(x, y) {}
+function *foo(x, y) {}
+function* foo(x, y) {}
+function*foo(x, y) {}
+
+// 一般都采用第三种写法
+
+//yield 表达式 暂停标志
+
+
+/*
+ 遍历器对象的next方法的运行逻辑如下。
+ （1）遇到yield表达式，就暂停执行后面的操作，并将紧跟在yield后面的那个表达式的值，作为返回的对象的value属性值。
+ （2）下一次调用next方法时，再继续往下执行，直到遇到下一个yield表达式。
+ （3）如果没有再遇到新的yield表达式，就一直运行到函数结束，直到return语句为止，并将return语句后面的表达式的值，作为返回的对象的value属性值。
+ （4）如果该函数没有return语句，则返回的对象的value属性值为undefined。
+
+ yield与return比较
+ 相似：都能返回紧跟在语句后表达式的值
+ 区别：yield，会暂停执行，下次从该位置继续向后执行，return不具有位置记忆功能。
+ 一个函数里只能执行一次return，但可以多次执行yield，
+ yield只能用在Generator中
+ yield如果用在另一个表达式中，必须放在圆括号里
+ yield 用作函数参数或在赋值表达式右边，可以不加括号
+ */
+
+// Generator 可以不用yield，变成单独的暂缓执行函数
+function* f() {
+	console.log('执行了');
+}
+var generator = f();
+setTimeout(function(){
+	generator.next();
+},200);
+
+generator[Symbol.iterator]() === generator;
+
+function* demo(){
+	console.log('Hello'+(yield));
+	console.log('Hello'+(yield 123));
+}
+
+function* demo(){
+	foo(yield  'a', yield  'b');
+	let input = yield;
+}
+
+
+//与Iterator接口的关系
+//Generator就是遍历器生成函数，可以把Generator赋值给对象的Symbol.iterator属性
+//获得该对象的Iterator接口
+
+var myIterable = {};
+myiterable[Symbol.iterator] = function* (){
+	yield 1;
+	yield 2;
+	yield 3;
+};
+
+[...myIterable];
+
+
+//next 方法的参数
+//通过next参数，在Generator开始运行之后，继续向函数提内部注入值，调整函数行为。
+// yield表达式本身没有返回值，或者说总是返回undefined。
+function* foo(x){
+	var y = 2 * (yield (x+1));
+	var z = yield (y/3);
+	return (x+y+z);
+}
+
+var a = foo(5);
+a.next()//6
+a.next()//NaN
+a.next()//NaN
+
+var b = foo(5);
+b.next();//6
+b.next(12);//8
+b.next();//42
+//好难~~~~~~~~~~~~~~~
+
+/*
+ 由于next方法的参数表示上一个yield表达式的返回值，所以第一次使用next方法时，不能带有参数。
+ V8 引擎直接忽略第一次使用next方法时的参数，只有从第二次使用next方法开始，参数才是有效的。
+ 从语义上讲，第一个next方法用来启动遍历器对象，所以不用带有参数。
+ */
+
+// 想要第一次调用next，输入值，可以在Generator外面再包一层
+function wrapper(generatorFunction) {
+	return function(...args){
+		let generatorObject = generatorFunction(...args);
+		generatorObject.next();
+		return generatorObject;
+	};
+}
+
+const wrapped = wrapper(function* (){
+	console.log(`First input: ${yield}`);
+	return 'DONE';
+});
+
+wrapped().next('hello!');
+// First input: hello!
+
+
+//eg:
+function* dataConsumer(){
+	console.log('Started');
+	console.log(`1. ${yield}`);
+	console.log(`2. ${yield}`);
+	return 'result';
+}
+
+let genObj = dataConsumer();
+genObj.next();
+// Started
+genObj.next('a')
+// 1. a
+genObj.next('b')
+// 2. b
+
+
+//3. for...of循环  自动遍历Generator函数时生成的Iterator对象，此时不用调用next方法
+function *foo() {
+	yield 1;
+	yield 2;
+	yield 3;
+	yield 4;
+	yield 5;
+	return 6;
+}
+
+for (let v of foo()) {
+	console.log(v);
+}
+// 1 2 3 4 5
+// 一旦next方法的返回对象的done属性为true，for...of循环就会中止，且不包含该返回对象，
+// 所以上面代码的return语句返回的6，不包括在for...of循环之中。
+
+//利用Generator和for...of循环实现裴波那契数列
+function* fibonacci(){
+	let [pre, curr] = [0,1];
+	for(;;){
+		[pre, curr] = [curr, pre+curr];
+		yield curr;
+	}
+}
+for(let n of fibonacci()){
+	if(n>1000) break;
+	console.log(n);
+}
+
+
+//原生对象通过Generator为它加上遍历接口
+function* objectEntries(obj){
+	let propKeys = Reflect.ownKeys(obj);
+	for(let propKey of propKeys){
+		yield [propKey, obj[propKey]];
+	}
+}
+
+let jane = {first: 'Jane', last: 'Doe'};
+for(let [key,value] of objectEntries(jane)){
+	console.log(`${key}: ${value}`);
+}
+
+
+//除了for...of外，扩展运算副(...),结构赋值和Array.from方法内部调用的都是遍历器接口。
+//都可以将Generator函数返回的Iterator对象作为参数
+
+function* numbers(){
+	yield 1
+	yield 2
+	return 3
+	yield 4
+}
+
+// 扩展运算符
+[...numbers()] // [1, 2]
+
+// Array.from 方法
+Array.from(numbers()) // [1, 2]
+
+// 解构赋值
+let [x, y] = numbers();
+x // 1
+y // 2
+
+// for...of 循环
+for (let n of numbers()) {
+	console.log(n)
+}
+// 1
+// 2
+
+
+//Generator.prototype.throw
+//在函数体外抛出，再Generator函数体内捕获
+var g = function* (){
+	try{
+		yield ;
+	}catch(e){
+		console.log('内部捕获',e);
+	}
+};
+
+var i = g();
+i.next();
+try{
+	i.throw('a');
+	i.throw('b');
+}catch(e){
+	console.log('外部捕获',e);
+}
+// 内部捕获 a
+// 外部捕获 b
+
+
+//throw接受参数，建议抛出Error对象
+var g = function* (){
+	try{
+		yield;
+	}catch(e){
+		console.log(e);
+	}
+};
+var i = g();
+i.next();
+i.throw(new Error('出错了！'));
+
+
+
+
+
+
+
+
+
+
+var foo =function(){
+	return {
+		a: function () {
+			var a = 1;
+			console.log(a);
+		},
+		b: function () {
+			return this.a();
+		}
+	}
+}();
+console.log(foo.b());
+
+
+var a ;
+var foo = function () {
+	var a = b = 2;
+};
+foo();
+console.log(a);
+console.log(b);
+
+for(var i=0;i<5;i++){
+	setTimeout(function () {
+		console.log(i);
+	},0);
+}
+
+
+
+(function(n){
+	return ++n + '1';
+})(1);
+
+
+var Foo = function(){
+	this.name= 'wang';
+}
+var foo = new Foo();
+var bar = {};
+bar.name = foo.name;
+bar.name = 'liu';
+console.log(foo.name);
+
+
+['1','2','3'].map(parseInt)
+// (3) [1, NaN, NaN]
+/*
+ parseInt 需要 2 个参数 (val, radix)， 而 map 传递了 3 个参数 (element, index, array)」。
+ 如果想让 parseInt(string, radix) 返回 NaN，有两种情况：
+ 第一个参数不能转换成数字。
+ 第二个参数不在 2 到 36 之间。
+ 我们传入的参数都能转换成数字，所以只能是第二种可能。
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
