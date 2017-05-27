@@ -4508,69 +4508,303 @@ var i = g();
 i.next();
 i.throw(new Error('出错了！'));
 
-
-
-
-
-
-
-
-
-
-var foo =function(){
-	return {
-		a: function () {
-			var a = 1;
-			console.log(a);
-		},
-		b: function () {
-			return this.a();
-		}
+//throw方法被捕获以后，会附带执行下一条yield表达式。也就是说，会附带执行一次next方法。
+var gen = function* gen(){
+	try{
+		yield console.log('a');
+	}catch(e){
+		//...
 	}
-}();
-console.log(foo.b());
+	yield console.log('b');
+	yield console.log('c');
+}
+
+var g = gen();
+g.next();//a
+g.throw();//b 这里自动执行了一次next方法
+g.next();//c
 
 
-var a ;
-var foo = function () {
-	var a = b = 2;
+//eg
+function* g(){
+	yield 1;
+	console.log('throwing an exception');
+	throw new Error('generator broke!');
+	yield 2;
+	yield 3;
+}
+
+function log(generator){
+	var v;
+	console.log('starting generator');
+	try{
+		v = generator.next();
+		console.log('第一次运行next方法', v);
+	}catch(err){
+		console.log('捕获错误', v);
+	}
+	try{
+		v = generator.next();
+		console.log('第二次运行next方法', v);
+	}catch(err){
+		console.log('捕获错误', v);
+	}
+	try{
+		v = generator.next();
+		console.log('第三次运行next方法', v);
+	}catch(err){
+		console.log('捕获错误', v);
+	}
+	console.log('caller done');
+}
+log(g());
+
+//懵~~~~
+
+
+//5. generator.prototype.return
+//返回给定的值，并且中介遍历Generator函数
+
+function* gen(){
+	yield 1;
+	yield 2;
+	yield 3;
+}
+
+var g = gen();
+g.next();//3,false
+g.return('foo');//foo, true
+g.next();//undefined,true
+
+//若return不提供参数，则返回的value值为undefined
+g.return();//undefined, true
+
+
+//如果Generator函数有try...catch代码块，return会被推迟到finally执行完再执行
+function* numbers(){
+	yield 1;
+	try{
+		yield 2;
+		yield 3;
+	}finally {
+		yield 4;
+		yield 5;
+	}
+	yield 6;
+}
+var g = numbers();
+g.next();//1
+g.next();//2
+g.return('7');//4
+g.next();//5
+g.next();//7,true
+
+
+//6. yield* 表达式
+//用来在一个Generator函数里执行另一个Generator函数
+
+function* foo(){
+	yield 'a';
+	yield 'b';
+}
+
+function* bar() {
+	yield 'x';
+	yield* foo();
+	//这里直接写foo();不会遍历foo
+	yield 'y';
+}
+
+//等同于
+function* bar(){
+	yield 'x';
+	yield 'a';
+	yield 'b';
+	yield 'y';
+}
+// 等同于
+function* bar() {
+	yield 'x';
+	for (let v of foo()) {
+		yield v;
+	}
+	yield 'y';
+}
+
+for(let v of bar()){
+	console.log(v);
+}
+
+
+let delegatedIterator = (function* () {
+	yield 'Hello!';
+	yield 'Bye!';
+}());
+
+let delegatingIterator = (function* () {
+	yield 'Greetings!';
+	yield* delegatedIterator;
+	yield 'Ok, bye.';
+}());
+
+for(let value of delegatingIterator) {
+	console.log(value);
+}
+// "Greetings!
+// "Hello!"
+// "Bye!"
+// "Ok, bye."
+
+
+// yield*后面的 Generator 函数（没有return语句时），等同于在 Generator 函数内部，部署一个for...of循环。
+
+function* concat(iter1, iter2) {
+	yield* iter1;
+	yield* iter2;
+}
+
+// 等同于
+
+function* concat(iter1, iter2) {
+	for (var value of iter1) {
+		yield value;
+	}
+	for (var value of iter2) {
+		yield value;
+	}
+}
+
+//如果yield*后面跟着一个数组，由于数组原生支持遍历器，因此就会遍历数组成员。
+//任何数据结构只要有 Iterator 接口，就可以被yield*遍历。
+let read = (function* () {
+	yield 'hello';
+	yield* 'hello';
+})();
+
+read.next().value // "hello"
+read.next().value // "h"
+
+
+//被代理的 Generator 函数有return语句，那么就可以向代理它的 Generator 函数返回数据。
+function *foo() {
+	yield 2;
+	yield 3;
+	return "foo";
+}
+
+function *bar() {
+	yield 1;
+	var v = yield *foo();
+	console.log( "v: " + v );
+	yield 4;
+}
+
+var it = bar();
+
+it.next()
+// {value: 1, done: false}
+it.next()
+// {value: 2, done: false}
+it.next()
+// {value: 3, done: false}
+it.next();
+// "v: foo"
+// {value: 4, done: false}
+it.next()
+// {value: undefined, done: true}
+
+
+//eg: 获取嵌套数组的所有成员
+function* iterTree(tree){
+	if(Array.isArray(tree)){
+		for(let i=0;i<tree.length;i++){
+			yield* iterTree(tree[i]);
+		}
+	}else{
+		yield tree;
+	}
+}
+
+const tree = [ 'a', ['b', 'c'], ['d', 'e'] ];
+for(let x of iterTree(tree)){
+	console.log(x);
+}
+
+//eg: 使用yield* 遍历完全二叉树
+//下面是二叉树的构造函数，三个参数分别是左树，当前节点，右树
+function Tree(left, label, right){
+	this.left = left;
+	this.label = label;
+	this.right = right;
+}
+
+//中序(inorder)遍历函数
+//由于返回的是一个遍历器，所以要用Generator函数
+//函数体内采用递归算法，所以左树和右树要用yield*遍历
+function* inorder(t){
+	if(t){
+		yield* inorder(t.left);
+		yield t.label;
+		yield* inorder(t.right);
+	}
+}
+
+//生成二叉树
+function make(array){
+//	判断是否为叶节点
+	if(array.length == 1) return new Tree(null, array[0], null);
+	return new Tree(make(array[0]), array[1], make(array[2]));
+}
+let tree = make([[['a'], 'b', ['c']], 'd', [['e'], 'f', ['g']]]);
+
+// 遍历二叉树
+var result = [];
+for (let node of inorder(tree)) {
+	result.push(node);
+}
+
+console.log(result);
+
+
+
+//Generator作为对象属性
+//标识这个属性是个Generator函数
+let Object= {
+	* myGeneratorMethod(){
+	//		...
+	}
+}
+
+//完整形式
+let obj = {
+	myGeneratorMethod: function*(){
+	//	...
+	}
+}
+
+
+//8. Generator 的this
+
+function* g(){}
+g.prototype.hello = function(){
+	return 'hi!';
 };
-foo();
-console.log(a);
-console.log(b);
 
-for(var i=0;i<5;i++){
-	setTimeout(function () {
-		console.log(i);
-	},0);
-}
+let obj = g();
+obj instanceof g;//true
+obj.hello() // 'hi!'
+
+//把g当做普通的构造函数，不会生效，g返回的是遍历器对象，不是this对象。
 
 
 
-(function(n){
-	return ++n + '1';
-})(1);
 
 
-var Foo = function(){
-	this.name= 'wang';
-}
-var foo = new Foo();
-var bar = {};
-bar.name = foo.name;
-bar.name = 'liu';
-console.log(foo.name);
 
 
-['1','2','3'].map(parseInt)
-// (3) [1, NaN, NaN]
-/*
- parseInt 需要 2 个参数 (val, radix)， 而 map 传递了 3 个参数 (element, index, array)」。
- 如果想让 parseInt(string, radix) 返回 NaN，有两种情况：
- 第一个参数不能转换成数字。
- 第二个参数不在 2 到 36 之间。
- 我们传入的参数都能转换成数字，所以只能是第二种可能。
- */
+
+
+
 
 
 

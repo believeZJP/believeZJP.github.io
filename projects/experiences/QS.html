@@ -419,6 +419,73 @@ function unique3(){
 }
 var arr = [112,112,34,'你好',112,112,34,'你好','str','str1'];
 alert(arr.unique3());
+
+
+
+
+
+
+
+
+
+
+
+
+var foo =function(){
+return {
+a: function () {
+var a = 1;
+console.log(a);
+},
+b: function () {
+return this.a();
+}
+}
+}();
+console.log(foo.b());
+
+
+var a ;
+var foo = function () {
+var a = b = 2;
+};
+foo();
+console.log(a);
+console.log(b);
+
+for(var i=0;i<5;i++){
+setTimeout(function () {
+console.log(i);
+},0);
+}
+
+
+
+(function(n){
+return ++n + '1';
+})(1);
+
+
+var Foo = function(){
+this.name= 'wang';
+}
+var foo = new Foo();
+var bar = {};
+bar.name = foo.name;
+bar.name = 'liu';
+console.log(foo.name);
+
+
+['1','2','3'].map(parseInt)
+// (3) [1, NaN, NaN]
+/*
+parseInt 需要 2 个参数 (val, radix)， 而 map 传递了 3 个参数 (element, index, array)」。
+如果想让 parseInt(string, radix) 返回 NaN，有两种情况：
+第一个参数不能转换成数字。
+第二个参数不在 2 到 36 之间。
+我们传入的参数都能转换成数字，所以只能是第二种可能。
+*/
+
 </code>
 	
 </div>
