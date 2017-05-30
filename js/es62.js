@@ -4796,42 +4796,275 @@ obj.hello() // 'hi!'
 
 //把g当做普通的构造函数，不会生效，g返回的是遍历器对象，不是this对象。
 
+//Generator函数不能和new一起用
+new g();//会报错
+
+//让Generator函数返回正常的实例对象，既可以用next，又可以获得正常this
+//首先生成一个空对象，使用call绑定Generator函数的this，构造函数调用后
+//这个空对象就是Generator函数对象的实例对象。
+
+function* F() {
+	this.a = 1;
+	yield this.b = 2;
+	yield this.c = 3;
+}
+var obj = {};
+var f = F.call(obj);
+
+f.next();  // Object {value: 2, done: false}
+f.next();  // Object {value: 3, done: false}
+f.next();  // Object {value: undefined, done: true}
+
+obj.a // 1
+obj.b // 2
+obj.c // 3
+
+//上面代码中执行的是遍历器对象f,但生成的对象实例是obj，
+
+function* F() {
+	this.a = 1;
+	yield this.b = 2;
+	yield this.c = 3;
+}
+var f = F.call(F.prototype);
+
+f.next();  // Object {value: 2, done: false}
+f.next();  // Object {value: 3, done: false}
+f.next();  // Object {value: undefined, done: true}
+
+f.a // 1
+f.b // 2
+f.c // 3
+
+// 再将F改成构造函数，就可以对它执行new命令了。
+function* gen() {
+	this.a = 1;
+	yield this.b = 2;
+	yield this.c = 3;
+}
+
+function F() {
+	return gen.call(gen.prototype);
+}
+
+var f = new F();
+
+f.next();  // Object {value: 2, done: false}
+f.next();  // Object {value: 3, done: false}
+f.next();  // Object {value: undefined, done: true}
+
+f.a // 1
+f.b // 2
+f.c // 3
+
+//9 含义
+//Generator与状态机
+var ticking = true;
+var clock = function () {
+	if(ticking){
+		cosole.log('Tick!');
+	}else{
+		console.log('Tock!');
+	}
+	ticking = !ticking;
+}
+
+//clock有两种状态，Tick和Tock,每运行一次就改变一次状态
+
+//用Generator实现
+var clock = function* () {
+	while(true){
+		console.log('Tick!');
+		yield ;
+		console.log('Tock!');
+		yield ;
+	}
+}
+
+//Generator与ES5比较，少一个保存状态的变量，这样更简洁更安全，
+// (状态不会被篡改)，更符合函数式编程思想，写法也更优雅
+/*Generator之所以不用外部变量保存状态，是因为他本身就包含了一个状态信息
+* 即目前是否处于暂停态。
+* */
+
+//Generator与协程
+
+//10. 应用
+// 1.异步操作的同步表达
+function showLoadingScreen() {}
+function hideLoadingScreen() {}
+function* loadUI() {
+	showLoadingScreen();
+	yield loadUIDataAsynchronously();
+	hideLoadingScreen();
+}
+var loader = loadUI();
+//加载ui
+loader.next();
+//卸载ui
+loader.next();
+
+
+//Generator 函数部署 Ajax 操作，可以用同步的方式表达。
+
+function* main() {
+	var result = yield request('http://example.com');
+	var resp = JSON.parse(result);
+	console.log(resp.value);
+}
+function request() {
+	makeAjaxCall(url, function (response) {
+		it.next(response);
+	});
+}
+var it = main();
+it.next();
+
+//Generator 函数逐行读取文本文件。
+function* numbers() {
+	let file = new FileReader('numbers.txt');
+	try {
+		while (!file.eof){
+			yield parseInt(file.readLine(), 10);
+		}
+	}finally {
+		file.close();
+	}
+}
+
+//2. 控制流管理
+
+//回调嵌套
+step1(function (value1) {
+	step2(value1, function(value2) {
+		step3(value2, function(value3) {
+			step4(value3, function(value4) {
+				// Do something with value4
+			});
+		});
+	});
+});
+
+//采用Promise
+Promise.resolve(step1)
+	.then(step2).then(step3)
+	.then(function (value4) {
+		
+	},function (error) {
+		
+	}).done();
+
+//采用Generator
+function* longRunningTask(value1) {
+	try {
+		var value2 = yield step1(value1);
+		var value3 = yield step1(value2);
+		var value4 = yield step1(value3);
+		var value5 = yield step1(value4);
+	}catch (e){
+
+	}
+}
+
+//使用一个函数，按次序自动执行所有步骤
+scheduler(longRunningTask(initialValue));
+function scheduler(task) {
+	var taskObj = task.next(task.value);
+//	如果Generator函数未结束，则继续调用
+	if(!taskObj.done){
+		task.value = taskObj.value;
+		sheduler(task);
+	}
+}
+//上面的，只适用于同步操作，不能有异步操作。
+
+//利用for...of自动依次执行yield的特性，提供一种控制流管理的方法
+
+let steps = [step1Func, step2Func, step3Func];
+function* iterateSteps(steps) {
+	for(var i=0;i<steps.length;i++){
+		var step = steps[i];
+		yield step();
+	}
+}
+
+//任务分解成步骤之后，还可将项目	分解成多个依次执行的任务
+let jobs = [job1, job2, job3];
+function* iterateJobs(jobs) {
+	for(var i=0;i<jobs.length;i++){
+		var job = jobs[i];
+		yield* iterateSteps(job.steps);
+	}
+}
+
+//jobs封装了一个项目的多个任务，Generator函数iteratorJobs
+//则依次为这些任务加上yield*命令。
+
+//用for...of循环一次性依次执行所有任务的所有步骤
+for(var step of iteratorJobs(jobs)){
+	console.log(step.id);
+}
+//以上只能用于同步操作
+
+//for...of本质是while循环，上面的代码执行的是下面的逻辑
+var it = iteratorJobs(jobs);
+var res = it.next();
+while(!res.done){
+	var result = res.value;
+//	...
+	res = it.next();
+}
 
 
 
+// 3.部署Iterator接口
+//利用Generator在任意对象上部署Irerator接口
+function* iterEntries(obj) {
+	let keys = Object.keys(obj);
+	for(let i=0;i<keys.length;i++){
+		let key = keys[i];
+		yield [key, obj[key]];
+	}
+}
+let obj = {foo:3, bar:7};
+for(let [key,value] of iterEntries(myObj)){
+	console.log(key, value);
+}
+
+//对数组部署Iterator接口，尽管原生具有这个接口
+function* makeSimpleGenerator(array) {
+	var nextIndex = 0;
+	while(nextIndex < array.length){
+		yield array[nextIndex];
+	}
+}
+var gen = makeSimpleGenerator(['yo','ya']);
+gen.next().value;//yo
+gen.next().value;//ya
+gen.next().done;//true
 
 
+//4. 作为数据结构
+// Generator可以作为数据结构，准确的说是数组结构，
+// 因为Generator可以返回一系列的值，它可以对任意表达式提供类似数组的接口
 
+function* doStuff() {
+	yield fs.readFile.bind(null, 'hello.txt');
+	yield fs.readFile.bind(null, 'world.txt');
+	yield fs.readFile.bind(null, 'and-such.txt');
+}
+for(task of doStuff()){
+	//task是个函数，可以像回调函数一样调用函数
+}
 
+//实际上，如果用 ES5 表达，完全可以用数组模拟 Generator 的这种用法。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function doStuff() {
+	return [
+		fs.readFile.bind(null, 'hello.txt'),
+		fs.readFile.bind(null, 'world.txt'),
+		fs.readFile.bind(null, 'and-such.txt')
+	];
+}
 
 
