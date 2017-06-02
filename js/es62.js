@@ -5068,3 +5068,166 @@ function doStuff() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+/*
+	Async 函数
+	是Generator函数的语法糖
+
+
+* */
+
+// Generator依次读取两个文件
+var fs = require('fs');
+var readFile = function (filename) {
+	return new Promise(function (resolve, reject) {
+		fs.readFile(filename, function (error, data) {
+			if(error) reject(error);
+			resolve(data);
+		});
+	});
+};
+
+var gen = function* () {
+	var f1 = yield fs.readFile('/etc/fstab');
+	var f2 = yield fs.readFile('/etc/shells');
+	console.log(f1.toString());
+	console.log(f2.toString());
+}
+
+
+//用async改写
+var asyncReadFile = async function () {
+	var f1 = await readFile('/etc/fstab');
+	var f2 = await readFile('/etc/shells');
+	console.log(f1.toString());
+	console.log(f2.toString());
+}
+//async是将Generator的*换成async,yield换成await,
+
+//async函数对Generator函数的四点改进：
+//1.内置执行器
+//async自带执行器，Generator的执行必须靠执行器，所以依赖co模块
+//async函数的执行，与普通函数一样，只要一行
+var result = asyncReadFile();
+
+//2. 更好的语义
+// async和await,比*，yield有语义，
+
+//3. 更广的适用性
+//co模块约定，yield命令后只能是Thunk函数或Promise对象，
+//而async后面可以是Promise对象，和原始类型的值(数字，布尔值，字符串)，但等同于同步操作
+
+//4. 返回值是Promise
+//async返回值是Promise对象，Generator返回值是Iterator对象
+//async完全可以看做是多个异步操作，包装成的一个Promise对象，
+//而await就是内部then命令的语法糖
+
+
+//2.用法
+// async函数返回一个 Promise 对象，可以使用then方法添加回调函数。
+// 当函数执行的时候，一旦遇到await就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。
+
+//eg
+async function getStockPriceByName(name) {
+	var symbol = await getStockSymbol(name);
+	var stockPrice = await getStockPrice(symbol);
+	return stockPrice;
+}
+getStockPriceByName('goog').then(function (result) {
+	console.log(result);
+});
+
+//eg:指定多少毫秒后输出一个值
+function timeout(ms) {
+	return new Promise((resolve)=> {
+		setTimeout(resolve, ms);
+	});
+};
+
+async function asyncPrint(value, ms) {
+	await timeout(ms);
+	console.log(value);
+}
+
+asyncPrint('Hello World', 50);
+
+//async返回的是Promise对象，可以作为await的参数，上面的可改写为：
+async function timeout(ms) {
+	await new Promise((resolve)=>{
+		setTimeout(resolve, ms);
+	});
+};
+
+async function asyncPrint(value, ms) {
+	await timeout(ms);
+	console.log(value);
+}
+asyncPrint('Hello World', 50);
+
+//async函数有多种使用形式
+
+//函数声明
+async function foo() {
+	
+}
+
+//函数表达式
+const foo = async function () {
+	
+};
+
+//对象的方法
+let obj = {
+	async foo(){}
+};
+obj.foo().then()
+
+//Class的方法
+Class storage{
+	constructor(){
+		this.cachePromise = caches.open('avatars');
+	}
+	async getAvatar(name){
+		const cache = await this.cachePromise;
+		return cache.match(`/avatars/${name}.jpg`);
+	}
+}
+
+const storage = new Storage();
+storage.getAvatar('jake').then()
+
+//箭头函数
+const foo = async() => {};
+
+
+//3. 语法
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
