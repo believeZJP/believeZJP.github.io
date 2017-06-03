@@ -5068,6 +5068,163 @@ function doStuff() {
 }
 
 
+/*
+  
+  Generator 函数的异步应用
+  
+  
+ */
+
+//回调函数地狱 callback hell :代码多重嵌套,不是纵向发展而是横向发展,多个异步形成强耦合
+//读取A文件再读取B文件
+fs.readFile(fileA, 'utf-8', function(err, data){
+	fs.readFile(fileB, 'utf-8', function(err, data){
+	//...
+	});
+});
+
+//Promise将回调函数的嵌套改成链式调用.
+//Promise 最大问题: 代码冗余,看上去都是一堆then,语义不清晰
+var readFile = require('fs-readfile-promise');
+readFile(fileA)
+	.then(function(data){
+		console.log(data.toString());
+	})
+	.then(function(data){
+		return readFile(fileB);
+	})
+	.then(function(data){
+		console.log(data.toString());
+	})
+	.catch(function(err){
+		console.log(err.toString());
+	})
+
+//Generator  最大优点，就是代码的写法非常像同步操作，如果去除yield命令，简直一模一样。
+//缺点: 流程管理不方便,(即何时执行第一阶段,何时执行第二阶段)
+//协程遇到yield命令就暂停，等到执行权返回，再从暂停的地方继续往后执行。
+function* asyncJob(){
+	//...其他代码
+	var f = yield readFile(fileA);
+	//...其他代码
+}
+
+//Generator函数的数据交换和错误处理
+//Generator可以暂停和恢复执行.这是封装异步的根本原因.
+//还有两个特性:函数体内外的数据交换和错误处理机制.
+
+function* gen(x){
+  var y = yield x + 2;
+  return y;
+}
+
+var g = gen(1);
+g.next() // { value: 3, done: false }
+g.next(2) // { value: 2, done: true }
+
+//Generator 函数内部还可以部署错误处理代码，捕获函数体外抛出的错误。
+
+function* gen(x){
+  try {
+    var y = yield x + 2;
+  } catch (e){
+    console.log(e);
+  }
+  return y;
+}
+
+var g = gen(1);
+g.next();
+g.throw('出错了');
+
+
+//异步任务的封装
+var fetch = require('node-fetch');
+function* gen(){
+	var url = 'https://api.github.com/users/github';
+	var result = yield fetch(url);
+	console.log(result.bio);
+}
+
+//执行这段代码的方法如下:
+var g = gen();
+var result = g.next();
+result.value.then(function(data){
+	return data.json();
+}).then(function(data){
+	g.next(data);
+})
+
+
+
+//Thunk函数 JavaScript是传值调用,Thunk函数替换的不是表达式,而是多参函数,
+//将其替换成只接受回调函数作为参数的单参数函数
+
+//正常的readFile(多参数)
+fs.readFile(fileName, callback);
+
+//Thunk版本的readFile(单参数)
+var Thunk = function(fileName){
+	return function (callback){
+		return fs.readFile(fileName, callback);
+	}
+}
+
+var readFileThunk = Thunk(fileName);
+readFileThunk(callback);
+
+
+//任何函数,只要有回调函数,就能写成Thunk函数
+
+//eg: 简单的Thunk 函数转换器
+//ES5
+var Thunk = function(fn){
+	return function(){
+		var args = Array.prototype.slice.call(arguments);
+		return function(callback){
+			args.push(callback);
+			return fn.apply(this, args);
+		}
+	}
+}
+
+//ES6
+const Thunk = function(fn){
+	return function(...args){
+		return function(callback){
+			return fn.call(this, ...args, callback);
+		}
+	}
+}
+
+//生成fs.readFile的Thunk 函数
+var readFileThunk = Thunk(fs.readFile);
+readFileThunk(fileA)(callback);
+
+//eg:完成例子
+function f(a, cb){
+	cb(a);
+}
+const ft = Thunk(f);
+ft(1)(console.log);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -5211,9 +5368,6 @@ const foo = async() => {};
 
 
 //3. 语法
-
-
-
 
 
 
