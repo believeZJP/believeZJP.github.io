@@ -5347,13 +5347,14 @@ const foo = async function () {
 let obj = {
 	async foo(){}
 };
-obj.foo().then()
+obj.foo().then({});
 
 //Class的方法
-Class storage{
+class Storage{
 	constructor(){
 		this.cachePromise = caches.open('avatars');
 	}
+
 	async getAvatar(name){
 		const cache = await this.cachePromise;
 		return cache.match(`/avatars/${name}.jpg`);
@@ -5368,6 +5369,181 @@ const foo = async() => {};
 
 
 //3. 语法
+
+//async函数返回一个Promise对象
+//async内部return返回的值，会成为then方法回调的参数
+
+async function f() {
+	return 'hello world';
+}
+
+f().then(v => console.log(v));
+
+//async内部抛出错误，Promise会变为reject对象
+
+async function f() {
+	throw new Error('出错了');
+}
+f().then(
+	v => console.log(v),
+	e => console.log(e)
+);
+
+//Promise内部状态的变化：只有async内部所有的异步操作执行完，才会执行then的回调函数
+
+//eg:
+async function getTitle(url) {
+	let response = await fetch(url);
+	let html = await response.text();
+	return html.match(/<title>([\s\S]+)<\/title>/i)[1];
+}
+getTitle('https://tc39.github.io/ecma262/').then(console.log)
+//函数getTitle内部有三个操作：抓取网页、取出文本、匹配页面标题。只有这三个操作全部完成，才会执行then方法里面的console.log。
+
+//只要await后面的Promise对象变为reject，那么整个async会中断执行
+
+async function f() {
+	await Promise.reject('出错了');
+	await Promise.resolve('hello world');//不会执行
+}
+
+//解决这种问题，用try...catch
+
+async function f() {
+	try {
+		await Promise.reject('出错了');
+	}catch (e){
+
+	}
+	return await Promise.resolve('hello world');
+}
+f().then(v => console.log(v));
+
+//另一种方法：await后面的Promise再跟一个catch，处理前面可能出现的错误
+async function f() {
+	await Promise.reject('出错了')
+		.catch(e => console.log(e));
+	return await Promise.resolve('hello world');
+}
+f().then(v => console.log(e))
+
+//如果有多个await，可以统一放到try...catch中
+async function main() {
+	try {
+		var val1 = await firstStep();
+		var val2 = await secondStep(val1);
+		var val3 = await thirdStep(val1, val2);
+		console.log('Final: ', val3);
+	}catch(e){
+		console.log(e);
+	}
+}
+
+//使用try...catch多次尝试
+const superagent = require('superagent');
+const NUM_RETRIES = 3;
+
+async function test() {
+	let i ;
+	for(i=0;i<NUM_RETRIES;++i){
+		try{
+			await superagent.get('http://google.com/this-throws-an-error');
+			break;
+		}catch(e){
+
+		}
+	}
+	console.log(i);
+}
+test();
+
+//使用注意点
+//1. 最好把await放在try...catch中
+async function myFunction() {
+	try {
+		await somethingThatReturnsAPromise();
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+// 另一种写法
+
+async function myFunction() {
+	await somethingThatReturnsAPromise()
+		.catch(function (err) {
+			console.log(err);
+		}
+}
+
+//2. 多个await后的异步操作，如果不存在继发关系，最好让它们同时触发
+let foo = await getFoo();
+let bar = await getBar();
+
+//让foo和bar同时触发
+//写法一
+let [foo, bar] = await Promise.all([getFoo(), getBar()]);
+
+//写法二
+let fooPromise = getFoo();
+let barPromise = getBar();
+let foo = await fooPromise;
+let bar = await barPromise;
+
+//上面两种写法，getFoo,getBar同时触发，会缩短程序执行时间
+
+//3. await只能在async中，在普通函数中会报错。
+async function dbFuc(db) {
+	let docs = [{}, {}, {}];
+
+	// 报错
+	docs.forEach(function (doc) {
+		await db.post(doc);
+	});
+}
+//forEach方法的参数改成async函数，也有问题。
+function dbFuc(db) { //这里不需要 async
+	let docs = [{}, {}, {}];
+
+	// 可能得到错误结果
+	docs.forEach(async function (doc) {
+		await db.post(doc);
+	});
+}
+
+//上面代码可能不会正常工作，原因是这时三个db.post操作将是并发执行，也就是同时执行，而不是继发执行。
+// 正确的写法是采用for循环。
+
+async function dbFuc(db) {
+	let docs = [{}, {}, {}];
+
+	for (let doc of docs) {
+		await db.post(doc);
+	}
+}
+
+//如果希望多个请求并发执行，可以使用Promise.all
+async function dbFunc(db) {
+	let docs = [{}, {}, {}];
+	let promises = docs.map((doc) => db.post(db));
+
+	let results = await Promise.all(promises);
+	console.log(results);
+}
+
+//或使用下面方法
+async function dbFunc(db) {
+	let docs = [{}, {}, {}];
+	let promises = docs.map((doc) => db.post(db));
+
+	let results = [];
+	for(let promise of promises){
+		results.push(await promise);
+	}
+	console.log(results);
+}
+
+
 
 
 
