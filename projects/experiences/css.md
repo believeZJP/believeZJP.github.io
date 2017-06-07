@@ -3,7 +3,7 @@
 # CSS 技巧
 
 ## css恶作剧
-
+	原文地址：http://www.cnblogs.com/think_fish/p/3800241.html
 `
 	*{
 	    cursor: none!important;
@@ -74,5 +74,14 @@
 	var a=1,b=2;a=[b,b=a][0];
 `
 
+## 禁止别人以iframe加载你的页面
+`
+	if (window.location != window.parent.location) window.parent.location = window.location;
+`
+---
 
-
+## console.table
+`
+	var data = [{'品名': '杜雷斯', '数量': 4}, {'品名': '冈本', '数量': 3}];
+	console.table(data);
+`
