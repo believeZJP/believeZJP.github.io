@@ -5544,6 +5544,163 @@ async function dbFunc(db) {
 }
 
 
+//4. async函数实现原理：
+//将Generator与自动执行器，包装在一个函数里
+
+async function fn(args) {
+//	...
+}
+
+//等同于
+function fn(args) {
+	return spawn(function* () {
+	//...
+	});
+}
+//spawn就是自动执行器
+//spawn函数的实现
+function spawn(genF) {
+	return new Promise(function (resolve, reject) {
+		var gen = genF();
+		function step(nextF) {
+			try{
+				var next = nextF();
+			}catch (e){
+				return reject(e);
+			}
+			if(next.done){
+				return resolve(next.value);
+			}
+
+			Promise.resolve(next.value).then(function (v) {
+				step(function () {
+					return gen.next(v);
+				}, function (e) {
+					step(function () {
+						return gen.throw(e);
+					});
+				});
+			})
+		}
+		step(function () {
+			return gen.next(undefined);
+		});
+	});
+}
+
+
+//5. 与其他异步处理方法的比较
+//async与Promise，Generator的比较
+
+//Promise 写法
+function chainAnimationsPromise(elem, animations) {
+//	变量ret用来保存上一个动画返回的值
+	var ret = null;
+
+//	新建一个空的Promise
+	var p = Promise.resolve();
+
+//	使用then方法，添加所有动画
+	for(var anim of animations){
+		p = p.then(function (val) {
+			ret = val;
+			return anim(elem);
+		});
+	}
+
+//	返回一个部署了错误捕捉机制的Promise
+	return p.catch(function (e) {
+	//	忽略错误继续执行
+	}).then(function () {
+		return ret;
+	});
+}
+
+//Promise写法比回调函数大大改进了，但代码全是Promise的API
+//操作本身的语义看不出来
+
+//Generator写法
+function chainAnimationsGenerator(elem, animations) {
+	return spawn(function* () {
+		var ret = null;
+		try{
+			for(var anim of animations){
+				ret = yield anim(elem);
+			}
+		}catch(e){
+		//	忽略错误，继续执行
+		}
+		return ret;
+	});
+}
+
+//Generator 语义更清晰，用户定义的操作全在spawn内
+//问题在于，必须有一个任务运行器，自动执行 Generator 函数，
+// 上面代码的spawn函数就是自动执行器，它返回一个 Promise 对象，
+// 而且必须保证yield语句后面的表达式，必须返回一个 Promise。
+
+//async 写法
+async function chainAnimationsAsync(elem, animations) {
+	var ret = null;
+	try{
+		for(var anim of animations){
+			ret = await anim(elem);
+		}
+	}catch (e){
+	//	忽略错误，继续执行
+	}
+	return ret;
+}
+
+//async 最简洁，最符合语义，几乎没有不相关的代码，
+//将Generator写法中的自动执行器，改在语言层面提供，不暴露给用户
+
+
+//6.实例： 按顺序完成异步操作
+
+//Promise的写法
+
+function logInOrder(urls){
+//	远程读取所有url
+	const textPromises = urls.map(url => {
+		return fetch(url).then(response => response.text());
+	});
+
+//	按次序输出
+	textPromises.reduce((chain, textPromises) => {
+		return chain.then(() => textPromise)
+			.then(text => console.log(text));
+	}, Promise.resolve());
+}
+//reduce 方法依次处理每个Promise，然后用then将所有Promise对象联系来，可以依次输出结果。
+
+//async函数实现
+async function logInOrder(urls) {
+	for(const url of urls){
+		const response = await fetch(url);
+		console.log(await response.text());
+	}
+}
+
+//上述代码是继发，效率会很差，需要并发执行
+
+async function logInOrder(urls) {
+//	并发读取url
+	const textPromises = urls.map(async url => {
+		const response = await fetch(url);
+		return response.text();
+	});
+
+//	按次序输出
+	for(const textPromise of textPromises){
+		console.log(await textPromise);
+	}
+}
+
+
+//7. 异步遍历器
+
+
 
 
 
