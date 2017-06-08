@@ -5805,6 +5805,7 @@ asyncIterator.next().then({
 });
 
 //eg:
+function createAsyncIterable(){}
 const asyncIterable = createAsyncIterable(['a', 'b']);
 const asyncIterator = asyncIterable[Symbol.asyncIterator]();
 
@@ -5831,7 +5832,8 @@ async function f() {
 
 //next连续调用
 const asyncGenObj = createAsyncIterable(['a', 'b']);
-const [{valaue: v1}, {value: v2}] = await Promise.all([
+var v1,v2;
+const [{value: v1}, {value: v2}] = await Promise.all([
 	asyncGenObj.next(), asyncGenObj.next()
 ]);
 console.log(v1, v2);
@@ -5854,7 +5856,7 @@ async function f(){
 
 //用途:部署了asyncIterator操作的异步接口,可以直接放入这个循环中
 let body = '';
-for(await const data of req) body += data;
+for await(const data of req) body += data;
 const parsed = JSON.parse(body);
 console.log('got', parsed);
 
@@ -5908,16 +5910,76 @@ async function* prefixLines(asyncIterable){
 //yield命令是立即返回的,但返回的是一个Promise对象,
 async function* asyncGenerator(){
 	console.log('Start');
-	const result = await doSomethingA()
+	const result = await doSomethingAsync();
+	yield 'Result' + result;
+	console.log('Done');
 }
 
 
+//普通async函数返回的是Promise对象，而异步Generator返回的是一个异步Iterator对象
+//async函数和异步 Generator 函数，是封装异步操作的两种方法，都用来达到同一种目的。
+//区别在于，前者自带执行器，后者通过for await...of执行，或者自己编写执行器。
+
+//异步Generator的执行器
+async function takeAsync(asyncIterable, count=Infinity) {
+	const result = [];
+	const iterator = asyncIterable[Symbol.asyncIterator]();
+	while (result.length < count){
+		const {value, done} = await iterator.next();
+		if(done) break;
+		result.push(value);
+	}
+	return result;
+}
+
+//上面代码，异步Generator函数产生的异步遍历器，会通过while循环自动执行
+//当await iterator.next()完成，就会进入下一个循环。
 
 
+//自动执行器的一个实例
+async function f() {
+	async function* gen() {
+		yield 'a';
+		yield 'b';
+		yield 'c';
+	}
+	return await takeAsync(gen());
+}
+f().then(function (result) {
+	console.log(result);
+});
+
+//JavaScript有四种函数形式：
+// 普通函数，async函数， Generator函数，异步Generator函数。注意区分不同点
+
+// 同步的数据结构，也能用异步Generator函数
+async function* createAsyncIterable(syncIterable) {
+	for(const elem of syncIterable){
+		yield elem;
+	}
+}
+//上述代码，没有异步操作，所以没有await
 
 
+//yield*
+//可以跟一个异步遍历器
 
+async function* gen1() {
+	yield 'a';
+	yield 'b';
+	return 2;
+}
+async function* gen2() {
+	const result = yield* gen1();
+}
 
+//与同步Generator函数一样，for await...of循环会展开yield*
+
+(async function () {
+	for await (const x of gen2()){
+		console.log(x);
+	}
+})();
 
 
 
