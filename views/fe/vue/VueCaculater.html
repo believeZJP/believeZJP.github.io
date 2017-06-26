@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vue 计算器</title>
+		<script src="../../../js/libs/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/libs/vuex.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+
+
+		</style>
+	</head>
+	<body>
+
+	<!--app-->
+	<div id="app">
+		<div class="result">{{result}}</div>
+		<!--<div class="enter">{{enter === "":0?enter}}</div>-->
+		<div class="enter">{{enter}}</div>
+		<div class="keys">
+			<div class="list">
+				<!--键盘区域-->
+				<keyboard v-for="item in keys"
+					:value="item">
+				</keyboard>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<script>
+		//创建仓库store
+		const store = new Vuex.Store({
+			state: {
+				result: '',//运算结果
+				enter: ''//输入的值
+			},
+//			定义名为calculate的mutation
+			mutations:{
+				calculate(state, value){
+					if(value === '='){
+//					按键的值为=，进行运算
+						state.result = eval(state.enter);
+						state.enter += value;
+					}else if(value === 'clear'){
+//						按键的值为clear，清空数据
+						state.result = state.enter = '';
+					}else{
+						state.enter += value;
+					}
+				}
+			}
+		})
+
+		//自定义组件
+		Vue.component('keyboard', {
+			//接受的参数，代表value的值
+			props: ['value'],
+//	点击事件的监听处理
+			template: `
+				<div
+					@click="getKeyboardValue"
+					:data-value="value">
+					{{value}}
+				</div>
+				`,
+			methods:{
+//点击事件处理函数
+				getKeyboardValue(event){
+//					获取当前按键的值
+					let value = event.target.dataset.value;
+					this.$store.commit('calculate', value);
+				}
+			}
+		});
+
+
+//		创建Vue实例
+		const app = new Vue({
+			//挂载元素
+			el: '#app',
+//			将仓库store和Vue实例关联起来,能通过this.$store访问
+			store, //相当于store:store,
+			data:{
+				//16个按键的值
+				keys: [
+					'clear', '+', '-', '*',
+					'7', '8', '9', '/',
+					'4', '5', '6', '0',
+					'1', '2', '3', '=',
+				]
+			},
+//			增加计算属性
+			computed: {
+				result(){
+//					通过this.$store获取仓库的数据result
+					return this.$store.state.result;
+				},
+				enter(){
+					return this.$store.state.enter;
+				}
+			}
+		});
+	</script>
+	</body>
+</html>
