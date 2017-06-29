@@ -6,6 +6,11 @@
 		<script src="../../../js/libs/vue.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../../../js/libs/vuex.js" type="text/javascript" charset="utf-8"></script>
 		<style>
+			*{padding:0;margin:0;}
+			.resultArea{
+				background-color: #E0E0E0;
+				height:90px;
+			}
 			.result{
 				font-size:40px;
 				height:50px;
@@ -24,11 +29,15 @@
 				width:25%;
 				display: inline-block;
 				font-size:30px;
-				border-bottom:1px solid rgba(0,0,0,.54);
-				background-color: rgba(0,0,0,.12);
+				border-bottom:1px solid #E0E0E0;
+				background-color: #F0F0F0;
+				text-align: center;
+				cursor: pointer;
 
 			}
-
+			.list div:first-child{
+				color: red;
+			}
 
 		</style>
 	</head>
@@ -36,9 +45,18 @@
 
 	<!--app-->
 	<div id="app">
-		<div class="result">{{result}}</div>
-		<!--<div class="enter">{{enter === "":0?enter}}</div>-->
-		<div class="enter">{{enter}}</div>
+		<div class="resultArea">
+			<div class="result">
+				<div v-if="result ===''">0</div>
+				<div v-else>{{result}}</div>
+			</div>
+			<!--<div class="enter">{{enter === "":0?enter}}</div>-->
+			<div class="enter">
+				<div v-if="enter ===''">0</div>
+				<div v-else>{{enter}}</div>
+			</div>
+			
+		</div>
 		<div class="keys">
 			<div class="list">
 				<!--键盘区域-->
@@ -57,8 +75,8 @@
 		//创建仓库store
 		const store = new Vuex.Store({
 			state: {
-				result: 0,//运算结果
-				enter: 0//输入的值
+				result: '',//运算结果
+				enter: ''//输入的值
 			},
 //			定义名为calculate的mutation
 			mutations:{
