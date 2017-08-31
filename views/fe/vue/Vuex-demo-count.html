@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Vuex 计数器</title>
+		<script src="../../../js/libs/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../../../js/libs/vuex.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			
+
+		</style>
+	</head>
+	<body>
+
+	<!--app-->
+	<div id="app">
+		<h1>{{count}}</h1>
+		<p>
+			<button @click="increment">+</button>
+			<button @click="decrement">-</button>
+		</p>
+		
+	</div>
+
+
+
+
+
+	<script>
+		//创建仓库store
+		const store = new Vuex.Store({
+			state: {
+				count: 0
+			},
+//			定义名为calculate的mutation
+			mutations:{
+				increment: state => state.count++,
+				decrement: state => state.count--
+			}
+		})
+
+
+
+//		创建Vue实例
+		const app = new Vue({
+			//挂载元素
+			el: '#app',
+//			将仓库store和Vue实例关联起来,能通过this.$store访问
+//			store, //相当于store:store,
+//			增加计算属性
+			computed: {
+				count(){
+					return store.state.count;
+				}
+			},
+			methods: {
+				increment () {
+//					唤醒一个 mutation handler，你需要以相应的 type 调用 store.commit 方法：
+					store.commit('increment')
+				},
+				decrement(){
+					store.commit('decrement')
+				}
+			}
+		});
+	</script>
+	</body>
+</html>
