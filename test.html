@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>css-all</title>
+    <style>
+    *{padding: 0;margin: 0;}
+    body{background-color: #F5F5F5;}
+    	ul{font-size: 0;}
+      li{list-style:none;width: 25%;height:50px;line-height: 50px;text-align: center;display: inline-block;
+      	border: 1px solid #1D1F2c;font-size: 14px;box-sizing: border-box;
+      }
+      #cover{
+      	height:100px;
+      	width:100%;
+      	background-image:-webkit-linear-gradient(rgba(255,255,255,0),rgba(255,255,205,1));
+      	background-image:linear-gradient(rgba(255,255,255,0),rgba(255,255,205,1));
+      	position: absolute;
+      	top:50px;
+      }
+      #con{
+      	position: relative;
+      }
+      .moreli{
+      	display: none;
+      }
+      #btn{
+      	margin: 0 auto;
+      	bottom: 0;
+      	text-align: center;
+      }
+      #btn-hide{
+      	display: none;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="con">
+      <ul>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+      </ul>
+      <ul class="moreli">
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+        <li>a</li>
+      </ul>
+      
+      <div id="cover">
+      </div> 
+      <div style="height: 200px;"></div>
+      	<button id="btn">显示</button>
+      	<button id="btn-hide">隐藏</button>
+    </div>
+    <script type="text/javascript">
+    	var moreLi = document.querySelector('.moreli');
+    	var btn = document.querySelector('#btn');
+    	var btnHide = document.querySelector('#btn-hide');
+    	var cover = document.querySelector('#cover');
+    	btn.onclick = function () {
+    		var display = moreLi.style.display;
+				moreLi.style.display = 'block';
+    		cover.style.display = 'none';
+    		btn.style.display = 'none';
+    		btnHide.style.display = 'inline-block';
+    	}
+    	btnHide.onclick = function () {
+    		var display = moreLi.style.display;
+				moreLi.style.display = 'none';
+    		cover.style.display = 'block'; 
+    		btnHide.style.display = 'none';
+    		btn.style.display = 'inline-block';
+    	}
+    </script>
+  </body>
+</html>

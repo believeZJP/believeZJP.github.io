@@ -1,0 +1,36 @@
+
+  <!DOCTYPE html>
+  <html>
+	<head>
+		<meta charset="utf-8">
+	</head>
+	
+	<body>
+		<a id="down" style="cursor:pointer">点我下载</a>
+	
+	
+	
+	<script>
+		document.getElementById('down').onclick = function(){
+			downloadFile('https://xcycdn-video.zhongguowangshi.com/report-video/f431bebd-3672-41a6-990d-7ee2042ce813.mp4');
+		}
+		function downloadFile(url){
+			let link = document.createElement('a')
+			if (link.download !== undefined) {
+				link.setAttribute('href', url)
+				link.setAttribute('download', '视频')
+				link.style.visibility = 'hidden'
+				document.body.appendChild(link)
+				link.click()
+				document.body.removeChild(link)
+			} else {
+				console.warn('当前浏览器不支持下载~')
+			}
+		
+		}
+		  
+	</script>
+	</body>
+  
+  </html>
+  
