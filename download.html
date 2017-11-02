@@ -3,17 +3,41 @@
   <html>
 	<head>
 		<meta charset="utf-8">
+		<style>
+			body{
+				padding:30px;
+			}
+			a{
+				padding: 20px 30px;
+				border-radius: 2px;
+				margin-right: 20px;
+    			background-color: #ff4081;
+				color: #FFF;
+    			box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+				cursor: pointer;
+				transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+			}
+			a:hover{
+				background-color: rgba(255, 64, 129,0.76);
+			}
+		</style>
 	</head>
 	
 	<body>
-		<a id="down" style="cursor:pointer">点我下载</a>
-	
+		<a id="down">点我下载视频</a>
+		<a id="test" onclick="clickDownload(this)" download="下载.csv" href="#">download csv</a>      
+		<a id="exportCSV">点我下载CSV</a>
 	
 	
 	<script>
 		document.getElementById('down').onclick = function(){
 			downloadFile('https://xcycdn-video.zhongguowangshi.com/report-video/f431bebd-3672-41a6-990d-7ee2042ce813.mp4');
 		}
+		document.getElementById('exportCSV').onclick = function(){
+			var str = '23341,1233#@&\n232332,42342$@#$\n232332,423a42$@#$';
+			exportCSV('下载的文件', str);
+		}
+		// 下载视频
 		function downloadFile(url){
 			let link = document.createElement('a')
 			if (link.download !== undefined) {
@@ -28,6 +52,80 @@
 			}
 		
 		}
+		// 给定字符串和文件名下载csv
+		function exportCSV (fileName, fileStr) {
+			let compatible = '\uFEFF'
+			let blob = new Blob([compatible + fileStr], { type: 'text/csv;charset=utf-8;' })
+			let link = document.createElement('a')
+			// feature detection
+			if (link.download !== undefined) {
+				// Browsers that support HTML5 download attribute
+				let url = URL.createObjectURL(blob)
+				link.setAttribute('href', url)
+				link.setAttribute('download', fileName + '.csv')
+				link.style.visibility = 'hidden'
+				document.body.appendChild(link)
+				link.click()
+				document.body.removeChild(link)
+			} else {
+				console.warn('当前浏览器不支持下载~')
+			}
+		}
+		function clickDownload(aLink){  
+         var str = "栏位1,栏位2,栏位3\n值1,值2,值3,10";  
+         str =  encodeURIComponent(str);  
+         aLink.href = "data:text/csv;charset=utf-8,\ufeff"+str;  
+		}
+		
+		// 更详尽的写法
+		exportToCsv = function(filename, rows) {
+			// 处理每行的具体数据
+        var processRow = function (row) {
+            var finalVal = '';
+            for (var j = 0; j < row.length; j++) {
+								var innerValue = row[j] ? row[j].toString() : '';
+								// 是日期的话转成string
+                if (row[j] instanceof Date) {
+                    innerValue = row[j].toLocaleString();
+								};
+								// 替换双引号
+                var result = innerValue.replace(/"/g, '""');
+                if (result.search(/("|,|\n)/g) >= 0)
+										result = '"' + result + '"';
+								// 在每列后加,
+                if (j > 0)
+                    finalVal += ',';
+                finalVal += result;
+						}
+						// 在行末加回车
+            return finalVal + '\n';
+        };
+
+        var csvFile = '';
+        for (var i = 0; i < rows.length; i++) {
+            csvFile += processRow(rows[i]);
+				}
+				// 添加csv的头信息
+        var compatible = "\uFEFF";
+				var blob = new Blob([compatible + csvFile], { type: 'text/csv;charset=utf-8;' });
+				// 判断浏览器支持语法，保存文件
+        if (navigator.msSaveBlob) { // IE 10+
+            navigator.msSaveBlob(blob, filename);
+        } else {
+            var link = document.createElement("a");
+
+            if (link.download !== undefined) { // feature detection
+                // Browsers that support HTML5 download attribute
+                var url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", filename + '.csv');
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+    }
 		  
 	</script>
 	</body>
