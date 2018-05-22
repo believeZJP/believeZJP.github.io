@@ -1,3 +1,4 @@
 Hi,GitCafe. test for vi  haha 按i就可以编辑啦。
   按esc可以退出编辑模式
 新加一行，测试服务器提交到github.
+test
