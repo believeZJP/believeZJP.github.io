@@ -41,12 +41,39 @@ onLaunch: function () {
 
 一般来说，wx:if 有更高的切换消耗而 hidden 有更高的初始渲染消耗。因此，如果需要频繁切换的情景下，用 hidden 更好，如果在运行时条件不大可能改变则 wx:if 较好。
 
+- ## bind事件绑定不会阻止冒泡事件向上冒泡，catch事件绑定可以阻止冒泡事件向上冒泡。
+
+- ## 在捕获阶段监听事件时，可以采用capture-bind、capture-catch关键字，后者将中断捕获阶段和取消冒泡阶段。
+
+
+- ## dataset
+
+在组件中可以定义数据，这些数据将会通过事件传递给 SERVICE。 书写方式： 以data-开头，多个单词由连字符-链接，不能有大写(大写会自动转成小写)如data-element-type，最终在 event.currentTarget.dataset 中会将连字符转成驼峰elementType。
+```
+<view data-alpha-beta="1" data-alphaBeta="2" bindtap="bindViewTap"> DataSet Test </view>
+```
+
+
+
+
+
 
 
 
 # 出错解决
 ## 1. 短信发送验证码 提示出错，
 解决办法，开发者id没有权限
+将开发者id添加到项目里
 
 ## 2. 引入node_modules
+
 小程序目前不支持直接引入 node_modules , 开发者需要使用到 node_modules 时候建议拷贝出相关的代码到小程序的目录中。
+
+
+# 项目中的问题
+
+登陆成功后没有跳转, 原因是成功后没有跳转url, 登陆只在首页有, 所以没有跳转url,  
+
+页面加载在onshow阶段, 会判断是否有cookie存在, 如果没有, 则跳转到登陆页面, 有则显示具体页面。
+
+这里有判断cookie存在的逻辑。
