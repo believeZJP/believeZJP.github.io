@@ -77,3 +77,48 @@ onLaunch: function () {
 页面加载在onshow阶段, 会判断是否有cookie存在, 如果没有, 则跳转到登陆页面, 有则显示具体页面。
 
 这里有判断cookie存在的逻辑。
+
+
+
+# 实现功能
+
+## 长按复制, 提示已复制
+用到的API:
+
+- wx.setClipboardData wx.getClipboardData
+- wx.showToast
+- data-*
+- text标签设置 selectable=’true’
+  只有本文在text内才可以复制其他的是不可以复制的
+
+
+```
+<text selectable="true" bindlongpress="copyTBL" data-copy='www.jd.com'>
+      www.jd.com
+    </text>
+```
+
+```
+copyTBL: function (e) {
+      var self = this;
+      wx.setClipboardData({
+        data: e.target.dataset.copy,
+        success: function (res) {
+          wx.showToast({
+            title: '已复制',
+            duration: 1000
+          })
+        }
+      })
+    }
+```
+
+## 判断当前用户登陆状态
+
+需要设置默认的三个data值
+```
+isLogined: false,
+fromPageLevel: 1,
+jump2loginNum: 0,
+```
+
