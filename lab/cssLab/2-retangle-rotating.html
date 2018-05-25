@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rectangular-rotating-loader-animation</title>
+    <style>
+        html, body{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            flex-direction: column;
+        }
+        /* 设置容器尺寸 */
+        .loader{
+            height: 15rem;
+            width: 15rem;
+            position: relative;
+        }
+
+        /* 设置矩形的样式 */
+        .loader span{
+            position: absolute;
+            box-sizing: border-box;
+            border: 1rem solid dimgray;
+            border-radius: 0.2rem;
+        }
+        /* 设置三个矩形尺寸 */
+        .loader span:nth-child(1){
+            height: 100%;
+            width: 100%;
+        }
+        .loader span:nth-child(2){
+            height: 70%;
+            width: 70%;
+            margin: 15%;
+        }
+        .loader span:nth-child(3){
+            height: 40%;
+            width: 40%;
+            margin: 30%;
+        }
+        /* 用伪元素绘制左上和右下的装饰条 */
+        .loader span::before, .loader span::after{
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 50%;
+            background: gold;
+        }
+
+        .loader span::before{
+            top: -1rem;
+            left: -1rem;
+        }
+        .loader span::after{
+            bottom: -1rem;
+            right: -1rem;
+        }
+        /* 定义动画效果 */
+        @keyframes rotating{
+            from{
+                transform: rotateY(0deg);
+            }
+            to{
+                transform: rotateY(360deg);
+            }
+        }
+        /* 把动画用到3个矩形上 */
+        .loader span{
+            animation: rotating linear infinite;
+        }
+        .loader span:nth-child(1){
+            animation-duration: 4s;
+        }
+        .loader span:nth-child(2){
+            animation-duration: 2s;
+        }
+        .loader span:nth-child(3){
+            animation-duration: 1s;
+        }
+        /* 设置3个矩形的堆叠顺序 */
+        .loader span:nth-child(1){
+            z-index: 3;
+        }
+        .loader span:nth-child(2){
+            z-index: 2;
+        }
+        .loader span:nth-child(3){
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div>
+        <code>
+            <pre style="color: #FFF;">
+                用到的知识点：
+                @keyframes
+                animation-duration
+                rotateY
+                nth-child
+                z-index
+                ::before
+                ::after
+            </pre>
+        </code>
+    </div>
+</body>
+</html>
