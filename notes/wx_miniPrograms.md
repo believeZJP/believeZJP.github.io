@@ -122,3 +122,22 @@ fromPageLevel: 1,
 jump2loginNum: 0,
 ```
 
+## 转发 分享 按钮
+不论是右上角的转发还是点击页面内分享按钮, 调用的方法都是page里的onShareAppMessage. 
+
+可以通过res.from 来判断转发是来自于哪里的.
+```
+  Page({
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '自定义转发标题',
+      path: '/page/user?id=123'
+    }
+  }
+})
+
+```

@@ -10,7 +10,7 @@ TODO LIST
 
 # 每日完成任务
 
-[前端每日挑战 front-end-daily-challenges ](front-end-daily-challenges)
+[前端每日挑战 front-end-daily-challenges ](https://github.com/comehope/front-end-daily-challenges)
 
 
 Node.js学习

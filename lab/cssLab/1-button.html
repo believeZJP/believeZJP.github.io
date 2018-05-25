@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> 按钮文字滑动特效</title>
+    <style>
+        /* 居中 */
+        
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 设置按钮尺寸样式 */
+        
+        .box {
+            width: 20rem;
+            height: 6rem;
+            border: 2px solid black;
+            text-align: center;
+            font-size: 3rem;
+            line-height: 6rem;
+            font-family: sans-serif;
+        }
+        /* 每个字母设置为行内块元素 */
+        
+        .box span {
+            display: inline-block;
+            color: blue;
+        }
+        /* 字母交错显示在容器之外 */
+        
+        .box span:nth-child(odd) {
+            transform: translateY(-100%);
+        }
+        
+        .box span:nth-child(even) {
+            transform: translateY(100%);
+        }
+        /* 用伪类元素为每个字母增加一个副本 */
+        
+        .box span::before {
+            content: attr(data-text);
+            position: absolute;
+            color: red;
+        }
+        /* 让伪元素的字母也交错显示，位置与其原始元素相对 */
+        
+        .box span:nth-child(odd)::before {
+            transform: translateY(100%);
+        }
+        
+        .box span:nth-child(even)::before {
+            transform: translateY(-100%);
+        }
+        /* 增加鼠标划过样式，设置动画缓动时间 */
+        
+        .box:hover span {
+            transform: translateY(0);
+        }
+        
+        .box span {
+            transition: 0.5s;
+        }
+        /* 隐藏容器外的元素 */
+        
+        .box {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span data-text="B">B</span>
+        <span data-text="U">U</span>
+        <span data-text="T">T</span>
+        <span data-text="T">T</span>
+        <span data-text="O">O</span>
+        <span data-text="N">N</span>
+    </div>
+
+    <code>
+        <pre>
+            用到的知识点:
+                ::before
+                translateY
+                data-*
+                content
+                nth-child
+
+        </pre>
+    </code>
+</body>
+
+</html>
