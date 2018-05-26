@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>diagonal strip border effects</title>
+    <style>
+        html, body{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .box{
+            width:30rem;
+            height: 30rem;
+            /* 画条纹背景 */
+            background: linear-gradient(-45deg, white 0%, white 25%, hotpink 25%,hotpink 50%, white 50%, white 75%, hotpink 75%, hotpink 100%);
+            background-size: 10%;
+            /* 留出边框 */
+            box-sizing: border-box;
+            padding: 1.5rem;
+            /* 添加动画 */
+            animation: animate 2s linear infinite;
+        }
+        .box .content{
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            flex-direction: column;
+            box-sizing: border-box;
+            padding: 3rem;
+            text-align: 3rem;
+            font-family: sans-serif;
+        }
+        .box .content h2{
+            color: deeppink;
+        }
+        .box .content p{
+            color: dimgray;
+        }
+        /* 厚边框立体效果 */
+        .box, .box .content{
+            box-shadow: 0 0 2px deeppink, 0 0 5px rgba(0, 0, 0, 1), inset 0 0 5px rgba(0, 0, 0, 1);
+            border-radius: 1rem;
+        }
+        @keyframes animate{
+            from {
+                background-position: 0;
+            }
+            to {
+                background-position: 10%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="content">
+                <h2>What is Lorem Ipsum?</h2>
+                <p>Mauris volutpat risus quis nisi tempus hendrerit. Nullam nisi urna, suscipit quis risus sed, congue congue quam. Morbi sit amet suscipit ex. Vivamus vel nulla ac libero volutpat ultrices.</p>
+        </div>
+    </div>
+    <div>
+        <code>
+            <pre>
+                用到的属性：
+                linear-gradient
+                box-shadow
+                @keyframes
+                background-size
+                background-position
+                lorem ipsum
+            </pre>
+        </code>
+    </div>
+</body>
+</html>
