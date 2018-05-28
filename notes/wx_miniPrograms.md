@@ -121,6 +121,53 @@ isLogined: false,
 fromPageLevel: 1,
 jump2loginNum: 0,
 ```
+## 微信小程序中设置cookie
+
+  需求： 首次进入页面，显示弹框，如果不关闭，每次进入都显示。
+         若用户主动关闭，则不再显示。
+
+  解决方案：
+      
+      pc端设置cookie即可。
+
+      小程序端通过wx.setStorageaSync和wx.getStorageSync来设置本地缓存。
+  tips:
+  
+      - storage不是响应式数据，要想绑定到页面，需要在对应页面也设置变量对应到页面上。
+
+      - storage中没有对应的key值，getStorage获取到的是空字符串。
+
+      - storage的值在页面data中可以初始化为空，在onload的钩子中可以调用wx.getStorageAsync('key')
+      根据取到的数据，如果为''的话可以设置为默认值。
+
+      - 在绑定事件中setStorage后，storage发生变化，但是没有跟页面绑定，页面不会发生变化。
+        setStorage同时，也要setData。
+
+
+```
+<!-- 页面中定义值，storage暂时不处理 -->
+data: {
+  isInfoVisiable: '',
+}
+
+<!-- 页面加载时，获取当前值，如果没有，设为默认值 -->
+onLoad: function(options) {
+  let infoFlag = wx.getStorageSync('isInfoVisiable')
+  infoFlag = infoFlag === '' ? true : infoFlag
+  this.setData({
+    isInfoVisiable: infoFlag
+    });
+}
+<!-- 绑定事件中修改storage的值，同时也要改data的值 -->
+closeInfoLayer: function() {
+  wx.setStorageSync('isInfoVisiable', false)
+  this.setData({
+    isInfoVisiable: false
+  })
+}
+```
+    
+
 
 ## 转发 分享 按钮
 不论是右上角的转发还是点击页面内分享按钮, 调用的方法都是page里的onShareAppMessage. 
@@ -141,3 +188,13 @@ jump2loginNum: 0,
 })
 
 ```
+
+
+# 开发工具
+
+## 问题一 图片压缩
+ UI给的图片太大了，让他压缩居然说不能压了。
+ 
+ 在[tinypng.com](https://tinypng.com/)自己压缩了。
+
+ 图片转base64,[网站链接](http://imgbase64.duoshitong.com/)
