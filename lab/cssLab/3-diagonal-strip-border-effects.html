@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>diagonal strip border effects</title>
     <style>
-        html, body{
+        html,
+        body {
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            margin: 15rem 0;
         }
-        .box{
-            width:30rem;
+        
+        .box {
+            width: 30rem;
             height: 30rem;
             /* 画条纹背景 */
-            background: linear-gradient(-45deg, white 0%, white 25%, hotpink 25%,hotpink 50%, white 50%, white 75%, hotpink 75%, hotpink 100%);
+            background: linear-gradient(-45deg, white 0%, white 25%, hotpink 25%, hotpink 50%, white 50%, white 75%, hotpink 75%, hotpink 100%);
             background-size: 10%;
             /* 留出边框 */
             box-sizing: border-box;
@@ -25,7 +29,8 @@
             /* 添加动画 */
             animation: animate 2s linear infinite;
         }
-        .box .content{
+        
+        .box .content {
             height: 100%;
             display: flex;
             align-items: center;
@@ -37,18 +42,23 @@
             text-align: 3rem;
             font-family: sans-serif;
         }
-        .box .content h2{
+        
+        .box .content h2 {
             color: deeppink;
         }
-        .box .content p{
+        
+        .box .content p {
             color: dimgray;
         }
         /* 厚边框立体效果 */
-        .box, .box .content{
+        
+        .box,
+        .box .content {
             box-shadow: 0 0 2px deeppink, 0 0 5px rgba(0, 0, 0, 1), inset 0 0 5px rgba(0, 0, 0, 1);
             border-radius: 1rem;
         }
-        @keyframes animate{
+        
+        @keyframes animate {
             from {
                 background-position: 0;
             }
@@ -56,13 +66,60 @@
                 background-position: 10%;
             }
         }
+        /* button4 */
+        
+        .box4 {
+            background: linear-gradient(to right, gold, darkorange);
+            color: white;
+            --width: 25rem;
+            --height: calc(var(--width)/3);
+            width: var(--width);
+            height: var(--height);
+            text-align: center;
+            line-height: var(--height);
+            font-size: calc(var(--height)/2.5);
+            font-family: sans-serif;
+            letter-spacing: 0.2rem;
+            border: 0.1rem solid darkgoldenrod;
+            border-radius: 2rem;
+            /* 设置3d样式 */
+            transform: perspective(50rem) rotateY(-15deg);
+            text-shadow: 0.6rem 0.3rem 0.2rem rgba(0, 0, 0, 0.2);
+            box-shadow: 0.2rem 0 0 0.5rem rgba(0, 0, 0, 0.2);
+            transition: 0.5s;
+            overflow: hidden;
+        }
+        /* 用伪元素增加光泽 */
+        
+        .box4::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, white, transparent);
+            left: 0;
+            left: -100%;
+            transition: 0.5s;
+        }
+        /* 鼠标划过 */
+        
+        .box4:hover {
+            transform: perspective(50rem) rotateY(15deg);
+            text-shadow: -0.6rem 0.3rem 0.2rem rgba(0, 0, 0, 0.2);
+            box-shadow: -0.2rem 0 0 0.5rem rgba(0, 0, 0, 0.2);
+        }
+        
+        .box4:hover::before {
+            left: 100%;
+        }
     </style>
 </head>
+
 <body>
     <div class="box">
         <div class="content">
-                <h2>What is Lorem Ipsum?</h2>
-                <p>Mauris volutpat risus quis nisi tempus hendrerit. Nullam nisi urna, suscipit quis risus sed, congue congue quam. Morbi sit amet suscipit ex. Vivamus vel nulla ac libero volutpat ultrices.</p>
+            <h2>What is Lorem Ipsum?</h2>
+            <p>Mauris volutpat risus quis nisi tempus hendrerit. Nullam nisi urna, suscipit quis risus sed, congue congue quam. Morbi sit amet suscipit ex. Vivamus vel nulla ac libero volutpat ultrices.</p>
         </div>
     </div>
     <div>
@@ -78,5 +135,27 @@
             </pre>
         </code>
     </div>
+
+    <div>
+        <h1>4. metallic-glossy-3d-button-effects</h1>
+        <h1>金属光泽3D按钮特效</h1>
+        <div class="box4">
+            Button4
+        </div>
+
+        <div>
+            <code>
+                <pre>
+                        linear-gradient
+                        variables
+                        calc
+                        perspective
+                        text-shadow
+                        box-shadow
+                </pre>
+            </code>
+        </div>
+    </div>
 </body>
+
 </html>

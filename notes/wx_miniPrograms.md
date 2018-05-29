@@ -190,6 +190,54 @@ closeInfoLayer: function() {
 ```
 
 
+## 根据UI给的切图写CSS样式的rpx值
+  因为在小程序中用的是rpx,
+
+  规定屏幕宽为750rpx。
+
+  如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，
+  
+  则750rpx = 375px = 750物理像素，1rpx = 0.5px = 1物理像素。
+
+  所以，如果UI的标注图是750px的宽度，则标注的是多少px，代码中就写多写rpx值
+  
+  eg:
+```  
+font-size: 24px;
+line-height: 40px;
+
+<!-- 则代码中的写法 -->
+font-size: 24rpx;
+line-height: 40rpx;
+```
+
+## !!!一个巨坑！！！text标签!!!!
+text标签里的文字一定不要分开写，如下错误的写法。
+
+在渲染的时候，外层的view会莫名的把高度撑宽好多。
+
+要严格按照下面正确的写法来写。
+
+```
+// 错误的写法：
+<view>
+  <text class='copy-link'>
+
+
+    www.try.jd.com
+    
+  </text>
+</view>
+
+// 正确的写法
+<view>
+  <text class='copy-link'>www.try.jd.com</text>
+</view>
+  
+```
+
+
+
 # 开发工具
 
 ## 问题一 图片压缩
@@ -198,3 +246,8 @@ closeInfoLayer: function() {
  在[tinypng.com](https://tinypng.com/)自己压缩了。
 
  图片转base64,[网站链接](http://imgbase64.duoshitong.com/)
+
+
+# 问题
+
+点击某个元素隐藏时，如何加动画。
