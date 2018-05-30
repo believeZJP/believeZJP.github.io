@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "test",
-        "start": "webpack-dev-server"
+        "start": "webpack --watch && webpack-dev-server --open  --hot --inline"
     },
     "repository": {
         "type": "git",

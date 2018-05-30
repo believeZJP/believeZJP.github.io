@@ -1,367 +1,389 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="学习网站" content="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html"/>
-		<meta name="学习网站" content="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html"/>
-		<meta name="坑" content="https://segmentfault.com/a/1190000006559564"/>
-		<title>用flex写经典布局</title>
-		<style type="text/css">
-			*{margin:0;padding:0;}
-			.Grid{
-				display: flex;
-				margin-bottom: 10px;
-			}
-			.Grid-cell{
-				flex: 1;/**关键**/
-				background-color: #EEBB55;
-				background-color: #555;
-				color: #aaa;
-				border:1px solid #DDDD88;
-				padding: 10px;
-				box-sizing: border-box;
-			}
-			
-			/**按百分比布局**/
-			.Grid-cell.u-full {
-			  	flex: 0 0 100%;
-			}
-			
-			.Grid-cell.u-1of2 {
-			  	flex: 0 0 50%;
-			}
-			
-			.Grid-cell.u-1of3 {
-			  	flex: 0 0 33.3333%;
-			}
-			
-			.Grid-cell.u-1of4 {
-			  	flex: 0 0 25%;
-			}
-			/**  固定宽度的写法*/
-			.Grid-cell.u-200p{
-				flex: 0 0 200px;
-			}
-			.Grid-cell.u-300p{
-				flex: 0 0 300px;
-			}
-			.wid200p{
-				width: 200px;
-			}
-			.wid300p{
-				width: 300px;
-			}
-			
-			
-			/**圣杯布局*/
-			.holyGrail{
-				display: flex;
-				min-height: 100vh;
-				flex-direction: column;
-			}
-			header, footer{
-				flex: 1;
-				background-color: #666;
-			}
-			.holyGrail-body{
-				display: flex;
-				flex: 1;
-			}
-			.holyGrail-content{
-				flex: 1;
-			}
-			.holyGrail-nav, .holyGrail-ads{
-				flex:0 0 12em;
-			}
-			.holyGrail-nav{
-				order: -1;
-				background-color: #77BBDD;
-			}
-			.holyGrail-ads{
-				background-color: #FF6633;
-			}
-			@media (max-width: 768px) {
-				.holyGrail-body{
-					flex-direction: column;
-					flex: 1;
-				}
-				.holyGrail-content,.holyGrail-ads,.holyGrail-nav{
-					flex: auto;
-				}
-			}
-			
-			
-			/**输入框布局**/
-			.inputAddOn{
-				display: flex;
-			}
-			.inputAddOn-field{
-				flex: 1;
-			}
-			.inputAddOn-item{
-				flex: 0 0 20px;
-			}
-			
-			/** 悬挂式布局*/
-			.media{
-				display: flex;
-				align-items: flex-start;
-			}
-			.media-figure{
-				margin-right:1em;
-				width:100px
-			}
-			.media-body{
-				flex:1;
-			}
-			
-			/**六、固定的底栏**/
-			.site{
-				display: flex;
-				min-height: 100vh;				
-				flex-direction: column;
-			}
-			.site-content{
-				flex:1;
-			}
-			
-			/**七，流式布局***/
-			.parent{
-				width:200px;
-				height:150px;
-				margin-bottom: 10px;
-				background-color: black;
-				display: flex;
-				flex-flow: row wrap;
-				align-content: flex-start;
-				overflow-y: auto;
-			}
-			.child{
-				box-sizing: border-box;
-				background-color: #FFF;
-				flex:0 0 25%;
-				height:50px;
-				border:1px solid red;
-			}
-		</style>
-	</head>
-	<body>
-		<h1>一、基本网格布局</h1>
-		
-		<div class="Grid">
-		  	<div class="Grid-cell">1/3</div>
-		  	<div class="Grid-cell">1/3</div>
-		  	<div class="Grid-cell">1/3</div>
-		</div>
-		<div class="Grid">
-		  	<div class="Grid-cell">1/2</div>
-		  	<div class="Grid-cell">1/2</div>
-		</div>
-		
-		<div class="Grid">
-		  	<div class="Grid-cell">1/4</div>
-		  	<div class="Grid-cell">1/4</div>
-		  	<div class="Grid-cell">1/4</div>
-		  	<div class="Grid-cell">1/4</div>
-		</div>
-		
-		
-		<div class="Grid">
-		  	<div class="Grid-cell">
-		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
-		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
-		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
-		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
-		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
-		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
-		  		这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br />
-		  	</div>
-		  	<div class="Grid-cell">1/4</div>
-		</div>
-		
-		
-		<h1>二、百分比布局</h1>
-		<h2>百分比的写法：flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;</h2>
-		<h2>flex-basis	项目的长度。合法值："auto"、"inherit" 或一个后跟 "%"、"px"、"em" 或任何其他长度单位的数字。</h2>
-		<div class="Grid">
-			<div class="Grid-cell u-full">
-				我独自占一行<br />
-			</div>
-		</div>
-		
-		<div class="Grid">
-			<div class="Grid-cell u-1of2">我独自占50%</div>
-			<div class="Grid-cell u-1of4">我独自占25%</div>
-			<div class="Grid-cell u-1of4">我独自占25%</div>
-		</div>
-		
-		<div class="Grid">
-			<div class="Grid-cell u-1of3">我独自占33%</div>
-			<div class="Grid-cell u-1of3">我独自占33%</div>
-			<div class="Grid-cell u-1of3">我独自占33%</div>
-		</div>
-		
-		
-		
-		<div class="Grid">
-			<div class="Grid-cell u-1of4">我独自占25%</div>
-			<div class="Grid-cell u-1of3">我独自占33%</div>
-			<div class="Grid-cell">我自适应</div>
-		</div>
-		<div class="Grid">
-			<div class="wid200p">我占200px</div>
-			<div class="Grid-cell">我自适应</div>
-			<div class="wid300p">我独自占300px</div>
-		</div>
-		
-		<div class="Grid">
-			<div class="Grid-cell u-200p">我占200px</div>
-			<div class="Grid-cell">我自适应</div>
-			<div class="Grid-cell u-300p">我独自占300px</div>
-		</div>
-		
-		<h1>三、圣杯布局</h1>
-		<h2>圣杯布局（Holy Grail Layout）指的是一种最常见的网站布局。页面从上到下，分成三个部分：头部（header），躯干（body），尾部（footer）。其中躯干又水平分成三栏，从左到右为：导航、主栏、副栏。</h2>
-		<h3>??? header,footer的高度为什么那么高，用height还不好使???</h3>
-		<div class="holyGrail">
-			<header>
-				#header
-			</header>
-			<div class="holyGrail-body">
-				<main class="holyGrail-content">
-					#center
-				</main>
-				<nav class="holyGrail-nav">
-					#left
-				</nav>
-				<aside class="holyGrail-ads">
-					#right
-				</aside>
-			</div>
-			<footer>
-				#footer
-			</footer>
-		</div>
-		
-		
-		
-		<h1>四、输入框的布局</h1>
-		
-		<div class="inputAddOn">
-			<span class="inputAddOn-item">Amout</span>
-			<input type="text" class="inputAddOn-field" />
-			<button class="inputAddOn-item">...</button>
-		</div>
-		<div class="inputAddOn">
-			<span class="inputAddOn-item">Amout</span>
-			<input type="text" class="inputAddOn-field" />
-		</div>
-		
-		
-		<h1>五、悬挂式布局</h1>
-		
-		<div class="media">
-			<img class="media-figure" src="https://www.baidu.com/img/bd_logo1.png" alt="" />
-			<p class="media-body">
-				有时，主栏的左侧或右侧，需要添加一个图片栏
-				三、容器的属性
-以下6个属性设置在容器上。
-flex-direction
-flex-wrap
-flex-flow
-justify-content
-align-items
-align-content
-			</p>
-		</div>
-		
-		<h1>六、固定的底栏</h1>
-		<div class="site">
-			<header>
-				这里是头部
-			</header>
-			<main class="site-content ">
-				有时，页面内容太少，无法占满一屏的高度，底栏就会抬高到页面的中间。这时可以采用Flex布局，让底栏总是出现在页面的底部。<br />
-				没搞懂要干嘛，感觉是最小
-			</main>
-			<footer>这里是底部</footer>
-		</div>
-		
-		<h1>七，流式布局</h1>
-		<h2>不论有多少个child,都会自动排开，</h2>
-		<div class="parent">
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-		</div>
-		<div class="parent">
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-			<div class="child"></div>
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<hr  style="margin-top:800px"/>
-		
-		
-		<div class="Grid">
-			<div class="Grid-cell u-1of3">
-<pre><code>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="学习网站" content="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" />
+    <meta name="学习网站" content="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" />
+    <meta name="坑" content="https://segmentfault.com/a/1190000006559564" />
+    <meta name="flex常见布局" content="https://juejin.im/post/5b0d6ca76fb9a009fd0e9329" />
+    <meta name="flex属性说明" content="https://juejin.im/post/5b0d6eab6fb9a009ea104bdd" />
+    <title>用flex写经典布局</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .Grid {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .Grid-cell {
+            flex: 1;
+            /**关键**/
+            background-color: #EEBB55;
+            background-color: #555;
+            color: #aaa;
+            border: 1px solid #DDDD88;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        /**按百分比布局**/
+        
+        .Grid-cell.u-full {
+            flex: 0 0 100%;
+        }
+        
+        .Grid-cell.u-1of2 {
+            flex: 0 0 50%;
+        }
+        
+        .Grid-cell.u-1of3 {
+            flex: 0 0 33.3333%;
+        }
+        
+        .Grid-cell.u-1of4 {
+            flex: 0 0 25%;
+        }
+        /**  固定宽度的写法*/
+        
+        .Grid-cell.u-200p {
+            flex: 0 0 200px;
+        }
+        
+        .Grid-cell.u-300p {
+            flex: 0 0 300px;
+        }
+        
+        .wid200p {
+            width: 200px;
+        }
+        
+        .wid300p {
+            width: 300px;
+        }
+        /**圣杯布局*/
+        
+        .holyGrail {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        
+        header,
+        footer {
+            flex: 1;
+            background-color: #666;
+        }
+        
+        .holyGrail-body {
+            display: flex;
+            flex: 1;
+        }
+        
+        .holyGrail-content {
+            flex: 1;
+        }
+        
+        .holyGrail-nav,
+        .holyGrail-ads {
+            flex: 0 0 12em;
+        }
+        
+        .holyGrail-nav {
+            order: -1;
+            background-color: #77BBDD;
+        }
+        
+        .holyGrail-ads {
+            background-color: #FF6633;
+        }
+        
+        @media (max-width: 768px) {
+            .holyGrail-body {
+                flex-direction: column;
+                flex: 1;
+            }
+            .holyGrail-content,
+            .holyGrail-ads,
+            .holyGrail-nav {
+                flex: auto;
+            }
+        }
+        /**输入框布局**/
+        
+        .inputAddOn {
+            display: flex;
+        }
+        
+        .inputAddOn-field {
+            flex: 1;
+        }
+        
+        .inputAddOn-item {
+            flex: 0 0 20px;
+        }
+        /** 悬挂式布局*/
+        
+        .media {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .media-figure {
+            margin-right: 1em;
+            width: 100px
+        }
+        
+        .media-body {
+            flex: 1;
+        }
+        /**六、固定的底栏**/
+        
+        .site {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        
+        .site-content {
+            flex: 1;
+        }
+        /**七，流式布局***/
+        
+        .parent {
+            width: 200px;
+            height: 150px;
+            margin-bottom: 10px;
+            background-color: black;
+            display: flex;
+            flex-flow: row wrap;
+            align-content: flex-start;
+            overflow-y: auto;
+        }
+        
+        .child {
+            box-sizing: border-box;
+            background-color: #FFF;
+            flex: 0 0 25%;
+            height: 50px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>一、基本网格布局</h1>
+
+    还有两个实例在<a href="Html5Demo/flexBase.html">base.html</a> 和
+    <a href="Html5Demo/flexBase2.html">flex布局实例2</a>
+    <div class="Grid">
+        <div class="Grid-cell">1/3</div>
+        <div class="Grid-cell">1/3</div>
+        <div class="Grid-cell">1/3</div>
+    </div>
+    <div class="Grid">
+        <div class="Grid-cell">1/2</div>
+        <div class="Grid-cell">1/2</div>
+    </div>
+
+    <div class="Grid">
+        <div class="Grid-cell">1/4</div>
+        <div class="Grid-cell">1/4</div>
+        <div class="Grid-cell">1/4</div>
+        <div class="Grid-cell">1/4</div>
+    </div>
+
+
+    <div class="Grid">
+        <div class="Grid-cell">
+            这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。<br /> 这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。
+            <br /> 这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。
+            <br /> 这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。
+            <br /> 这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。
+            <br /> 这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。
+            <br /> 这个是测试这个div里有很多内容的时候，其他的div的高度会不会被撑开。
+            <br />
+        </div>
+        <div class="Grid-cell">1/4</div>
+    </div>
+
+
+    <h1>二、百分比布局</h1>
+    <h2>百分比的写法：flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;</h2>
+    <h2>flex-basis 项目的长度。合法值："auto"、"inherit" 或一个后跟 "%"、"px"、"em" 或任何其他长度单位的数字。</h2>
+    <div class="Grid">
+        <div class="Grid-cell u-full">
+            我独自占一行<br />
+        </div>
+    </div>
+
+    <div class="Grid">
+        <div class="Grid-cell u-1of2">我独自占50%</div>
+        <div class="Grid-cell u-1of4">我独自占25%</div>
+        <div class="Grid-cell u-1of4">我独自占25%</div>
+    </div>
+
+    <div class="Grid">
+        <div class="Grid-cell u-1of3">我独自占33%</div>
+        <div class="Grid-cell u-1of3">我独自占33%</div>
+        <div class="Grid-cell u-1of3">我独自占33%</div>
+    </div>
+
+
+
+    <div class="Grid">
+        <div class="Grid-cell u-1of4">我独自占25%</div>
+        <div class="Grid-cell u-1of3">我独自占33%</div>
+        <div class="Grid-cell">我自适应</div>
+    </div>
+    <div class="Grid">
+        <div class="wid200p">我占200px</div>
+        <div class="Grid-cell">我自适应</div>
+        <div class="wid300p">我独自占300px</div>
+    </div>
+
+    <div class="Grid">
+        <div class="Grid-cell u-200p">我占200px</div>
+        <div class="Grid-cell">我自适应</div>
+        <div class="Grid-cell u-300p">我独自占300px</div>
+    </div>
+
+    <h1>三、圣杯布局</h1>
+    <h2>圣杯布局（Holy Grail Layout）指的是一种最常见的网站布局。页面从上到下，分成三个部分：头部（header），躯干（body），尾部（footer）。其中躯干又水平分成三栏，从左到右为：导航、主栏、副栏。</h2>
+    <h3>??? header,footer的高度为什么那么高，用height还不好使???</h3>
+    <div class="holyGrail">
+        <header>
+            #header
+        </header>
+        <div class="holyGrail-body">
+            <main class="holyGrail-content">
+                #center
+            </main>
+            <nav class="holyGrail-nav">
+                #left
+            </nav>
+            <aside class="holyGrail-ads">
+                #right
+            </aside>
+        </div>
+        <footer>
+            #footer
+        </footer>
+    </div>
+
+
+
+    <h1>四、输入框的布局</h1>
+
+    <div class="inputAddOn">
+        <span class="inputAddOn-item">Amout</span>
+        <input type="text" class="inputAddOn-field" />
+        <button class="inputAddOn-item">...</button>
+    </div>
+    <div class="inputAddOn">
+        <span class="inputAddOn-item">Amout</span>
+        <input type="text" class="inputAddOn-field" />
+    </div>
+
+
+    <h1>五、悬挂式布局</h1>
+
+    <div class="media">
+        <img class="media-figure" src="https://www.baidu.com/img/bd_logo1.png" alt="" />
+        <p class="media-body">
+            有时，主栏的左侧或右侧，需要添加一个图片栏 三、容器的属性 以下6个属性设置在容器上。 flex-direction flex-wrap flex-flow justify-content align-items align-content
+        </p>
+    </div>
+
+    <h1>六、固定的底栏</h1>
+    <div class="site">
+        <header>
+            这里是头部
+        </header>
+        <main class="site-content ">
+            有时，页面内容太少，无法占满一屏的高度，底栏就会抬高到页面的中间。这时可以采用Flex布局，让底栏总是出现在页面的底部。<br /> 没搞懂要干嘛，感觉是最小
+        </main>
+        <footer>这里是底部</footer>
+    </div>
+
+    <h1>七，流式布局</h1>
+    <h2>不论有多少个child,都会自动排开，</h2>
+    <div class="parent">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+    <div class="parent">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <hr style="margin-top:800px" />
+
+
+    <div class="Grid">
+        <div class="Grid-cell u-1of3">
+            <pre><code>
 	flex-basis
 	该属性来设置该元素的宽度。
 	当然，width也可以用来设置元素宽度。
 	如果元素上同时设置了width和flex-basis,那么flex-basis会覆盖width的值。
 </code></pre>
-			</div>
-			<div class="Grid-cell u-1of3">
-<pre><code>
+        </div>
+        <div class="Grid-cell u-1of3">
+            <pre><code>
 	flex-grow
 	该属性来设置，当父元素的宽度大于所有子元素的宽度的和时（即父元素会有剩余空间），
 	子元素如何分配父元素的剩余空间。
@@ -371,15 +393,16 @@ align-content
 	父元素宽400px，有两子元素：A和B。A宽为100px，B宽为200px。
 	则空余空间为 400-（100+200）= 100px。
 	如果A，B都不索取剩余空间，则有100px的空余空间。
-	如果A索取剩余空间:设置flex-grow为1，B不索取。
+	如果A索取剩余空
+	间:设置flex-grow为1，B不索取。
 	则最终A的大小为 自身宽度（100px）+ 剩余空间的宽度（100px）= 200px
 	如果A，B都设索取剩余空间，A设置flex-grow为1，B设置flex-grow为2。
 	则最终A的大小为 自身宽度（100px）+ A获得的剩余空间的宽度（100px (1/(1+2))）,
 	最终B的大小为 自身宽度（200px）+ B获得的剩余空间的宽度（100px (2/(1+2))）
 </code></pre>
-			</div>
-			<div class="Grid-cell u-1of3">
-<pre><code>
+        </div>
+        <div class="Grid-cell u-1of3">
+            <pre><code>
 	flex-shrink
 	该属性来设置，当父元素的宽度小于所有子元素的宽度的和时（即子元素会超出父元素），
 	子元素如何缩小自己的宽度的。
@@ -398,7 +421,8 @@ align-content
 	自身宽度(300px)- B减小的宽度(100px * (300px * 2/(200 * 3 + 300 * 2))) = 250px
 	
 </code></pre>
-			</div>
-		</div>
-	</body>
+        </div>
+    </div>
+</body>
+
 </html>
