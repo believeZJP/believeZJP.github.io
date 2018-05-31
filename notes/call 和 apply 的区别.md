@@ -1,5 +1,12 @@
 # call 和 apply 区别
 
+```
+obj1.method.call(obj2, arg1, arg2)
+
+```
+call的作用是把obj1的方法放到obj2上使用,后面的作为参数传入. 
+让obj2对象来执行obj1对象的方法，
+
 javascript动态变换运行时上下文特性, 这种特性主要体现在 apply 和 call 两个方法的运用上.
 
 区分 call 和 apply 就一行代码
@@ -58,6 +65,7 @@ alert(a.getMessage());
 所以b.setMessage.call(a, 'a的消息')就等于用a作执行时上下文对象调用b对象的setMessage方法, 而这过程中与b一点关系都没有, 作用等效于a.setMessage('a的消息')
 
 ## 作用： 借用别人的方法来调用, 就像调用自己的一样
+用call可以实现多重继承
 
 eg:
 ```
