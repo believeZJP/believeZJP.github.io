@@ -19,6 +19,9 @@ Node.js学习
 
 [滴滴前端博客](https://github.com/DDFE/DDFE-blog)
 
+[QQ会员技术团队的专栏](https://cloud.tencent.com/developer/column/1000)
+
+[蚂蚁数据体验技术团队的文章仓库](https://github.com/ProtoTeam/blog)
 # TODO
 
 2018-5-25 
@@ -28,3 +31,6 @@ Node.js学习
 [egg.js](http://eggjs.org/zh-cn/)
 
 [thinkjs](https://thinkjs.org/)
+
+
+[数组方法](https://juejin.im/post/5b0903b26fb9a07a9d70c7e0)
