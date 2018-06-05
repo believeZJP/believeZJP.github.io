@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta link='http://www.hubwiz.com/course/55f7c75298b791ab0ca201d7/'>
+    <meta link='https://github.com/henriquea/minigrid'>
+    <meta link='http://www.jq22.com/jquery-info362'>
+    <title>瀑布流</title>
+    <style>
+        *{
+    margin: 0px ;
+    padding: 0px;
+}
+#container{
+    position: relative;
+}
+.box{
+    padding: 5px;
+    float: left;
+}
+.box_img{
+    padding: 5px;
+    border: 1px solid #cccccc;
+    box-shadow:0 0 5px #ccc;
+    border-radius: 5px;
+}
+.box_img img{
+    width: 150px;
+    height: auto;
+}
+
+
+    </style>
+</head>
+<body>
+        <div id="container">
+                <!--容器-->
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/a.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/b.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/c.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/d.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/e.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/f.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/g.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/h.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/i.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/j.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/k.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/l.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/m.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/n.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/o.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/a.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/b.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/c.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/d.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/e.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/f.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/g.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/h.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/i.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/j.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/k.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/l.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/m.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/n.jpg">
+                    </div>
+                </div>
+                <div class="box">
+                    <!--承载图片容器-->
+                    <div class="box_img">
+                        <!--边框-->
+                        <img src="images/o.jpg">
+                    </div>
+                </div>
+            </div>
+    <script>
+        window.onload = function() {
+    img_location("container", "box");
+    //定义json字符串来模拟数据
+    var img_data = {
+        "data": [{
+            "src": "a.jpg"
+        }, {
+            "src": "b.jpg"
+        }, {
+            "src": "c.jpg"
+        }, {
+            "src": "d.jpg"
+        }, {
+            "src": "e.jpg"
+        }, {
+            "src": "f.jpg"
+        }, {
+            "src": "g.jpg"
+        }, {
+            "src": "h.jpg"
+        }, {
+            "src": "i.jpg"
+        }, {
+            "src": "j.jpg"
+        }, {
+            "src": "k.jpg"
+        }, {
+            "src": "l.jpg"
+        }, {
+            "src": "m.jpg"
+        }, {
+            "src": "n.jpg"
+        }, {
+            "src": "o.jpg"
+        }, {
+            "src": "d.jpg"
+        }]
+    }
+    window.onscroll = function() {
+        if (check_csroll()) {
+            var dparent = document.getElementById("container");
+            for (var i = 0; i < img_data.data.length; i++) {
+                var dcontent = document.createElement("div"); //创建节点
+                dcontent.className = "box";//为节点添加类名
+                dparent.appendChild(dcontent);//添加根元素
+                var boximg = document.createElement("div");//创建节点
+                boximg.className = "box_img";//为节点添加类名
+                dcontent.appendChild(boximg);//添加根元素
+                var img = document.createElement("img");//创建节点
+                img.src = "images/" + img_data.data[i].src;//图片加载路径
+                boximg.appendChild(img);//添加根元素
+            }
+        }
+        img_location("container", "box");//调用函数再一次执行图片的布局
+    }
+}
+
+function check_csroll() {
+    var dparent = document.getElementById("container"); //获取父元素
+    var dcontent = get_child_element(dparent, "box"); //获得子元素个数
+    var last_content_height = dcontent[dcontent.length - 1].offsetTop; //获取最后一张图片到顶的距离
+    var scroll_top = document.documentElement.scrollTop || document.body.scrollTop; //获取滚动条到顶的距离
+    var page_height = document.documentElement.clientHeight || document.body.clientHeight; //获取屏幕高度
+    //console.log(scroll_top+":"+last_content_height+":"+page_height)
+    if (last_content_height < scroll_top + page_height) {
+        return true;
+    }
+}
+
+function img_location(parent, content) {
+    //取出parent下的所有content全部子元素
+    var dparent = document.getElementById(parent); //获取父元素
+    var dcontent = get_child_element(dparent, content); //获得子元素个数
+    //console.log(dcontent)
+
+    var dec_width = get_width(dparent, dcontent); //固定宽度
+    var image_location = min_image_locatin(dec_width, dcontent) //将图片放在高度最低的图片下
+
+
+}
+
+function get_child_element(parent, content) { //获得子元素个数
+    var content_array = []; //定义数组
+    var all_content = parent.getElementsByTagName("*"); //取得父元素下的的所有子元素
+    for (var i = 0; i < all_content.length; i++) { //历遍所有子元素
+        if (all_content[i].className == content) { //判断子元素的类名是否等于box
+            content_array.push(all_content[i]) //在数组后追加元素
+        }
+    }
+    return content_array;
+}
+
+function get_width(dparent, dcontent) { //固定宽度
+    var img_width = dcontent[1].offsetWidth; //获取图片宽度
+    var win_width = document.documentElement.clientWidth; //获取屏幕宽度
+    var num_width = Math.floor(win_width / img_width); //获得一排摆的个数 用Math.floor()转换为整数
+    dparent.style.cssText = "width:" + img_width * num_width + "px; margin:0 auto"; //固定屏幕的高并设置居中
+    return num_width;
+
+}
+
+function min_image_locatin(dec_width, dcontent) {
+    var box_height_array = [];
+    for (var i = 0; i < dcontent.length; i++) { //遍历所有图片
+        if (i < dec_width) {
+            box_height_array[i] = dcontent[i].offsetHeight; //取得第一排图片的高度
+        } else {
+            var min_height = Math.min.apply(null, box_height_array); //获取第一排图片中高度最小的图片
+            var min_index = get_min_height(box_height_array, min_height) //函数获得高度最小的图片的位置
+            dcontent[i].style.position = "absolute"; //绝对定位图片
+            dcontent[i].style.top = min_height + "px"; //图片距顶部像素
+            dcontent[i].style.left = dcontent[min_index].offsetLeft + "px"; //图片距左的像素
+            box_height_array[min_index] = box_height_array[min_index] + dcontent[i].offsetHeight; //
+        }
+    }
+
+}
+
+function get_min_height(box_height_array, min_height) {
+    for (var i in box_height_array) {
+        if (box_height_array[i] == min_height) { //循环所有数组的高度 让它等于最小图片的高度 返回i值
+            return i;
+        }
+    }
+}
+  
+    </script>
+</body>
+</html>

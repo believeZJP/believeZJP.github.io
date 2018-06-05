@@ -13,7 +13,13 @@ TODO LIST
 [前端每日挑战 front-end-daily-challenges ](https://github.com/comehope/front-end-daily-challenges)
 
 
-Node.js学习
+## [Node.js学习](https://github.com/nswbmw/N-blog)
+
+
+[七天学会node.js](http://nqdeng.github.io/7-days-nodejs)
+
+## element node-interview
+[链接](https://github.com/ElemeFE/node-interview/tree/master/sections/zh-cn)
 
 [js学习](https://github.com/mqyqingfeng/Blog/blob/master/README.md)
 
