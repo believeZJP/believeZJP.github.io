@@ -6,11 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>样式挑战集合</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet/less" href="./style.less">
-    <style rel="stylesheet/less" type="text/css" >
-        
-    </style>
-    <style >
+    <style>
         html,
         body {
             height: 100%;
@@ -20,8 +18,6 @@
             flex-direction: column;
             margin: 15rem 0;
         }
-        
-        
     </style>
 </head>
 
@@ -29,7 +25,8 @@
     <div class="box">
         <div class="content">
             <h2>What is Lorem Ipsum?</h2>
-            <p>Mauris volutpat risus quis nisi tempus hendrerit. Nullam nisi urna, suscipit quis risus sed, congue congue quam. Morbi sit amet suscipit ex. Vivamus vel nulla ac libero volutpat ultrices.</p>
+            <p>Mauris volutpat risus quis nisi tempus hendrerit. Nullam nisi urna, suscipit quis risus sed, congue congue quam.
+                Morbi sit amet suscipit ex. Vivamus vel nulla ac libero volutpat ultrices.</p>
         </div>
     </div>
     <div>
@@ -67,7 +64,69 @@
             </code>
         </div>
     </div>
+
+    <div>
+        <h1>6 纯 CSS 绘制一颗闪闪发光的璀璨钻石</h1>
+        <div class="diamond6">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="pt2">
+        <h1 class="pb3">7 纯 CSS 创作一个 3D 文字跑马灯特效</h1>
+        <div class="box7">
+            <div class="inner">
+                <span>Hello World</span>
+            </div>
+            <div class="inner">
+                <span>Hello World</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt2">
+        <h1>8 CSS 创作一个充电 loader 特效</h1>
+        <div class="battery8"></div>
+    </div>
+
+    <div class="mt2">
+        <h1>9 CSS 创作一种按钮被瞄准的交互特效</h1>
+        <p>第一个是文字，剩下四个用来修饰</p>
+        <div class="box9">
+            <span>BUTTON</span>
+            <span class="top"></span>
+            <span class="bottom"></span>
+            <span class="left"></span>
+            <span class="right"></span>
+        </div>
+    </div>
+
+    <div class="mb10">
+        <h1>10 CSS 创作一个同心圆弧旋转 loader 特效</h1>
+        <p>一共三层圆弧, .circle为一层，::before为一层, ::after为一层</p>
+        <div class="circle10">
+
+        </div>
+    </div>
+
+
+
     <script src="./less.min.js"></script>
+    <script>
+        $(document).ready(function (e) {
+            // 点击按钮，切换样式
+            $('.checkbox5 .toggle').click(function (e) {
+                $(this).closest('.inner').toggleClass('active');
+            });
+            if (true) { console.log(234); }
+            if (true) {
+                console.log()
+            }
+        });
+    </script>
 </body>
 
 </html>

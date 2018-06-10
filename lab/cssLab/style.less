@@ -1,41 +1,367 @@
-.red{
-    width:10rem;
-    height:10rem;
-    background-color: red;
-    .blue{
-        width:4rem;
-        height: 4rem;
-        background-color:blue;
-    }
+// -----------公共库-----------------------
+.loop( @count )when( @count > 0 ) {
+  .mt@{count} {
+    margin-top: (5rem * @count);
+  }
+  .mb@{count} {
+    margin-bottom: (5rem * @count);
+  }
+  .pt@{count} {
+    padding-top: (5rem * @count);
+  }
+  .pb@{count} {
+    padding-bottom: (5rem * @count);
+  }
+  .loop((@count - 1));
 }
 
+.loop(10);
+
+// -----------------------------------
+
+.red {
+  width: 10rem;
+  height: 10rem;
+  background-color: red;
+  .blue {
+    width: 4rem;
+    height: 4rem;
+    background-color: blue;
+  }
+}
 
 // 第五个案例
-.checkbox5{
-    width: 10rem;
-    height: 5rem;
-    background:linear-gradient(silver, whitesmoke);
-    border-radius: 2.5rem;
-    font-size:4rem;
+.checkbox5,
+.checkbox5 .inner,
+.checkbox5 .inner .toggle {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.checkbox5 {
+  width: 10rem;
+  height: 5rem;
+  background: linear-gradient(silver, whitesmoke);
+  border-radius: 2.5rem;
+  // font-size: 4rem;
+  .inner {
+    width: 8rem;
+    height: 3.5rem;
+    background: linear-gradient(dimgray, silver);
+    border-radius: 2rem;
+    box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.5);
+    // 圆形按钮
+    .toggle {
+      width: 3.5rem;
+      height: 3.5rem;
+      background: linear-gradient(to top, silver, whitesmoke);
+      border-radius: 50%;
+      box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.2);
+      position: relative;
+      left: -30%;
+      transition: 0.5s;
+    }
+    // 圆形按钮增加立体效果
+    .toggle::before {
+      content: "";
+      position: absolute;
+      height: 80%;
+      width: 80%;
+      background: linear-gradient(whitesmoke, silver);
+      border-radius: 50%;
+      // 在按钮上写OFF，行高根据父高度计算
+      content: "OFF";
+      text-align: center;
+      line-height: calc(3.5rem * 0.8);
+      color: gray;
+    }
+  }
+  // 设置active时的样式
+  .inner.active {
+    background: linear-gradient(green, limegreen);
+    .toggle {
+      left: 30%;
+    }
+    .toggle::before {
+      content: "ON";
+      color: limegreen;
+    }
+  }
+}
 
-    .inner{
-        width:8rem;
-        height:3.5rem;
-        background: linear-gradient(dimgray, silver);
-        border-radius: 2rem;
-        box-shadow: inset 0 0 1.5rem rgba(0, 0, 0, 0.5);
+// 6 diamond
 
-
-        .toggle{
-            width: 3.5rem;
-            height: 3.5rem;
-            background: linear-gradient(to top, silver, whitesmoke);
-            border-radius: 50%;
-            box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.2);
-            position: relative;
-            left: -30%;
-            
-        }
+// 定义一些基础颜色变量
+:root {
+  --color1: deepskyblue;
+  --color2: steelblue;
+  --color3: royalblue;
+  --color4: dodgerblue;
+}
+.diamond6 {
+  display: grid;
+  width: 10rem;
+  // 把span转成田字格
+  grid-template-columns: 1fr 1fr;
+  transform: rotate(45deg);
+  span {
+    border-width: 5rem;
+    border-style: solid;
+    border-color: var(--color1) var(--color2) var(--color3) var(--color4);
+  }
+  // 转成钻石形状
+  span:first-child {
+    border-color: transparent var(--color2) var(--color3) transparent;
+  }
+  // 动画效果加到除第一个以外的元素上
+  span:not(:first-child) {
+    animation: animate 2s linear infinite;
+  }
+  // 定义动画效果
+  @keyframes animate {
+    0% {
+      border-color: var(--color1) var(--color2) var(--color3) var(--color4);
     }
 
+    25% {
+      border-color: var(--color4) var(--color1) var(--color2) var(--color3);
+    }
+
+    50% {
+      border-color: var(--color3) var(--color4) var(--color1) var(--color2);
+    }
+
+    75% {
+      border-color: var(--color2) var(--color3) var(--color4) var(--color1);
+    }
+
+    100% {
+      border-color: var(--color1) var(--color2) var(--color3) var(--color4);
+    }
+  }
+}
+
+// 7 跑马灯效果
+.box7 {
+  display: flex;
+  .inner {
+    width: 20rem;
+    height: 10rem;
+    line-height: 10rem;
+    font-size: 3.2rem;
+    font-family: sans-serif;
+    font-weight: bold;
+    white-space: nowrap;
+
+    //隐藏容器外部内容
+    overflow: hidden;
+    // 动画效果用到文字上
+    span {
+      position: absolute;
+      animation: marquee 5s linear infinite;
+    }
+  }
+  // 配色
+  .inner:first-child {
+    background-color: indianred;
+    color: darkred;
+    // 设置3d效果
+    transform-origin: left;
+    transform: perspective(30rem) rotateY(-67.3deg);
+    // 左侧延迟动画模拟两组连贯运动效果
+    span {
+      animation-delay: 2.5s;
+      left: -100%;
+    }
+  }
+  .inner:last-child {
+    background-color: lightcoral;
+    color: antiquewhite;
+    transform-origin: right;
+    transform: perspective(30rem) rotateY(67.3deg);
+  }
+  // 动画效果
+  @keyframes marquee {
+    from {
+      left: 100%;
+    }
+    to {
+      left: -100%;
+    }
+  }
+}
+
+// 8 电池充电效果模拟
+.battery8 {
+  width: 6rem;
+  height: 3rem;
+  color: midnightblue;
+  border: 0.5rem solid currentColor;
+  border-radius: 0.2rem;
+  font-size: 2rem;
+  position: relative;
+
+  // 充电电量
+  background-image: linear-gradient(to right, whitesmoke, whitesmoke);
+  background-repeat: no-repeat;
+  background-size: 30% 80%;
+  background-position: 0.3rem 50%;
+  // 添加动画
+  animation: charge 5s linear infinite;
+  // 将动画改成step形式的
+  animation: charge 5s steps(8) infinite;
+
+  // 电池的突起
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0.5rem;
+    height: 2rem;
+    background-color: currentColor;
+    top: 0.5rem;
+    right: -1rem;
+    border-radius: 0 0.2rem 0.2rem 0;
+  }
+
+  // 定义动画
+  @keyframes charge {
+    from {
+      background-size: 10% 80%;
+    }
+    to {
+      background-size: 95% 80%;
+    }
+  }
+}
+
+// 9 CSS 创作一种按钮被瞄准的交互特效
+.box9 {
+  width: 9rem;
+  height: 3rem;
+  font-size: 0.3rem;
+  line-height: 3rem;
+  text-align: center;
+  letter-spacing: 0.2rem;
+  font-family: sans-serif;
+  position: relative;
+  // 为容器设置模糊到清晰的缓动效果
+  filter: blur(2px);
+  transition: 0.5s;
+  &:hover {
+    filter: blur(0.2px);
+  }
+  // 画出瞄准镜中间的圆圈
+  &::after {
+    content: "";
+    position: absolute;
+    height: 3rem;
+    width: 3rem;
+    border: 1px solid red;
+    border-radius: 50%;
+    left: 3rem;
+    // 默认隐藏
+    filter: opacity(0);
+  }
+  // 设置瞄准动画
+  &:hover::after,
+  &:hover span:not(:first-child) {
+    animation: ani 1s linear infinite alternate;
+  }
+
+  span:not(:first-child) {
+    position: absolute;
+    background-color: red;
+    // 默认隐藏
+    filter: opacity(0);
+  }
+  span.top,
+  span.bottom {
+    width: 1px;
+    height: 3rem;
+    left: 50%;
+  }
+  span.top {
+    top: -3rem;
+  }
+  span.bottom {
+    bottom: -3rem;
+  }
+  span.left,
+  span.right {
+    width: 3rem;
+    height: 1px;
+    top: 50%;
+  }
+  span.left {
+    left: 0;
+  }
+  span.right {
+    right: 0;
+  }
+  // 瞄准动画
+  @keyframes ani {
+    from {
+      filter: opacity(0.2);
+    }
+    to {
+      filter: opacity(0.8);
+    }
+  }
+}
+
+// 10 同心圆 loading 加载
+.circle10 {
+  width: 10rem;
+  height: 10rem;
+  // 最外层圆的样式
+  border-top-color: red;
+  border-bottom-color: blue;
+  position: relative;
+  //   应用动画效果
+  animation: animate 4s ease-in-out infinite alternate;
+  //   设置居中，before和after伪元素才会居中
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // 中间一层圆的样式
+  &::before {
+    width: 75%;
+    height: 75%;
+    border-top-color: orange;
+    border-bottom-color: cyan;
+    animation-duration: 8s;
+    animation: animate 8s ease-in-out infinite alternate;
+  }
+
+  // 最内层样式
+  &::after {
+    width: 40%;
+    height: 40%;
+    border-top-color: yellow;
+    border-bottom-color: limegreen;
+    animation-duration: 16s;
+    animation: animate 16s ease-in-out infinite alternate;
+  }
+  //   提取circle, ::before, ::after的共有样式
+  &,
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-width: 0.4rem;
+    border-style: solid;
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+  //   定义动画效果
+  @keyframes animate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(1440deg);
+    }
+  }
 }
