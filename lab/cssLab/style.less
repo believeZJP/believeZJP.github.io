@@ -1,3 +1,4 @@
+// http://baijiahao.baidu.com/s?id=1595560392011835418&wfr=spider&for=pc
 // -----------公共库-----------------------
 .loop( @count )when( @count > 0 ) {
   .mt@{count} {
@@ -319,7 +320,7 @@
   border-bottom-color: blue;
   position: relative;
   //   应用动画效果
-  animation: animate 4s ease-in-out infinite alternate;
+  animation: animate10 4s ease-in-out infinite alternate;
   //   设置居中，before和after伪元素才会居中
   display: flex;
   align-items: center;
@@ -328,27 +329,28 @@
   &::before {
     width: 75%;
     height: 75%;
+    position: absolute;
     border-top-color: orange;
     border-bottom-color: cyan;
     animation-duration: 8s;
-    animation: animate 8s ease-in-out infinite alternate;
+    animation: animate10 8s ease-in-out infinite alternate;
   }
 
   // 最内层样式
   &::after {
     width: 40%;
     height: 40%;
+    position: absolute;
     border-top-color: yellow;
     border-bottom-color: limegreen;
     animation-duration: 16s;
-    animation: animate 16s ease-in-out infinite alternate;
+    animation: animate10 16s ease-in-out infinite alternate;
   }
   //   提取circle, ::before, ::after的共有样式
   &,
   &::before,
   &::after {
     content: "";
-    position: absolute;
     border-width: 0.4rem;
     border-style: solid;
     border-radius: 50%;
@@ -356,12 +358,72 @@
     border-right-color: transparent;
   }
   //   定义动画效果
-  @keyframes animate {
+  @keyframes animate10 {
     from {
       transform: rotate(0deg);
     }
     to {
       transform: rotate(1440deg);
     }
+  }
+}
+
+// 11 荧光圆圈
+:root {
+  --innerRadius: 2rem;
+}
+.circle11 {
+  // 直接这样定义不生效，但案例中的可以生效
+  // --innerRadius: 2rem;
+  //   width: calc(var(--innerRadius) * 2);
+  //   height: calc(var(--innerRadius) * 2);
+  //   width: calc(var(--innerRadius) * 2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // 用less语法定义局部变量
+  @innerRadius: 2rem;
+  width: @innerRadius * 2;
+  height: @innerRadius * 2;
+  background-color: lime;
+  border-radius: 50%;
+  //   圆圈
+  //   box-shadow: 0 0 0 @innerRadius - 0.4rem black, 0, 0, 0 @innerRadius lime;
+  box-shadow: 0 0 0 @innerRadius - 0.4rem black, 0 0 0 @innerRadius lime;
+
+  //   用伪元素::before画出动画用到的圆环
+  &::before {
+    content: "";
+    position: absolute;
+    width: @innerRadius*2*2;
+    height: @innerRadius*2*2;
+    border: 2px solid lime;
+    border-radius: 50%;
+    // 增加动画
+    // animation: pulse11 2s linear infinite;
+    // 优化动画-增加渐淡和弹性效果
+    animation: pulse11 2s ease-out infinite;
+  }
+  @keyframes pulse11 {
+    from {
+      transform: scale(1);
+      filter: opacity(0.9);
+    }
+    to {
+      transform: scale(2);
+      filter: opacity(0);
+    }
+  }
+
+  //   用伪元素::after再画一个动的圆环
+  &::after {
+    content: "";
+    position: absolute;
+    width: @innerRadius*2*2;
+    height: @innerRadius*2*2;
+    border: 2px solid lime;
+    border-radius: 50%;
+    animation: pulse11 2s ease-out infinite;
+    animation-delay: 1s;
   }
 }
