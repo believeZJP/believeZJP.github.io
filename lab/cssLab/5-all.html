@@ -19,11 +19,11 @@
             flex-direction: column;
             margin: 1rem 0;
         }
-        
+
         body {
             height: 100%;
         }
-        
+
         .con {
             padding: 5rem 0;
             display: flex;
@@ -31,7 +31,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         h1 {
             font-size: 2rem;
             color: #7952b3;
@@ -118,14 +118,34 @@
         <div class="text12" data-text="BREAK">BREAK</div>
     </div>
 
+    <div class="con">
+        <h1>13</h1>
+    </div>
+
+    <div class="con">
+        <h1>14 CSS 创作一种侧立图书的特效</h1>
+        <div class="books14">
+            <div class="book html">
+                <span>HTML</span>
+            </div>
+            <!-- 加2本书 -->
+            <div class="book css">
+                <span>CSS</span>
+            </div>
+            <div class="book js">
+                <span>JS</span>
+            </div>
+
+        </div>
+    </div>
 
 
 
     <script src="./less.min.js"></script>
     <script>
-        $(document).ready(function(e) {
+        $(document).ready(function (e) {
             // 点击按钮，切换样式
-            $('.checkbox5 .toggle').click(function(e) {
+            $('.checkbox5 .toggle').click(function (e) {
                 $(this).closest('.inner').toggleClass('active');
             });
             if (true) {
