@@ -204,7 +204,7 @@
   position: relative;
 
   // 充电电量
-  background-image: linear-gradient(to right, whitesmoke, whitesmoke);
+  background-image: linear-gradient(to right, #95d799, #95d799);
   background-repeat: no-repeat;
   background-size: 30% 80%;
   background-position: 0.3rem 50%;
@@ -369,9 +369,9 @@
 }
 
 // 11 荧光圆圈
-:root {
-  --innerRadius: 2rem;
-}
+// :root {
+//   --innerRadius: 2rem;
+// }
 .circle11 {
   // 直接这样定义不生效，但案例中的可以生效
   // --innerRadius: 2rem;
@@ -381,6 +381,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 5rem 0;
   // 用less语法定义局部变量
   @innerRadius: 2rem;
   width: @innerRadius * 2;
@@ -425,5 +426,50 @@
     border-radius: 50%;
     animation: pulse11 2s ease-out infinite;
     animation-delay: 1s;
+  }
+}
+
+// 12 文字断开效果
+.text12 {
+  font-size: 5rem;
+  font-family: "arial black";
+  position: relative;
+  // 隐藏文字，只让伪元素显示
+  color: transparent;
+  // 利用伪元素增加文字
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: brown;
+    transition: 0.2s;
+  }
+
+  // 左侧文字遮罩
+  &::before {
+    //去掉辅助颜色
+    // background-color: darkgreen;
+    clip-path: polygon(0 0, 60% 0, 30% 100%, 0 100%);
+  }
+  // 右侧文字背景遮罩
+  &::after {
+    // background-color: darkblue;
+    clip-path: polygon(60% 0, 100% 0, 100% 100%, 30% 100%);
+  }
+
+  // 鼠标划过文字向两侧侧移
+  &:hover::before {
+    left: -0.5rem;
+    // 增加歪斜效果
+    transform: rotate(-5deg);
+    // 微调高度
+    top: -0.05rem;
+  }
+  &:hover::after {
+    left: 0.5rem;
+    transform: rotate(5deg);
+    top: 0.05rem;
   }
 }
