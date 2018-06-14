@@ -18,10 +18,15 @@
 
 .loop(10);
 
+// 居中定位
 .flexC {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+// 黑色背景
+.black-bg {
+  background-color: #000;
 }
 // -----------------------------------
 
@@ -791,6 +796,177 @@
       /* purple */
       background-color: rgba(100%, 0%, 100%, 0.3);
       transform: rotate(720deg);
+    }
+  }
+}
+
+// 18 404变non
+// 整体布局
+.four-zf-con18 {
+  p {
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid white;
+    display: inline-block;
+    margin: 1rem;
+    position: relative;
+
+    // 设置笔画共有属性
+    span {
+      position: absolute;
+      box-sizing: border-box;
+      filter: opacity(0.8);
+      transition: 0.3s;
+    }
+  }
+  // 划过数字时笔画变化效果
+  &:hover p span {
+    border: 1px solid black;
+    background-color: transparent;
+    filter: opacity(1);
+    transition: 0.3s;
+  }
+  .four span {
+    // 画出数字4的笔画
+    &:nth-child(1) {
+      width: 20%;
+      height: 80%;
+      left: 10%;
+      background-color: yellowgreen;
+    }
+    &:nth-child(2) {
+      width: 100%;
+      height: 20%;
+      bottom: 30%;
+      background-color: turquoise;
+    }
+    &:nth-child(3) {
+      width: 20%;
+      height: 100%;
+      right: 10%;
+      background-color: pink;
+    }
+  }
+
+  //   数字0笔画
+  .zero span {
+    &:nth-child(1) {
+      width: 20%;
+      height: 100%;
+      left: 10%;
+      background-color: skyblue;
+    }
+    &:nth-child(2) {
+      width: 100%;
+      height: 20%;
+      top: 10%;
+      background-color: plum;
+    }
+    &:nth-child(3) {
+      width: 20%;
+      height: 100%;
+      right: 10%;
+      background-color: lightcoral;
+    }
+    &:nth-child(4) {
+      width: 100%;
+      height: 20%;
+      bottom: 10%;
+      background-color: peachpuff;
+    }
+  }
+  &:hover .four span {
+    &:nth-child(1) {
+      left: 0;
+      top: 20%;
+    }
+    &:nth-child(2) {
+      top: 0;
+    }
+    &:nth-child(3) {
+      right: 0;
+    }
+  }
+  &:hover .zero span {
+    &:nth-child(1) {
+      left: 0;
+    }
+    &:nth-child(2) {
+      top: 0;
+    }
+    &:nth-child(3) {
+      right: 0;
+    }
+    &:nth-child(4) {
+      bottom: 0;
+    }
+  }
+}
+
+// 19 削铁如泥菜单
+.menu19 {
+  padding: 0;
+  flex-direction: column;
+  li {
+    margin: 0.5rem;
+    list-style-type: none;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    // line-height: 1rem;
+    width: 16rem;
+    // 文字的切割线
+    border-top: 1px solid transparent;
+    // 隐藏文本
+    color: transparent;
+    position: relative;
+    transition: 0.3s;
+
+    // 划动效果
+    &:hover {
+      border-top: 1px solid yellow;
+
+      &::before,
+      &::after {
+        color: yellow;
+        transition: 0.3s left ease-out;
+        transition-delay: 0.2s;
+      }
+    }
+    // 用伪元素增加文本
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      color: silver;
+      // 用遮罩切出分割线上下二部分的文本
+      clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+    }
+    // 伪元素文本向上移，竖跨分割线
+    &::before,
+    &::after {
+      top: -1.5rem;
+      //   文字增加动画效果
+      transition: 0.3s ease-out;
+    }
+    &::after {
+      clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+    }
+
+    // 设置奇偶样式
+    &:nth-child(odd):hover::before,
+    &:nth-child(even):hover::after {
+      left: -0.15rem;
+    }
+
+    &:nth-child(even):hover::before,
+    &:nth-child(odd):hover::after {
+      left: 0.15rem;
     }
   }
 }

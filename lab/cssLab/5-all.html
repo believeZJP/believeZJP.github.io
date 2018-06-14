@@ -19,11 +19,11 @@
             flex-direction: column;
             margin: 1rem 0;
         }
-        
+
         body {
             height: 100%;
         }
-        
+
         .con {
             padding: 5rem 0;
             display: flex;
@@ -31,7 +31,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         h1 {
             font-size: 2rem;
             color: #7952b3;
@@ -189,23 +189,44 @@
 
     <div class="con">
         <h1>18 CSS 创作 404 文字变形为 NON 文字的交互特效</h1>
-        <div class="four-zf-con">
+        <p>鼠标划过时要变白</p>
+        <div class="four-zf-con18 flexC">
+            <p class="four">
+                <span></span>
+                <span></span>
+                <span></span>
+            </p>
+            <p class="zero">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </p>
             <p class="four">
                 <span></span>
                 <span></span>
                 <span></span>
             </p>
         </div>
-
-
     </div>
+
+    <div class="con black-bg">
+        <h1></h1>
+        <ul class="menu19 flexC">
+            <li data-text='New Game'>New Game</li>
+            <li data-text="Load Game">Load Game</li>
+            <li data-text="Options">Options</li>
+            <li data-text="Exit">Exit</li>
+        </ul>
+    </div>
+
 
 
     <script src="./less.min.js"></script>
     <script>
-        $(document).ready(function(e) {
+        $(document).ready(function (e) {
             // 点击按钮，切换样式
-            $('.checkbox5 .toggle').click(function(e) {
+            $('.checkbox5 .toggle').click(function (e) {
                 $(this).closest('.inner').toggleClass('active');
             });
             if (true) {
