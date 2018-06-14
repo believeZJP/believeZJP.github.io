@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>样式挑战集合</title>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../../js/jquery.1.11.3.min.js"></script>
     <link rel="stylesheet/less" href="./style.less">
     <style>
         html,
@@ -19,11 +19,11 @@
             flex-direction: column;
             margin: 1rem 0;
         }
-
+        
         body {
             height: 100%;
         }
-
+        
         .con {
             padding: 5rem 0;
             display: flex;
@@ -31,7 +31,7 @@
             align-items: center;
             justify-content: center;
         }
-
+        
         h1 {
             font-size: 2rem;
             color: #7952b3;
@@ -139,13 +139,73 @@
         </div>
     </div>
 
+    <div class="con">
+        <h1>15 CSS 创作条形图，不用任何 JS 图表库</h1>
+        <div class="card15">
+            <h2>Development Skills</h2>
+
+            <p class="skill html">
+                <span>HTML</span>
+                <span class="level">90%</span>
+            </p>
+            <p class="skill css">
+                <span>CSS</span>
+                <span class="level">95%</span>
+            </p>
+            <p class="skill js">
+                <span>JavaScript</span>
+                <span class="level">80%</span>
+            </p>
+            <p class="skill svg">
+                <span>SVG</span>
+                <span class="level">60%</span>
+            </p>
+            <p class="skill canvas">
+                <span>Canvas</span>
+                <span class="level">75%</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="con">
+        <h1>16 CSS 创作一个渐变色动画边框</h1>
+        <div class="box16 flexC">
+            you are my
+            <br> superstar
+        </div>
+    </div>
+
+    <div class="con">
+        <h1>17 CSS 创作炫酷的同心矩形旋转动画</h1>
+        <div class="loader17 flexC">
+            <span></span>
+            <!-- 增加span数量 -->
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="con">
+        <h1>18 CSS 创作 404 文字变形为 NON 文字的交互特效</h1>
+        <div class="four-zf-con">
+            <p class="four">
+                <span></span>
+                <span></span>
+                <span></span>
+            </p>
+        </div>
+
+
+    </div>
 
 
     <script src="./less.min.js"></script>
     <script>
-        $(document).ready(function (e) {
+        $(document).ready(function(e) {
             // 点击按钮，切换样式
-            $('.checkbox5 .toggle').click(function (e) {
+            $('.checkbox5 .toggle').click(function(e) {
                 $(this).closest('.inner').toggleClass('active');
             });
             if (true) {

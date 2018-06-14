@@ -18,6 +18,11 @@
 
 .loop(10);
 
+.flexC {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 // -----------------------------------
 
 .red {
@@ -594,6 +599,198 @@
       &::after {
         content: "{development}";
       }
+    }
+  }
+}
+
+// 15 css条形图
+.card15 {
+  // 卡片布局
+  width: 40rem;
+  background: linear-gradient(#333, dimgray);
+  box-sizing: border-box;
+  padding: 2rem;
+  color: white;
+  letter-spacing: 0.1rem;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.5);
+
+  h2 {
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .skill {
+    height: 5rem;
+    transition: 0.25s;
+    span {
+      display: block;
+    }
+    .level {
+      transform: translateY(-1rem);
+      text-align: right;
+      position: relative;
+      // 伪布局画条形图
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 1.2rem;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      &::before {
+        border: 1px solid mediumspringgreen;
+        border-radius: 0.2rem;
+        height: 105%;
+      }
+      &::after {
+        background-image: linear-gradient(
+          to right,
+          mediumspringgreen,
+          mediumspringgreen
+        );
+        background-repeat: no-repeat;
+        background-position: top 0.25rem left 0.1rem;
+      }
+    }
+    // 设置条形图的填仓比例
+    &.html {
+      .level::after {
+        background-size: 90% 1rem;
+      }
+    }
+    &.js {
+      .level::after {
+        background-size: 80% 1rem;
+      }
+    }
+    &.css {
+      .level::after {
+        background-size: 95% 1rem;
+      }
+    }
+    &.svg {
+      .level::after {
+        background-size: 60% 1rem;
+      }
+    }
+    &.canvas {
+      .level::after {
+        background-size: 75% 1rem;
+      }
+    }
+    // 增加hover效果
+    &:hover {
+      box-shadow: 8px 5px 20px 5px cyan;
+      transform: translateY(-10px);
+      background-size: 75% 1rem;
+    }
+  }
+}
+// 16 渐变色动画边框
+.box16 {
+  color: #fff;
+  font-size: 2.5rem;
+  width: 20rem;
+  height: 10rem;
+  line-height: 2.5rem;
+  background: #111;
+  text-align: center;
+  border-radius: 0.5rem;
+  position: relative;
+  // 增加文字动画
+  animation: animate16_text 2s linear infinite alternate;
+  // 用伪元素增加背板
+  &::after {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 120%;
+    z-index: -1;
+    border-radius: 0.5rem;
+    background: orange;
+    background-size: 300%;
+    background-image: linear-gradient(
+      60deg,
+      aquamarine,
+      cornflowerblue,
+      goldenrod,
+      hotpink,
+      salmon,
+      lightgreen,
+      sandybrown,
+      violet
+    );
+    animation: animate16_bg 5s infinite;
+  }
+  // 设置动画
+  @keyframes animate16_bg {
+    0%,
+    100% {
+      background-position: 0%, 50%;
+    }
+    50% {
+      background-position: 100%, 50%;
+    }
+  }
+  @keyframes animate16_text {
+    from {
+      color: lime;
+    }
+    to {
+      color: yellow;
+    }
+  }
+}
+// 17 同心矩形旋转
+.loader17 {
+  width: 20rem;
+  height: 20rem;
+  font-size: 28px;
+  position: relative;
+  span {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    border: 0.5rem solid;
+    border-color: white rgba(100%, 100%, 100%, 0.2); // 分别给span不同尺寸
+    .loop17( @count )when( @count > 0 ) {
+      &:nth-child(@{count}) {
+        width: calc(20% + 20% * (5-@count));
+        height: calc(20% + 20% * (5-@count));
+        animation-delay: calc(0.2s * (5 - @count));
+      }
+      .loop17(@count - 1);
+    }
+    .loop17(5);
+    // 增加动画
+    animation: animate17 5s ease-in-out infinite alternate;
+  }
+  // 增加颜色动画效果
+  @keyframes animate17 {
+    0% {
+      /* red */
+      background-color: rgba(100%, 0%, 0%, 0.3);
+      transform: rotate(0deg);
+    }
+    25% {
+      /* yellow */
+      background-color: rgba(100%, 100%, 0%, 0.3);
+    }
+    50% {
+      /* green */
+      background-color: rgba(0%, 100%, 0%, 0.3);
+    }
+    75% {
+      /* blue */
+      background-color: rgba(0%, 0%, 100%, 0.3);
+    }
+    100% {
+      /* purple */
+      background-color: rgba(100%, 0%, 100%, 0.3);
+      transform: rotate(720deg);
     }
   }
 }
