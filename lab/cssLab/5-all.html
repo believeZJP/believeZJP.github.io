@@ -19,11 +19,11 @@
             flex-direction: column;
             margin: 1rem 0;
         }
-
+        
         body {
             height: 100%;
         }
-
+        
         .con {
             padding: 5rem 0;
             display: flex;
@@ -31,7 +31,7 @@
             align-items: center;
             justify-content: center;
         }
-
+        
         h1 {
             font-size: 2rem;
             color: #7952b3;
@@ -189,7 +189,6 @@
 
     <div class="con">
         <h1>18 CSS 创作 404 文字变形为 NON 文字的交互特效</h1>
-        <p>鼠标划过时要变白</p>
         <div class="four-zf-con18 flexC">
             <p class="four">
                 <span></span>
@@ -211,7 +210,7 @@
     </div>
 
     <div class="con black-bg">
-        <h1></h1>
+        <h1>19 CSS 创作一种有削铁如泥感觉的菜单导航特效</h1>
         <ul class="menu19 flexC">
             <li data-text='New Game'>New Game</li>
             <li data-text="Load Game">Load Game</li>
@@ -220,13 +219,138 @@
         </ul>
     </div>
 
+    <div class="con">
+        <h1>20 纯 CSS 一颗像素画风格的爱心</h1>
+        <p>定义dom, 描绘8行9列心形图案像素, dot是要填充颜色的像素点
+            <br> dot为自定义标签
+        </p>
+        <p>grid-template-columns, :nth-of-type, grid-gap, </p>
+        <div class="heart20">
+            <!-- 第一行 -->
+            <span></span>
+            <dot></dot>
+            <dot></dot>
+            <span></span>
+            <span></span>
+            <span></span>
+            <dot></dot>
+            <dot></dot>
+            <span></span>
+
+            <!-- 第二行 -->
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <span></span>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+
+            <!-- 第三行 -->
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+
+            <!-- 第四行 -->
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+
+            <!-- 第五行 -->
+            <span></span>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <span></span>
+
+            <!-- 第六行 -->
+            <span></span>
+            <span></span>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <span></span>
+            <span></span>
+
+            <!-- 第七行 -->
+            <span></span>
+            <span></span>
+            <span></span>
+            <dot></dot>
+            <dot></dot>
+            <dot></dot>
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <!-- 第8行 -->
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <dot></dot>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <div class="con flexC">
+        <h1>21 CSS 创作文本滑动特效的 UI 界面</h1>
+        <div class="box21">
+            <h1></h1>
+            <p>
+                <span class="question">Who gives you milk?</span>
+                <span class="answer">cow</span>
+            </p>
+            <p>
+                <span class="question">Who likes to eat flies?</span>
+                <span class="answer">frog</span>
+            </p>
+            <p>
+                <span class="question">Who have large claws?</span>
+                <span class="answer">crab</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="con flexC">
+        <h1>22 美丽的彩虹条纹文字</h1>
+        <p class="rainbow22">
+            <span data-text="web"></span>
+            <span data-text="web"></span>
+            <span data-text="web"></span>
+            <span data-text="web"></span>
+        </p>
+    </div>
 
 
     <script src="./less.min.js"></script>
     <script>
-        $(document).ready(function (e) {
+        $(document).ready(function(e) {
             // 点击按钮，切换样式
-            $('.checkbox5 .toggle').click(function (e) {
+            $('.checkbox5 .toggle').click(function(e) {
                 $(this).closest('.inner').toggleClass('active');
             });
             if (true) {

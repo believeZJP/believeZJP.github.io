@@ -799,7 +799,6 @@
     }
   }
 }
-
 // 18 404变non
 // 整体布局
 .four-zf-con18 {
@@ -810,7 +809,6 @@
     display: inline-block;
     margin: 1rem;
     position: relative;
-
     // 设置笔画共有属性
     span {
       position: absolute;
@@ -818,13 +816,6 @@
       filter: opacity(0.8);
       transition: 0.3s;
     }
-  }
-  // 划过数字时笔画变化效果
-  &:hover p span {
-    border: 1px solid black;
-    background-color: transparent;
-    filter: opacity(1);
-    transition: 0.3s;
   }
   .four span {
     // 画出数字4的笔画
@@ -847,7 +838,6 @@
       background-color: pink;
     }
   }
-
   //   数字0笔画
   .zero span {
     &:nth-child(1) {
@@ -875,34 +865,42 @@
       background-color: peachpuff;
     }
   }
-  &:hover .four span {
-    &:nth-child(1) {
-      left: 0;
-      top: 20%;
+  // 划过数字时笔画变化效果
+  &:hover {
+    p span {
+      border: 1px solid black;
+      background-color: transparent !important;
+      filter: opacity(1);
+      transition: 0.3s;
     }
-    &:nth-child(2) {
-      top: 0;
+    .four span {
+      &:nth-child(1) {
+        left: 0;
+        top: 20%;
+      }
+      &:nth-child(2) {
+        top: 0;
+      }
+      &:nth-child(3) {
+        right: 0;
+      }
     }
-    &:nth-child(3) {
-      right: 0;
-    }
-  }
-  &:hover .zero span {
-    &:nth-child(1) {
-      left: 0;
-    }
-    &:nth-child(2) {
-      top: 0;
-    }
-    &:nth-child(3) {
-      right: 0;
-    }
-    &:nth-child(4) {
-      bottom: 0;
+    .zero span {
+      &:nth-child(1) {
+        left: 0;
+      }
+      &:nth-child(2) {
+        top: 0;
+      }
+      &:nth-child(3) {
+        right: 0;
+      }
+      &:nth-child(4) {
+        bottom: 0;
+      }
     }
   }
 }
-
 // 19 削铁如泥菜单
 .menu19 {
   padding: 0;
@@ -910,24 +908,18 @@
   li {
     margin: 0.5rem;
     list-style-type: none;
-    color: #fff;
     font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
     text-align: center;
     // line-height: 1rem;
-    width: 16rem;
-    // 文字的切割线
-    border-top: 1px solid transparent;
-    // 隐藏文本
+    width: 16rem; // 文字的切割线
+    border-top: 1px solid transparent; // 隐藏文本
     color: transparent;
     position: relative;
-    transition: 0.3s;
-
-    // 划动效果
+    transition: 0.3s; // 划动效果
     &:hover {
       border-top: 1px solid yellow;
-
       &::before,
       &::after {
         color: yellow;
@@ -944,29 +936,153 @@
       left: 0;
       width: 100%;
       color: silver;
-      // 用遮罩切出分割线上下二部分的文本
-      clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-    }
-    // 伪元素文本向上移，竖跨分割线
-    &::before,
-    &::after {
-      top: -1.5rem;
+      // 伪元素文本向上移，竖跨分割线
+      top: -1.4rem;
       //   文字增加动画效果
       transition: 0.3s ease-out;
+    }
+    // 用遮罩切出分割线上下二部分的文本
+    &::before {
+      clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
     }
     &::after {
       clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
     }
-
     // 设置奇偶样式
     &:nth-child(odd):hover::before,
     &:nth-child(even):hover::after {
       left: -0.15rem;
     }
-
     &:nth-child(even):hover::before,
     &:nth-child(odd):hover::after {
       left: 0.15rem;
+    }
+  }
+}
+// 20 心形
+.heart20 {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 2px;
+  & > * {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.1rem;
+    font-size: 30px;
+  }
+  dot {
+    filter: opacity(0);
+    animation: ani20 5s ease-out infinite;
+    background: red;
+    // 各像素不同时间进场，增加动画效果
+ // 因为这段代码自动格式化时把 3s, 格式化成了3 s, 无法正常解析
+    &:nth-of-type(2n) {
+      animation-delay: 0.2s;
+    }
+    &:nth-of-type(3n) {
+      animation-delay: 0.3s;
+    }
+    &:nth-of-type(4n) {
+      animation-delay: 0.4s;
+    }
+    &:nth-of-type(5n) {
+      animation-delay: 0.5s;
+    }
+    &:nth-of-type(6n) {
+      animation-delay: 0.6s;
+    }
+    &:nth-of-type(7n) {
+      animation-delay: 0.7s;
+    }
+    &:nth-of-type(8n) {
+      animation-delay: 0.8s;
+    }
+    &:nth-of-type(9n) {
+      animation-delay: 0.9s;
+    }
+    &:nth-of-type(10n) {
+      animation-delay: 1s;
+    }
+    &:nth-of-type(11n) {
+      animation-delay: 1.1s;
+    }
+  }
+  // 淡入淡出动画
+  @keyframes ani20 {
+    0% {
+      filter: opacity(0);
+      transform: translateY(-10rem);
+    }
+    25% {
+      filter: opacity(1);
+      transform: translateY(0);
+    }
+    75% {
+      filter: opacity(1);
+      transform: translateY(0);
+    }
+    100% {
+      filter: opacity(0);
+      transform: translateY(10rem);
+    }
+  }
+}
+// 21 css文本滑动特效
+.box21 {
+  p {
+    width: 40rem;
+    height: 2.5rem;
+    color: gold;
+    font-size: 24px;
+    border: 2px solid gold;
+    line-height: 2.5rem;
+    text-align: center;
+    border-radius: 10px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden; // span都为100%
+    span {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      transition: 0.5s ease-out;
+    }
+    .question {
+      left: 0;
+    }
+    // 设置答案样式
+    .answer {
+      color: whitesmoke;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.1);
+      left: -100%;
+    }
+    &:hover {
+      .question {
+        left: 100%;
+      }
+      .answer {
+        left: 0;
+      }
+    }
+  }
+  // 用伪元素添加背景
+  h1 {
+    position: relative;
+    &::after {
+      content: "?";
+      position: absolute;
+      font-size: 25rem;
+      transform: rotate(15deg);
+      color: cyan;
+      filter: opacity(0.3);
+      text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+      top: -8rem;
+      left: 15rem;
     }
   }
 }
