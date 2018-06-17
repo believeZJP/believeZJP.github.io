@@ -1086,3 +1086,81 @@
     }
   }
 }
+// 22彩虹文字效果
+.rainbow22 {
+  // color: #fff;
+  font-size: 10rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  // line-height: 1rem;
+  position: relative;
+  // 用伪元素增加图层
+  span {
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      animation: animate22 0.8s infinite alternate;
+      filter: opacity(0);
+    }
+    &:nth-child(1) {
+      &::before {
+        color: orchid;
+        z-index: 1;
+        height: calc(100%-10% * 1);
+      }
+      &::after {
+        color: mediumpurple;
+        z-index: 2;
+        height: calc(100% - 10% * 2);
+      }
+    }
+    &:nth-child(2) {
+      &::before {
+        color: deepskyblue;
+        z-index: 3;
+        height: calc(100% - 10% * 3);
+      }
+      &::after {
+        color: cyan;
+        z-index: 4;
+        height: calc(100% - 10% * 4);
+      }
+    }
+    &:nth-child(3) {
+      &::before {
+        color: mediumspringgreen;
+        z-index: 5;
+        height: calc(100% - 10% * 5);
+      }
+      &::after {
+        color: yellow;
+        z-index: 6;
+        height: calc(100% - 10% * 6);
+      }
+    }
+    &:nth-child(4) {
+      &::before {
+        color: gold;
+        z-index: 7;
+        height: calc(100% - 10% * 7);
+      }
+      &::after {
+        color: tomato;
+        z-index: 8;
+        height: calc(100% - 10% * 8);
+      }
+    }
+  }
+  @keyframes animate22 {
+    from {
+      filter: opacity(0);
+    }
+    to {
+      filter: opacity(1);
+    }
+  }
+}
