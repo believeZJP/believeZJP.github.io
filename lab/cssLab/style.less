@@ -973,9 +973,8 @@
   dot {
     filter: opacity(0);
     animation: ani20 5s ease-out infinite;
-    background: red;
-    // 各像素不同时间进场，增加动画效果
- // 因为这段代码自动格式化时把 3s, 格式化成了3 s, 无法正常解析
+    background: red; // 各像素不同时间进场，增加动画效果
+    // 因为这段代码自动格式化时把 3s, 格式化成了3 s, 无法正常解析
     &:nth-of-type(2n) {
       animation-delay: 0.2s;
     }
@@ -1089,6 +1088,8 @@
 // 22彩虹文字效果
 .rainbow22 {
   // color: #fff;
+  // 有了伪元素后，设置背景色透明。
+  color: transparent;
   font-size: 10rem;
   text-transform: uppercase;
   font-weight: bold;
@@ -1110,12 +1111,14 @@
       &::before {
         color: orchid;
         z-index: 1;
-        height: calc(100%-10% * 1);
+        height: calc(100%-10% * 1); // 设置延时，增加动画
+        animation-delay: calc(0.8s - 0.1s * 1);
       }
       &::after {
         color: mediumpurple;
         z-index: 2;
         height: calc(100% - 10% * 2);
+        animation-delay: calc(0.8s - 0.1s * 2);
       }
     }
     &:nth-child(2) {
@@ -1123,11 +1126,13 @@
         color: deepskyblue;
         z-index: 3;
         height: calc(100% - 10% * 3);
+        animation-delay: calc(0.8s - 0.1s * 3);
       }
       &::after {
         color: cyan;
         z-index: 4;
         height: calc(100% - 10% * 4);
+        animation-delay: calc(0.8s - 0.1s * 4);
       }
     }
     &:nth-child(3) {
@@ -1135,11 +1140,13 @@
         color: mediumspringgreen;
         z-index: 5;
         height: calc(100% - 10% * 5);
+        animation-delay: calc(0.8s - 0.1s * 5);
       }
       &::after {
         color: yellow;
         z-index: 6;
         height: calc(100% - 10% * 6);
+        animation-delay: calc(0.8s - 0.1s * 6);
       }
     }
     &:nth-child(4) {
@@ -1147,11 +1154,13 @@
         color: gold;
         z-index: 7;
         height: calc(100% - 10% * 7);
+        animation-delay: calc(0.8s - 0.1s * 7);
       }
       &::after {
         color: tomato;
         z-index: 8;
         height: calc(100% - 10% * 8);
+        animation-delay: calc(0.8s - 0.1s * 8);
       }
     }
   }
@@ -1161,6 +1170,107 @@
     }
     to {
       filter: opacity(1);
+    }
+  }
+}
+// 23 导航
+.nav23 {
+  @x: 15rem;
+  @y: 5rem;
+  @z: @x * 1.2;
+  background: linear-gradient(to right bottom, gold, chocolate);
+  ul {
+    padding: 0;
+    li {
+      font-size: 40px;
+      list-style-type: none;
+      border: 2px solid black;
+      width: @x;
+      height: @y;
+      line-height: @y;
+      margin: 1rem 0;
+      position: relative;
+      overflow: hidden; // 画左侧小球
+      &::before {
+        content: "";
+        position: absolute;
+        height: @y;
+        width: @y;
+        background-color: #000;
+        border-radius: 50%;
+        top: 0;
+        left: calc(-1 * @y / 2);
+        transition: 0.5s ease-out;
+      }
+      &:hover {
+        &::before {
+          height: @z;
+          width: @z;
+          top: calc(-1 * @z / 2 + @y / 2);
+          left: calc(-1 * @z / 2 + @x / 2);
+        }
+      }
+      span {
+        color: white;
+        // 设置色彩混合模式，使小球覆盖的文字反色显示
+        mix-blend-mode: difference;
+      }
+    }
+  }
+}
+// 24 平滑的层叠海浪特效
+.sea24 {
+  width: 30rem;
+  height: 30rem;
+  background-color: whitesmoke;
+  background-image: linear-gradient(
+    darkblue,
+    rgba(255, 255, 255, 0) 80%,
+    rgba(255, 255, 255, 0.5)
+  );
+  border-radius: 5px;
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative; // 文字样式
+  .title {
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    line-height: 25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4rem;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+  }
+  // 海浪动画
+  .wave {
+    position: absolute;
+    top: -25rem;
+    left: -10rem;
+    width: 50rem;
+    height: 50rem;
+    background: deepskyblue;
+    border-radius: 43%;
+    filter: opacity(0.4);
+    animation: drift24 linear infinite;
+    // 加大海浪的波动幅度
+    transform-origin: 50% 48%;
+    &:nth-of-type(1) {
+      animation-duration: 5s;
+    }
+    &:nth-of-type(2) {
+      animation-duration: 7s;
+    }
+    &:nth-of-type(3) {
+      animation-duration: 9s;
+      background-color: orangered;
+      filter: opacity(0.1);
+    }
+  }
+  @keyframes drift24 {
+    from {
+      transform: rotate(360deg);
     }
   }
 }
