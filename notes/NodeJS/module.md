@@ -75,3 +75,61 @@ module.exports = function(){
 # 代码的组织和部署
 
 [链接](http://nqdeng.github.io/7-days-nodejs/#1.1)
+
+## 模块路径解析规则
+
+require 支持 / 或 盘符开头的绝对路径, 也支持 ./开头的相对路径。
+
+缺点：这两种路径在模块间建立了强耦合关系.
+
+require 支持第三种路径模式, 类似于 foo/bar, 依次按照规则解析路径, 直到找到模块。
+
+1.  内置模块
+
+    require 收到的参数是 NodeJS 内置模块名称, 不做路径解析, 直接返回内部模块的导出对象, eg: require('fs')
+
+2.  node_modules 目录
+
+        NodeJS 定义了 node_modules 用于存放模块。
+
+        eg:某个模块的绝对路径为 /home/user/hello.js, 在模块中使用 require('foo/bar')方式加载模块时, 依次解析以下路径
+
+    ```
+    /home/user/node_modules/foo/bar
+    /home/node_modules/foo/bar
+    /node_modules/foo/bar
+
+    //理解：从当前目录查找node_modules, 没找到后一级级往上找
+    ```
+
+3.  NODE_PATH 环境变量
+
+    与 path 环境变量不同, NodeJS 可以通过 NODE_PATH 环境变量指定模块的搜索路径。可以配置多个, Linux 用 : 分隔, Windows 用 ; 分隔
+
+    ```
+    NODE_PATH=/home/user/lib:/home/lib
+    ```
+
+# 包(package)
+
+    js模块的基本单位是单个的js文件, 但复杂的模块可以由多个子模块组成。多个子模块组成的大模块叫做包, 并把所有的子模块放在同一个目录里。
+
+    一个包的所有子模块中, 需要有个入口模块, 入口模块的导出包要导出的对象.
+
+    在入口模块中可以这样写：
+
+```
+// 从其他js中导入
+var head = require('./head')
+var body = require('/body')
+
+exportscreate = function(name){
+    return {
+        name: name,
+        head: head.create(),
+        body: body.create()
+    }
+}
+```
+
+在其他模块使用包时, 需要加载包的入口模块.
