@@ -118,6 +118,8 @@ require 支持第三种路径模式, 类似于 foo/bar, 依次按照规则解析
 
     在入口模块中可以这样写：
 
+main.js
+
 ```
 // 从其他js中导入
 var head = require('./head')
@@ -133,3 +135,154 @@ exportscreate = function(name){
 ```
 
 在其他模块使用包时, 需要加载包的入口模块.
+
+当模块的文件名是 index.js 时, 加载模块可以使用模块所在目录的  路径代替模块文件路径。
+以下两句等价
+
+```
+var cat = require('/home/user/lib/cat')
+var cat = require('/home/user/lib/cat/index')
+```
+
+这样处理更有整体感。
+
+## package.json
+
+ 可以在 package.json 中配置模块的入口文件。
+一般用来配置项目需要依赖的包。
+
+## 命令行程序
+
+NodeJS 编写的要么是包，要么是命令行程序。在部署代码时需要一些技巧，启动 node 项目像命令行程序一样。
+
+例如用 NodeJS 写程序，可以把命令行参数原样打印出来。写好后，部署到 /home/user/bin/node-echo.js 这个位置。为了在  任何目录下都能运行该程序，需要使用  以下命令。
+
+```
+$ node /home/user/bin/node-echo.js Hello World
+
+Hello World
+```
+
+这样执行太繁琐，下面才是正确的方式
+
+```
+$ node-echo Hello World
+```
+
+### 实现方式：
+
+### Linux
+
+在 Linux 中，可以把 js 文件当做 shell 脚本来运行。具体步骤如下：
+
+1.  shell 脚本中，可以使用#!注释来指定当前脚本使用的解析器。所以在 node-echo.js 文件顶部增加以下注释,表明当前脚本使用 NodeJS 解析。
+
+```
+#! /user/bin/env node
+```
+
+2.  使用以下命令赋予 node-echo.js 执行权限
+
+```
+$ chmod +x /home/user/.bin/node-echo.js
+```
+
+3.  在 path 环境变量中指定某个目录，在/usr/local/bin 下创建一个软链文件，文件名与我们希望使用的终端命令同名，命令如下：
+
+```
+$ sudo ln -s /home/user/bin/node-echo.js /usr/local/bin/node-echo
+```
+
+这样处理后，可以在任何目录下使用 node-echo 命令。
+
+### Windows
+
+假设 node-echo.js 在 C:\Users\user\bin 目录下，并且该目录已经添加到 path 环境  变量里.接下来需要在该目录下新建一个名为 node-echo.cmd 的文件，内容如下：
+
+```
+@node "C:\User\user\bin\node-echo.sj" %*
+```
+
+这样就可以在任何目录下使用 node-echo 命令了。
+
+## 工程目录
+
+## NPM
+
+NPM 是随 NodeJS 一起安装的包管理工具。常见使用场景：
+
+- 从 npm 服务器上下载别人编写的第三方包到本地
+- 下载安装别写编写的命令行程序
+- 将自己编写的包或命令行  程序上传到服务器供别人使用
+
+### 下载三方包
+
+在 npmjs.org 可以根据包名搜索。
+
+安装：argv
+
+```
+npm install argv
+```
+
+安装好后，argv 包放在工程目录的 node_modules 目录中，在代码  中只需 require('argb')就可以引用，无需指定第三方包路径。
+
+npm install 指令默认下载最新版本，需要指定版本，可以在包名后加上@<version>，例如:
+
+```
+npm install argv@0.0.1
+```
+
+一般将项目中依赖的包写在 package.json 中的 dependencies,在项目路径下执行 npm install 会批量安装第三方包。
+
+用户只需关系自己需要的包，不需要  关心第三方包的依赖，npm 会自动查找依赖关系。
+
+```
+{
+    "name": "node-echo",
+    "main": "./lib/echo.js",
+    "dependencies": {
+        "argv": "0.0.2"
+    }
+}
+```
+
+## 安装命令行程序
+
+## 发布代码
+
+第一次发布需要注册账号， 终端下运行 npm adduser,按照提示做即可。 账号搞定后，编辑 package.json 文件，加入 npm 必须的字段。 如下
+
+```
+{
+    "name": "node-echo",  # 包名，在npm服务器上唯一
+    "version": "1.0.0",     # 当前版本号
+    "dependencies": {       # 三方包依赖，指定包名版本号
+        "argv": "0.0.2"
+    },
+    "main": "./lib/echo.js",     # 入口模块位置
+    "bin": {
+        "node-echo": "./bin/node-echo"  # 命令行程序名和主模块位置
+    }
+}
+```
+
+在 package.json 目录执行 npm publish 发布代码。
+
+## 版本号
+
+npm 包版本号分为 X.Y.Z 三位，分别代表主版本号，此版本号，补丁版本号。版本变更原则：
+
+- 只修复 bug，更新 Z 位
+- 新增功能，但向下兼容，更新 Y 位
+- 有大变动，向下不兼容，更新 X 位
+
+在申明三方包依赖时，除了可依赖于一个固定版本号外，还可依赖于某个范围内的版本号。 例如"argv": "0.0.x"表示依赖于 0.0.x 系列的最新版 argv.
+
+# 小结
+
+- 编写代码前先规划好目录结构
+- 大项目可以拆分成多个模块管理，也可以使用包来组织模块。
+- 合理使用 node_modules 和 NODE_PATH 来解耦包的使用方式和物理路径
+- 使用 npm 加入 NodeJS 生态圈互通有无
+- 有好的包名请提前在 npm 上抢注
