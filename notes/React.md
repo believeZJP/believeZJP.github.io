@@ -167,3 +167,15 @@ PropTypes.string
 PropTypes.node
 PropTypes.element
 ```
+
+[深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
+
+# 高阶组件(装饰者模式)
+
+高阶组件是一个函数，传给它一个组件，它返回一个新的组件。
+
+通过组合的方式达到很高的灵活程度。
+
+```
+const newComponent = higherOrderComponent(OldComponent)
+```
