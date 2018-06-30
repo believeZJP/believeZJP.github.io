@@ -1,3 +1,5 @@
+[TOC]
+
 # http 方法，每个方法分别什么情况下用
 
 put 和 get 有什么相同点
@@ -40,7 +42,7 @@ HEAD 类似于 get 请求，只不过返回的响应中没有具体的内容，�
 以便在只完成连续消息的一部分时可以通知应用，
 从而使表示层看到的数据是连续的，
 
- 示例：RPC，SQL 等。
+示例：RPC，SQL 等。
 
 #### 4 传输层
 
@@ -491,8 +493,6 @@ path: /sj/test
 URL params: id=8079
 Query String: name=sviergn&x=true
 Anchor: stuff
-
-
 ```
 
 # http 常见状态码有哪些

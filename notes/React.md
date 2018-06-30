@@ -1,6 +1,6 @@
 # 路由嵌套
 
-```
+```javascript
 <Route path="inbox" component={Inbox}>
         <Routepath="messages/:id" component={Message} />
 </Route>

@@ -41,3 +41,5 @@ TODO LIST
 [数组方法](https://juejin.im/post/5b0903b26fb9a07a9d70c7e0)
 
 [代码练习](http://scriptoj.mangojuice.top/)
+
+[Web 性能的方方面面](https://github.com/laoqiren/web-performance)
