@@ -1,3 +1,5 @@
+[源码解析](https://juejin.im/post/5983dfbcf265da3e2f7f32de)
+
 # 路由嵌套
 
 ```javascript
@@ -43,12 +45,12 @@ react module.hot
 - <connect> 是一个高阶组件，作用是将 store 与 view 层组件连接起来（这里重复提一句，redux 官方将<connect>直接连接的组件定义为 container component），<connect>向开发者开放了几个回调函数钩子（mapStateToProps, mapDispatchToProps...）用于自定义注入 container component 的 props 的姿势；
 - react-redux 监听 redux store 的变更，store 改变后通知每一个 connect 组件刷新自己和后代组件，为了减少不必要的刷新提升性能，connect 实现了 shouldComponentUpdate 方法，如果 props 不变的话，不刷新 connect 包裹的 container component；
 
-链接：https://juejin.im/post/59cb0d0b5188257e876a2d27
+[链接](https://juejin.im/post/59cb0d0b5188257e876a2d27)
 
 # react + redux 最佳实践
 
 [链接](https://github.com/sorrycc/blog/issues/1)
-
+[原理](https://www.cnblogs.com/hhhyaaon/p/5863408.html)
 受控组件
 
 类似于 input, select, textarea 这些元素的 value 值被 React.js 所控制，渲染的组件，被称为受控组件。
@@ -172,6 +174,7 @@ PropTypes.element
 
 # 高阶组件(装饰者模式)
 
+[链接](https://juejin.im/post/595243d96fb9a06bbd6f5ccd)
 高阶组件是一个函数，传给它一个组件，它返回一个新的组件。
 
 通过组合的方式达到很高的灵活程度。
