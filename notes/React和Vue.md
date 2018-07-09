@@ -165,6 +165,8 @@ runtime.js
 
 [链接](https://segmentfault.com/a/1190000010371752)
 
+最大特点：重用组件逻辑
+
 适配器模式，
 
 高阶函数的定义：接收函数作为输入，或者输出另一个函数的一类函数，被称作高阶函数。
@@ -1442,6 +1444,88 @@ https://juejin.im/post/5a9b8417518825558251ce15
 
 定义了一种一对多的关系，让多个观察者对象同时监听某一个主题对象，这个主题对象的状态发生变化时就会通知所有的观察者对象，使得他们能够自动更新自己。
 
+## 数据劫持
+
+ES5 中对象属性有了属性描述符，可以用以下方式去定义对象的属性。
+
+```javascript
+Object.defineProperty(obj, key, {
+  value: "***",
+  writeable: true,
+  enumerable: true,
+  configurable: true
+});
+```
+
+除此之外，还可以用 getter, setter 的方式赋值。当存在 getter 和 setter 时，属性的赋值操作会触发 setter 执行，获取操作会触发 getter 执行。这样的方法称为数据劫持。
+
+还可以重写 setter 函数：在里面写上 trigger 事件的代码, 实现数据改变时自动调用 trigger，从而实现触发事件。
+
+举个栗子：
+
+```javascript
+function definePro(obj, attr, value) {
+  var _value;
+  Object.defineProperty(obj, attr, {
+    get: function() {
+      console.log("get");
+      return _value;
+    },
+    set: function(val) {
+      _value = val;
+      console.log("set", "监听到数据发生了变化");
+    }
+  });
+  obj[attr] = value;
+}
+
+var data = {};
+definePro(data, "name", "Elena Gilbert"); // set
+data.name; // get
+```
+
+某个属性的值是对象？没有数据劫持？
+
+```javascript
+data.name = {
+  English: "Caroline"
+};
+data.name.English = "Elena"; // 此时不触发数据劫持
+```
+
+解决办法：用上面规则定义变量
+
+```javaacript
+defineProp(data.name, 'English', 'Elena')
+```
+
+数据类型是数组，用 push,shift 操作数组，不发生劫持
+
+```javascript
+data.name = ["Elena"];
+data.name.push("Caroline"); //  不发生劫持
+```
+
+对于数组，对一些方法进行改写，使它也能发生劫持
+
+```javascript
+var arrProto = Object.create(Array.prototype)[
+  ("shift", "unshift", "push", "pop", "slice", "splice")
+].forEach(function(method) {
+  Object.defineProperty(arrProto, method, {
+    value: function() {
+      var result = Array.prototype[method].apply(this, arguments);
+      console.log("检测数据发生变化");
+      return result;
+    }
+  });
+});
+
+var b = [];
+b.__proto__ = arrProto;
+b.push(1); // 检测数据发生变化
+```
+
 ## 脏检查模式
 
 不关心如何及何时改变数据，只关心在特定的检查阶段数据是否改变的数据监听技术
@@ -1465,6 +1549,87 @@ https://juejin.im/post/5a9b8417518825558251ce15
 1.  完全不关心改变数据的方式，而常规的 get,set 会强加许多限制
 2.  可以实现批处理完数据再去统一更新 view
 3.  脏检查比 get/set 更容易实现。脏检查是单向的检查流程，可以实现任意复杂度的表达式支持。而 get/set 需要处理复杂依赖链，表达式支持都是阉割版。
+
+一个简单的实现：
+
+```javascript
+var watchLst = []
+// 对于每个需要监听的item
+watchItem = {
+  last: item.value,
+  get: function(){
+    return data[attr]
+  },
+  callback: function(newVal, oldVal){
+    console.log('数据发生变化, 从'+oldVal+'变到'+)
+  }
+}
+
+watchList.push(watchItem);
+
+// 脏检查的入口： Data-> View
+function apply(){
+  var dirty = false
+  do{
+    watchList.forEach(function(item){
+      var newVal = item.get()
+      var oldVal = item.last
+      if(oldVal !== newVal){
+        item.callback(newVal, oldVal)
+        item.last = newVal
+        dirty = true
+      }else{
+        dirty = false
+      }
+    })
+  }while(dirty)
+  refreshView()
+}
+```
+
+## Flux 实现
+
+在 vue 中任何数据改动都会触发 Object.defineProperty 绑定的 setter 方法，从而调用 trigger。如果只定义具体的改动，就可以不用 Object.defineProperty. 这就是 flux 的实现。不直接修改数据，而是通过定义具体的动作，通过这个动作来修改数据。在动作调用时自动触发 trigger，实现事件响应。
+
+```javascript
+AppDispatcher.dispatch({
+  actionName: "new-item",
+  newItem: { name: "Sparta" }
+});
+```
+
+这也是 flux 要分为 actions, dispatcher, store 的原因，不直接修改数据，而是通过中间层 actions 修改数据，只要调用中间层，就可以触发 trigger 实现事件响应。
+
+## es6 Proxy 对象代理
+
+给对象绑定一个代理对象，通过这个代理对喜爱能来代理原对象的各种行为
+
+```javascript
+var p = new Proxy(target, handler);
+let a = new Proxy(
+  {},
+  {
+    set: function(obj, prop, value) {
+      obj[prop] = value;
+      if (prop == "name") {
+        console.log("set" + prop + ":" + obj[prop]);
+      }
+      return true;
+    }
+  }
+);
+
+a.name = 100;
+```
+
+## node Events 库
+
+node 的 Events 也可以实现上面的事件响应。
+[MicroEvent.js 源码](https://github.com/jeromeetienne/microevent.js/blob/master/microevent.js#L12-31)
+
+## [React 高阶组件实现表单双向绑定](https://segmentfault.com/a/1190000012839405)
+
+要好好看看这种写法~~~~~
 
 # redux 原理
 
