@@ -1,5 +1,7 @@
 [源码解析](https://juejin.im/post/5983dfbcf265da3e2f7f32de)
 
+[TOC]
+
 # 路由嵌套
 
 ```javascript
@@ -182,3 +184,5 @@ PropTypes.element
 ```
 const newComponent = higherOrderComponent(OldComponent)
 ```
+
+高阶组件就是为了组件之间的代码复用。组件可能有着相同的逻辑，把这些逻辑抽离出来，放到高阶组件中进行复用。**高阶组件内部的包装组件和被包装组件之间通过 props 传递数据**
