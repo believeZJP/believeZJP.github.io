@@ -2,11 +2,17 @@
 
 [TOC]
 
+# React三项核心技术
+- 响应式UI
+- 虚拟DOM
+- 组件
+
+
 # 路由嵌套
 
 ```javascript
 <Route path="inbox" component={Inbox}>
-        <Routepath="messages/:id" component={Message} />
+	<Routepath="messages/:id" component={Message} />
 </Route>
 ```
 
@@ -14,8 +20,8 @@
 
 ```
 <Route path="inbox" component={Inbox}>
-        {/* 使用 /messages/:id 替换 messages/:id */}
-        <Route path="/messages/:id" component={Message} />
+	{/* 使用 /messages/:id 替换 messages/:id */}
+	<Route path="/messages/:id" component={Message} />
 </Route>
 ```
 
@@ -39,6 +45,43 @@ react module.hot
 8.  编译到 ES2015+，提高代码运行效率，减小体积；
 9.  使用 lazyload 和 placeholder 提升加载体验。
 
+# redux 
+ redux是状态管理工具 
+
+ 一个应用中需要管理的数据分为3种：
+ 1. 获取并存储数据--store(唯一数据源)
+ 2. 将数据分配给UI--（react-redux, context）
+ 3. 改变数据 -- (reducers)
+
+### redux强制开发者遵循的几个原则--原则带来强大的功能--约束的力量
+1. 数据都要以文本形式描述(数据结构，数据类型)
+2. 每个动作(改变数据的操作)必须在改变的数据之前将其写出来，没有动作产生无法改变数据. 派发(dispatching)动作
+3. 改变数据的代码必须像数学公式一样运行。相同输入，返回相同结果
+
+
+### 原则带来的特性
+- 撤销、重做
+    撤销和重做需要记录并回访应用中发生的每次数据变化。
+    
+    示例：
+    - Google Docs 使用网络发送当前用户正在做的事，接收到另一个用户的操作，重放另一个用户的操作，与本地正在发生的动作合并。
+    - Optimistic UI
+    提升用户体验的方式，使得在慢网速上的应用也能快速响应用户操作。
+    例如Twitter应用中，点赞需要请求服务器来做一些检查，例如推文是否存在。Optimistic UI不是传统的转圈等几秒，然后显示结果。它事先嘉定所有请求都是成功的，当用户点赞时直接+1.这种方式有效的原因在于大多数时候请求是正常的。请求失败应用只需回滚至前一个UI状态即可。并使用服务器响应的实际结果，例如显示错误信息等。
+    - 状态持久化和初始状态加载
+    将应用中发生的一切记录并保存下来变得非常简单。
+    - 真正可扩展系统
+    - 时间调试旅行
+    redux开发者工具可以使开发者通过拖拽滑动条来操纵应用的进度。
+    - 自动反馈bug
+    redux可以将用户本地的状态保存起来发送给开发人员，便于重现bug.Redux Bug Reporter 就是这样玩的。
+
+### 缺点
+- 陡峭的学习曲线
+- '样板'代码
+    redux要编写多个文件才能让一个小功能run起来。
+- 性能损耗
+    每次数据变化会增加一点性能开销，,当store中有大量数据且数据变化频率非常高时(如频繁变化，毫秒级倒计时)，UI可能变的卡顿   
 #react-redux
 
 监听 Store 变更刷新视图的功能是由 react-redux 完成的：

@@ -49,6 +49,25 @@ module.exports = function(){
 以上代码中,  模块默认导出对象被替换为一个函数
 
 # ==** 了解 module.exports 和 exports 的区别 **==
+module.exports 和 exports这两个变量用来暴露出模块的一些属性和方法。
+
+它们之间的关系是
+```javascript
+exports = module.exports = {}
+```
+exports只是module.exports的引用而已, 如果对exports重新赋值, 那么exports的引用指向就会改变，对exports的修改没法反应到module.exports上.可以理解为exports是module.exports的一个快捷方式。而最终模块的导出对象是以module.exports这个值为准的。像错误示例一样暴露出的仅仅是个空对象
+```javascript
+// 正确
+exports.name = 'module'
+exports.sex = 'man'
+
+// 错误
+exports = {
+    name:'module',
+    sex: 'man'
+}
+
+```
 
 ## 模块初始化
 

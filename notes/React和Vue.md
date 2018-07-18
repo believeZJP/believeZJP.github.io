@@ -123,6 +123,9 @@ new Vue({
 
 在数据变化后要执行的某个操作，而这个操作需要使用随数据改变而改变的 DOM 结构的时候，这个操作都应该放进 Vue.nextTick()的回调函数中
 
+# vue原理实现
+[链接](https://segmentfault.com/a/1190000006599500)
+
 # vue 的 props，state, compute 区别
 
 data: Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。
@@ -137,7 +140,8 @@ props: 可以是数组或对象，用于接收来自父组件的数据。props �
 
 计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果某个依赖 (比如非响应式属性) 在该实例范畴之外，则计算属性是不会被更新的。
 
-# react native 和原生的怎么通信
+# react native 和原生怎么通信交互
+利用JS来调用Native端的组件，从而实现相应的功能。
 
 # pure component
 
@@ -145,7 +149,6 @@ React15.3 中新加了一个 PureComponent 类， 也就是纯组件，取代其
 
 可以减少不必要的 render 操作的次数，从而提高性能，而且可以少写 shouldComponentUpdate 函数，节省了点代码。
 
-# React Native 与 原生交互
 
 [链接](https://www.jianshu.com/p/41dd77a83c13)
 
