@@ -102,6 +102,10 @@ git reabase master
 ### 发起评审    
 代码commit后
 git push origin HEAD:refs/for/master
+或
+git push origin dev:refs/for/dev
+git push origin HEAD:refs/for/dev
+
 
 查看最近两次提交的不同
 git diff HEAD-1 HEAD
