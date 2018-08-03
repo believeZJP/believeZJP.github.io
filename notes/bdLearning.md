@@ -122,6 +122,14 @@ git diff HEAD-1 HEAD
 2. 本地工作区 git add
 3. 暂存区 git commit -m ''
     git commit --amend '' 上次提交有错误代码， 这次提交修改错误代码更新使用
+    git commit --amend -m [message]
+    使用一次新的commit，替代上一次提交
+    如果代码没有任何新变化，则用来改写上一次commit的提交信息
+    git commit --amend -m [message]
+
+    重做上一次commit，并包括指定文件的新变化
+    git commit --amend [file1] [file2] ...
+
 4. 本地仓库git push origin HEAD:refs/for/master
 5. 评审区(临时分支)  合入远端仓库
 
