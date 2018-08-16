@@ -31,3 +31,18 @@
 sudo sh ./shutdown.sh
 
 或直接./shutdown.sh
+
+
+
+安装nginx
+
+先安装homebrew
+
+brew install nginx
+
+
+
+mac下vim快捷键
+
+不在编辑状态下按dd删除行
+[链接](https://www.jianshu.com/p/6f13474d36ac)

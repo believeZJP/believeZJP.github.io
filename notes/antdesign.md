@@ -40,3 +40,6 @@ this.props.match.params.couponBatchId
     componentDidMount不会触发
 
     lodash.has 
+
+
+# select 用setFieldsValue赋值，类型要一样，数字就是数字，字符串就是字符串，才能正常显示。
