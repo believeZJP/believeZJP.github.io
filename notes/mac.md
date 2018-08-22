@@ -14,14 +14,14 @@
         ➜ bin sudo chmod 755 *.sh
 ```
 
-1. 	1	sudo为系统超级管理员权限.
+1. sudo为系统超级管理员权限.
 2. chmod 改变一个或多个文件的存取模式
 3. 755代表用户对该文件拥有读、写、执行的权限，同组的其他人员拥有执行和读的权限，没有写的权限，其它用户的权限和同组人员一样.
 4. 777代表，user,group ,others ,都有读写和可执行权限.
-5. chmod -R 777 folername,获取文件夹权限. 
+5. chmod -R 777 folername,获取文件夹权限.
+```
 
-
-###启动
+### 启动
 二、启动
 执行启动命令sudo sh ./startup.sh：
 访问http://localhost:8080/

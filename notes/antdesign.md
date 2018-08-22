@@ -34,12 +34,35 @@ function createUser(user) {
 this.props.match.params.couponBatchId
 ```
 
-# 多级对象setState
+# 路由跳转
 
-# 一个组件是modal，打开是查询一次，在哪执行
+
+# 多级对象setState
+可以单独取出来，修改后再整体放进去
+
+
+# 一个组件是modal，打开就查询一次，在哪执行查询
+    在componentWillReceiveProps里
+    componentWillReceiveProps(nextProps){
+        // 这里的nextProps为修改后的状态值
+
+        用this.props可以获取到修改之前的props
+
+        通过this.props和nextProps两者对比可以看是否需要更新和操作
+    }
+
+    componentwillreceiveprops会自动接收参数，导致页面不断渲染
+    需要配合this.props使用
     componentDidMount不会触发
 
     lodash.has 
 
 
 # select 用setFieldsValue赋值，类型要一样，数字就是数字，字符串就是字符串，才能正常显示。
+
+# form表单重置按钮
+```javascript
+handleReset = () => {
+    this.props.form.resetFields();
+}
+```
