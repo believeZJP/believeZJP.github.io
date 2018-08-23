@@ -9,7 +9,8 @@ https://github.com/nswbmw/N-blog
 
 https://github.com/jaywcjlove/handbook/
 
-
+换个思路学nodejs
+https://github.com/wangfupeng1988/node-tutorial
 
 https://github.com/ElemeFE/node-practice
 
