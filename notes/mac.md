@@ -46,3 +46,10 @@ mac下vim快捷键
 
 不在编辑状态下按dd删除行
 [链接](https://www.jianshu.com/p/6f13474d36ac)
+
+# mac 添加任何来源允许权限
+在命令行执行
+```
+  sudo spctl --master-disable
+
+```
