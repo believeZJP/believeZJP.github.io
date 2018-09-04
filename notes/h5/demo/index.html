@@ -1,32 +1,33 @@
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf8">
-        <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-        <meta name="model_url" content="/">
-        <title>h5</title>
-        <meta name="keywords" content="">
-        <meta name="description" content="">
-        
-        <link href="https://static.ws.126.net/f2e/news/common/css/news.BmDT9sluSdyy.34.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="./assets/china_tolerance.1237586.css">
-    </head>
-    
-    <body>
-        <div class="china_tolerance_content">
-            <h1 class="hidden">逃不掉的四字魔咒</h1>
-            <!-- 项目内容 -->
-            <div class="mask"></div>
-            <div class="audio">
-                
-            </div>
-            <div id="loading" style="transform: rotate(0deg) scale(0.552) translate3d(0px, 0px, 0px); width: 1333.33px; height: 750px; display: none;">
-                <div class="loading_logo" style="left: 545.667px;"></div>
-                <div class="loading_main" style="left: 525.167px;"></div>
-                <div id="percent">100%</div>
-            </div>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta name="model_url" content="/">
+    <title>h5</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link href="https://static.ws.126.net/f2e/news/common/css/news.BmDT9sluSdyy.34.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./assets/china_tolerance.1237586.css">
+</head>
+
+<body>
+    <div class="china_tolerance_content">
+        <h1 class="hidden">逃不掉的四字魔咒</h1>
+        <!-- 项目内容 -->
+        <div class="mask"></div>
+        <div class="audio">
+
+        </div>
+        <div id="loading" style="transform: rotate(0deg) scale(0.552) translate3d(0px, 0px, 0px); width: 1333.33px; height: 750px; display: none;">
+            <div class="loading_logo" style="left: 545.667px;"></div>
+            <div class="loading_main" style="left: 525.167px;"></div>
+            <div id="percent">100%</div>
+        </div>
         <!-- <canvas id="content" width="736" height="414" style="touch-action: none; cursor: inherit;"></canvas></div> -->
         <!-- <div class="text"></div> -->
-        
+
     </div>
     <script src="./assets/jquery.js"></script>
     <script src="./assets/zepto.1233116.min.js"></script>
@@ -35,90 +36,132 @@
     <script src="./assets/Animate.1237586.min.js"></script>
     <script src="./assets/Tween.1237586.min.js"></script>
     <!-- <script src="./assets/china_tolerance.1238035.min.js"></script> -->
-    <button title="HOOK DIV" style="width: 1px; height: 1px; position: absolute; top: -1000px; left: -1000px; z-index: 2; background-color: rgb(255, 0, 0);"></button>
-    
+
     <script>
         // Settings
         const w = window.innerWidth,
-        _ = window.innerHeight;
-        var container = document.getElementById("container");
-        var content = document.getElementById("content");
-	    // const context = content.getContext('2d');
+            _ = window.innerHeight;
+        // var container = document.getElementById("container");
+        // var content = document.getElementById("content");
+        // const context = content.getContext('2d');
 
-        var k, 
-        S = 0,
-        P = 0,
-        // PIXI里的容器
-        C = PIXI.Container,
-        T = (PIXI.autoDetectRenderer, PIXI.loader),
-        A = (PIXI.loader.resources, PIXI.utils.TextureCache, PIXI.Texture, PIXI.Text, new PIXI.ticker.Ticker, PIXI.Sprite),
-        E = (PIXI.Rectangle, PIXI.Graphics),
-        M = "http://static.ws.126.net/f2e/news/china_tolerance/images/";
-        
+        var k,
+            S = 0,
+            P = 0,
+            // PIXI里的容器
+            C = PIXI.Container,
+            T = (PIXI.autoDetectRenderer, PIXI.loader),
+            A = (PIXI.loader.resources, PIXI.utils.TextureCache, PIXI.Texture, PIXI.Text, new PIXI.ticker.Ticker, PIXI.Sprite),
+            E = (PIXI.Rectangle, PIXI.Graphics),
+            M = "http://static.ws.126.net/f2e/news/china_tolerance/images/";
+
         // X 是PIXI容器的实例
         var X = new C;
         X.width = w,
-        X.height = _;
+            X.height = _;
         var W = new PIXI.CanvasRenderer(w, _);
         $(".china_tolerance_content")[0].appendChild(W.view);
         // Canvas renderer
-        // var render = function(left, top, zoom) {
-            
-        //     // Sync current dimensions with canvas
-        //     content.width = w;
-        //     content.height = _;
-            
-        //     // Full clearing
-        //     // context.clearRect(0, 0, w, _);
-        // };
-        // 初始化滚动
-        // const Ne= new Scroller(render, {
-        //     zooming: !1,
-        //     animating: !0,
-        //     bouncing: !1,
-        //     animationDuration: 1e3
-        // });
-        // Ne.__enableScrollY = !0;
-        // // Ne.setDimensions(w, _, contentWidth, contentHeight);
-        // Ne.setDimensions(w, _, w, 16067 + _),
-        W.render(X);
+        var render = function (left, top, zoom) {
+            console.log(left, top, zoom, 'aaa')
+            //     // Sync current dimensions with canvas
+            //     content.width = w;
+            //     content.height = _;
 
+            //     // Full clearing
+            //     // context.clearRect(0, 0, w, _);
+        };
+        // 初始化滚动插件
+        const Ne = new Scroller(render, {
+            zooming: !1,
+            animating: !0,
+            bouncing: !1,
+            animationDuration: 1e3
+        });
+        Ne.__enableScrollY = !0;
+        // Ne.setDimensions(w, _, contentWidth, contentHeight);
+        Ne.setDimensions(w, _, w, 16067 + _);
+
+        // 一定要设置这个才能触发鼠标事件
+        X.interactive = !0;
+        X.buttonMode = !0;
         // 对PIXI容器绑定监听事件
         X.on('touchstart', touchStart).on('touchmove', touchMove).on('touchend', touchEnd);
 
+        console.log(X);
+        W.render(X);
+
+
         // 开始滑动事件监听
         function touchStart(e) {
-                console.log('start');
-                var i = e.data.originalEvent;
-                Ne.doTouchStart(i.touches, i.timeStamp);
-            }
-            // 滑动过程事件监听
-            function touchMove(e) {
-                console.log('moving');
-                var i = e.data.originalEvent;
-                Ne.doTouchMove(i.touches, i.timeStamp, i.scale);
-            }
-            // 滑动结束事件监听
-            function touchEnd(e) {
-                console.log('end');
-                var i = e.data.originalEvent;
-                Ne.doTouchEnd(i.timeStamp);
-            }
-        
-        </script>    
-    
-    
-        <style>
-        .toast-wrap-d7fef5 { display: none; position: fixed;z-index:99999998;left: 0;top: 0; width: 100%; height: 100%; }
-        .mask-d7fef5 { height: 100%; opacity: 0; -webkit-transition: opacity 0.2s ease-in-out; transition: opacity 0.2s ease-in-out; background: rgba(0,0,0,0.6)}
-        .toast-wrap-d7fef5.active .mask-d7fef5 { opacity: 1;}
-        .toast-d7fef5 {
-          position:absolute;z-index:99999999;left:0;bottom: 0;width:100%;
-          -webkit-transform: translateY(100%); -webkit-transition:-webkit-transform 0.2s ease-in-out;
-          transform: translateY(100%); transition: transform 0.2s ease-in-out;
+            var i = e.data.originalEvent;
+            console.log('start', i);
+            Ne.doTouchStart(i.touches, i.timeStamp);
         }
-        .toast-wrap-d7fef5.active .toast-d7fef5 { -webkit-transform: translateY(0); transform: translateY(0); }
-        
-        .btn-d7fef5 { position: absolute; right:0;left:0;bottom:14.52%; height: 23.93%; }
-        </style>
-      </body></html>
+        // 滑动过程事件监听
+        function touchMove(e) {
+            var i = e.data.originalEvent;
+            console.log('moving', i);
+            Ne.doTouchMove(i.touches, i.timeStamp, i.scale);
+        }
+        // 滑动结束事件监听
+        function touchEnd(e) {
+            var i = e.data.originalEvent;
+            console.log('end', i);
+            Ne.doTouchEnd(i.timeStamp);
+        }
+
+    </script>
+
+
+    <style>
+        .toast-wrap-d7fef5 {
+            display: none;
+            position: fixed;
+            z-index: 99999998;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mask-d7fef5 {
+            height: 100%;
+            opacity: 0;
+            -webkit-transition: opacity 0.2s ease-in-out;
+            transition: opacity 0.2s ease-in-out;
+            background: rgba(0, 0, 0, 0.6)
+        }
+
+        .toast-wrap-d7fef5.active .mask-d7fef5 {
+            opacity: 1;
+        }
+
+        .toast-d7fef5 {
+            position: absolute;
+            z-index: 99999999;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            -webkit-transform: translateY(100%);
+            -webkit-transition: -webkit-transform 0.2s ease-in-out;
+            transform: translateY(100%);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .toast-wrap-d7fef5.active .toast-d7fef5 {
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+
+        .btn-d7fef5 {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 14.52%;
+            height: 23.93%;
+        }
+    </style>
+</body>
+
+</html>
