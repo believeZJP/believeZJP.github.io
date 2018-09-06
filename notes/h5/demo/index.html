@@ -60,6 +60,8 @@
         X.width = w,
             X.height = _;
         var W = new PIXI.CanvasRenderer(w, _);
+        console.log(A,'A')
+
         $(".china_tolerance_content")[0].appendChild(W.view);
         // Canvas renderer
         var render = function (left, top, zoom) {
@@ -85,6 +87,7 @@
         // 一定要设置这个才能触发鼠标事件
         X.interactive = !0;
         X.buttonMode = !0;
+        X.backgroundColor = 0x061639;
         // 对PIXI容器绑定监听事件
         X.on('touchstart', touchStart).on('touchmove', touchMove).on('touchend', touchEnd);
 
@@ -111,6 +114,18 @@
             Ne.doTouchEnd(i.timeStamp);
         }
 
+
+        PIXI.loader.add("images/01.png").load(setup);
+
+        //This `setup` function will run when the image has loaded
+        function setup() {
+            //Create the cat sprite
+            let cat = new PIXI.Sprite(PIXI.loader.resources["images/01.png"].texture);
+            //   let cat = new PIXI.Sprite(PIXI.TextureCache["images/01.png"]);
+console.log(cat);
+            //Add the cat to the stage
+            X.addChild(cat);
+        }
     </script>
 
 
