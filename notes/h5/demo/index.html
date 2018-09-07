@@ -41,26 +41,26 @@
         // Settings
         const w = window.innerWidth,
             _ = window.innerHeight;
-        // var container = document.getElementById("container");
-        // var content = document.getElementById("content");
-        // const context = content.getContext('2d');
 
         var k,
             S = 0,
             P = 0,
             // PIXI里的容器
-            C = PIXI.Container,
-            T = (PIXI.autoDetectRenderer, PIXI.loader),
+            Container = PIXI.Container,
+            // var W = new PIXI.CanvasRenderer(w, _);
+            // var W = new PIXI.WebGLRenderer(w, _);
+            T = (PIXI.WebGLRenderer, PIXI.loader),
             A = (PIXI.loader.resources, PIXI.utils.TextureCache, PIXI.Texture, PIXI.Text, new PIXI.ticker.Ticker, PIXI.Sprite),
             E = (PIXI.Rectangle, PIXI.Graphics),
             M = "http://static.ws.126.net/f2e/news/china_tolerance/images/";
 
         // X 是PIXI容器的实例
-        var X = new C;
-        X.width = w,
-            X.height = _;
-        var W = new PIXI.CanvasRenderer(w, _);
-        console.log(A,'A')
+        var container = new Container;
+        container.width = w,
+            container.height = _;
+            
+        //Create the renderer 创建一个渲染器，会自动选择是canvas还是webgl渲染
+        var W = new PIXI.WebGLRenderer(w, _);
 
         $(".china_tolerance_content")[0].appendChild(W.view);
         // Canvas renderer
@@ -83,16 +83,15 @@
         Ne.__enableScrollY = !0;
         // Ne.setDimensions(w, _, contentWidth, contentHeight);
         Ne.setDimensions(w, _, w, 16067 + _);
-
         // 一定要设置这个才能触发鼠标事件
-        X.interactive = !0;
-        X.buttonMode = !0;
-        X.backgroundColor = 0x061639;
-        // 对PIXI容器绑定监听事件
-        X.on('touchstart', touchStart).on('touchmove', touchMove).on('touchend', touchEnd);
+        container.interactive = !0;
+        container.buttonMode = !0;
+        container.backgroundColor = 0x061639;
+        // 对PIcontainerI容器绑定监听事件
+        container.on('touchstart', touchStart).on('touchmove', touchMove).on('touchend', touchEnd);
 
-        console.log(X);
-        W.render(X);
+        console.log(container);
+        W.render(container);
 
 
         // 开始滑动事件监听
@@ -122,9 +121,8 @@
             //Create the cat sprite
             let cat = new PIXI.Sprite(PIXI.loader.resources["images/01.png"].texture);
             //   let cat = new PIXI.Sprite(PIXI.TextureCache["images/01.png"]);
-console.log(cat);
             //Add the cat to the stage
-            X.addChild(cat);
+            container.addChild(cat);
         }
     </script>
 
