@@ -36,6 +36,8 @@
     <script src="./assets/Animate.1237586.min.js"></script>
     <script src="./assets/Tween.1237586.min.js"></script>
     <!-- <script src="./assets/china_tolerance.1238035.min.js"></script> -->
+    <!-- <script src="./assets/china_tolerance.js"></script> -->
+    <script src="./assets/init.js"></script>
 
     <script>
         // Settings
@@ -47,9 +49,7 @@
             P = 0,
             // PIXI里的容器
             Container = PIXI.Container,
-            // var W = new PIXI.CanvasRenderer(w, _);
-            // var W = new PIXI.WebGLRenderer(w, _);
-            T = (PIXI.WebGLRenderer, PIXI.loader),
+            T = (PIXI.CanvasRenderer, PIXI.loader),
             A = (PIXI.loader.resources, PIXI.utils.TextureCache, PIXI.Texture, PIXI.Text, new PIXI.ticker.Ticker, PIXI.Sprite),
             E = (PIXI.Rectangle, PIXI.Graphics),
             M = "http://static.ws.126.net/f2e/news/china_tolerance/images/";
@@ -60,9 +60,9 @@
             container.height = _;
             
         //Create the renderer 创建一个渲染器，会自动选择是canvas还是webgl渲染
-        var W = new PIXI.WebGLRenderer(w, _);
+        var W = new PIXI.CanvasRenderer(w, _);
 
-        $(".china_tolerance_content")[0].appendChild(W.view);
+        // $(".china_tolerance_content")[0].appendChild(W.view);
         // Canvas renderer
         var render = function (left, top, zoom) {
             console.log(left, top, zoom, 'aaa')
@@ -81,8 +81,10 @@
             animationDuration: 1e3
         });
         Ne.__enableScrollY = !0;
+
         // Ne.setDimensions(w, _, contentWidth, contentHeight);
         Ne.setDimensions(w, _, w, 16067 + _);
+
         // 一定要设置这个才能触发鼠标事件
         container.interactive = !0;
         container.buttonMode = !0;
@@ -92,6 +94,7 @@
 
         console.log(container);
         W.render(container);
+
 
 
         // 开始滑动事件监听
@@ -114,9 +117,9 @@
         }
 
 
-        PIXI.loader.add("images/01.png").load(setup);
+        // PIXI.loader.add("images/01.png").load(setup);
 
-        //This `setup` function will run when the image has loaded
+        // `setup` 方法会在图片加载完成后调用
         function setup() {
             //Create the cat sprite
             let cat = new PIXI.Sprite(PIXI.loader.resources["images/01.png"].texture);
@@ -124,6 +127,16 @@
             //Add the cat to the stage
             container.addChild(cat);
         }
+
+
+        var bunny = PIXI.Sprite.fromImage('images//02.png')
+        bunny.anchor.set(0.5); //设置原点位置
+        //显示精灵X轴位置
+        bunny.x = container.width / 2;
+        //显示精灵Y轴位置
+        bunny.y = container.height / 2;
+        //将显示精灵添加进舞台
+        container.addChild(bunny)
     </script>
 
 

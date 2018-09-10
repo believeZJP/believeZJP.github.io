@@ -479,32 +479,30 @@
             (ee = new C());
         var ve = new A(T.resources[M + 'end/cover_bg1.png'].texture),
             Xe = new A(T.resources[M + 'end/watch_again1.png'].texture);
-        Xe.position.set(78, 551),
-            (Xe.interactive = !0),
-            (Xe.buttonMode = !0),
-            Xe.on('touchend', function() {
-                location.reload();
-            }),
-            window.openNewsapp.init({
-                projectId: '4JHDPZUJ-2',
-                channels: ['news_sps_feidian', 'sps_article', 'sps'],
-                param: 'S1385797470941'
-            });
+        // Xe.position.set(78, 551),
+        //     (Xe.interactive = !0),
+        //     (Xe.buttonMode = !0),
+        //     Xe.on('touchend', function() {
+        //         location.reload();
+        //     });
+        // window.openNewsapp.init({
+        //     projectId: '4JHDPZUJ-2',
+        //     channels: ['news_sps_feidian', 'sps_article', 'sps'],
+        //     param: 'S1385797470941'
+        // });
         var We = new A(T.resources[M + 'end/netease1.png'].texture);
-        We.position.set(78, 458),
-            (We.interactive = !0),
-            (We.buttonMode = !0),
-            We.on('touchend', function(e) {
-                window.openNewsapp.open({
-                    param: 'reader/T1497354552181'
-                });
-            });
+        We.position.set(78, 458), (We.interactive = !0), (We.buttonMode = !0);
+        // We.on('touchend', function(e) {
+        //     window.openNewsapp.open({
+        //         param: 'reader/T1497354552181'
+        //     });
+        // });
         var Re = new A(T.resources[M + 'end/share.png'].texture);
         Re.position.set(22, 444),
             (Re.interactive = !0),
             (Re.buttonMode = !0),
             Re.on('touchend', function(e) {
-                h5Share.share();
+                // h5Share.share();
             }),
             I
                 ? ((Xe.visible = !1), (We.visible = !1), (Re.visible = !0))
@@ -749,13 +747,13 @@
     }
     var f = i(),
         I = n();
-    f ||
-        h5Share.init({
-            title: '\u6002\u6002\u5fcd\u6002\u6002\u6002\u6002\u5fcd\u6002\u6002\uff0c\u8fd8\u5fcd\u5417',
-            desc: '\u6d3b\u5230\u73b0\u5728\u4f60\u90fd\u9003\u4e0d\u5f00\u7684\u56db\u5b57\u9b54\u5492',
-            url: window.location.href,
-            img: 'http://cms-bucket.nosdn.127.net/15447b3150fc427789fa41225d843b2b20170914111552.jpeg'
-        });
+    // f ||
+    //     h5Share.init({
+    //         title: '\u6002\u6002\u5fcd\u6002\u6002\u6002\u6002\u5fcd\u6002\u6002\uff0c\u8fd8\u5fcd\u5417',
+    //         desc: '\u6d3b\u5230\u73b0\u5728\u4f60\u90fd\u9003\u4e0d\u5f00\u7684\u56db\u5b57\u9b54\u5492',
+    //         url: window.location.href,
+    //         img: 'http://cms-bucket.nosdn.127.net/15447b3150fc427789fa41225d843b2b20170914111552.jpeg'
+    //     });
     var k,
         _ = window.innerHeight,
         w = window.innerWidth,
@@ -2187,110 +2185,110 @@
         (window.onorientationchange = s);
     var Me = (isPlayedPaper = isPlayedGuitar1 = isPlayedGame = isPlayedCar = isPlayedPhoto = isPlayedMouth = isPlayedClose = isPlayedLaugh = !1),
         // 音频播放序列
-        Xe = [
-            {
-                video: $('#close')[0],
-                start: 1120,
-                end: 1500,
-                isPlayed: !1
-            },
-            {
-                video: $('#paper')[0],
-                start: 2100,
-                end: 2400,
-                isPlayed: !1
-            },
-            {
-                video: $('#photo')[0],
-                start: 2700,
-                end: 3400,
-                isPlayed: !1
-            },
-            {
-                video: $('#mix')[0],
-                start: 3100,
-                end: 4700,
-                isPlayed: !1
-            },
-            {
-                video: $('#car')[0],
-                start: 5e3,
-                end: 7800,
-                isPlayed: !1
-            },
-            {
-                video: $('#mouth')[0],
-                start: 6730,
-                end: 7e3,
-                isPlayed: !1
-            },
-            {
-                video: $('#ball')[0],
-                start: 8300,
-                end: 8600,
-                isPlayed: !1
-            },
-            {
-                video: $('#hit')[0],
-                start: 8500,
-                end: 9300,
-                isPlayed: !1
-            },
-            {
-                video: $('#chair')[0],
-                start: 9600,
-                end: 10200,
-                isPlayed: !1
-            },
-            {
-                video: $('#type')[0],
-                start: 9650,
-                end: 11150,
-                isPlayed: !1
-            },
-            {
-                video: $('#snow')[0],
-                start: 11600,
-                end: 13900,
-                isPlayed: !1
-            },
-            {
-                video: $('#swish1')[0],
-                start: 12310,
-                end: 12535,
-                isPlayed: !1
-            },
-            {
-                video: $('#swish2')[0],
-                start: 12535,
-                end: 12740,
-                isPlayed: !1
-            },
-            {
-                video: $('#swish3')[0],
-                start: 12740,
-                end: 12985,
-                isPlayed: !1
-            },
-            {
-                video: $('#swish4')[0],
-                start: 12985,
-                end: 13210,
-                isPlayed: !1
-            },
-            {
-                video: $('#swish5')[0],
-                start: 13210,
-                end: 13350,
-                isPlayed: !1
-            },
-            {
-                video: $('#clock')[0],
-                start: 14500,
-                end: 15700,
-                isPlayed: !1
-            }
-        ],
+        // Xe = [
+        //     {
+        //         video: $('#close')[0],
+        //         start: 1120,
+        //         end: 1500,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#paper')[0],
+        //         start: 2100,
+        //         end: 2400,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#photo')[0],
+        //         start: 2700,
+        //         end: 3400,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#mix')[0],
+        //         start: 3100,
+        //         end: 4700,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#car')[0],
+        //         start: 5e3,
+        //         end: 7800,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#mouth')[0],
+        //         start: 6730,
+        //         end: 7e3,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#ball')[0],
+        //         start: 8300,
+        //         end: 8600,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#hit')[0],
+        //         start: 8500,
+        //         end: 9300,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#chair')[0],
+        //         start: 9600,
+        //         end: 10200,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#type')[0],
+        //         start: 9650,
+        //         end: 11150,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#snow')[0],
+        //         start: 11600,
+        //         end: 13900,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#swish1')[0],
+        //         start: 12310,
+        //         end: 12535,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#swish2')[0],
+        //         start: 12535,
+        //         end: 12740,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#swish3')[0],
+        //         start: 12740,
+        //         end: 12985,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#swish4')[0],
+        //         start: 12985,
+        //         end: 13210,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#swish5')[0],
+        //         start: 13210,
+        //         end: 13350,
+        //         isPlayed: !1
+        //     },
+        //     {
+        //         video: $('#clock')[0],
+        //         start: 14500,
+        //         end: 15700,
+        //         isPlayed: !1
+        //     }
+        // ],
         We = !1,
         Re = !1,
         je = !1,
@@ -2644,18 +2642,6 @@
                         Q.children[6].scale.set(1),
                         Q.children[7].scale.set(1),
                         Q.children[20].scale.set(1);
-                } else if (o < 11250) {
-                    var a = o - 10350 - 800;
-                    (Q.children[4].visible = !1),
-                        (Q.children[5].visible = !0),
-                        (Q.children[5].alpha = Math.max(1 - a / 200, 0));
-                } else if (o >= 11250) {
-                    var a = o - 10450 - 800;
-                    (Q.children[2].visible = !1),
-                        (Q.children[5].alpha = Math.max(0.5 - a / 200, 0)),
-                        Q.children[6].scale.set(1 + a / 600),
-                        Q.children[7].scale.set(1 + a / 600),
-                        Q.children[20].scale.set(1 + a / 600);
                 }
             }
             if (o >= 11250) {
@@ -2727,41 +2713,41 @@
                                     (q.children[12].visible = !0),
                                     re.gotoAndStop(5));
                 }
-            }
-            // 这一段是字幕的显示控制
-            o < 950
-                ? (j.children[0].visible = !1)
-                : o >= 950 && o < 2800
-                  ? (j.children[0].visible = !0)
-                  : o >= 2800 && o < 3100
-                    ? ((j.children[0].visible = !1), (j.children[1].visible = !1))
-                    : o >= 3100 && o < 4300
-                      ? (j.children[1].visible = !0)
-                      : o >= 4300 && o < 4800
-                        ? ((j.children[1].visible = !1), (j.children[2].visible = !1))
-                        : o >= 4800 && o < 7600
-                          ? (j.children[2].visible = !0)
-                          : o >= 7600 && o < 8050
-                            ? ((j.children[2].visible = !1), (j.children[3].visible = !1))
-                            : o >= 8050 && o < 9350
-                              ? (j.children[3].visible = !0)
-                              : o >= 9350 && o < 9600
-                                ? ((j.children[3].visible = !1), (j.children[4].visible = !1))
-                                : o >= 9600 && o < 11150
-                                  ? (j.children[4].visible = !0)
-                                  : o >= 11150 && o < 11400
-                                    ? ((j.children[4].visible = !1), (j.children[5].visible = !1))
-                                    : o >= 11400 && o < 13900
-                                      ? (j.children[5].visible = !0)
-                                      : o >= 13900 && o < 14500
-                                        ? ((j.children[5].visible = !1), (j.children[6].visible = !1))
-                                        : o >= 14500 && o < 15750
-                                          ? (j.children[6].visible = !0)
-                                          : o >= 15750 && (j.children[6].visible = !1);
-            for (var I = 0; I < Xe.length; I++)
-                o >= Xe[I].start && o < Xe[I].end
-                    ? Xe[I].isPlayed || ((Xe[I].isPlayed = !0), Xe[I].video.play())
-                    : ((Xe[I].isPlayed = !1), Xe[I].video.pause());
+            } else if (o >= 10100) {
+                var a = o - 10450 - 800;
+                (Q.children[0].visible = !1), re.scale.set(0.6);
+            } else Q.children[0].visible = !0;
+            if (o > 11800) {
+                var a = o - 13100 - 800;
+                Z.position.x = 13900 + a;
+                var s = a < 600 ? (600 - a) * (600 - a) / 3e3 : 0;
+                if (
+                    (K.scale.set(1 + s),
+                    (K.alpha = a / 300),
+                    o > 14300
+                        ? ((Z.children[0].visible = !0), (Z.children[1].visible = !0), (Z.children[2].visible = !0))
+                        : ((Z.children[0].visible = !1), (Z.children[1].visible = !1), (Z.children[2].visible = !1)),
+                    o > 14500 && o <= 15750)
+                ) {
+                    var a = o - 13700 - 800;
+                    K.gotoAndStop(Math.min(a / 80, 15)), (Ae = 100 * Math.max(1 - a / 1280, 0.05));
+                } else o <= 14500 && (Ae = 100);
+                if (o > 15750) {
+                    var f = o - 14950 - 800;
+                    (ee.position.x = Math.max(B - f, B - 317)),
+                        (K.position.x = 224 + (B - 558) / 2 - f / 2),
+                        je || ((je = !0), y());
+                } else
+                    Je && (clearInterval(Je), (Je = null)),
+                        (je = !1),
+                        (K.position.x = 224 + (B - 558) / 2),
+                        (ee.position.x = B);
+            } else o > 10800 && (K.scale.set(100), (K.alpha = 0));
+
+            // for (var I = 0; I < Xe.length; I++)
+            //     o >= Xe[I].start && o < Xe[I].end
+            //         ? Xe[I].isPlayed || ((Xe[I].isPlayed = !0), Xe[I].video.play())
+            //         : ((Xe[I].isPlayed = !1), Xe[I].video.pause());
             (R.position.x = -o), (R.position.y = -t);
         },
         Le = !1,

@@ -70,6 +70,7 @@
     }
     // 确定屏幕旋转角度，根据不同的角度显示不同内容
     function s() {
+        console.log(window.orientation, '方向');
         switch (window.orientation) {
             case 0:
                 setTimeout(function() {
@@ -92,7 +93,8 @@
                             left: (_ / k - 283) / 2 + 'px'
                         }),
                         setTimeout(function() {
-                            Ne.setDimensions(w, _, w, 16067 + _), Ne.scrollTo(0, P, !1), (B = _ / k), v();
+                            // Ne.setDimensions(w, _, w, 16067 + _), Ne.scrollTo(0, P, !1), (B = _ / k), v();
+                            Ne.setDimensions(w, _, w, 1600 + _), Ne.scrollTo(0, P, !1), (B = _ / k), v();
                         }, 200);
                 }, 300);
                 break;
@@ -186,337 +188,336 @@
             (Q = new C()),
             Q.position.set(8800, 0),
             (q = new C()),
-            q.position.set(11250, 0),
-            (ne = [be, we, _e, fe, Ie, Se, Pe]),
-            (te = [J, D, U, O, G, Q, q]);
-        for (var e = 0; e < te.length; e++)
-            for (var i = 0; i < ne[e].length; i++) {
-                var n = new A(T.resources[ne[e][i].url].texture);
-                if (3 == e && 11 == i) {
-                    n = new C();
-                    var t = new A(T.resources[M + '3/car3.png'].texture),
-                        o = new A(T.resources[M + '3/car3_wheel.png'].texture),
-                        d = new A(T.resources[M + '3/car3_wheel.png'].texture);
-                    o.pivot.set(22.5, 22.5),
-                        d.pivot.set(22.5, 22.5),
-                        o.position.set(191.5, 100.5),
-                        d.position.set(383.5, 100.5),
-                        n.addChild(t, o, d);
-                }
-                if (3 == e && 12 == i) {
-                    n = new C();
-                    var t = new A(T.resources[M + '3/car4.png'].texture),
-                        o = new A(T.resources[M + '3/car4_wheel.png'].texture),
-                        d = new A(T.resources[M + '3/car4_wheel.png'].texture);
-                    o.pivot.set(22.5, 22.5),
-                        d.pivot.set(22.5, 22.5),
-                        o.position.set(215.5, 95.5),
-                        d.position.set(425.5, 95.5),
-                        n.addChild(t, o, d);
-                }
-                if (3 == e && 13 == i) {
-                    n = new C();
-                    var t = new A(T.resources[M + '3/car2.png'].texture),
-                        o = new A(T.resources[M + '3/car2_wheel.png'].texture),
-                        d = new A(T.resources[M + '3/car2_wheel.png'].texture);
-                    o.pivot.set(40.5, 40.5),
-                        d.pivot.set(40.5, 40.5),
-                        o.position.set(432.5, 122.5),
-                        d.position.set(107.5, 122.5),
-                        n.addChild(t, o, d);
-                }
-                if (3 == e && 14 == i) {
-                    n = new C();
-                    var t = new A(T.resources[M + '3/car1.png'].texture),
-                        p = new A(T.resources[M + '3/car1_light.png'].texture);
-                    p.position.set(482, 64);
-                    var o = new A(T.resources[M + '3/car1_wheel.png'].texture),
-                        d = new A(T.resources[M + '3/car1_wheel2.png'].texture);
-                    o.pivot.set(41, 41),
-                        d.pivot.set(43, 43),
-                        o.position.set(422, 120),
-                        d.position.set(123, 118),
-                        n.addChild(t, o, d, p);
-                }
-                if (
-                    (n.position.set(ne[e][i].position.x, ne[e][i].position.y),
-                    (n.name = ne[e][i].name),
-                    (n.data = ne[e][i]),
-                    ((1 == e && 1 == i) ||
-                        (1 == e && 12 == i) ||
-                        (1 == e && 27 == i) ||
-                        (1 == e && 29 == i) ||
-                        (1 == e && 31 == i) ||
-                        (1 == e && 33 == i)) &&
-                        (n.alpha = 0),
-                    1 == e && 9 == i && n.pivot.set(8, 58),
-                    1 == e && 10 == i && n.pivot.set(88, 58),
-                    1 == e && 22 == i && n.pivot.set(295, 10),
-                    ((1 == e && 30 == i) || (1 == e && 31 == i)) && (n.pivot.set(44, 6), (n.rotation = -0.5)),
-                    4 == e && 2 == i && n.pivot.set(85, 7),
-                    4 == e && 3 == i && n.pivot.set(21.5, 21.5),
-                    4 == e && 4 == i && (n.pivot.set(41, 57), n.position.set(589, 410)),
-                    4 == e && 5 == i && (n.pivot.set(41, 57), n.position.set(589, 410), (n.visible = !1)),
-                    4 == e &&
-                        6 == i &&
-                        (n.pivot.set(205, 285), n.position.set(589, 410), (n.visible = !1), n.scale.set(0.2, 0.2)),
-                    te[e].addChild(n),
-                    4 == e && 6 == i)
-                ) {
-                    ae = new C();
-                    for (var h = 0; h < ke.length; h++) {
-                        var c = new A(T.resources[ke[h].url].texture);
-                        c.pivot.set(ke[h].pivot.x, ke[h].pivot.y),
-                            c.position.set(ke[h].position.x + ke[h].pivot.x, ke[h].position.y + ke[h].pivot.y),
-                            (c.data = ke[h]),
-                            c.scale.set(3),
-                            (c.rotation = ke[h].rotate),
-                            ae.addChild(c);
-                    }
-                    te[e].addChild(ae);
-                }
-                if (0 == i && 0 == e) {
-                    var u = new E();
-                    u.beginFill(6737151),
-                        u.drawRect(300, 0, 83, 59),
-                        u.endFill(),
-                        (u.data = {
-                            position: {
-                                x: 545,
-                                y: 321
-                            },
-                            speed: {
-                                x: 0.05,
-                                y: 0
-                            }
-                        }),
-                        J.addChild(u);
-                    var v = new E();
-                    v.beginFill(0),
-                        v.drawRect(0, 0, 83, 158),
-                        v.endFill(),
-                        (v.data = {
-                            position: {
-                                x: 846,
-                                y: 162
-                            },
-                            speed: {
-                                x: 0.05,
-                                y: 0.1
-                            }
-                        }),
-                        (v.mask = u),
-                        v.position.set(v.data.position.x, v.data.position.y);
-                    var y = new E();
-                    y.beginFill(0),
-                        y.drawRect(0, 0, 83, 158),
-                        y.endFill(),
-                        (y.data = {
-                            position: {
-                                x: 846,
-                                y: 380
-                            },
-                            speed: {
-                                x: 0.05,
-                                y: -0.1
-                            }
-                        }),
-                        (y.mask = u),
-                        y.position.set(y.data.position.x, y.data.position.y),
-                        J.addChild(v, y);
-                }
-                if (
-                    (3 == e &&
-                        i == fe.length - 1 &&
-                        ((Y = new E()),
-                        Y.beginFill(6737151),
-                        Y.drawRect(0, 0, 3690, 750),
-                        Y.endFill(),
-                        (Y.data = {
-                            position: {
-                                x: 0,
-                                y: 0
-                            },
-                            speed: {
-                                x: -0.1,
-                                y: 0
-                            }
-                        }),
-                        (O.mask = Y),
-                        O.addChild(Y)),
-                    5 == e && 10 == i && (n.alpha = 0),
-                    5 == e && 5 == i && (n.pivot.set(632, 16), (n.visible = !1)),
-                    ((5 == e && 6 == i) || (5 == e && 7 == i)) && n.pivot.set(2400, 450),
-                    5 == e && 19 == i && n.pivot.set(1e3, 450),
-                    5 == e && 15 == i)
-                ) {
-                    ie = new C();
-                    var b = new A(T.resources[M + '4/body.png'].texture);
-                    b.pivot.set(56, 100), b.position.set(107, 228);
-                    var f = new A(T.resources[M + '4/hand1.png'].texture);
-                    f.pivot.set(52, 154), f.position.set(94, 157);
-                    var S = new A(T.resources[M + '4/hand2.png'].texture);
-                    S.pivot.set(29, 163), S.position.set(93, 169);
-                    var P = new A(T.resources[M + '4/leg1.png'].texture);
-                    P.pivot.set(63, 11), P.position.set(107, 289);
-                    var j = new A(T.resources[M + '4/leg2.png'].texture);
-                    j.pivot.set(15, 13), j.position.set(114, 295);
-                    var K = new A(T.resources[M + '4/head.png'].texture);
-                    K.pivot.set(113, 130),
-                        K.position.set(113, 192),
-                        ie.addChild(f, j, K, b, S, P),
-                        (ie.data = {
-                            position: {
-                                x: 477,
-                                y: 0
-                            },
-                            speed: 0
-                        }),
-                        ie.position.set(477, 0),
-                        Q.addChild(ie);
-                }
-                6 == e && 0 == i && ((de = new PIXI.extras.AnimatedSprite.fromImages(pe)), q.addChild(de));
-            }
-        var oe = new E();
-        oe.beginFill(4158644),
-            oe.drawRect(0, 0, 2e4, 2e4),
-            oe.endFill(),
-            (H = new C()),
-            (N = new A(T.resources[M + 'start/bg.jpg'].texture)),
-            w < _ ? (N.width = _ / k) : (N.width = w / k),
-            (N.height = 750),
-            (F = new PIXI.extras.AnimatedSprite.fromImages([M + 'start/eye_open.png', M + 'start/eye_close.png'])),
-            (Ce = setInterval(function() {
-                F.gotoAndStop(1),
-                    setTimeout(function() {
-                        F.gotoAndStop(0);
-                    }, 150);
-            }, 1700)),
-            F.pivot.set(224, 311),
-            F.position.set(224 + (B - 558) / 2, 361);
+            // q.position.set(11250, 0),
+            q.position.set(11250, 0);
+        //     (ne = [be, we, _e, fe, Ie, Se, Pe]),
+        //     (te = [J, D, U, O, G, Q, q]);
+        // for (var e = 0; e < te.length; e++)
+        //     for (var i = 0; i < ne[e].length; i++) {
+        //         var n = new A(T.resources[ne[e][i].url].texture);
+        //         if (3 == e && 11 == i) {
+        //             n = new C();
+        //             var t = new A(T.resources[M + '3/car3.png'].texture),
+        //                 o = new A(T.resources[M + '3/car3_wheel.png'].texture),
+        //                 d = new A(T.resources[M + '3/car3_wheel.png'].texture);
+        //             o.pivot.set(22.5, 22.5),
+        //                 d.pivot.set(22.5, 22.5),
+        //                 o.position.set(191.5, 100.5),
+        //                 d.position.set(383.5, 100.5),
+        //                 n.addChild(t, o, d);
+        //         }
+        //         if (3 == e && 12 == i) {
+        //             n = new C();
+        //             var t = new A(T.resources[M + '3/car4.png'].texture),
+        //                 o = new A(T.resources[M + '3/car4_wheel.png'].texture),
+        //                 d = new A(T.resources[M + '3/car4_wheel.png'].texture);
+        //             o.pivot.set(22.5, 22.5),
+        //                 d.pivot.set(22.5, 22.5),
+        //                 o.position.set(215.5, 95.5),
+        //                 d.position.set(425.5, 95.5),
+        //                 n.addChild(t, o, d);
+        //         }
+        //         if (3 == e && 13 == i) {
+        //             n = new C();
+        //             var t = new A(T.resources[M + '3/car2.png'].texture),
+        //                 o = new A(T.resources[M + '3/car2_wheel.png'].texture),
+        //                 d = new A(T.resources[M + '3/car2_wheel.png'].texture);
+        //             o.pivot.set(40.5, 40.5),
+        //                 d.pivot.set(40.5, 40.5),
+        //                 o.position.set(432.5, 122.5),
+        //                 d.position.set(107.5, 122.5),
+        //                 n.addChild(t, o, d);
+        //         }
+        //         if (3 == e && 14 == i) {
+        //             n = new C();
+        //             var t = new A(T.resources[M + '3/car1.png'].texture),
+        //                 p = new A(T.resources[M + '3/car1_light.png'].texture);
+        //             p.position.set(482, 64);
+        //             var o = new A(T.resources[M + '3/car1_wheel.png'].texture),
+        //                 d = new A(T.resources[M + '3/car1_wheel2.png'].texture);
+        //             o.pivot.set(41, 41),
+        //                 d.pivot.set(43, 43),
+        //                 o.position.set(422, 120),
+        //                 d.position.set(123, 118),
+        //                 n.addChild(t, o, d, p);
+        //         }
+        //         if (
+        //             (n.position.set(ne[e][i].position.x, ne[e][i].position.y),
+        //             (n.name = ne[e][i].name),
+        //             (n.data = ne[e][i]),
+        //             ((1 == e && 1 == i) ||
+        //                 (1 == e && 12 == i) ||
+        //                 (1 == e && 27 == i) ||
+        //                 (1 == e && 29 == i) ||
+        //                 (1 == e && 31 == i) ||
+        //                 (1 == e && 33 == i)) &&
+        //                 (n.alpha = 0),
+        //             1 == e && 9 == i && n.pivot.set(8, 58),
+        //             1 == e && 10 == i && n.pivot.set(88, 58),
+        //             1 == e && 22 == i && n.pivot.set(295, 10),
+        //             ((1 == e && 30 == i) || (1 == e && 31 == i)) && (n.pivot.set(44, 6), (n.rotation = -0.5)),
+        //             4 == e && 2 == i && n.pivot.set(85, 7),
+        //             4 == e && 3 == i && n.pivot.set(21.5, 21.5),
+        //             4 == e && 4 == i && (n.pivot.set(41, 57), n.position.set(589, 410)),
+        //             4 == e && 5 == i && (n.pivot.set(41, 57), n.position.set(589, 410), (n.visible = !1)),
+        //             4 == e &&
+        //                 6 == i &&
+        //                 (n.pivot.set(205, 285), n.position.set(589, 410), (n.visible = !1), n.scale.set(0.2, 0.2)),
+        //             te[e].addChild(n),
+        //             4 == e && 6 == i)
+        //         ) {
+        //             ae = new C();
+        //             for (var h = 0; h < ke.length; h++) {
+        //                 var c = new A(T.resources[ke[h].url].texture);
+        //                 c.pivot.set(ke[h].pivot.x, ke[h].pivot.y),
+        //                     c.position.set(ke[h].position.x + ke[h].pivot.x, ke[h].position.y + ke[h].pivot.y),
+        //                     (c.data = ke[h]),
+        //                     c.scale.set(3),
+        //                     (c.rotation = ke[h].rotate),
+        //                     ae.addChild(c);
+        //             }
+        //             te[e].addChild(ae);
+        //         }
+        //         if (0 == i && 0 == e) {
+        //             var u = new E();
+        //             u.beginFill(6737151),
+        //                 u.drawRect(300, 0, 83, 59),
+        //                 u.endFill(),
+        //                 (u.data = {
+        //                     position: {
+        //                         x: 545,
+        //                         y: 321
+        //                     },
+        //                     speed: {
+        //                         x: 0.05,
+        //                         y: 0
+        //                     }
+        //                 }),
+        //                 J.addChild(u);
+        //             var v = new E();
+        //             v.beginFill(0),
+        //                 v.drawRect(0, 0, 83, 158),
+        //                 v.endFill(),
+        //                 (v.data = {
+        //                     position: {
+        //                         x: 846,
+        //                         y: 162
+        //                     },
+        //                     speed: {
+        //                         x: 0.05,
+        //                         y: 0.1
+        //                     }
+        //                 }),
+        //                 (v.mask = u),
+        //                 v.position.set(v.data.position.x, v.data.position.y);
+        //             var y = new E();
+        //             y.beginFill(0),
+        //                 y.drawRect(0, 0, 83, 158),
+        //                 y.endFill(),
+        //                 (y.data = {
+        //                     position: {
+        //                         x: 846,
+        //                         y: 380
+        //                     },
+        //                     speed: {
+        //                         x: 0.05,
+        //                         y: -0.1
+        //                     }
+        //                 }),
+        //                 (y.mask = u),
+        //                 y.position.set(y.data.position.x, y.data.position.y),
+        //                 J.addChild(v, y);
+        //         }
+        //         if (
+        //             (3 == e &&
+        //                 i == fe.length - 1 &&
+        //                 ((Y = new E()),
+        //                 Y.beginFill(6737151),
+        //                 Y.drawRect(0, 0, 3690, 750),
+        //                 Y.endFill(),
+        //                 (Y.data = {
+        //                     position: {
+        //                         x: 0,
+        //                         y: 0
+        //                     },
+        //                     speed: {
+        //                         x: -0.1,
+        //                         y: 0
+        //                     }
+        //                 }),
+        //                 (O.mask = Y),
+        //                 O.addChild(Y)),
+        //             5 == e && 10 == i && (n.alpha = 0),
+        //             5 == e && 5 == i && (n.pivot.set(632, 16), (n.visible = !1)),
+        //             ((5 == e && 6 == i) || (5 == e && 7 == i)) && n.pivot.set(2400, 450),
+        //             5 == e && 19 == i && n.pivot.set(1e3, 450),
+        //             5 == e && 15 == i)
+        //         ) {
+        //             ie = new C();
+        //             var b = new A(T.resources[M + '4/body.png'].texture);
+        //             b.pivot.set(56, 100), b.position.set(107, 228);
+        //             var f = new A(T.resources[M + '4/hand1.png'].texture);
+        //             f.pivot.set(52, 154), f.position.set(94, 157);
+        //             var S = new A(T.resources[M + '4/hand2.png'].texture);
+        //             S.pivot.set(29, 163), S.position.set(93, 169);
+        //             var P = new A(T.resources[M + '4/leg1.png'].texture);
+        //             P.pivot.set(63, 11), P.position.set(107, 289);
+        //             var j = new A(T.resources[M + '4/leg2.png'].texture);
+        //             j.pivot.set(15, 13), j.position.set(114, 295);
+        //             var K = new A(T.resources[M + '4/head.png'].texture);
+        //             K.pivot.set(113, 130),
+        //                 K.position.set(113, 192),
+        //                 ie.addChild(f, j, K, b, S, P),
+        //                 (ie.data = {
+        //                     position: {
+        //                         x: 477,
+        //                         y: 0
+        //                     },
+        //                     speed: 0
+        //                 }),
+        //                 ie.position.set(477, 0),
+        //                 Q.addChild(ie);
+        //         }
+        //         6 == e && 0 == i && ((de = new PIXI.extras.AnimatedSprite.fromImages(pe)), q.addChild(de));
+        //     }
+        // var oe = new E();
+        // oe.beginFill(4158644),
+        //     oe.drawRect(0, 0, 2e4, 2e4),
+        //     oe.endFill(),
+        // (H = new C()),
+        //     (N = new A(T.resources[M + 'start/bg.jpg'].texture)),
+        //     w < _ ? (N.width = _ / k) : (N.width = w / k),
+        //     (N.height = 750),
+        // (F = new PIXI.extras.AnimatedSprite.fromImages([M + 'start/eye_open.png', M + 'start/eye_close.png'])),
+        //     (Ce = setInterval(function() {
+        //         F.gotoAndStop(1),
+        //             setTimeout(function() {
+        //                 F.gotoAndStop(0);
+        //             }, 150);
+        //     }, 1700)),
+        //     F.pivot.set(224, 311),
+        //     F.position.set(224 + (B - 558) / 2, 361);
         var se = new C();
         se.position.set(0, 55);
         var re = new A(T.resources[M + 'start/line.png'].texture),
             le = new A(T.resources[M + 'start/line.png'].texture);
         le.position.set(1747, 0),
             se.addChild(re, le),
-            new TWEEN.Tween(se.position)
-                .to(
-                    {
-                        x: -1747
-                    },
-                    9e4
-                )
-                .repeat(1 / 0)
-                .start();
-        var ge = new C();
-        ge.position.set(0, 14);
-        var he = new A(T.resources[M + 'start/dot.png'].texture),
-            ce = new A(T.resources[M + 'start/dot.png'].texture);
-        ce.position.set(1635, 0),
-            ge.addChild(he, ce),
-            new TWEEN.Tween(ge.position)
-                .to(
-                    {
-                        x: -1635
-                    },
-                    3e4
-                )
-                .repeat(1 / 0)
-                .start(),
-            (L = new E()),
-            L.beginFill(6737151),
-            L.drawRect(0, 0, N.width, 750),
-            L.endFill(),
-            (H.mask = L),
-            H.addChild(N, se, ge, F, L),
-            (ye = new C());
-        var ue = new A(T.resources[M + 'start/hand.png'].texture);
-        ue.position.set((B - 61) / 2 + 100, 483),
-            (me = new TWEEN.Tween(ue.position)
-                .to(
-                    {
-                        x: (B - 61) / 2 - 100
-                    },
-                    1e3
-                )
-                .delay(300)
-                .repeat(1 / 0)
-                .easing(TWEEN.Easing.Quadratic.Out)
-                .start());
-        var xe = new A(T.resources[M + 'start/text.png'].texture);
-        xe.position.set((B - 133) / 2, 610);
-        var ve = new E();
-        ve.beginFill(0),
-            ve.drawRect(0, 0, 2e3, 750),
-            ve.endFill(),
-            (ve.alpha = 0.35),
-            ye.addChild(ve, ue, xe),
-            H.addChild(ye),
-            (Z = new C());
-        var Ee = new A(T.resources[M + 'start/bg.jpg'].texture);
-        Z.position.set(13900, 0);
-        var $e = new C();
-        $e.position.set(0, 55);
-        var re = new A(T.resources[M + 'start/line.png'].texture),
-            le = new A(T.resources[M + 'start/line.png'].texture);
-        le.position.set(1747, 0), $e.addChild(re, le);
-        var Me = new C();
-        Me.position.set(0, 14);
-        var he = new A(T.resources[M + 'start/dot.png'].texture),
-            ce = new A(T.resources[M + 'start/dot.png'].texture);
-        ce.position.set(1635, 0),
-            Me.addChild(he, ce),
-            (Ae = 100),
-            ($e.visible = !1),
-            (Me.visible = !1),
-            (V = setInterval(function() {
-                ($e.position.x -= Ae),
-                    (Me.position.x -= Ae / 3),
-                    $e.position.x < -1747 && ($e.position.x += 1747),
-                    Me.position.x < -1635 && (Me.position.x += 1635);
-            }, 60)),
+            //     new TWEEN.Tween(se.position)
+            //         .to(
+            //             {
+            //                 x: -1747
+            //             },
+            //             9e4
+            //         )
+            //         .repeat(1 / 0)
+            //         .start();
+            // var ge = new C();
+            // ge.position.set(0, 14);
+            // var he = new A(T.resources[M + 'start/dot.png'].texture),
+            //     ce = new A(T.resources[M + 'start/dot.png'].texture);
+            // ce.position.set(1635, 0),
+            //     ge.addChild(he, ce),
+            //     new TWEEN.Tween(ge.position)
+            //         .to(
+            //             {
+            //                 x: -1635
+            //             },
+            //             3e4
+            //         )
+            //         .repeat(1 / 0)
+            //         .start(),
+            //     (L = new E()),
+            //     L.beginFill(6737151),
+            //     L.drawRect(0, 0, N.width, 750),
+            //     L.endFill(),
+            //     (H.mask = L),
+            //     H.addChild(N, se, ge, F, L),
+            //     (ye = new C());
+            // var ue = new A(T.resources[M + 'start/hand.png'].texture);
+            // ue.position.set((B - 61) / 2 + 100, 483),
+            //     (me = new TWEEN.Tween(ue.position)
+            //         .to(
+            //             {
+            //                 x: (B - 61) / 2 - 100
+            //             },
+            //             1e3
+            //         )
+            //         .delay(300)
+            //         .repeat(1 / 0)
+            //         .easing(TWEEN.Easing.Quadratic.Out)
+            //         .start());
+            // var xe = new A(T.resources[M + 'start/text.png'].texture);
+            // xe.position.set((B - 133) / 2, 610);
+            // var ve = new E();
+            // ve.beginFill(0),
+            //     ve.drawRect(0, 0, 2e3, 750),
+            //     ve.endFill(),
+            //     (ve.alpha = 0.35),
+            //     ye.addChild(ve, ue, xe),
+            //     H.addChild(ye),
+            //     (Z = new C());
+            // var Ee = new A(T.resources[M + 'start/bg.jpg'].texture);
+            // Z.position.set(13900, 0);
+            // var $e = new C();
+            // $e.position.set(0, 55);
+            // var re = new A(T.resources[M + 'start/line.png'].texture),
+            //     le = new A(T.resources[M + 'start/line.png'].texture);
+            // le.position.set(1747, 0), $e.addChild(re, le);
+            // var Me = new C();
+            // Me.position.set(0, 14);
+            // var he = new A(T.resources[M + 'start/dot.png'].texture),
+            //     ce = new A(T.resources[M + 'start/dot.png'].texture);
+            // ce.position.set(1635, 0),
+            //     Me.addChild(he, ce),
+            //     (Ae = 100),
+            //     ($e.visible = !1),
+            //     (Me.visible = !1),
+            //     (V = setInterval(function() {
+            //         ($e.position.x -= Ae),
+            //             (Me.position.x -= Ae / 3),
+            //             $e.position.x < -1747 && ($e.position.x += 1747),
+            //             Me.position.x < -1635 && (Me.position.x += 1635);
+            //     }, 60)),
             (ee = new C());
-        var ve = new A(T.resources[M + 'end/cover_bg1.png'].texture),
-            Xe = new A(T.resources[M + 'end/watch_again1.png'].texture);
-        Xe.position.set(78, 551),
-            (Xe.interactive = !0),
-            (Xe.buttonMode = !0),
-            Xe.on('touchend', function() {
-                location.reload();
-            }),
-            window.openNewsapp.init({
-                projectId: '4JHDPZUJ-2',
-                channels: ['news_sps_feidian', 'sps_article', 'sps'],
-                param: 'S1385797470941'
-            });
-        var We = new A(T.resources[M + 'end/netease1.png'].texture);
-        We.position.set(78, 458),
-            (We.interactive = !0),
-            (We.buttonMode = !0),
-            We.on('touchend', function(e) {
-                window.openNewsapp.open({
-                    param: 'reader/T1497354552181'
-                });
-            });
-        var Re = new A(T.resources[M + 'end/share.png'].texture);
-        Re.position.set(22, 444),
-            (Re.interactive = !0),
-            (Re.buttonMode = !0),
-            Re.on('touchend', function(e) {
-                h5Share.share();
-            }),
-            I
-                ? ((Xe.visible = !1), (We.visible = !1), (Re.visible = !0))
-                : ((Xe.visible = !0), (We.visible = !0), (Re.visible = !1)),
-            ee.addChild(ve, Xe, We, Re),
-            ee.position.set(B, 0),
-            Z.addChild(Ee, $e, Me, ee),
-            X.addChild(R),
-            (Te = Math.PI / 2),
+        // var ve = new A(T.resources[M + 'end/cover_bg1.png'].texture),
+        //     Xe = new A(T.resources[M + 'end/watch_again1.png'].texture);
+        // // Xe.position.set(78, 551),
+        // //     (Xe.interactive = !0),
+        // //     (Xe.buttonMode = !0),
+        // //     Xe.on('touchend', function() {
+        // //         location.reload();
+        // //     });
+        // // window.openNewsapp.init({
+        // //     projectId: '4JHDPZUJ-2',
+        // //     channels: ['news_sps_feidian', 'sps_article', 'sps'],
+        // //     param: 'S1385797470941'
+        // // });
+        // var We = new A(T.resources[M + 'end/netease1.png'].texture);
+        // We.position.set(78, 458), (We.interactive = !0), (We.buttonMode = !0);
+        // // We.on('touchend', function(e) {
+        // //     window.openNewsapp.open({
+        // //         param: 'reader/T1497354552181'
+        // //     });
+        // // });
+        // var Re = new A(T.resources[M + 'end/share.png'].texture);
+        // Re.position.set(22, 444),
+        //     (Re.interactive = !0),
+        //     (Re.buttonMode = !0),
+        //     Re.on('touchend', function(e) {
+        //         // h5Share.share();
+        //     }),
+        //     I
+        //         ? ((Xe.visible = !1), (We.visible = !1), (Re.visible = !0))
+        //         : ((Xe.visible = !0), (We.visible = !0), (Re.visible = !1)),
+        //     ee.addChild(ve, Xe, We, Re),
+        //     ee.position.set(B, 0),
+        //     Z.addChild(Ee, $e, Me, ee),
+        //     X.addChild(R),
+        (Te = Math.PI / 2),
             (X.rotation = Te),
             X.position.set(w, 0),
-            R.addChild(oe, q, Q, G, O, z, D, U, J, H, Z),
+            // R.addChild(oe, q, Q, G, O, z, D, U, J, H, Z),
             X.scale.set(k, k),
             (X.interactive = !0),
             (X.buttonMode = !0),
@@ -685,36 +686,37 @@
         X.addChild(j);
     }
     function v() {
-        x(),
-            ee.position.set(B, 0),
-            H.removeChild(N),
-            (N = new A(T.resources[M + 'start/bg.jpg'].texture)),
-            (N.width = B),
-            (N.height = 750),
-            H.addChildAt(N, 0),
-            H.removeChild(L),
-            (L = new E()),
-            L.beginFill(6737151),
-            L.drawRect(0, 0, B, 750),
-            L.endFill(),
-            (H.mask = L),
-            H.addChildAt(L, 4),
-            (F.position.x = 224 + (B - 558) / 2),
-            K && (K.position.x = 224 + (B - 558) / 2),
-            (ye.children[1].position.x = (B - 61) / 2 + 100),
-            me.stop(),
-            (me = new TWEEN.Tween(ye.children[1].position)
-                .to(
-                    {
-                        x: (B - 61) / 2 - 100
-                    },
-                    1e3
-                )
-                .delay(300)
-                .repeat(1 / 0)
-                .easing(TWEEN.Easing.Quadratic.Out)
-                .start()),
-            (ye.children[2].position.x = (B - 133) / 2);
+        x();
+        // x(),
+        // ee.position.set(B, 0),
+        // H.removeChild(N),
+        // (N = new A(T.resources[M + 'start/bg.jpg'].texture)),
+        // (N.width = B),
+        // (N.height = 750),
+        // H.addChildAt(N, 0),
+        // H.removeChild(L),
+        // (L = new E()),
+        // L.beginFill(6737151),
+        // L.drawRect(0, 0, B, 750),
+        // L.endFill(),
+        // (H.mask = L),
+        // H.addChildAt(L, 4),
+        // (F.position.x = 224 + (B - 558) / 2),
+        // K && (K.position.x = 224 + (B - 558) / 2),
+        // (ye.children[1].position.x = (B - 61) / 2 + 100),
+        // me.stop(),
+        // (me = new TWEEN.Tween(ye.children[1].position)
+        //     .to(
+        //         {
+        //             x: (B - 61) / 2 - 100
+        //         },
+        //         1e3
+        //     )
+        //     .delay(300)
+        //     .repeat(1 / 0)
+        //     .easing(TWEEN.Easing.Quadratic.Out)
+        //     .start()),
+        // (ye.children[2].position.x = (B - 133) / 2);
     }
     function y() {
         Je = setInterval(function() {
@@ -749,13 +751,13 @@
     }
     var f = i(),
         I = n();
-    f ||
-        h5Share.init({
-            title: '\u6002\u6002\u5fcd\u6002\u6002\u6002\u6002\u5fcd\u6002\u6002\uff0c\u8fd8\u5fcd\u5417',
-            desc: '\u6d3b\u5230\u73b0\u5728\u4f60\u90fd\u9003\u4e0d\u5f00\u7684\u56db\u5b57\u9b54\u5492',
-            url: window.location.href,
-            img: 'http://cms-bucket.nosdn.127.net/15447b3150fc427789fa41225d843b2b20170914111552.jpeg'
-        });
+    // f ||
+    //     h5Share.init({
+    //         title: '\u6002\u6002\u5fcd\u6002\u6002\u6002\u6002\u5fcd\u6002\u6002\uff0c\u8fd8\u5fcd\u5417',
+    //         desc: '\u6d3b\u5230\u73b0\u5728\u4f60\u90fd\u9003\u4e0d\u5f00\u7684\u56db\u5b57\u9b54\u5492',
+    //         url: window.location.href,
+    //         img: 'http://cms-bucket.nosdn.127.net/15447b3150fc427789fa41225d843b2b20170914111552.jpeg'
+    //     });
     var k,
         _ = window.innerHeight,
         w = window.innerWidth,
@@ -2295,6 +2297,7 @@
         Re = !1,
         je = !1,
         Fe = function(e, i, n) {
+            console.log(e, i, n, 'canshu');
             var t, o;
             if ((Te > 0 ? ((o = i), (t = e)) : ((o = e), (t = i)), o < 850)) {
                 o > 50 && o < 400
@@ -2365,28 +2368,28 @@
                                     })
                                     .start()));
                 var a = o;
-                o > 50
-                    ? Ce && (clearInterval(Ce), (Ce = null), F.gotoAndStop(0))
-                    : Ce ||
-                      (Ce = setInterval(function() {
-                          F.gotoAndStop(1),
-                              setTimeout(function() {
-                                  F.gotoAndStop(0);
-                              }, 150);
-                      }, 1700)),
-                    (H.position.x = a),
-                    (J.position.x = 2050 + a);
+                // o > 50
+                //     ? Ce && (clearInterval(Ce), (Ce = null), F.gotoAndStop(0))
+                //     : Ce ||
+                //       (Ce = setInterval(function() {
+                //           F.gotoAndStop(1),
+                //               setTimeout(function() {
+                //                   F.gotoAndStop(0);
+                //               }, 150);
+                //       }, 1700)),
+                //     (H.position.x = a),
+                //     (J.position.x = 2050 + a);
                 var s = a * a / 3e3;
-                if (
-                    (F.scale.set(1 + s),
-                    o > 150
-                        ? ((H.children[0].visible = !1), (H.children[1].visible = !1), (H.children[2].visible = !1))
-                        : ((H.children[0].visible = !0), (H.children[1].visible = !0), (H.children[2].visible = !0)),
-                    o > 550)
-                ) {
-                    var a = o - 550;
-                    H.alpha = 1 - a / 300;
-                } else H.alpha = 1;
+                // if (
+                //     (F.scale.set(1 + s),
+                //     o > 150
+                //         ? ((H.children[0].visible = !1), (H.children[1].visible = !1), (H.children[2].visible = !1))
+                //         : ((H.children[0].visible = !0), (H.children[1].visible = !0), (H.children[2].visible = !0)),
+                //     o > 550)
+                // ) {
+                //     var a = o - 550;
+                //     H.alpha = 1 - a / 300;
+                // } else H.alpha = 1;
             }
             if (o < 2130 - B + 850 && o >= 850) {
                 Re || ((Re = !0), u()), (H.alpha = 0);
@@ -2444,327 +2447,32 @@
                     for (var a = o - 2100, x = 12 + parseInt(a / 50), d = 13; d < 18; d++)
                         d <= x ? (D.children[d].visible = !0) : (D.children[d].visible = !1);
                 else {
-                    (D.children[13].visible = !0),
-                        (D.children[14].visible = !0),
-                        (D.children[15].visible = !0),
-                        (D.children[16].visible = !0),
-                        (D.children[17].visible = !0);
-                    var a = o - 2400,
-                        v = 30 * Math.sin(a / 120),
-                        m = 20 * Math.sin(a / 150);
-                    if (
-                        ((D.children[2].position.y = D.children[2].data.position.y + v),
-                        (D.children[3].position.y = D.children[3].data.position.y - m),
-                        o > 3100 && o < 4700
-                            ? Me || ((Me = !0), h())
-                            : ((o > 4700 && o < 5e3) || o < 3100) && Me && ((Me = !1), c()),
-                        o > 3690)
-                    ) {
-                        var l = (o - 3690) / 300;
-                        (D.children[1].alpha = l),
-                            (D.children[5].alpha = l),
-                            (D.children[7].alpha = l),
-                            (D.children[12].alpha = l),
-                            (D.children[27].alpha = l),
-                            (D.children[29].alpha = l),
-                            (D.children[31].alpha = l),
-                            (D.children[33].alpha = l),
-                            (U.alpha = l);
-                    } else
-                        (D.children[1].alpha = 0),
-                            (D.children[5].alpha = 0),
-                            (D.children[7].alpha = 0),
-                            (D.children[12].alpha = 0),
-                            (D.children[27].alpha = 0),
-                            (D.children[29].alpha = 0),
-                            (D.children[31].alpha = 0),
-                            (D.children[33].alpha = 0),
-                            (U.alpha = 0);
                 }
-            } else
-                (D.children[13].visible = !1),
-                    (D.children[14].visible = !1),
-                    (D.children[15].visible = !1),
-                    (D.children[16].visible = !1),
-                    (D.children[17].visible = !1),
-                    (D.children[9].rotation = 0),
-                    (D.children[10].rotation = 0);
+            }
+            // else
+            //     (D.children[13].visible = !1),
+            //         (D.children[14].visible = !1),
+            //         (D.children[15].visible = !1),
+            //         (D.children[16].visible = !1),
+            //         (D.children[17].visible = !1),
+            //         (D.children[9].rotation = 0),
+            //         (D.children[10].rotation = 0);
             if (o > 3800 && o < 1e4) {
-                var a = o - 5200;
-                O.position.x = 5200 + a / 2;
-                for (var d = 0; d < O.children.length; d++) {
-                    var p = O.children[d];
-                    p.data.speed &&
-                        ((p.position.x = p.data.position.x + p.data.speed.x * a),
-                        (p.position.y = p.data.position.y + p.data.speed.y * a)),
-                        11 == d && ((p.children[1].rotation = -a / 12 / 2), (p.children[2].rotation = -a / 12 / 2)),
-                        12 == d && ((p.children[1].rotation = -a / 10 / 2), (p.children[2].rotation = -a / 10 / 2)),
-                        13 == d && ((p.children[1].rotation = a / 15 / 2), (p.children[2].rotation = a / 15 / 2)),
-                        14 == d && ((p.children[1].rotation = a / 5 / 2), (p.children[2].rotation = a / 5 / 2));
-                }
-                if (o > 4500) {
-                    var a = o - 4500;
-                    if (((O.children[16].position.x = 1300 - a / 2), o > 5700)) {
-                        for (var a = o - 5700, d = 0; d < 11; d++) {
-                            var p = O.children[d];
-                            p.data.speed &&
-                                ((p.position.x = p.data.position.x + 500 * p.data.speed.x + a / 2),
-                                (p.position.y = p.data.position.y + 500 * p.data.speed.y));
-                        }
-                        (O.children[13].position.x =
-                            O.children[13].data.position.x +
-                            500 * O.children[13].data.speed.x +
-                            a * (O.children[13].data.speed.x + 0.5)),
-                            (O.children[14].position.x =
-                                O.children[14].data.position.x +
-                                500 * O.children[14].data.speed.x +
-                                a * (O.children[14].data.speed.x + 0.5)),
-                            (O.children[16].position.x = 700 + a / 2),
-                            (O.children[15].position.x = 1600 - a / 2);
-                    }
-                    if (o > 6730) {
-                        for (var a = o - 6730, d = 0; d < 11; d++) {
-                            var p = O.children[d];
-                            p.data.speed &&
-                                ((p.position.x = p.data.position.x + 500 * p.data.speed.x + 515 + p.data.speed.x * a),
-                                (p.position.y = p.data.position.y + 500 * p.data.speed.y));
-                        }
-                        (O.children[16].position.x = 1215 - a / 2), (O.children[15].position.x = 1085 - a / 2);
-                    }
-                }
             }
             if (o > 6600 && o < 1e4) {
-                O.visible = !0;
-                var b = 6600,
-                    a = o - b;
-                if (
-                    ((z.position.x = 7870 + (b - 5200) / 2 - 0.1 * (b - 5200) - 0.5 * a),
-                    (Y.position.x = 0.1 * (b - 5200) - a - 1e3 - 100),
-                    (G.position.x = a + b),
-                    o >= b + 1580 && o <= b + 1740)
-                ) {
-                    var a = o - (b + 1580);
-                    (G.children[2].rotation = -a / 100),
-                        (G.children[3].rotation = 0),
-                        G.children[3].position.set(261.5, 708.5);
-                } else if (o < b + 1580)
-                    (G.children[2].rotation = 0),
-                        (G.children[3].rotation = 0),
-                        G.children[3].position.set(261.5, 708.5);
-                else if (o > b + 1740 && o < b + 2020) {
-                    var a = o - (b + 1740);
-                    (G.children[2].rotation = -1.6),
-                        (G.children[3].rotation = -a / 30),
-                        G.children[3].position.set(261.5 + a, 708.5 - a),
-                        (G.children[4].visible = !0),
-                        (G.children[5].visible = !1);
-                } else if (o >= b + 2020 && o < b + 2080) {
-                    var a = o - (b + 2020);
-                    (G.children[2].rotation = -1.6),
-                        (G.children[3].rotation = -280 / 30 - a / 50),
-                        G.children[3].position.set(541.5 - a, 428.5 + 2 * a);
-                    var r = a / 80;
-                    G.children[5].scale.set((1 + r) * se),
-                        G.children[6].scale.set((1 + r) / 5 * se),
-                        (G.children[4].visible = !1),
-                        (G.children[5].visible = !0),
-                        (G.children[6].visible = !1);
-                } else if (o > b + 2080 && o <= b + 2355) {
-                    var a = o - (b + 2020),
-                        r = a / 80;
-                    G.children[5].scale.set((1 + r) * se),
-                        G.children[6].scale.set((1 + r) / 5 * se),
-                        (G.children[5].visible = !1),
-                        (G.children[6].visible = !0),
-                        (oe.visible = !1),
-                        (G.children[3].rotation = -280 / 30 - a / 50),
-                        G.children[3].position.set(541.5 - a, 428.5 + 2 * a);
-                } else if (o > b + 2355) {
-                    G.children[5].scale.set(12 * se), G.children[6].scale.set(2.4 * se);
-                    var w = Math.min((o - (b + 2355)) / 25, 19);
-                    if (w > 9) for (var d = 0; d < G.children.length - 1; d++) G.children[d].visible = !1;
-                    else for (var d = 0; d < G.children.length - 1; d++) G.children[d].visible = !0;
-                    (G.children[5].visible = !1), (G.children[6].visible = !1), (oe.visible = !0), oe.gotoAndStop(w);
-                    for (var a = o - (b + 2355), _ = Math.max(3 - a / 100, 0), d = 0; d < ae.children.length; d++) {
-                        var p = ae.children[d];
-                        (p.rotation = p.data.rotate + a / 10 * p.data.rotationSpeed), p.scale.set(_);
-                    }
-                }
             }
             if (o > 8800 && o < 11850) {
-                O.visible = !1;
-                for (var a = o - 8e3 + 800, d = 0; d < Q.children.length; d++) {
-                    var p = Q.children[d];
-                    p.data.speed &&
-                        ((p.position.x = p.data.position.x + p.data.speed.x * a),
-                        (p.position.y = p.data.position.y + p.data.speed.y * a));
-                }
-                if (o > 9400 && o <= 9560) {
-                    (ie.visible = !0), (Q.children[15].visible = !1);
-                    var a = Math.min(o - 8600 - 800, 160);
-                    (ie.position.y = 2 * a),
-                        (ie.children[0].rotation = -a / 100),
-                        (ie.children[4].rotation = -a / 80),
-                        (ie.children[1].rotation = a / 160),
-                        (ie.children[5].rotation = a / 400),
-                        (ie.children[2].rotation = a / 400),
-                        (ie.children[3].rotation = a / 800);
-                } else if (o > 9560 && o < 9800) (Q.children[15].visible = !0), (ie.visible = !1);
-                else if (o < 9400) {
-                    (ie.visible = !0), (Q.children[15].visible = !1);
-                    var a = o - 8600 - 800;
-                    (ie.position.y = 10 * a),
-                        (Q.children[13].alpha = 1),
-                        (Q.children[7].alpha = 0),
-                        (Q.children[8].alpha = 1),
-                        (Q.children[19].alpha = 1),
-                        (Q.children[14].alpha = 1),
-                        (Q.children[12].alpha = 0),
-                        (Q.children[10].alpha = 0),
-                        (Q.children[18].alpha = 1);
-                }
-                if (o < 9560) {
-                    var a = o - 8e3 - 800;
-                    Q.position.x = 8800 + a;
-                } else if (o < 11150) {
-                    Q.position.x = 9560;
-                    var a = o - 8760 - 800;
-                    (Q.children[13].alpha = 1 - a / 100),
-                        (Q.children[7].alpha = Math.max((a - 250) / 100, 0)),
-                        (Q.children[12].alpha = Math.max((a - 250) / 100, 0)),
-                        (Q.children[8].alpha = 1 - Math.max((a - 50) / 100, 0)),
-                        (Q.children[19].alpha = 1 - Math.max((a - 100) / 150, 0)),
-                        (Q.children[14].alpha = 1 - Math.max((a - 150) / 100, 0)),
-                        (Q.children[10].alpha = Math.max((a - 150) / 100, 0)),
-                        (Q.children[18].alpha = 1 - Math.max((a - 200) / 100, 0)),
-                        (Q.children[4].visible = !0),
-                        (Q.children[2].visible = !0),
-                        (Q.children[5].visible = !1),
-                        (Q.children[5].alpha = 1),
-                        Q.children[6].scale.set(1),
-                        Q.children[7].scale.set(1),
-                        Q.children[20].scale.set(1);
-                } else if (o < 11250) {
-                    var a = o - 10350 - 800;
-                    (Q.children[4].visible = !1),
-                        (Q.children[5].visible = !0),
-                        (Q.children[5].alpha = Math.max(1 - a / 200, 0));
-                } else if (o >= 11250) {
-                    var a = o - 10450 - 800;
-                    (Q.children[2].visible = !1),
-                        (Q.children[5].alpha = Math.max(0.5 - a / 200, 0)),
-                        Q.children[6].scale.set(1 + a / 600),
-                        Q.children[7].scale.set(1 + a / 600),
-                        Q.children[20].scale.set(1 + a / 600);
-                }
             }
-            if (o >= 11250) {
-                var a = o - 10450 - 800;
-                if (
-                    ((q.position.x = 11250 + a),
-                    (Q.position.x = 9560 + a),
-                    de.gotoAndStop(a / 100),
-                    re.scale.set(Math.min(1, 0.6 + a / 400)),
-                    o >= 11300)
-                ) {
-                    var a = o - 10500 - 800;
-                    (ge.position.x = 1478 - a),
-                        ge.gotoAndStop(a / 20),
-                        (he.position.x = 1737 - a),
-                        he.gotoAndStop(a / 20),
-                        (ce.position.x = 1901 - a),
-                        ce.gotoAndStop(a / 20),
-                        (ue.position.x = 2141 - a),
-                        ue.gotoAndStop(a / 20),
-                        (ve.position.x = 2141 - a),
-                        ve.gotoAndStop(a / 20),
-                        (xe.position.x = 2420 - a),
-                        xe.gotoAndStop(a / 20);
-                    for (var d = 9; d <= 12; d++) q.children[d].position.x = q.children[d].data.position.x - a;
-                    if (o < 12310) {
-                        ve.visible = !1;
-                        for (var d = 9; d <= 12; d++) q.children[d].visible = !1;
-                        re.gotoAndStop(0);
-                    } else
-                        o < 12535
-                            ? ((q.children[9].visible = !0),
-                              (q.children[10].visible = !1),
-                              (q.children[11].visible = !1),
-                              (ue.visible = !0),
-                              (ve.visible = !1),
-                              (q.children[12].visible = !1),
-                              re.gotoAndStop(1))
-                            : o < 12740
-                              ? ((q.children[9].visible = !0),
-                                (q.children[10].visible = !0),
-                                (q.children[11].visible = !1),
-                                (ue.visible = !0),
-                                (ve.visible = !1),
-                                (q.children[12].visible = !1),
-                                re.gotoAndStop(2))
-                              : o < 12985
-                                ? ((q.children[9].visible = !0),
-                                  (q.children[10].visible = !0),
-                                  (q.children[11].visible = !0),
-                                  (ue.visible = !0),
-                                  (ve.visible = !1),
-                                  (q.children[12].visible = !1),
-                                  re.gotoAndStop(3))
-                                : o < 13210
-                                  ? ((q.children[9].visible = !0),
-                                    (q.children[10].visible = !0),
-                                    (q.children[11].visible = !0),
-                                    (ue.visible = !1),
-                                    (ve.visible = !0),
-                                    (q.children[12].visible = !1),
-                                    re.gotoAndStop(4))
-                                  : o < 14800 &&
-                                    ((q.children[9].visible = !0),
-                                    (q.children[10].visible = !0),
-                                    (q.children[11].visible = !0),
-                                    (ue.visible = !1),
-                                    (ve.visible = !0),
-                                    (q.children[12].visible = !0),
-                                    re.gotoAndStop(5));
-                }
-            }
-            // 这一段是字幕的显示控制
-            o < 950
-                ? (j.children[0].visible = !1)
-                : o >= 950 && o < 2800
-                  ? (j.children[0].visible = !0)
-                  : o >= 2800 && o < 3100
-                    ? ((j.children[0].visible = !1), (j.children[1].visible = !1))
-                    : o >= 3100 && o < 4300
-                      ? (j.children[1].visible = !0)
-                      : o >= 4300 && o < 4800
-                        ? ((j.children[1].visible = !1), (j.children[2].visible = !1))
-                        : o >= 4800 && o < 7600
-                          ? (j.children[2].visible = !0)
-                          : o >= 7600 && o < 8050
-                            ? ((j.children[2].visible = !1), (j.children[3].visible = !1))
-                            : o >= 8050 && o < 9350
-                              ? (j.children[3].visible = !0)
-                              : o >= 9350 && o < 9600
-                                ? ((j.children[3].visible = !1), (j.children[4].visible = !1))
-                                : o >= 9600 && o < 11150
-                                  ? (j.children[4].visible = !0)
-                                  : o >= 11150 && o < 11400
-                                    ? ((j.children[4].visible = !1), (j.children[5].visible = !1))
-                                    : o >= 11400 && o < 13900
-                                      ? (j.children[5].visible = !0)
-                                      : o >= 13900 && o < 14500
-                                        ? ((j.children[5].visible = !1), (j.children[6].visible = !1))
-                                        : o >= 14500 && o < 15750
-                                          ? (j.children[6].visible = !0)
-                                          : o >= 15750 && (j.children[6].visible = !1);
-            for (var I = 0; I < Xe.length; I++)
-                o >= Xe[I].start && o < Xe[I].end
-                    ? Xe[I].isPlayed || ((Xe[I].isPlayed = !0), Xe[I].video.play())
-                    : ((Xe[I].isPlayed = !1), Xe[I].video.pause());
-            (R.position.x = -o), (R.position.y = -t);
+            // if (o >= 11250) {
+            // } else if (o >= 10100) {
+            // } else Q.children[0].visible = !0;
+            // if (o > 11800) {
+            // } else o > 10800 && (K.scale.set(100), (K.alpha = 0));
+
+            // (R.position.x = -o), (R.position.y = -t);
         },
         Le = !1,
+        // Ne是Scroller的实例
         Ne = new Scroller(Fe, {
             zooming: !1,
             animating: !0,
