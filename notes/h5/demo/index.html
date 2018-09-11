@@ -37,106 +37,11 @@
     <script src="./assets/Tween.1237586.min.js"></script>
     <!-- <script src="./assets/china_tolerance.1238035.min.js"></script> -->
     <!-- <script src="./assets/china_tolerance.js"></script> -->
-    <script src="./assets/init.js"></script>
+    <!-- <script src="./assets/init.js"></script> -->
+    <script src="./assets/main.js"></script>
 
     <script>
-        // Settings
-        const w = window.innerWidth,
-            _ = window.innerHeight;
-
-        var k,
-            S = 0,
-            P = 0,
-            // PIXI里的容器
-            Container = PIXI.Container,
-            T = (PIXI.CanvasRenderer, PIXI.loader),
-            A = (PIXI.loader.resources, PIXI.utils.TextureCache, PIXI.Texture, PIXI.Text, new PIXI.ticker.Ticker, PIXI.Sprite),
-            E = (PIXI.Rectangle, PIXI.Graphics),
-            M = "http://static.ws.126.net/f2e/news/china_tolerance/images/";
-
-        // X 是PIXI容器的实例
-        var container = new Container;
-        container.width = w,
-            container.height = _;
-            
-        //Create the renderer 创建一个渲染器，会自动选择是canvas还是webgl渲染
-        var W = new PIXI.CanvasRenderer(w, _);
-
-        // $(".china_tolerance_content")[0].appendChild(W.view);
-        // Canvas renderer
-        var render = function (left, top, zoom) {
-            console.log(left, top, zoom, 'aaa')
-            //     // Sync current dimensions with canvas
-            //     content.width = w;
-            //     content.height = _;
-
-            //     // Full clearing
-            //     // context.clearRect(0, 0, w, _);
-        };
-        // 初始化滚动插件
-        const Ne = new Scroller(render, {
-            zooming: !1,
-            animating: !0,
-            bouncing: !1,
-            animationDuration: 1e3
-        });
-        Ne.__enableScrollY = !0;
-
-        // Ne.setDimensions(w, _, contentWidth, contentHeight);
-        Ne.setDimensions(w, _, w, 16067 + _);
-
-        // 一定要设置这个才能触发鼠标事件
-        container.interactive = !0;
-        container.buttonMode = !0;
-        container.backgroundColor = 0x061639;
-        // 对PIcontainerI容器绑定监听事件
-        container.on('touchstart', touchStart).on('touchmove', touchMove).on('touchend', touchEnd);
-
-        console.log(container);
-        W.render(container);
-
-
-
-        // 开始滑动事件监听
-        function touchStart(e) {
-            var i = e.data.originalEvent;
-            console.log('start', i);
-            Ne.doTouchStart(i.touches, i.timeStamp);
-        }
-        // 滑动过程事件监听
-        function touchMove(e) {
-            var i = e.data.originalEvent;
-            console.log('moving', i);
-            Ne.doTouchMove(i.touches, i.timeStamp, i.scale);
-        }
-        // 滑动结束事件监听
-        function touchEnd(e) {
-            var i = e.data.originalEvent;
-            console.log('end', i);
-            Ne.doTouchEnd(i.timeStamp);
-        }
-
-
-        // PIXI.loader.add("images/01.png").load(setup);
-
-        // `setup` 方法会在图片加载完成后调用
-        function setup() {
-            //Create the cat sprite
-            let cat = new PIXI.Sprite(PIXI.loader.resources["images/01.png"].texture);
-            //   let cat = new PIXI.Sprite(PIXI.TextureCache["images/01.png"]);
-            //Add the cat to the stage
-            container.addChild(cat);
-        }
-
-
-        var bunny = PIXI.Sprite.fromImage('images//02.png')
-        bunny.anchor.set(0.5); //设置原点位置
-        //显示精灵X轴位置
-        bunny.x = container.width / 2;
-        //显示精灵Y轴位置
-        bunny.y = container.height / 2;
-        //将显示精灵添加进舞台
-        container.addChild(bunny)
+        
     </script>
 
 
