@@ -8,12 +8,6 @@
     P = 0,
     T = (PIXI.autoDetectRenderer, PIXI.loader),
     E = (PIXI.Rectangle, PIXI.Graphics),
-    A = (PIXI.loader.resources,
-    PIXI.utils.TextureCache,
-    PIXI.Texture,
-    PIXI.Text,
-    new PIXI.ticker.Ticker(),
-    PIXI.Sprite),
     // PIXI里的容器
     Container = PIXI.Container,
     imgPre = "images/";
@@ -29,9 +23,7 @@
   // 添加canvas到html
   $(".china_tolerance_content")[0].appendChild(W.view);
 
-  //   提前加载所有图片
   T.add(imgPre + "01.png")
-    .add(imgPre + "02.png")
     .on("progress", onProgress)
     .load(endLoad);
 
@@ -46,8 +38,6 @@
     // 显示100%
     // loading移除
 
-    // 初始值设置
-    a();
     // 加载各个元素
     var wrapper = new Container();
 
@@ -56,38 +46,13 @@
     bgColor.drawRect(0, 0, 2e4, 2e4);
     bgColor.endFill();
 
-    // 开始添加背景图片
-    // 1.先定义一个容器，将图片添加到容器中
-    var bgImg = new Container(),
-      bgImgText = new A(T.resources[imgPre + "01.png"].texture);
-    w < _ ? (bgImgText.width = _ / k) : (bgImgText.width = w / k),
-      (bgImgText.height = 750);
-
-    // bgImg.addChild(bgImgText);
-    // 添加中间的人物
-    (F = new PIXI.extras.AnimatedSprite.fromImages([
-      imgPre + "eye_open.png",
-      imgPre + "eye_close.png"
-    ])),
-      (Ce = setInterval(function() {
-        F.gotoAndStop(1),
-          setTimeout(function() {
-            F.gotoAndStop(0);
-          }, 150);
-      }, 1700)),
-      F.pivot.set(224, 311),
-      F.position.set(224 + (B - 558) / 2, 361);
-
-    bgImg.addChild(bgImgText, F);
-    // 总的容器添加wrapper
     container.addChild(wrapper);
 
     // 设置位置
     container.position.set(w, 0);
-    // 添加图片的顺序不能反，最外层的在最后
-    container.addChild(bgColor, bgImg);
+    container.addChild(bgColor);
 
-    // ？？
+    k = _ / 750;
     container.scale.set(k, k);
 
     // 一定要设置这个才能触发鼠标事件
@@ -132,19 +97,18 @@
         break;
       case 90:
         setTimeout(function() {
-          // 计算图片比例
           a(), (Te = 0), (container.rotation = Te);
-          console.log(k, "屏幕比例");
+          console.log(k);
           container.scale.set(k, k),
             W.resize(w, _),
             container.position.set(0, 0),
-            (S = Ne.__scrollTop);
-          setTimeout(function() {
-            Ne.setDimensions(w, _, 16067 + w, _),
-              Ne.scrollTo(S, 0, !1),
-              (B = w / k);
-            // v();
-          }, 200);
+            (S = Ne.__scrollTop),
+            setTimeout(function() {
+              Ne.setDimensions(w, _, 16067 + w, _),
+                Ne.scrollTo(S, 0, !1),
+                (B = w / k);
+              // v();
+            }, 200);
         }, 300);
         break;
       case 180:
