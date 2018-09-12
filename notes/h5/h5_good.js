@@ -34,7 +34,7 @@
             };
         document.addEventListener('WeixinJSBridgeReady', n, !1), document.addEventListener('YixinJSBridgeReady', n, !1);
     }
-    // loading样式设置
+    // loading样式设置, 及一些初始值设置
     function a() {
         (w = window.innerWidth),
             (_ = window.innerHeight),
