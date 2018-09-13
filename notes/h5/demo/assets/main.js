@@ -39,6 +39,8 @@
         .add(imgPre + '01dialog.png')
         .add(imgPre + '01hand.png')
         .add(imgPre + '02bg.png')
+        .add(imgPre + '02wifi.png')
+        .add(imgPre + '02text.png')
         .add(imgPre + '02desk.png')
         .add(imgPre + '02dialog.png')
         .add(imgPre + '02package.png')
@@ -82,7 +84,7 @@
         dialog.position.set(80, 100);
         // 左滑手势
         var ue = new A(T.resources[imgPre + '01hand.png'].texture);
-        ue.position.set(180, 380),
+        ue.position.set(180, 400),
             (me = new TWEEN.Tween(ue.position)
                 .to(
                     {
@@ -99,15 +101,37 @@
         var secondCon = new Container();
 
         var bg2Page = new A(T.resources[imgPre + '02bg.png'].texture);
-        bg2Page.width = w / k;
+        bg2Page.width = w / k * 10;
         bg2Page.position.set(w / k, 0);
         var bg2Desk = new A(T.resources[imgPre + '02desk.png'].texture);
         bg2Desk.width = w / k;
-        bg2Desk.position.set(w / k, 470);
-        var dialog02 = new A(T.resources[imgPre + '02dialog.png'].texture);
-        dialog02.position.set(w / k + 220, 240);
+        bg2Desk.position.set(w / k, 480);
+        // wifi
+        bg2Wifi = new A(T.resources[imgPre + '02wifi.png'].texture);
+        bg2Wifi.position.set(w / k + 30, 30);
+        (bg2Wifi.data = {
+            position: {
+                x: w / k + 30,
+                y: 30
+            },
+            speed: {
+                x: -0.1,
+                y: 0
+            }
+        }),
+            // 拆箱
+            (bg2Text = new A(T.resources[imgPre + '02text.png'].texture));
+        bg2Text.position.set(w / k * 2 - 400, 30);
 
-        secondCon.addChild(bg2Page, bg2Desk, dialog02);
+        dialog02 = new A(T.resources[imgPre + '02dialog.png'].texture);
+        dialog02.position.set(w / k + 190, 240);
+        var package02 = new A(T.resources[imgPre + '02package.png'].texture);
+        package02.position.set(w / k + 220, 140);
+
+        secondCon.addChild(bg2Page, bg2Desk, bg2Wifi, bg2Text, dialog02, package02);
+
+        // 第三屏
+        var thirdCon;
         // bgImg.addChild(bgImgText);
         // 添加中间的人物
         // (F = new PIXI.extras.AnimatedSprite.fromImages([imgPre + 'eye_open.png', imgPre + 'eye_close.png'])),
@@ -188,13 +212,29 @@
         B = w < _ ? _ / k : w / k;
     }
 
+    // 区间最小值, 区间最大值, top, 初始位置, 终点
+    function scrollNum(minNum, maxNum, top, start, end) {
+        console.log(start + (top - minNum) / (maxNum - minNum) * (end - start), 'val');
+        return start + (top - minNum) / (maxNum - minNum) * (end - start);
+    }
     // Canvas renderer
     var render = function(left, top, zoom) {
-        console.log(left, top, zoom, 'aaa');
+        // console.log(left, top, zoom, 'aaa');
         // e, i, n
         var x, y;
 
         degree > 0 ? ((x = top), (y = left)) : ((x = left), (y = top));
+        console.log(`x:${x},w:${w}  H:${_}`);
+        if (x > 350) {
+            dialog02.position.y = 2 * 2;
+        }
+        if (x > w) {
+            // 这个值先不确定怎么定的，暂时是图片一半多点
+            bg2Wifi.position.x = scrollNum(w, w * 2, 0, 3 * w + 130, 3 * w + 330);
+            // bg2Wifi.position.x = 2 * x + 30;
+            bg2Text.position.x = 2 * x + w + 190;
+        }
+
         (container.position.x = -x), (container.position.y = -y);
     };
 
