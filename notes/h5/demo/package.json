@@ -2,9 +2,11 @@
     "name": "demo",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "./assets/main.js",
     "scripts": {
-        "dev": "webpack-dev-server --devtool eval --progress --colors"
+        "dev": "webpack-dev-server --devtool eval --progress --colors",
+        "start": "webpack-dev-server --open",
+        "build": "webpack"
     },
     "keywords": [],
     "author": "",
