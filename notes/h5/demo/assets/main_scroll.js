@@ -6,6 +6,7 @@
     var k,
         S = 0,
         P = 0,
+        Te = 0,
         A = (PIXI.loader.resources,
         PIXI.utils.TextureCache,
         PIXI.Texture,
@@ -40,24 +41,27 @@
     function endLoad() {
         // 显示100%
         // loading移除
-
+        setTimeout(function() {
+            $('#loading').fadeOut(300);
+        }, 10);
         // 加载各个元素
-        var wrapper = new Container();
 
         var bgColor = new E();
         bgColor.beginFill(4158644);
         bgColor.drawRect(0, 0, 2e4, 2e4);
         bgColor.endFill();
         aa = new A(T.resources[imgPre + '01.png'].texture);
+        aa.position.set(190, 240);
 
         // 设置位置
-        container.position.set(w, 0);
-        container.addChild(bgColor);
+        // container.addChild(bgColor);
+        containerChild = new Container();
+        containerChild.addChild(bgColor, aa);
 
-        aa.position.set(190, 240);
-        container.addChild(wrapper, aa);
+        container.addChild(containerChild);
         k = _ / 750;
         container.scale.set(k, k);
+        container.position.set(w, 0);
 
         // 一定要设置这个才能触发鼠标事件
         container.interactive = !0;
@@ -94,16 +98,17 @@
         switch (window.orientation) {
             case 0:
                 setTimeout(function() {
-                    a(), (Te = 90), (container.rotation = Te);
-                    console.log(k);
-                    container.scale.set(k, k),
-                        W.resize(w, _),
-                        container.position.set(0, 0),
-                        (S = Ne.__scrollTop),
-                        setTimeout(function() {
-                            Ne.setDimensions(w, _, 16067 + w, _), Ne.scrollTo(S, 0, !1), (B = w / k);
-                            // v();
-                        }, 200);
+                    a();
+                    Te = Math.PI / 2;
+                    container.rotation = Te;
+                    container.scale.set(k, k);
+                    W.resize(w, _);
+                    container.position.set(w, 0);
+                    S = Ne.__scrollLeft;
+                    setTimeout(function() {
+                        Ne.setDimensions(w, _, w, 1600 + w);
+                        Ne.scrollTo(S, 0, !1);
+                    }, 200);
                 }, 300);
                 break;
             case -90:
@@ -117,8 +122,7 @@
                         container.position.set(0, 0),
                         (S = Ne.__scrollTop),
                         setTimeout(function() {
-                            Ne.setDimensions(w, _, 16067 + w, _), Ne.scrollTo(S, 0, !1), (B = w / k);
-                            // v();
+                            Ne.setDimensions(w, _, 1600 + w, _), Ne.scrollTo(S, 0, !1), (B = w / k);
                         }, 200);
                 }, 300);
                 break;
@@ -130,6 +134,12 @@
     // Canvas renderer
     var render = function(left, top, zoom) {
         console.log(left, top, zoom, 'aaa');
+        var x, y;
+
+        // 0为竖屏，π/2为横屏
+        Te > 0 ? ((x = top), (y = left)) : ((x = left), (y = top));
+        // (container.position.x = -x), (container.position.y = -y);
+        (containerChild.position.x = -x), (containerChild.position.y = -y);
     };
 
     var touching = !1;

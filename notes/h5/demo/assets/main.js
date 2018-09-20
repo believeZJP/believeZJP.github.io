@@ -20,10 +20,10 @@
         degree = 0,
         // 手势消失的timeout
         imgPre = 'images/';
-
+    // a();
     // 从这开始
     // container 是PIXI容器的实例
-    var container = new Container();
+    container = new Container();
     (container.width = w), (container.height = _);
 
     //Create the renderer 创建canvas渲染器
@@ -61,7 +61,7 @@
         .add(imgPre + '05account.png')
         .add(imgPre + '06dialog.png')
         .add(imgPre + '07dialog.png')
-        .add(imgPre + '07music.png')
+        // .add(imgPre + '07music.png')
         .add(imgPre + '08dialog.png')
         .add(imgPre + '08qqmusicIndex.png')
         .add(imgPre + '08adddevice.png')
@@ -121,9 +121,11 @@
     function endLoad() {
         // 显示100%
         // loading移除
-
-        // 初始值设置
-        a();
+        setTimeout(function() {
+            $('#loading').fadeOut(300);
+        }, 300),
+            // 初始值设置
+            a();
 
         // 加载各个元素
         var bgColor = new E();
@@ -422,12 +424,12 @@
         );
         // 默认是开启的
         W1Ani.pause();
-        // (Te = Math.PI / 2), (container.rotation = Te);
         // 设置位置
-        container.position.set(0, 0);
+        container.position.set(w, 0);
         // 总的容器添加子容器
+        containerChild = new Container();
         // 添加顺序不能反，最外层的在最后
-        container.addChild(
+        containerChild.addChild(
             bgColor,
             firstCon,
             secondCon,
@@ -445,17 +447,20 @@
             nineteenthCon,
             speaker03
         );
+
+        container.addChild(containerChild);
         console.log(container, 'ocn');
         // 因为音箱的层级最高，对话框都要在音箱后面，所以要将音箱层级提高。
         // 注意层级不能超过所有元素的最大值
-        container.setChildIndex(speaker03, 15);
+        // containerChild.setChildIndex(speaker03, 15);
         // container.setChildIndex(handHeld, 8);
         // container.setChildIndex(firstCon, 3);
         // container.setChildIndex(d, 3);
+        // (degree = Math.PI / 2), (container.rotation = degree);
 
-        // ？？
+        k = _ / 750;
         container.scale.set(k, k);
-
+        container.position.set(w, 0);
         // 一定要设置这个才能触发鼠标事件
         container.interactive = !0;
         container.buttonMode = !0;
@@ -465,7 +470,6 @@
 
         //   旋转屏幕处理
         s();
-        // Ne.setDimensions(w, _, contentWidth, contentHeight);
         Ne.setDimensions(w, _, w, 13230 + _);
         // 首次渲染
         W.render(container);
@@ -480,6 +484,10 @@
 
     function a() {
         // 宽度小于高度，竖屏，设置loading样式
+        $('#loading').css({
+            width: w,
+            height: _
+        });
         w < _
             ? ((k = w / 750), (B = _ / k))
             : //   宽度大于高度，设置loading样式
@@ -490,17 +498,14 @@
         console.log(window.orientation, '方向');
         switch (window.orientation) {
             case 0:
-                // Ne.setDimensions(w, _, w, 16067 + _);
                 setTimeout(function() {
-                    a(), (degree = 90), (container.rotation = 90);
+                    // 计算图片比例
+                    a(), (degree = Math.PI / 2), (container.rotation = degree);
                     console.log(k, '屏幕比例');
-                    debugger;
-                    container.scale.set(k, k), W.resize(w, _), container.position.set(0, 0), (S = Ne.__scrollTop);
-                    console.log(S, 's');
+                    container.scale.set(k, k), W.resize(w, _), container.position.set(w, 0), (S = Ne.__scrollLeft);
                     setTimeout(function() {
-                        // Ne.setDimensions(w, _, 13230 + w, _), Ne.scrollTo(S, 0, !1), (B = w / k);
-                        Ne.setDimensions(w, _, container.width + 30, _), Ne.scrollTo(S, 0, !1), (B = _ / k);
-                        // v();
+                        console.log(container.width, '容器宽度');
+                        Ne.setDimensions(w, _, w, container.width + 30), Ne.scrollTo(0, S, !1), (B = _ / k);
                     }, 200);
                 }, 300);
                 break;
@@ -512,7 +517,9 @@
                     a(), (degree = 0), (container.rotation = degree);
                     console.log(k, '屏幕比例');
                     container.scale.set(k, k), W.resize(w, _), container.position.set(0, 0), (S = Ne.__scrollTop);
+                    console.log(S, 's');
                     setTimeout(function() {
+                        console.log(container.width, '容器宽度');
                         // Ne.setDimensions(w, _, 13230 + w, _), Ne.scrollTo(S, 0, !1), (B = w / k);
                         Ne.setDimensions(w, _, container.width + 30, _), Ne.scrollTo(S, 0, !1), (B = w / k);
                         // v();
@@ -544,10 +551,11 @@
     // Canvas renderer 滑动渐变动作
     var render = function(left, top, zoom) {
         var x, y;
+        console.log(degree, 'jiaodu');
 
-        // 0为竖屏，90为横屏
+        // 0为竖屏，π/2为横屏
         degree > 0 ? ((x = top), (y = left)) : ((x = left), (y = top));
-        console.log(`坐标：${x}`);
+        console.log(`坐标：${x},${y}`);
         if (x > 0 && x < 640) {
             if (x < 451) {
                 package01.x = scrollNum(0, 450, x, pw / 2 - 150, pw + 220);
@@ -832,8 +840,9 @@
         if (x > 5 * w && x < 12600) {
             handHeld.x = 2 * x + 20;
         }
-
+        console.log(`x:${x}--y:${y}`);
         (container.position.x = -x), (container.position.y = -y);
+        // (containerChild.position.x = -x), (containerChild.position.y = -y);
     };
 
     // 滑动过快，左手无法复原，根据坐标，超过，直接复原

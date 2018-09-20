@@ -76,25 +76,27 @@
                 setTimeout(function() {
                     a(),
                         (Te = Math.PI / 2),
+                        console.log(Te, 'Te'),
                         (X.rotation = Te),
                         X.scale.set(k, k),
                         W.resize(w, _),
                         X.position.set(w, 0),
                         (P = Ne.__scrollLeft),
-                        $('#loading').css({
-                            '-webkit-transform': 'rotate(90deg) scale(' + k + ') translate3d(0,-750px,0)',
-                            width: _ / k,
-                            height: '750px'
-                        }),
-                        $('.loading_logo').css({
-                            left: (_ / k - 242) / 2 + 'px'
-                        }),
-                        $('.loading_main').css({
-                            left: (_ / k - 283) / 2 + 'px'
-                        }),
+                        // $('#loading').css({
+                        //     '-webkit-transform': 'rotate(90deg) scale(' + k + ') translate3d(0,-750px,0)',
+                        //     width: _ / k,
+                        //     height: '750px'
+                        // }),
+                        // $('.loading_logo').css({
+                        //     left: (_ / k - 242) / 2 + 'px'
+                        // }),
+                        // $('.loading_main').css({
+                        //     left: (_ / k - 283) / 2 + 'px'
+                        // }),
                         setTimeout(function() {
                             // Ne.setDimensions(w, _, w, 16067 + _), Ne.scrollTo(0, P, !1), (B = _ / k), v();
-                            Ne.setDimensions(w, _, w, 1600 + _), Ne.scrollTo(0, P, !1), (B = _ / k), v();
+                            Ne.setDimensions(w, _, w, 1600 + _), Ne.scrollTo(0, P, !1), (B = _ / k);
+                            // , v();
                         }, 200);
                 }, 300);
                 break;
@@ -785,6 +787,8 @@
         PIXI.Text,
         new PIXI.ticker.Ticker(),
         PIXI.Sprite),
+        // 角度
+        Te,
         E = (PIXI.Rectangle, PIXI.Graphics),
         M = 'http://static.ws.126.net/f2e/news/china_tolerance/images/';
     // $('.mask').bind('touchmove', function(e) {
@@ -2314,6 +2318,7 @@
     (Fe = function(e, i, n) {
         console.log(e, i, n, 'canshu');
         var t, o;
+        console.log(Te, 'te');
         Te > 0 ? ((o = i), (t = e)) : ((o = e), (t = i));
         // if ( o < 850)) {
         //     o > 50 && o < 400
