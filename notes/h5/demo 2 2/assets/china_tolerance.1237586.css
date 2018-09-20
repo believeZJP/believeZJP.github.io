@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.text {
+    font-size: 25px;
+    color: #f0f;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    display: none;
+}
+canvas {
+    position: absolute;
+    top: 0;
+}
+#loading {
+    width: 100%;
+    height: 100%;
+    background: #fefefe;
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    -webkit-transform-origin: 0 0;
+}
+#loading .loading_logo {
+    width: 242px;
+    height: 39px;
+    background: url(images/loading/logo.png) no-repeat;
+    position: absolute;
+    top: 42px;
+    left: 469px;
+}
+#loading .loading_main {
+    background: url(images/loading/loading.jpg) no-repeat;
+    -webkit-animation: loading 5s linear infinite;
+    -webkit-animation-timing-function: step-start;
+    animation-timing-function: step-start;
+    width: 283px;
+    height: 328px;
+    left: 450px;
+    top: 247px;
+    position: absolute;
+}
+#loading #percent {
+    color: #000;
+    font-size: 24px;
+    position: absolute;
+    width: 100%;
+    top: 600px;
+    text-align: center;
+}
+@-webkit-keyframes loading {
+    from to {
+        background-position: 0 0;
+    }
+    7.142857142857143% {
+        background-position: -566px -328px;
+    }
+    14.285714285714286% {
+        background-position: -849px -328px;
+    }
+    21.42857142857143% {
+        background-position: 0 -656px;
+    }
+    28.571428571428573% {
+        background-position: -283px -656px;
+    }
+    35.714285714285715% {
+        background-position: -566px -656px;
+    }
+    42.85714285714286% {
+        background-position: -849px -656px;
+    }
+    50% {
+        background-position: -1132px 0;
+    }
+    57.142857142857146% {
+        background-position: -1132px -328px;
+    }
+    64.28571428571429% {
+        background-position: -283px 0;
+    }
+    71.42857142857143% {
+        background-position: -566px 0;
+    }
+    78.57142857142857% {
+        background-position: -849px 0;
+    }
+    85.71428571428572% {
+        background-position: 0 -328px;
+    }
+    92.85714285714286% {
+        background-position: -283px -328px;
+    }
+}

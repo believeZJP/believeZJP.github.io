@@ -2205,7 +2205,7 @@
     //         M + '5/man5.png',
     //         M + '5/man6.png'
     //     ]),
-    a(), (window.onorientationchange = s);
+    // a(), (window.onorientationchange = s);
     // var Me = (isPlayedPaper = isPlayedGuitar1 = isPlayedGame = isPlayedCar = isPlayedPhoto = isPlayedMouth = isPlayedClose = isPlayedLaugh = !1),
     // 音频播放序列
     // Xe = [

@@ -138,7 +138,7 @@
         // pw为横屏整屏宽度， 如果宽度小于高度，为竖屏，设置
         w < _ ? (pw = _ / k) : (pw = w / k);
         // 将pw直接定死
-        // pw = 667 * 2;
+        pw = 667 * 2;
         console.log(pw, 'pw页宽', 'w:', w);
         // 开始添加背景图片
         // 1.先定义一个容器，将图片添加到容器中
@@ -181,7 +181,7 @@
             imgPre + '10-01.png',
             imgPre + '18-01.png'
         ]);
-        bg2Wifi.position.set(pw + 30, 30);
+        bg2Wifi.position.set(w / k + 30, 30);
 
         // 拆箱
         bg2Text = new PIXI.extras.AnimatedSprite.fromImages([
@@ -189,13 +189,13 @@
             imgPre + '10-02.png',
             imgPre + '18-02.png'
         ]);
-        bg2Text.position.set(pw * 2 - 400, 30);
+        bg2Text.position.set(w / k * 2 - 400, 30);
 
         dialog02 = new A(T.resources[imgPre + '02dialog.png'].texture);
-        dialog02.position.set(pw + 190, 240);
+        dialog02.position.set(w / k + 190, 240);
         dialog02.alpha = 0;
         var package02 = new A(T.resources[imgPre + '02package.png'].texture);
-        package02.position.set(pw + 220, 140);
+        package02.position.set(w / k + 220, 140);
         package02.alpha = 0;
         // secondCon.addChild(bgPic, bg2Desk, bg2Wifi, bg2Text, dialog02, package02);
         secondCon.addChild(bg2Wifi, bg2Text, dialog02, package02);
@@ -203,18 +203,18 @@
         // 第三屏
         var thirdCon = new Container();
         card03 = new A(T.resources[imgPre + '03card.png'].texture);
-        card03.position.set(pw * 2 + 620, 20);
+        card03.position.set(w / k * 2 + 620, 20);
         dialog03 = new A(T.resources[imgPre + '03dialog.png'].texture);
-        dialog03.position.set(pw * 2 + 60, 80);
+        dialog03.position.set(w / k * 2 + 60, 80);
         dialog03.alpha = 0;
         // speaker03 = getTexture('blackspeaker');
         speaker03 = new PIXI.extras.AnimatedSprite.fromImages([
             imgPre + 'blackspeaker.png',
             imgPre + 'orangespeaker.png'
         ]);
-        speaker03.position.set(pw * 2 + 320, 175);
+        speaker03.position.set(w / k * 2 + 320, 175);
         adapter03 = getTexture('03adapter');
-        adapter03.position.set(pw * 2 + 50, 560);
+        adapter03.position.set(w / k * 2 + 50, 560);
         adapter03.alpha = 0;
         thirdCon.addChild(adapter03, card03, dialog03);
         // 第四屏 接通电源
@@ -424,12 +424,12 @@
         );
         // 默认是开启的
         W1Ani.pause();
+        // (Te = Math.PI / 2), (container.rotation = Te);
         // 设置位置
-        container.position.set(w, 0);
+        container.position.set(0, 0);
         // 总的容器添加子容器
-        containerChild = new Container();
         // 添加顺序不能反，最外层的在最后
-        containerChild.addChild(
+        container.addChild(
             bgColor,
             firstCon,
             secondCon,
@@ -447,20 +447,17 @@
             nineteenthCon,
             speaker03
         );
-
-        container.addChild(containerChild);
         console.log(container, 'ocn');
         // 因为音箱的层级最高，对话框都要在音箱后面，所以要将音箱层级提高。
         // 注意层级不能超过所有元素的最大值
-        // containerChild.setChildIndex(speaker03, 15);
-        // containerC.setChildIndex(handHeld, 8);
+        container.setChildIndex(speaker03, 15);
+        // container.setChildIndex(handHeld, 8);
         // container.setChildIndex(firstCon, 3);
         // container.setChildIndex(d, 3);
-        // (degree = Math.PI / 2), (container.rotation = degree);
 
-        k = _ / 750;
+        // ？？
         container.scale.set(k, k);
-        container.position.set(w, 0);
+
         // 一定要设置这个才能触发鼠标事件
         container.interactive = !0;
         container.buttonMode = !0;
@@ -470,7 +467,8 @@
 
         //   旋转屏幕处理
         s();
-        // Ne.setDimensions(w, _, w, 13230 + _);
+        debugger;
+        Ne.setDimensions(w, _, w, 13230 + _);
         // 首次渲染
         W.render(container);
         // 更新canvas
@@ -486,7 +484,13 @@
         // 宽度小于高度，竖屏，设置loading样式
         $('#loading').css({
             width: w,
-            height: _
+            height: _,
+            // width: w / k,
+            // height: _ / k,
+            // '-webkit-transform': 'rotate(0deg) scale(' + 0.5 + ') translate3d(0,0,0)',
+            // transform: 'scale(0.5)',
+            display: 'flex'
+            // transform: 'rotate(0deg) scale(0.5) translate3d(0, 0, 0)'
         });
         w < _
             ? ((k = w / 750), (B = _ / k))
@@ -499,14 +503,15 @@
         switch (window.orientation) {
             case 0:
                 setTimeout(function() {
-                    // 计算图片比例
                     a(), (degree = Math.PI / 2), (container.rotation = degree);
                     console.log(k, '屏幕比例');
                     container.scale.set(k, k), W.resize(w, _), container.position.set(w, 0), (S = Ne.__scrollLeft);
+                    console.log(S, 's');
                     setTimeout(function() {
                         console.log(container.width, '容器宽度');
-                        // Ne.setDimensions(w, _, w, container.width + 30), Ne.scrollTo(0, S, !1), (B = _ / k);
-                        Ne.setDimensions(w, _, w, 26460 + _), Ne.scrollTo(0, S, !1), (B = _ / k);
+                        debugger;
+                        Ne.setDimensions(w, _, w, 1200), Ne.scrollTo(0, S, !1), (B = _ / k);
+                        // v();
                     }, 200);
                 }, 300);
                 break;
@@ -522,8 +527,7 @@
                     setTimeout(function() {
                         console.log(container.width, '容器宽度');
                         // Ne.setDimensions(w, _, 13230 + w, _), Ne.scrollTo(S, 0, !1), (B = w / k);
-                        Ne.setDimensions(w, _, 26460 + w, _), Ne.scrollTo(S, 0, !1), (B = w / k);
-                        // Ne.setDimensions(w, _, container.width + 30, _), Ne.scrollTo(S, 0, !1), (B = w / k);
+                        Ne.setDimensions(w, _, container.width + 30, _), Ne.scrollTo(S, 0, !1), (B = w / k);
                         // v();
                     }, 200);
                 }, 300);
@@ -542,6 +546,9 @@
                 val = end;
             }
         }
+        if (start === 750 && end == 280) {
+            console.log(start + (top - minNum) / (maxNum - minNum) * (end - start), 'val', top);
+        }
         // console.log(start + (top - minNum) / (maxNum - minNum) * (end - start), 'val');
         return val;
     }
@@ -551,8 +558,9 @@
     var render = function(left, top, zoom) {
         var x, y;
         console.log(degree, 'jiaodu');
+        debugger;
 
-        // 0为竖屏，π/2为横屏 90*/180 = π/2
+        // 0为竖屏，90为横屏
         degree > 0 ? ((x = top), (y = left)) : ((x = left), (y = top));
         console.log(`坐标：${x},${y}`);
         if (x > 0 && x < 640) {
@@ -817,31 +825,34 @@
         if (x > 12600) {
             handHeld.gotoAndStop(10);
         }
-        bgPic.x = 1 * x;
-        if (x > pw) {
-            bgPic.x = 1 * x;
+        bgPic.x = 2 * x;
+        if (x > w) {
+            bgPic.x = 2 * x;
             if (x < 12600) {
-                bg2Wifi.x = 1 * x + 30;
-                bg2Text.x = 1 * x + 2 * w - 390;
-                console.log(x + 2 * w - 130, 'fd');
+                bg2Wifi.x = 2 * x + 30;
+                bg2Text.x = 2 * x + w + 190;
             }
         }
         // 音箱,电源线固定在屏幕
-        if (x > 2 * pw && x < 12600) {
-            speaker03.x = 1 * x + 320;
-            adapter03.x = 1 * x + 50;
-            adapter04.x = 1 * x - 20;
+        if (x > 2 * w && x < 12600) {
+            speaker03.x = 2 * x + 320;
+            adapter03.x = 2 * x + 50;
+            adapter04.x = 2 * x - 20;
             // 到要展示手势时，音箱及插线板向左移动
-            if (x > 4 * pw) {
-                speaker03.x = scrollNum(4 * w, 4 * w + 100, x, 1 * x + 320, 1 * x + 90);
-                adapter04.x = scrollNum(4 * w, 4 * w + 100, x, 1 * x - 20, 1 * x - 300);
+            if (x > 4 * w) {
+                speaker03.x = scrollNum(4 * w, 4 * w + 100, x, 2 * x + 320, 2 * x + 90);
+                adapter04.x = scrollNum(4 * w, 4 * w + 100, x, 2 * x - 20, 2 * x - 300);
             }
         }
-        if (x > 5 * pw && x < 12600) {
-            handHeld.x = 1 * x + 20;
+        if (x > 5 * w && x < 12600) {
+            handHeld.x = 2 * x + 20;
         }
-        // (container.position.x = -x), (container.position.y = -y);
-        (containerChild.position.x = -x), (containerChild.position.y = -y);
+        console.log(`x:${x}--y:${y}`);
+        // if (degree > 0) {
+        //     (container.position.y = -x), (container.position.x = -y);
+        // } else {
+        (container.position.x = -x), (container.position.y = -y);
+        // }
     };
 
     // 滑动过快，左手无法复原，根据坐标，超过，直接复原
