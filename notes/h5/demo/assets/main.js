@@ -1,7 +1,6 @@
 !(function() {
     // 通用设置
-    const w = window.innerWidth,
-        _ = window.innerHeight;
+    (w = window.innerWidth), (_ = window.innerHeight);
 
     var k,
         S = 0,
@@ -61,7 +60,6 @@
         .add(imgPre + '05account.png')
         .add(imgPre + '06dialog.png')
         .add(imgPre + '07dialog.png')
-        // .add(imgPre + '07music.png')
         .add(imgPre + '08dialog.png')
         .add(imgPre + '08qqmusicIndex.png')
         .add(imgPre + '08adddevice.png')
@@ -116,13 +114,18 @@
     function getTexture(name) {
         return new A(T.resources[imgPre + name + '.png'].texture);
     }
+    a(), (window.onorientationchange = s);
 
     // 图片加载完回调
     function endLoad() {
         // 显示100%
         // loading移除
         setTimeout(function() {
-            $('#loading').fadeOut(300);
+            // 去掉jQuery
+            // $('#loading').fadeOut(300);
+            $('#loading').animate({opacity: 0}, 300, function() {
+                $(this).hide();
+            });
         }, 300),
             // 初始值设置
             a();
@@ -137,7 +140,7 @@
         pw = w / k;
         // pw为横屏整屏宽度， 如果宽度小于高度，为竖屏，设置
         w < _ ? (pw = _ / k) : (pw = w / k);
-        // 将pw直接定死
+        // 将pw直接定死,还是不定死了，定死都挤到一起
         // pw = 667 * 2;
         console.log(pw, 'pw页宽', 'w:', w);
         // 开始添加背景图片
@@ -147,10 +150,16 @@
         bgPic = getTexture('02bg-desk');
         bgPic.width = pw;
         bgPic.position.set(0, 0);
+        //  配网成功的背景图
+        wifiSuccessBg = getTexture('11bg');
+        wifiSuccessBg.position.set(0, 0);
+        wifiSuccessBg.width = pw;
+        wifiSuccessBg.alpha = 0;
         // 对话框
         dialog = getTexture('01dialog');
         dialog.position.set(80, 100);
         package01 = getTexture('02package');
+        new PIXI.extras.AnimatedSprite.fromImages([imgPre + 'blackspeaker.png', imgPre + 'orangespeaker.png']);
         package01.position.set(pw / 2 - 150, 0 - 300);
         package01.scale.x = 2;
         package01.scale.y = 2;
@@ -169,7 +178,7 @@
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start());
 
-        firstCon.addChild(bgPic, package01, dialog, leftSlide);
+        firstCon.addChild(bgPic, wifiSuccessBg, package01, dialog, leftSlide);
 
         // 第二屏
         var secondCon = new Container();
@@ -194,39 +203,37 @@
         dialog02 = new A(T.resources[imgPre + '02dialog.png'].texture);
         dialog02.position.set(pw + 190, 240);
         dialog02.alpha = 0;
-        var package02 = new A(T.resources[imgPre + '02package.png'].texture);
-        package02.position.set(pw + 220, 140);
-        package02.alpha = 0;
-        // secondCon.addChild(bgPic, bg2Desk, bg2Wifi, bg2Text, dialog02, package02);
-        secondCon.addChild(bg2Wifi, bg2Text, dialog02, package02);
+
+        // secondCon.addChild(bgPic, bg2Desk, bg2Wifi, bg2Text, dialog02);
+        secondCon.addChild(bg2Wifi, bg2Text, dialog02);
 
         // 第三屏
         var thirdCon = new Container();
         card03 = new A(T.resources[imgPre + '03card.png'].texture);
-        card03.position.set(pw * 2 + 620, 20);
+        card03.position.set(pw * 2 + 650, 750);
         dialog03 = new A(T.resources[imgPre + '03dialog.png'].texture);
-        dialog03.position.set(pw * 2 + 60, 80);
+        dialog03.position.set(pw * 2 + 50, 80);
         dialog03.alpha = 0;
-        // speaker03 = getTexture('blackspeaker');
         speaker03 = new PIXI.extras.AnimatedSprite.fromImages([
             imgPre + 'blackspeaker.png',
             imgPre + 'orangespeaker.png'
         ]);
-        speaker03.position.set(pw * 2 + 320, 175);
+        speaker03.position.set(pw * 1 + 900, 175);
+        speaker03.alpha = 0;
         adapter03 = getTexture('03adapter');
-        adapter03.position.set(pw * 2 + 50, 560);
+        adapter03.position.set(pw * 2 + 10, 560);
         adapter03.alpha = 0;
         thirdCon.addChild(adapter03, card03, dialog03);
         // 第四屏 接通电源
         var fourthCon = new Container();
         dialog04 = getTexture('04dialog');
-        dialog04.position.set(pw * 3 + 1000, 220);
-        // dialog04.alpha = 0;
+        dialog04.position.set(pw * 3 + 800, 220);
+        dialog04.alpha = 0;
         dialog042 = getTexture('04dialog2');
-        dialog042.position.set(pw * 3 + 400, 220);
+        dialog042.position.set(pw * 3 + 100, 220);
         dialog042.alpha = 0;
         adapter04 = getTexture('04adapter');
-        adapter04.position.set(pw * 4 + 600, 560);
+        adapter04.position.set(pw * 3 + 0, 560);
         adapter04.alpha = 0;
 
         fourthCon.addChild(dialog04, dialog042, adapter04);
@@ -245,11 +252,11 @@
             imgPre + '16xunlian.png',
             imgPre + '18bluetooth.png'
         ]);
-        handHeld.position.set(pw * 5, 20);
-        handHeld.scale.set(0);
+        handHeld.position.set(pw * 5 + 300, 0);
+        // handHeld.scale.set(0);
         // 扫码dialog
         dialog05 = getTexture('05dialog');
-        dialog05.position.set(pw * 5 + 900, 220);
+        dialog05.position.set(pw * 5 + 300, 220);
         dialog05.alpha = 0;
         // 因为要设置index，放到最外层容器
         // fifthCon.addChild(handHeld, dialog05);
@@ -257,39 +264,40 @@
         // 第六屏
         var sixthCon = new Container();
         dialog06 = getTexture('06dialog');
-        dialog06.position.set(pw * 6 + 900, 220);
+        dialog06.position.set(pw * 6 + 300, 220);
         rightHand = getTexture('righthand');
-        rightHand.position.set(pw * 6 + 700, 262);
+        rightHand.position.set(pw * 5 + 700, 262);
         rightHand.alpha = 0;
         // 第七,八屏只有一个dialog,直接放到第六屏
         dialog07 = getTexture('07dialog');
-        dialog07.position.set(pw * 7 + 900, 220);
+        dialog07.position.set(pw * 7 + 300, 220);
         dialog08 = getTexture('08dialog');
-        dialog08.position.set(pw * 8 + 900, 220);
-        sixthCon.addChild(dialog06, dialog07, dialog08, rightHand);
+        dialog08.position.set(pw * 8 + 300, 220);
+        sixthCon.addChild(dialog06, dialog07, dialog08);
 
         // 第九屏，第十屏 wifi配网
         var ninthCon = new Container();
         dialog09 = getTexture('09dialog');
-        dialog09.position.set(pw * 9 + 900, 220);
-        dialog09.alpha = 0;
+        dialog09.position.set(pw * 9 + 300, 220);
+        // dialog09.alpha = 0;
         dialog10 = getTexture('10dialog');
-        dialog10.position.set(pw * 10 + 900, 220);
-        dialog10.alpha = 0;
+        dialog10.position.set(pw * 10 + 300, 220);
+        // dialog10.alpha = 0;
         ninthCon.addChild(dialog09, dialog10);
         // 第11屏，小熊，唤醒
         var eleventhCon = new Container();
-        bg11 = getTexture('11bg');
-        bg11.position.set(pw * 11, 0);
-        bg11.width = pw;
+        // bg11 = getTexture('11bg');
+        // bg11.position.set(pw * 11, 0);
+        // bg11.width = pw;
         banner11 = getTexture('11banner');
-        banner11.position.set(pw * 11, 0);
+        banner11.position.set(pw * 11 + 0, 0);
         banner11.width = pw;
+        banner11.alpha = 0;
         bear11 = getTexture('11bear');
-        bear11.position.set(pw * 11 + 1150, 280);
+        bear11.position.set(pw * 11 + 750, 280);
         dialog11 = getTexture('11dialog');
-        dialog11.position.set(pw * 11 + 700, 220);
-        eleventhCon.addChild(bg11, banner11, bear11, dialog11);
+        dialog11.position.set(pw * 11 + 400, 220);
+        eleventhCon.addChild(banner11, bear11, dialog11);
         // 第12屏 听遇见
         var twelfthCon = new Container();
         music12 = getTexture('12music');
@@ -299,13 +307,13 @@
         dialog12.position.set(pw * 12 + 500, 450);
         // dialog12.alpha = 0;
         dialog12yujian = getTexture('12yujian');
-        dialog12yujian.position.set(pw * 12 + 900, 220);
+        dialog12yujian.position.set(pw * 12 + 900, 300);
         // dialog12.alpha = 0;
         twelfthCon.addChild(music12, dialog12, dialog12yujian);
         // 第13屏 闹钟⏰ 14,极客模式，15，儿童模式
         var thirteenthCon = new Container();
         dialog13 = getTexture('13dialog');
-        dialog13.position.set(pw * 13 + 900, 220);
+        dialog13.position.set(pw * 13 + 900, 300);
         dialog13.alpha = 0;
         dialog13ques = getTexture('13ques');
         dialog13ques.position.set(pw * 13 + 500, 450);
@@ -314,7 +322,7 @@
         item13.position.set(pw * 13 + 500, 50);
 
         dialog14 = getTexture('14dialog');
-        dialog14.position.set(pw * 14 + 900, 220);
+        dialog14.position.set(pw * 14 + 900, 300);
         dialog14.alpha = 0;
         dialog14ques = getTexture('14ques');
         dialog14ques.position.set(pw * 14 + 500, 450);
@@ -323,13 +331,13 @@
         item14.position.set(pw * 14 + 500, 50);
 
         dialog15 = getTexture('15dialog');
-        dialog15.position.set(pw * 15 + 900, 220);
+        dialog15.position.set(pw * 15 + 900, 300);
         dialog15.alpha = 0;
         dialog15ques = getTexture('15ques');
         dialog15ques.position.set(pw * 15 + 500, 450);
         dialog15ques.alpha = 0;
         item15 = getTexture('15item');
-        item15.position.set(pw * 15 + 500, 50);
+        item15.position.set(pw * 15 + 500, 100);
 
         thirteenthCon.addChild(
             item13,
@@ -430,12 +438,11 @@
         containerChild = new Container();
         // 添加顺序不能反，最外层的在最后
         containerChild.addChild(
-            bgColor,
+            // bgColor,
             firstCon,
             secondCon,
             thirdCon,
             fourthCon,
-            handHeld,
             fifthCon,
             sixthCon,
             ninthCon,
@@ -445,7 +452,9 @@
             sixteenthCon,
             seventeenthCon,
             nineteenthCon,
-            speaker03
+            speaker03,
+            handHeld,
+            rightHand
         );
 
         container.addChild(containerChild);
@@ -453,10 +462,6 @@
         // 因为音箱的层级最高，对话框都要在音箱后面，所以要将音箱层级提高。
         // 注意层级不能超过所有元素的最大值
         // containerChild.setChildIndex(speaker03, 15);
-        // containerC.setChildIndex(handHeld, 8);
-        // container.setChildIndex(firstCon, 3);
-        // container.setChildIndex(d, 3);
-        // (degree = Math.PI / 2), (container.rotation = degree);
 
         k = _ / 750;
         container.scale.set(k, k);
@@ -483,6 +488,7 @@
     }
 
     function a() {
+        (w = window.innerWidth), (_ = window.innerHeight);
         // 宽度小于高度，竖屏，设置loading样式
         $('#loading').css({
             width: w,
@@ -501,7 +507,7 @@
                 setTimeout(function() {
                     // 计算图片比例
                     a(), (degree = Math.PI / 2), (container.rotation = degree);
-                    console.log(k, '屏幕比例');
+                    console.log(k, '屏幕比例', w, _, '宽，高');
                     container.scale.set(k, k), W.resize(w, _), container.position.set(w, 0), (S = Ne.__scrollLeft);
                     setTimeout(function() {
                         console.log(container.width, '容器宽度');
@@ -516,7 +522,7 @@
                 setTimeout(function() {
                     // 计算图片比例
                     a(), (degree = 0), (container.rotation = degree);
-                    console.log(k, '屏幕比例');
+                    console.log(k, '屏幕比例', w, _, '宽，高');
                     container.scale.set(k, k), W.resize(w, _), container.position.set(0, 0), (S = Ne.__scrollTop);
                     console.log(S, 's');
                     setTimeout(function() {
@@ -531,6 +537,14 @@
             case 180:
         }
         B = w < _ ? _ / k : w / k;
+    }
+    // 左手动画
+    function handAni(ss, ee, x) {
+        handHeld.scale.x = scrollNum(ss, ee, x, 0, 1);
+        handHeld.scale.y = scrollNum(ss, ee, x, 0, 1);
+        handHeld.rotation = scrollNum(ss, ee, x, 1, 0);
+        handHeld.y = scrollNum(ss, ee, x, 850, 30);
+        handHeld.alpha = scrollNum(ss, ee, x, 0, 1);
     }
 
     // 区间最小值, 区间最大值, top, 初始位置, 终点
@@ -554,7 +568,7 @@
 
         // 0为竖屏，π/2为横屏 90*/180 = π/2
         degree > 0 ? ((x = top), (y = left)) : ((x = left), (y = top));
-        console.log(`坐标：${x},${y}`);
+        console.log(`坐标：${x.toFixed(1)},${y}, pw:${pw} --  当前屏:${Math.floor(x / pw)}, 余数：${(x % pw).toFixed(1)}`);
         if (x > 0 && x < 640) {
             if (x < 451) {
                 package01.x = scrollNum(0, 450, x, pw / 2 - 150, pw + 220);
@@ -568,218 +582,270 @@
                 package01.scale.y = 1;
             }
         }
-        if (x > 640 && x < 1200) {
-            // 750是页面高度，刚开始在最底下，350是要移动到的高度
-            // dialog02.y = scrollNum(140, 540, x, 750, 240);
-            dialog02.alpha = scrollNum(140, 150, x, 0, 1);
+        // 整屏一半到滑出屏幕消失
+        if (x > pw / 2 && x < pw + 1000) {
+            dialog02.alpha = scrollNum(pw - 100, pw - 90, x, 0, 1);
         } else {
             dialog02.alpha = 0;
         }
-        // 第三屏
-        if (x > 1000 && x < 1200) {
-            card03.y = scrollNum(1000, 1200, x, 750, 500);
-            adapter03.alpha = scrollNum(1000, 1100, x, 0, 1);
-            adapter03.y = scrollNum(1000, 1200, x, 750, 560);
+        // 第三屏 包装里说明书
+        if (x > pw * 1 + 1000 && x < pw * 1 + 1200) {
+            card03.y = scrollNum(pw * 1 + 1100, pw * 1 + 1200, x, 750, 500);
+            adapter03.alpha = scrollNum(pw * 1 + 1100, pw * 1 + 1200, x, 0, 1);
+            adapter03.y = scrollNum(pw * 1 + 1100, pw * 1 + 1200, x, 750, 560);
+            dialog03.alpha = scrollNum(pw * 1 + 1100, pw + 1150, x, 0, 1);
         }
-        // if (x > 1200) {
-        //     adapter03.y = 560;
-        // }
-        if (x > 1280 && x < 1800) {
-            dialog03.alpha = scrollNum(1200, 1300, x, 0, 1);
-        } else {
-            dialog03.alpha = 0;
+        if (x > pw * 2 + 900 && x < pw * 2 + 1000) {
         }
 
         // 第四屏 提示接通电源,指示灯亮起
+        if (x < 3 * pw - 100) {
+            dialog04.alpha = 0;
+            dialog042.alpha = 0;
+            adapter04.alpha = 0;
+        }
+        if (x > pw + 1200 && x < 3 * pw + 10) {
+            adapter03.alpha = 1;
+        }
+        if (x > pw * 3 - 100 && x < pw * 3 + 200) {
+            dialog042.alpha = scrollNum(pw * 3 - 100, pw * 3 - 90, x, 0, 1);
 
-        if (x > 1830 && x < 2500) {
-            // dialog042.alpha = scrollNum(2200, 2300, x, 0, 1);
-            dialog04.alpha = scrollNum(2050, 2200, x, 0, 1);
+            dialog04.alpha = scrollNum(pw * 3, pw * 3 + 20, x, 0, 1);
+            // 不加这个判断会跟第二个对话框一起渐变
+            if (x > pw * 3 - 90) {
+                dialog042.alpha = 1;
+            }
             // 显示插座适配器
-            adapter04.alpha = 1;
-            adapter04.y = scrollNum(1830, 2100, x, 750, 560);
-            dialog042.alpha = scrollNum(1830, 2000, x, 0, 1);
+            if (x > 3 * pw + 10) {
+                adapter04.alpha = 1;
+                adapter03.alpha = 0;
+            }
+            // adapter04.y = scrollNum(pw * 3, pw * 3 + 50, x, 750, 560);
         } else {
         }
+        // 未接通电源状态
+        if (x < pw * 3 + 40) {
+            speaker03.gotoAndStop(0);
+        }
         // 节点：接通电源，黑灯换橙色灯。 TODO 返回去灯变黑
-        if (x > 2170 && x < 3100) {
-            adapter03.alpha = 0;
+        if (x > pw * 3 + 40 && x < pw * 3 + 50) {
+            // adapter03.alpha = 0;
             speaker03.gotoAndStop(1);
-            handHeld.scale.set(0);
+            // handHeld.scale.set(0);
         }
 
         // 第五屏 扫码下载
-        if (x > 3100 && x < 3300) {
+        if (x > pw * 4 + 400 && x < pw * 4 + 1000) {
+            let ss = pw * 4 + 400,
+                ee = pw * 4 + 600;
+
             handHeld.gotoAndStop(0);
-            handHeld.scale.x = scrollNum(3100, 3300, x, 0, 1);
-            handHeld.scale.y = scrollNum(3100, 3300, x, 0, 1);
-            handHeld.rotation = scrollNum(3100, 3300, x, -1, 0);
-            if (x > 3200 && x < 3300) {
-                dialog05.alpha = scrollNum(3200, 3300, x, 0, 1);
+            handAni(ss, ee, x);
+            if (x < pw * 4 + 500) {
+                dialog05.alpha = 0;
+            }
+            if (x > pw * 4 + 700 && x < pw * 4 + 720) {
+                dialog05.alpha = scrollNum(pw * 4 + 700, pw * 4 + 705, x, 0, 1);
+            }
+            if (x > pw * 4 + 650) {
+                // 下载APP
+                handHeld.gotoAndStop(1);
             }
         }
-        if (x > 3300) {
+        if (x > pw * 4 + 600) {
             initHandHeld();
         }
         // 扫码完成，切换画面
-        if (x > 3350) {
-            handHeld.gotoAndStop(1);
+        if (x > pw * 5 && x < pw * 5 + 1000) {
+            dialog06.alpha = scrollNum(pw * 5 + 770, pw * 5 + 775, x, 0, 1);
+            rightHand.alpha = 1;
+            rightHand.y = scrollNum(pw * 5 + 700, pw * 5 + 780, x, 750, 272);
         }
-        if (x > 3800 && x < 4000) {
-            dialog06.alpha = scrollNum(3800, 3950, x, 0, 1);
-        }
-        if (x > 4000) {
+        if (x > pw * 5 + 775 && x < pw * 6 + 700) {
             handHeld.gotoAndStop(2);
+            dialog06.alpha = 1;
         }
-        if (x < 4050) {
+        if (x < pw * 5 + 770 && x < pw * 6 + 700) {
             W1Ani.pause();
             rightHand.alpha = 0;
         }
-        if (x > 4050 && x < 4080) {
+        if (x > pw * 5 + 775 && x < pw * 5 + 785) {
             rightHand.alpha = 1;
-            rightHand.position.set(pw * 6 + 700, 262);
+            rightHand.position.set(pw * 5 + 1285, 262);
             if (W1Ani.paused) {
                 W1Ani.play();
             }
         }
-        if (x > 4080 && x < 4500) {
+        if (x > pw * 5 + 785 && x < pw * 6 + 710) {
             W1Ani.pause();
             rightHand.alpha = 0;
         }
         // 切换为QQ音乐
-        if (x > 4550 && x < 4700) {
+        if (x > pw * 6 + 700 && x < pw * 6 + 1000) {
             handHeld.gotoAndStop(3);
-            dialog07.alpha = scrollNum(4600, 4650, x, 0, 1);
+            dialog07.alpha = scrollNum(pw * 6 + 700, pw * 6 + 705, x, 0, 1);
         }
-        if (x > 4650 && x < 4680) {
-            rightHand.position.set(pw * 7 + 600, 470);
+        if (x > pw * 6 + 710 && x < pw * 6 + 720) {
+            rightHand.position.set(pw * 6 + 1220, 470);
             rightHand.alpha = 1;
             if (W1Ani.paused) W1Ani.play();
         }
-        if (x > 4680 && x < 5250) {
+        if (x > pw * 6 + 720 && x < pw * 7 + 750) {
             W1Ani.pause();
             rightHand.alpha = 0;
             handHeld.gotoAndStop(3);
         }
         // QQ音乐APP首页
-        if (x > 5250 && x < 5330) {
+        if (x > pw * 7 + 720 && x < pw * 7 + 1000) {
             handHeld.gotoAndStop(4);
-            dialog08.alpha = scrollNum(5250, 5300, x, 0, 1);
+            dialog08.alpha = scrollNum(pw * 7 + 720, pw * 7 + 725, x, 0, 1);
             // 设备
-            if (x > 5300 && x < 5330) {
-                rightHand.position.set(pw * 8 + 500, 100);
+            if (x > pw * 7 + 750 && x < pw * 7 + 770) {
+                rightHand.position.set(pw * 8 + 20, 100);
                 rightHand.alpha = 1;
                 if (W1Ani.paused) W1Ani.play();
             }
         }
         // 中间间隙
-        if (x > 5330 && x < 5350) {
+        if (x > pw * 7 + 770 && x < pw * 7 + 790) {
             rightHand.alpha = 0;
             W1Ani.pause();
         }
         // 添加设备
-        if (x > 5330 && x < 5800) {
+        if (x > pw * 7 + 790 && x < pw * 7 + 1000) {
             handHeld.gotoAndStop(5);
             // 添加设备
-            if (x > 5350 && x < 5380) {
-                rightHand.position.set(pw * 8 + 550, 140);
+            if (x > pw * 7 + 790 && x < pw * 7 + 810) {
+                rightHand.alpha = 1;
+                rightHand.position.set(pw * 8 + 10, 140);
                 if (W1Ani.paused) {
                     W1Ani.play();
                 }
             }
-            if (x > 5380 && x < 5800) {
+            if (x > pw * 7 + 810 && x < pw * 7 + 1000) {
                 rightHand.alpha = 0;
                 W1Ani.pause();
             }
         }
-        // wifi输入框
-        if (x > 5800 && x < 6400) {
+        if (x > pw * 8 + 700) {
             handHeld.gotoAndStop(6);
-            dialog09.alpha = scrollNum(5850, 5900, x, 0, 1);
         }
-        if (x > 6000 && x < 6050) {
+        // wifi输入框
+        if (x > pw * 8 + 200 && x < pw * 8 + 800) {
+            dialog09.alpha = scrollNum(pw * 8 + 710, pw * 8 + 715, x, 0, 1);
+        }
+
+        // 输入框手势
+        if (x > pw * 8 + 720 && x < pw * 8 + 740) {
             dialog09.alpha = 1;
-            rightHand.position.set(pw * 9 + 600, 300);
-            rightHand.alpha = scrollNum(6000, 6050, x, 0, 1);
+            rightHand.position.set(pw * 8 + 1300, 300);
+            rightHand.alpha = scrollNum(pw * 8 + 730, pw * 8 + 731, x, 0, 1);
             if (W1Ani.paused) {
                 W1Ani.play();
             }
         }
-        if (x > 6050 && x < 6300) {
+        // TODO wifi输入框手✋
+        if (x > pw * 8 + 740 && x < pw * 9) {
             rightHand.alpha = 0;
+            W1Ani.pause();
+            console.log(rightHand.alpha, 'al');
         }
-        if (x > 6400 && x < 6550) {
+        // 配网中
+        if (x > pw * 9 + 300 && x < pw * 9 + 400) {
             handHeld.gotoAndStop(7);
         }
-        if (x > 6550 && x < 7000) {
-            handHeld.gotoAndStop(7);
-            dialog10.alpha = scrollNum(6550, 6600, x, 0, 1);
+        if (x > pw * 9 + 400 && x < pw * 9 + 800) {
+            // handHeld.gotoAndStop(8);
+            dialog10.alpha = scrollNum(pw * 9 + 720, pw * 9 + 725, x, 0, 1);
         }
-        if (x > 6600 && x < 7000) {
+        if (x > pw * 9 + 420 && x < pw * 10 + 900) {
             handHeld.gotoAndStop(8);
             handHeld.alpha = 1;
         }
+        if (x < pw * 10 + 900) {
+            wifiSuccessBg.alpha = 0;
+        }
         // 配网成功，小熊
-        if (x > 7000 && x < 7300) {
-            banner11.y = scrollNum(7000, 7250, x, 750, 0);
-            bear11.y = scrollNum(7250, 7300, x, 750, 280);
-
-            dialog11.alpha = scrollNum(7200, 7300, x, 0, 1);
-            if (x > 7200) {
+        if (x > pw * 10 + 900 && x < pw * 10 + 1300) {
+            wifiSuccessBg.alpha = scrollNum(pw * 10 + 900, pw * 10 + 930, x, 0, 1);
+            // 750是页面高度，刚开始在最底下，350是要移动到的高度
+            if (x > pw * 10 + 1200) {
+                banner11.alpha = 1;
+            }
+            banner11.y = scrollNum(pw * 10 + 1200, pw * 10 + 1220, x, -10, 0);
+            bear11.y = scrollNum(pw * 10 + 1000, pw * 10 + 1050, x, 750, 280);
+            if (x > pw * 10 + 1220) {
+                banner11.y = 0;
+            }
+            dialog11.alpha = scrollNum(pw * 10 + 1250, pw * 10 + 1260, x, 0, 1);
+            if (x > pw * 10 + 900) {
                 // 隐藏左手
                 handHeld.alpha = 0;
             }
         }
+        if (x > pw * 11 + 150 && x < pw * 11 + 300) {
+            banner11.y = scrollNum(pw * 11 + 150, pw * 11 + 170, x, 0, -70);
+        }
         // 处理左上角和右上角的元素
-        if (x < 7600) {
+        if (x < pw * 10 + 900) {
             bg2Wifi.gotoAndStop(0);
             bg2Text.gotoAndStop(0);
         }
-        if (x > 7600 && x < 12000) {
+        if (x > pw * 10 + 900 && x < pw * 12 + 900) {
+            if (x < pw * 11 + 900) {
+                bg2Text.alpha = 0;
+                bg2Wifi.alpha = 0;
+            }
             // 处理左上角和右上角的元素
             bg2Wifi.gotoAndStop(1);
             bg2Text.gotoAndStop(1);
         }
         // 听遇见
-        if (x > 7600 && x < 8200) {
-            music12.y = scrollNum(7650, 7730, x, 750, 50);
-            dialog12.alpha = scrollNum(8000, 8050, x, 0, 1);
-            dialog12yujian.alpha = scrollNum(7900, 8000, x, 0, 1);
+        if (x > pw * 11 + 900 && x < pw * 12) {
+            // 隐藏配网成功背景
+            wifiSuccessBg.alpha = scrollNum(pw * 11 + 900, pw * 11 + 920, x, 1, 0);
+            bg2Text.alpha = scrollNum(pw * 11 + 900, pw * 11 + 920, x, 0, 1);
+            bg2Wifi.alpha = scrollNum(pw * 11 + 900, pw * 11 + 920, x, 0, 1);
+            music12.y = scrollNum(pw * 11 + 900, pw * 11 + 950, x, 750, 50);
+            dialog12.alpha = scrollNum(pw * 11 + 1300, pw * 11 + 1310, x, 0, 1);
+            dialog12yujian.alpha = scrollNum(pw * 11 + 1200, pw * 11 + 1210, x, 0, 1);
         }
-        if (x > 8500 && x < 9100) {
-            item13.y = scrollNum(8500, 8600, x, 750, 50);
-            dialog13.alpha = scrollNum(8630, 8700, x, 0, 1);
-            dialog13ques.alpha = scrollNum(8600, 8650, x, 0, 1);
+        // ⏰闹钟
+        if (x > pw * 12 && x < pw * 13 + 100) {
+            item13.y = scrollNum(pw * 12 + 900, pw * 12 + 950, x, 750, 105);
+            dialog13.alpha = scrollNum(pw * 13 + 60, pw * 13 + 65, x, 0, 1);
+            dialog13ques.alpha = scrollNum(pw * 13 + 75, pw * 13 + 80, x, 0, 1);
         }
 
         // 极客模式
-        if (x > 9100 && x < 9600) {
-            item14.y = scrollNum(9150, 9250, x, 750, 50);
-            dialog14.alpha = scrollNum(9300, 9350, x, 0, 1);
-            dialog14ques.alpha = scrollNum(9300, 9400, x, 0, 1);
+        if (x > pw * 13 + 100 && x < pw * 14 + 100) {
+            item14.y = scrollNum(pw * 13 + 1200, pw * 13 + 1250, x, 750, 50);
+            dialog14.alpha = scrollNum(pw * 14 + 10, pw * 14 + 15, x, 0, 1);
+            dialog14ques.alpha = scrollNum(pw * 14 + 60, pw * 14 + 65, x, 0, 1);
         }
 
         // 儿童模式
-        if (x > 9600 && x < 10100) {
-            item15.y = scrollNum(9700, 9800, x, 750, 50);
-            dialog15.alpha = scrollNum(9950, 10000, x, 0, 1);
-            dialog15ques.alpha = scrollNum(9950, 10050, x, 0, 1);
+        if (x > pw * 14 + 100 && x < pw * 15 + 100) {
+            item15.y = scrollNum(pw * 14 + 1200, pw * 14 + 1250, x, 750, 120);
+            dialog15.alpha = scrollNum(pw * 15 + 10, pw * 15 + 15, x, 0, 1);
+            dialog15ques.alpha = scrollNum(pw * 15 + 60, pw * 15 + 65, x, 0, 1);
         }
         // 单独处理手持手机
         if (x > 7300 && x < 10600) {
-            handHeld.alpha = 0;
+            // handHeld.alpha = 0;
         }
-        if (x > 10600 && x < 10700) {
-            handHeld.alpha = 1;
-            handHeld.scale.x = scrollNum(10600, 10700, x, 0, 1);
-            handHeld.scale.y = scrollNum(10600, 10700, x, 0, 1);
-            handHeld.rotation = scrollNum(10600, 10700, x, -1, 0);
+        if (x > pw * 16 + 300 && x < pw * 16 + 400) {
+            handAni(pw * 16 + 300, pw * 16 + 400, x);
+            // handHeld.alpha = 1;
+            // handHeld.scale.x = scrollNum(pw * 16 + 300, pw * 16 + 400, x, 0, 1);
+            // handHeld.scale.y = scrollNum(pw * 16 + 300, pw * 16 + 400, x, 0, 1);
+            // handHeld.rotation = scrollNum(pw * 16 + 300, pw * 16 + 400, x, -1, 0);
         }
-        if (x > 10700 && x < 11000) {
-            dialog16.alpha = scrollNum(10700, 10800, x, 0, 1);
+        if (x > pw * 16 && x < pw * 17) {
+            dialog16.alpha = scrollNum(pw * 16 + 280, pw * 16 + 285, x, 0, 1);
             handHeld.animationSpeed = 0.3;
             handHeld.gotoAndStop(9);
-            handHeld.alpha = 1;
+            // handHeld.alpha = 1;
             if (x > 10800 && x < 11000) {
                 handHeld.position.set(pw * 16, 0);
                 //     handHeld.scale.x = scrollNum(10800, 11000, x, 0, 1);
@@ -787,59 +853,71 @@
                 //     handHeld.rotation = scrollNum(10800, 11000, x, -1, 0);
             }
         }
-        if (x > 11000 && x < 12000) {
+        // 台灯
+        if (x > pw * 16 + 1200 && x < pw * 17 + 1300) {
             handHeld.gotoAndStop(9);
-
-            handHeld.alpha = scrollNum(11200, 11250, x, 1, 0);
+            handHeld.alpha = scrollNum(pw * 16 + 1200, pw * 16 + 1300, x, 1, 0);
             item17.play();
-            if (x > 11400) {
-                dialog17.alpha = scrollNum(11400, 11450, x, 0, 1);
+            if (x > pw * 16 + 1220) {
+                dialog17.alpha = scrollNum(pw * 17 + 350, pw * 17 + 355, x, 0, 1);
             }
         }
         // 蓝牙
-        if (x > 12000 && x < 12600) {
-            handHeld.gotoAndStop(10);
+        if (x > pw * 18 && x < pw * 19) {
+            // handHeld.gotoAndStop(10);
 
             bg2Text.gotoAndStop(2);
             bg2Wifi.gotoAndStop(2);
-            dialog18.alpha = scrollNum(12080, 12120, x, 0, 1);
-            if (x > 12120 && x < 12300) {
-                handHeld.position.set(pw * 18, 0);
-                handHeld.alpha = 1;
-                handHeld.scale.x = scrollNum(12150, 12300, x, 0, 1);
-                handHeld.scale.y = scrollNum(12150, 12300, x, 0, 1);
-                handHeld.rotation = scrollNum(12150, 12300, x, -1, 0);
+            dialog18.alpha = scrollNum(pw * 18 + 350, pw * 18 + 355, x, 0, 1);
+            if (x > pw * 18 + 400 && x < pw * 18 + 500) {
+                // handHeld.position.set(pw * 18, 0);
+                handAni(pw * 18 + 400, pw * 18 + 500);
+                // handHeld.alpha = 1;
+                // handHeld.scale.x = scrollNum(pw * 18 + 400, pw * 18 + 450, x, 0, 1);
+                // handHeld.scale.y = scrollNum(pw * 18 + 400, pw * 18 + 450, x, 0, 1);
+                // handHeld.rotation = scrollNum(pw * 18 + 400, pw * 18 + 450, x, -1, 0);
             }
-            if (x > 12300) {
+            if (x > pw * 18 + 500) {
                 initHandHeld();
             }
         }
-        if (x > 12600) {
+        if (x > pw * 18 + 450) {
             handHeld.gotoAndStop(10);
+            handHeld.alpha = scrollNum(pw * 18 + 450, pw * 18 + 460, x, 1, 0);
         }
         bgPic.x = 1 * x;
         if (x > pw) {
             bgPic.x = 1 * x;
-            if (x < 12600) {
+            // 到最后要一起消失
+            if (x < pw * 18 + 900) {
                 bg2Wifi.x = 1 * x + 30;
                 bg2Text.x = 1 * x + 2 * w - 390;
-                console.log(x + 2 * w - 130, 'fd');
+            }
+        }
+        if (x < pw + 600) {
+            speaker03.alpha = 0;
+        }
+        if (x > pw + 600 && x < 4 * pw) {
+            speaker03.alpha = scrollNum(pw + 600, pw + 630, x, 0, 1);
+            speaker03.x = x + 320;
+            adapter03.x = 1 * x + 50;
+            if (x > 3 * pw - 90) {
+                adapter04.x = 1 * x - 20;
             }
         }
         // 音箱,电源线固定在屏幕
-        if (x > 2 * pw && x < 12600) {
-            speaker03.x = 1 * x + 320;
-            adapter03.x = 1 * x + 50;
-            adapter04.x = 1 * x - 20;
+        if (x > 4 * pw && x < pw * 18 + 450) {
+            speaker03.x = scrollNum(4 * pw, 4 * pw + 200, x, 1 * x + 320, 1 * x + 90);
             // 到要展示手势时，音箱及插线板向左移动
-            if (x > 4 * pw) {
-                speaker03.x = scrollNum(4 * w, 4 * w + 100, x, 1 * x + 320, 1 * x + 90);
-                adapter04.x = scrollNum(4 * w, 4 * w + 100, x, 1 * x - 20, 1 * x - 300);
-            }
+            adapter04.x = scrollNum(4 * pw, 4 * pw + 200, x, 1 * x - 20, 1 * x - 300);
         }
-        if (x > 5 * pw && x < 12600) {
+        if (x > 4 * pw + 510) {
             handHeld.x = 1 * x + 20;
         }
+        if (x > pw * 10 + 900) {
+            wifiSuccessBg.x = 1 * x;
+        }
+
         // (container.position.x = -x), (container.position.y = -y);
         (containerChild.position.x = -x), (containerChild.position.y = -y);
     };
@@ -849,6 +927,8 @@
         handHeld.rotation = 0;
         handHeld.scale.x = 1;
         handHeld.scale.y = 1;
+        handHeld.alpha = 1;
+        handHeld.y = 30;
     }
     var touching = !1;
     // 初始化滚动插件
