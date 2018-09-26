@@ -458,7 +458,6 @@
         );
 
         container.addChild(containerChild);
-        console.log(container, 'ocn');
         // 因为音箱的层级最高，对话框都要在音箱后面，所以要将音箱层级提高。
         // 注意层级不能超过所有元素的最大值
         // containerChild.setChildIndex(speaker03, 15);
@@ -564,7 +563,6 @@
     // Canvas renderer 滑动渐变动作
     var render = function(left, top, zoom) {
         var x, y;
-        console.log(degree, 'jiaodu');
 
         // 0为竖屏，π/2为横屏 90*/180 = π/2
         degree > 0 ? ((x = top), (y = left)) : ((x = left), (y = top));
@@ -831,8 +829,8 @@
             dialog15ques.alpha = scrollNum(pw * 15 + 60, pw * 15 + 65, x, 0, 1);
         }
         // 单独处理手持手机
-        if (x > 7300 && x < 10600) {
-            // handHeld.alpha = 0;
+        if (x > pw * 10 + 1300 && x < pw * 16 + 300) {
+            handHeld.alpha = 0;
         }
         if (x > pw * 16 + 300 && x < pw * 16 + 400) {
             handAni(pw * 16 + 300, pw * 16 + 400, x);
@@ -891,7 +889,7 @@
             // 到最后要一起消失
             if (x < pw * 18 + 900) {
                 bg2Wifi.x = 1 * x + 30;
-                bg2Text.x = 1 * x + 2 * w - 390;
+                bg2Text.x = 1 * x + 1 * pw - 390;
             }
         }
         if (x < pw + 600) {
