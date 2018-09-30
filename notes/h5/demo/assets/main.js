@@ -178,7 +178,7 @@
                 .easing(TWEEN.Easing.Quadratic.Out)
                 .start());
 
-        firstCon.addChild(bgPic, wifiSuccessBg, package01, dialog, leftSlide);
+        firstCon.addChild(bgPic, wifiSuccessBg, dialog, leftSlide);
 
         // 第二屏
         var secondCon = new Container();
@@ -205,7 +205,8 @@
         dialog02.alpha = 0;
 
         // secondCon.addChild(bgPic, bg2Desk, bg2Wifi, bg2Text, dialog02);
-        secondCon.addChild(bg2Wifi, bg2Text, dialog02);
+        // package01放到这里， 因为包装要在dialog上层
+        secondCon.addChild(bg2Wifi, bg2Text, dialog02, package01);
 
         // 第三屏
         var thirdCon = new Container();
@@ -252,8 +253,7 @@
             imgPre + '16xunlian.png',
             imgPre + '18bluetooth.png'
         ]);
-        handHeld.position.set(pw * 5 + 300, 0);
-        // handHeld.scale.set(0);
+        handHeld.position.set(pw * 5 + 800, 0);
         // 扫码dialog
         dialog05 = getTexture('05dialog');
         dialog05.position.set(pw * 5 + 300, 220);
@@ -286,18 +286,19 @@
         ninthCon.addChild(dialog09, dialog10);
         // 第11屏，小熊，唤醒
         var eleventhCon = new Container();
-        // bg11 = getTexture('11bg');
-        // bg11.position.set(pw * 11, 0);
-        // bg11.width = pw;
-        banner11 = getTexture('11banner');
-        banner11.position.set(pw * 11 + 0, 0);
-        banner11.width = pw;
-        banner11.alpha = 0;
-        bear11 = getTexture('11bear');
-        bear11.position.set(pw * 11 + 750, 280);
+        bg11 = getTexture('11bg');
+        bg11.position.set(pw * 11, 0);
+        bg11.width = pw;
+        // banner11 = getTexture('11banner');
+        // banner11.position.set(pw * 11 + 0, 0);
+        // banner11.width = pw;
+        // banner11.alpha = 0;
+        // bear11 = getTexture('11bear');
+        // bear11.position.set(pw * 11 + 750, 280);
         dialog11 = getTexture('11dialog');
         dialog11.position.set(pw * 11 + 400, 220);
-        eleventhCon.addChild(banner11, bear11, dialog11);
+        // eleventhCon.addChild(banner11, bear11, dialog11);
+        eleventhCon.addChild(dialog11);
         // 第12屏 听遇见
         var twelfthCon = new Container();
         music12 = getTexture('12music');
@@ -569,13 +570,15 @@
         console.log(`坐标：${x.toFixed(1)},${y}, pw:${pw} --  当前屏:${Math.floor(x / pw)}, 余数：${(x % pw).toFixed(1)}`);
         if (x > 0 && x < 640) {
             if (x < 451) {
-                package01.x = scrollNum(0, 450, x, pw / 2 - 150, pw + 220);
+                // package01.x = scrollNum(0, 450, x, pw / 2 - 150, pw + 220);
+                package01.x = scrollNum(0, 450, x, pw / 2 - 150, pw - 500);
                 package01.y = scrollNum(0, 450, x, -300, 140);
                 package01.scale.x = scrollNum(0, 450, x, 2, 1);
                 package01.scale.y = scrollNum(0, 450, x, 2, 1);
             }
             if (x > 451) {
-                package01.position.set(pw + 220, 140);
+                // package01.position.set(pw + 220, 140);
+                package01.position.set(pw - 500, 140);
                 package01.scale.x = 1;
                 package01.scale.y = 1;
             }
@@ -585,6 +588,9 @@
             dialog02.alpha = scrollNum(pw - 100, pw - 90, x, 0, 1);
         } else {
             dialog02.alpha = 0;
+        }
+        if (x > 600) {
+            package01.x = x + 250;
         }
         // 第三屏 包装里说明书
         if (x > pw * 1 + 1000 && x < pw * 1 + 1200) {
@@ -653,11 +659,11 @@
         if (x > pw * 4 + 600) {
             initHandHeld();
         }
-        // 扫码完成，切换画面
+        // 扫码完成，切换画面 百度账号输入密码
         if (x > pw * 5 && x < pw * 5 + 1000) {
             dialog06.alpha = scrollNum(pw * 5 + 770, pw * 5 + 775, x, 0, 1);
-            rightHand.alpha = 1;
-            rightHand.y = scrollNum(pw * 5 + 700, pw * 5 + 780, x, 750, 272);
+            // rightHand.alpha = 1;
+            // rightHand.y = scrollNum(pw * 5 + 700, pw * 5 + 780, x, 750, 272);
         }
         if (x > pw * 5 + 775 && x < pw * 6 + 700) {
             handHeld.gotoAndStop(2);
@@ -667,14 +673,16 @@
             W1Ani.pause();
             rightHand.alpha = 0;
         }
-        if (x > pw * 5 + 775 && x < pw * 5 + 785) {
+        // 手势改为一直保持在屏幕中
+        if (x > pw * 5 + 775 && x < pw * 6 + 250) {
             rightHand.alpha = 1;
             rightHand.position.set(pw * 5 + 1285, 262);
+            rightHand.x = x + 500;
             if (W1Ani.paused) {
                 W1Ani.play();
             }
         }
-        if (x > pw * 5 + 785 && x < pw * 6 + 710) {
+        if (x > pw * 6 + 250 && x < pw * 6 + 710) {
             W1Ani.pause();
             rightHand.alpha = 0;
         }
@@ -683,12 +691,13 @@
             handHeld.gotoAndStop(3);
             dialog07.alpha = scrollNum(pw * 6 + 700, pw * 6 + 705, x, 0, 1);
         }
-        if (x > pw * 6 + 710 && x < pw * 6 + 720) {
+        if (x > pw * 6 + 710 && x < pw * 7 + 200) {
             rightHand.position.set(pw * 6 + 1220, 470);
             rightHand.alpha = 1;
+            rightHand.x = x + 500;
             if (W1Ani.paused) W1Ani.play();
         }
-        if (x > pw * 6 + 720 && x < pw * 7 + 750) {
+        if (x > pw * 7 + 200 && x < pw * 7 + 750) {
             W1Ani.pause();
             rightHand.alpha = 0;
             handHeld.gotoAndStop(3);
@@ -710,19 +719,16 @@
             W1Ani.pause();
         }
         // 添加设备
-        if (x > pw * 7 + 790 && x < pw * 7 + 1000) {
+        if (x > pw * 7 + 790 && x < pw * 8 + 200) {
             handHeld.gotoAndStop(5);
             // 添加设备
-            if (x > pw * 7 + 790 && x < pw * 7 + 810) {
+            if (x > pw * 7 + 790 && x < pw * 8 + 200) {
                 rightHand.alpha = 1;
                 rightHand.position.set(pw * 8 + 10, 140);
+                rightHand.x = x + 550;
                 if (W1Ani.paused) {
                     W1Ani.play();
                 }
-            }
-            if (x > pw * 7 + 810 && x < pw * 7 + 1000) {
-                rightHand.alpha = 0;
-                W1Ani.pause();
             }
         }
         if (x > pw * 8 + 700) {
@@ -730,23 +736,25 @@
         }
         // wifi输入框
         if (x > pw * 8 + 200 && x < pw * 8 + 800) {
+            rightHand.alpha = 0;
+            W1Ani.pause();
             dialog09.alpha = scrollNum(pw * 8 + 710, pw * 8 + 715, x, 0, 1);
         }
 
         // 输入框手势
-        if (x > pw * 8 + 720 && x < pw * 8 + 740) {
+        if (x > pw * 8 + 720 && x < pw * 9 + 200) {
             dialog09.alpha = 1;
             rightHand.position.set(pw * 8 + 1300, 300);
-            rightHand.alpha = scrollNum(pw * 8 + 730, pw * 8 + 731, x, 0, 1);
+            rightHand.x = x + 500;
+            rightHand.alpha = 1;
             if (W1Ani.paused) {
                 W1Ani.play();
             }
         }
         // TODO wifi输入框手✋
-        if (x > pw * 8 + 740 && x < pw * 9) {
+        if (x > pw * 9 + 200 && x < pw * 9 + 300) {
             rightHand.alpha = 0;
             W1Ani.pause();
-            console.log(rightHand.alpha, 'al');
         }
         // 配网中
         if (x > pw * 9 + 300 && x < pw * 9 + 400) {
@@ -767,23 +775,23 @@
         if (x > pw * 10 + 900 && x < pw * 10 + 1300) {
             wifiSuccessBg.alpha = scrollNum(pw * 10 + 900, pw * 10 + 930, x, 0, 1);
             // 750是页面高度，刚开始在最底下，350是要移动到的高度
-            if (x > pw * 10 + 1200) {
-                banner11.alpha = 1;
-            }
-            banner11.y = scrollNum(pw * 10 + 1200, pw * 10 + 1220, x, -10, 0);
-            bear11.y = scrollNum(pw * 10 + 1000, pw * 10 + 1050, x, 750, 280);
-            if (x > pw * 10 + 1220) {
-                banner11.y = 0;
-            }
+            // if (x > pw * 10 + 1200) {
+            //     banner11.alpha = 1;
+            // }
+            // banner11.y = scrollNum(pw * 10 + 1200, pw * 10 + 1220, x, -10, 0);
+            // bear11.y = scrollNum(pw * 10 + 1000, pw * 10 + 1050, x, 750, 280);
+            // if (x > pw * 10 + 1220) {
+            //     banner11.y = 0;
+            // }
             dialog11.alpha = scrollNum(pw * 10 + 1250, pw * 10 + 1260, x, 0, 1);
             if (x > pw * 10 + 900) {
                 // 隐藏左手
                 handHeld.alpha = 0;
             }
         }
-        if (x > pw * 11 + 150 && x < pw * 11 + 300) {
-            banner11.y = scrollNum(pw * 11 + 150, pw * 11 + 170, x, 0, -70);
-        }
+        // if (x > pw * 11 + 150 && x < pw * 11 + 300) {
+        //     banner11.y = scrollNum(pw * 11 + 150, pw * 11 + 170, x, 0, -70);
+        // }
         // 处理左上角和右上角的元素
         if (x < pw * 10 + 900) {
             bg2Wifi.gotoAndStop(0);
@@ -894,8 +902,10 @@
         }
         if (x < pw + 600) {
             speaker03.alpha = 0;
+            package01.alpha = 1;
         }
         if (x > pw + 600 && x < 4 * pw) {
+            package01.alpha = scrollNum(pw + 600, pw + 630, x, 1, 0);
             speaker03.alpha = scrollNum(pw + 600, pw + 630, x, 0, 1);
             speaker03.x = x + 320;
             adapter03.x = 1 * x + 50;
