@@ -6,6 +6,7 @@
         S = 0,
         P = 0,
         T = (PIXI.autoDetectRenderer, PIXI.loader),
+        // T = new PIXI.loaders.Loader(),
         E = (PIXI.Rectangle, PIXI.Graphics),
         A = (PIXI.loader.resources,
         PIXI.utils.TextureCache,
@@ -36,6 +37,7 @@
     });
     //   提前加载所有图片
     T.add(imgPre + '01.png')
+        .add('bgm', imgPre + 'bgm.mp3')
         .add(imgPre + '02.png')
         .add(imgPre + '01bgdash.png')
         .add(imgPre + '01bg.png')
@@ -45,6 +47,7 @@
         .add(imgPre + '02bg-desk.png')
         .add(imgPre + '02wifi.png')
         .add(imgPre + '02text.png')
+        .add(imgPre + '02text-.png')
         .add(imgPre + '02desk.png')
         .add(imgPre + '02dialog.png')
         .add(imgPre + '02package.png')
@@ -91,6 +94,10 @@
         .add(imgPre + '17dialog.png')
         .add(imgPre + '18bluetooth.png')
         .add(imgPre + '18dialog.png')
+        .add(imgPre + '10-02.png')
+        .add(imgPre + '10-02-.png')
+        .add(imgPre + '18-02.png')
+        .add(imgPre + '18-02-.png')
         .add(imgPre + '19download.png')
         .add(imgPre + '19rewatch.png')
         .add(imgPre + '19speaker.png')
@@ -129,7 +136,10 @@
         }, 300),
             // 初始值设置
             a();
-
+        console.log(T, 't');
+        T.resources.bgm.data.loop = true;
+        T.resources.bgm.data.autoplay = true;
+        T.resources.bgm.data.play();
         // 加载各个元素
         var bgColor = new E();
         bgColor.beginFill(4158644);
@@ -166,6 +176,7 @@
         // 左滑手势
         leftSlide = getTexture('01hand');
         leftSlide.position.set(180, 400),
+            console.log(TWEEN, 'tween'),
             (me = new TWEEN.Tween(leftSlide.position)
                 .to(
                     {
@@ -196,8 +207,28 @@
         bg2Text = new PIXI.extras.AnimatedSprite.fromImages([
             imgPre + '02text.png',
             imgPre + '10-02.png',
-            imgPre + '18-02.png'
+            imgPre + '18-02.png',
+            imgPre + '02text-.png',
+            imgPre + '10-02-.png',
+            imgPre + '18-02-.png'
         ]);
+        bg2Text.interactive = true;
+        bg2Text.on('tap', () => {
+            let bgm = T.resources.bgm.data;
+            let currIndex = bg2Text.currentFrame;
+            console.log(234, bgm.paused, bg2Text.currentFrame);
+
+            if (bgm.paused) {
+                bgm.play();
+            } else {
+                bgm.pause();
+            }
+            console.log(currIndex > 3 ? 6 - currIndex : currIndex + 3, 'aa');
+            // bg2Text.gotoAndStop(currIndex > 3 ? 6 - currIndex : currIndex + 3);
+            // 没法互动，因为点击不会对状态产生影响 TODO
+            bg2Text.gotoAndStop(2);
+            // bg2Text.play();
+        });
         bg2Text.position.set(pw * 2 - 400, 30);
 
         dialog02 = new A(T.resources[imgPre + '02dialog.png'].texture);
