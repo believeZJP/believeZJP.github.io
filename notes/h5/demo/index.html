@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="china_tolerance_content">
+    <div class="area">
         <!-- 项目内容 -->
 
         </div>
@@ -20,6 +20,7 @@
             <div id="loadingImg"></div>
             <!-- <span id="percent">100%</span> -->
         </div>
+        <div class="music"></div>
 
     </div>
     <script src="./lib/zepto.js"></script>
@@ -55,6 +56,24 @@
             height:360px;
             width:179px;
             transform: scale(0.5);
+        }
+        .music{
+            width: 31px;
+            height: 47px;
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            background: url(./images/music.png) no-repeat;
+            pointer-events: all;
+            transition: all 0.5s;
+            -webkit-background-size: cover;
+            background-size: cover;
+            -webkit-transform: scale(0.7);
+        }
+        .music.off{
+            background: url(./images/music-off.png) no-repeat;
+            -webkit-background-size: cover;
+            background-size: cover;
         }
     </style>
 </body>

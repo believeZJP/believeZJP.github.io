@@ -30,7 +30,7 @@
     var W = new PIXI.CanvasRenderer(w, _);
 
     // 添加canvas到html
-    $('.china_tolerance_content')[0].appendChild(W.view);
+    $('.area')[0].appendChild(W.view);
     //防止屏幕移动
     $(document).bind('touchmove', function(e) {
         e.preventDefault();
@@ -140,6 +140,33 @@
         T.resources.bgm.data.loop = true;
         T.resources.bgm.data.autoplay = true;
         T.resources.bgm.data.play();
+
+        $(".music").on("click",function(){
+            // if(!loader.resources.bgm.sound.isPlaying){
+            //     // 播放
+            //     musicPlay();
+            //     loader.resources.bgm.sound.play();
+            //     $(".music").removeClass("off");
+            // } else{
+            //     // 暂停
+            //     musicPause();
+            //     $(".music").addClass("off");
+            // }
+            let bgm = T.resources.bgm.data;
+
+            if (bgm.paused) {
+                // 播放
+                bgm.play();
+                $(".music").removeClass("off");
+
+            } else {
+                // 暂停
+                bgm.pause();
+                $(".music").addClass("off");
+
+            }
+         });
+     
         // 加载各个元素
         var bgColor = new E();
         bgColor.beginFill(4158644);
@@ -208,21 +235,21 @@
             imgPre + '02text.png',
             imgPre + '10-02.png',
             imgPre + '18-02.png',
-            imgPre + '02text-.png',
-            imgPre + '10-02-.png',
-            imgPre + '18-02-.png'
+            // imgPre + '02text-.png',
+            // imgPre + '10-02-.png',
+            // imgPre + '18-02-.png'
         ]);
         bg2Text.interactive = true;
         bg2Text.on('tap', () => {
-            let bgm = T.resources.bgm.data;
-            let currIndex = bg2Text.currentFrame;
-            console.log(234, bgm.paused, bg2Text.currentFrame);
+            // let bgm = T.resources.bgm.data;
+            // let currIndex = bg2Text.currentFrame;
+            // console.log(234, bgm.paused, bg2Text.currentFrame);
 
-            if (bgm.paused) {
-                bgm.play();
-            } else {
-                bgm.pause();
-            }
+            // if (bgm.paused) {
+            //     bgm.play();
+            // } else {
+            //     bgm.pause();
+            // }
             console.log(currIndex > 3 ? 6 - currIndex : currIndex + 3, 'aa');
             // bg2Text.gotoAndStop(currIndex > 3 ? 6 - currIndex : currIndex + 3);
             // 没法互动，因为点击不会对状态产生影响 TODO
@@ -327,21 +354,23 @@
         // bear11 = getTexture('11bear');
         // bear11.position.set(pw * 11 + 750, 280);
         dialog11 = getTexture('11dialog');
-        dialog11.position.set(pw * 11 + 400, 220);
+        dialog11.position.set(pw * 11 + 400, 180);
         // eleventhCon.addChild(banner11, bear11, dialog11);
         eleventhCon.addChild(dialog11);
         // 第12屏 听遇见
         var twelfthCon = new Container();
         music12 = getTexture('12music');
         music12.position.set(pw * 12 + 400, 50);
-
+        music12.alpha = 0;
         dialog12 = getTexture('12question');
         dialog12.position.set(pw * 12 + 500, 450);
         // dialog12.alpha = 0;
         dialog12yujian = getTexture('12yujian');
         dialog12yujian.position.set(pw * 12 + 900, 300);
         // dialog12.alpha = 0;
-        twelfthCon.addChild(music12, dialog12, dialog12yujian);
+        twelfthCon.addChild(music12,
+            //  dialog12,
+              dialog12yujian);
         // 第13屏 闹钟⏰ 14,极客模式，15，儿童模式
         var thirteenthCon = new Container();
         dialog13 = getTexture('13dialog');
@@ -374,13 +403,14 @@
         thirteenthCon.addChild(
             item13,
             dialog13,
-            dialog13ques,
+            // 把这3个单独加到总的容器里，因为单独加了desk，导致对话框被遮挡
+            // dialog13ques,
             item14,
             dialog14,
-            dialog14ques,
+            // dialog14ques,
             item15,
             dialog15,
-            dialog15ques
+            // dialog15ques
         );
         var sixteenthCon = new Container();
         dialog16 = getTexture('16dialog');
@@ -400,6 +430,10 @@
         dialog18.position.set(pw * 18 + 900, 220);
         dialog18.alpha = 0;
         seventeenthCon.addChild(item17, dialog17, dialog18);
+        // 单独添加桌面背景
+        deskOnly = getTexture('02desk');
+        deskOnly.width = pw;
+        deskOnly.position.set(pw* 10,473);
 
         var nineteenthCon = new Container();
         logo19 = getTexture('19logo');
@@ -483,6 +517,12 @@
             thirteenthCon,
             sixteenthCon,
             seventeenthCon,
+            deskOnly,
+            // 单独拎到这来
+            dialog12,
+            dialog13ques,
+            dialog14ques,
+            dialog15ques,
             nineteenthCon,
             speaker03,
             handHeld,
@@ -728,7 +768,9 @@
             rightHand.x = x + 500;
             if (W1Ani.paused) W1Ani.play();
         }
-        if (x > pw * 7 + 200 && x < pw * 7 + 750) {
+        if (x > pw * 7 + 200 
+            // && x < pw * 7 + 750
+            ) {
             W1Ani.pause();
             rightHand.alpha = 0;
             handHeld.gotoAndStop(3);
@@ -843,14 +885,15 @@
             wifiSuccessBg.alpha = scrollNum(pw * 11 + 900, pw * 11 + 920, x, 1, 0);
             bg2Text.alpha = scrollNum(pw * 11 + 900, pw * 11 + 920, x, 0, 1);
             bg2Wifi.alpha = scrollNum(pw * 11 + 900, pw * 11 + 920, x, 0, 1);
-            music12.y = scrollNum(pw * 11 + 900, pw * 11 + 950, x, 750, 50);
-            dialog12.alpha = scrollNum(pw * 11 + 1300, pw * 11 + 1310, x, 0, 1);
+            music12.alpha = scrollNum(pw * 11 + 900, pw * 11 + 910, x, 0, 1);
+            music12.y = scrollNum(pw * 11 + 900, pw * 11 + 980, x, 750, 50);
+            dialog12.alpha = scrollNum(pw * 11 + 1280, pw * 11 + 1290, x, 0, 1);
             dialog12yujian.alpha = scrollNum(pw * 11 + 1200, pw * 11 + 1210, x, 0, 1);
         }
         // ⏰闹钟
         if (x > pw * 12 && x < pw * 13 + 100) {
             item13.y = scrollNum(pw * 12 + 900, pw * 12 + 950, x, 750, 105);
-            dialog13.alpha = scrollNum(pw * 13 + 60, pw * 13 + 65, x, 0, 1);
+            dialog13.alpha = scrollNum(pw * 13 + 30, pw * 13 + 35, x, 0, 1);
             dialog13ques.alpha = scrollNum(pw * 13 + 75, pw * 13 + 80, x, 0, 1);
         }
 
@@ -955,6 +998,7 @@
         }
         if (x > pw * 10 + 900) {
             wifiSuccessBg.x = 1 * x;
+            deskOnly.x = x;
         }
 
         // (container.position.x = -x), (container.position.y = -y);
