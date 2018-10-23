@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
+const uglifyjs = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     // entry: './assets/main.js',
@@ -34,12 +35,14 @@ module.exports = {
                 from: __dirname + '/lib', //打包的静态资源目录地址
                 to: './lib' //打包到dist下面的public
             }
-        ])
+        ]),
+        new uglifyjs(), //压缩js
     ],
     devServer: {
         // contentBase: './dist'
         contentBase: path.resolve(__dirname, 'dist'), //最好设置成绝对路径
-        host: 'localhost',
+        // host: 'localhost',
+        host: '172.21.219.51',
         port: 8080,
         open: true
     }

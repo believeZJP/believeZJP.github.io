@@ -7,7 +7,6 @@
     <title>h5</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-
     <link href="./lib/common.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -20,7 +19,7 @@
             <div id="loadingImg"></div>
             <!-- <span id="percent">100%</span> -->
         </div>
-        <div class="music"></div>
+        <div id="music"></div>
 
     </div>
     <script src="./lib/zepto.js"></script>
@@ -29,10 +28,12 @@
     <script src="./lib/Animate.js"></script>
     <script src="./lib/Tween.js"></script>
     <script src="./lib/TweenMax.js"></script>
+    <!-- <script src="https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/js/vconsole/3.0.0/vconsole.min.js"></script> -->
     <!-- <script src="./assets/main.js"></script> -->
 
     <script>
-
+        // 初始化
+        // var vConsole = new VConsole();
     </script>
 
 
@@ -57,24 +58,42 @@
             width:179px;
             transform: scale(0.5);
         }
-        .music{
+        #music{
             width: 31px;
             height: 47px;
             position: absolute;
-            right: 10px;
-            top: 8px;
+            /* right: 10px;
+            top: 8px; */
             background: url(./images/music.png) no-repeat;
             pointer-events: all;
             transition: all 0.5s;
-            -webkit-background-size: cover;
             background-size: cover;
-            -webkit-transform: scale(0.7);
+            /* transform: scale(0.6); */
+            
         }
-        .music.off{
+        #music.off{
             background: url(./images/music-off.png) no-repeat;
-            -webkit-background-size: cover;
             background-size: cover;
         }
+        @media screen and (orientation: portrait) {
+            /* 竖屏 */
+            #music{
+                transform: rotate(90deg);
+                right: 9px;
+                bottom: -3px;
+            }
+            #loadingImg{
+                transform: rotate(90deg) scale(0.5);
+            }
+        }
+        @media screen and (orientation: landscape) {
+            /* 横屏 */
+            #music{
+                right: 5px;
+                top: 0;
+            }
+        }    
+
     </style>
 </body>
 
