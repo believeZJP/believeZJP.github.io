@@ -30,6 +30,10 @@
         ;
     // a();
     
+    document.body.onselectstart = function () { 
+        return false; 
+    };
+    
     // 从这开始
     // container 是PIXI容器的实例
     container = new Container();
@@ -44,6 +48,7 @@
     // $(document).bind('touchmove', function(e) {
     //     e.preventDefault();
     // });
+
     //   提前加载所有图片
     T.add(imgPre + '01.png')
         .add('bgm', imgPre + 'bgm.mp3')
@@ -151,8 +156,8 @@
             T.resources.bgm.data.autoplay = true;
             T.resources.bgm.data.play();
         }
-
-        $("#music").on("click",function(){
+        // 因为微信中会触发两次click，所以先解绑
+        $("#music").unbind('click').on("click",function(e){
             // if(!loader.resources.bgm.sound.isPlaying){
             //     // 播放
             //     musicPlay();
@@ -163,20 +168,24 @@
             //     musicPause();
             //     $(".music").addClass("off");
             // }
+
             let bgm = T.resources.bgm.data;
+            console.log(bgm.paused, Date.now())
+            setTimeout(() => {
+                if (bgm.paused) {
+                    // 播放
+                    bgm.play();
+                    $("#music").removeClass("off");
+                } else {
+                    // 暂停
+                    bgm.pause();
+                    $("#music").addClass("off");
+                }
+            }, 100);
+            e.preventDefault();
 
-            if (bgm.paused) {
-                // 播放
-                bgm.play();
-                $("#music").removeClass("off");
-
-            } else {
-                // 暂停
-                bgm.pause();
-                $("#music").addClass("off");
-
-            }
          });
+        
      
         // 加载各个元素
         var bgColor = new E();
@@ -649,7 +658,7 @@
         if(!pw){return;}
         // 0为竖屏，π/2为横屏 90*/180 = π/2
         degree > 0 ? ((x = top), (y = left)) : ((x = left), (y = top));
-        console.log(`坐标：${x.toFixed(1)},${y}, pw:${pw} --  当前屏:${Math.floor(x / pw)}, 余数：${(x % pw).toFixed(1)}`);
+        // console.log(`坐标：${x.toFixed(1)},${y}, pw:${pw} --  当前屏:${Math.floor(x / pw)}, 余数：${(x % pw).toFixed(1)}`);
         if (x > 0 && x < 640) {
             if (x < 451) {
                 // package01.x = scrollNum(0, 450, x, pw / 2 - 150, pw + 220);

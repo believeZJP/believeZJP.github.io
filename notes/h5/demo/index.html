@@ -38,6 +38,16 @@
 
 
     <style>
+        * {
+            -webkit-user-select: none; 
+            -moz-user-select: none;    
+            -khtml-user-select: none;  
+            -ms-user-select: none;    
+
+            /* 以下两个属性目前并未支持，写在这里为了减少风险 */
+            -o-user-select: none;
+            user-select: none;  
+        }
         #loading{
             align-items: center;
             justify-content: center;
@@ -52,7 +62,7 @@
             background-size: cover;
         }
         #loadingImg{
-            background: url(./images/loding2.gif);
+            background: url(./images/loading2.gif);
             background-size: cover;
             height:360px;
             width:179px;
@@ -95,6 +105,7 @@
         }    
 
     </style>
+    <img src='./images/music-off.png' style="display:none;"/>
 </body>
 
 </html>
