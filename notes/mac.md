@@ -60,3 +60,12 @@ mac 下 vim 快捷键
 
 sudo ./com.paragon-software.ntfs.uninstall
 ```
+
+# mac本地绑定hosts
+```bash
+sudo vim /etc/hosts  
+
+添加以下内容
+10.180.112.208 www.baidu.com www.jd.com
+```
+可以添加多个域名, 也可以一个

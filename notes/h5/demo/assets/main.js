@@ -123,7 +123,7 @@
         // 处理加载图片进度，用于页面显示百分比
         function onProgress(e, i) {
             var n = parseInt(e.progress);
-            console.log('当前进度' + n);
+            // console.log('当前进度' + n);
             // 在微信中发现没有执行endLoad方法。这里强制执行
             if(n > 97){
                 setTimeout(() => {
@@ -1059,7 +1059,6 @@
     
     var mousedown = false;
     document.addEventListener("touchstart", function(e) {
-        console.log(e);
         Ne.doTouchStart(e.touches, e.timeStamp);
         mousedown = true;
     }, false);
