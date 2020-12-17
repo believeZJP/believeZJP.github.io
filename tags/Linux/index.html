@@ -1,37 +1,403 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post-collapse.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>标签: Linux - believeZJP</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="believeZJP"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="believeZJP"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="积土成山，风雨兴焉；积水成渊，蛟龙生焉;"><meta property="og:type" content="blog"><meta property="og:title" content="believeZJP"><meta property="og:url" content="http://believezjp.oriht.com/"><meta property="og:site_name" content="believeZJP"><meta property="og:description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://believezjp.oriht.com/img/og_image.png"><meta property="article:author" content="believeZJP"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://believezjp.oriht.com"},"headline":"believeZJP","image":["http://believezjp.oriht.com/img/og_image.png"],"author":{"@type":"Person","name":"believeZJP"},"description":"积土成山，风雨兴焉；积水成渊，蛟龙生焉;"}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">标签</a></li><li class="is-active"><a href="#" aria-current="page">Linux</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-03-22T12:31:07.000Z" title="2019-03-22T12:31:07.000Z">2019-03-22</time>发表</span><span class="level-item"><time dateTime="2019-03-22T12:31:07.000Z" title="2019-03-22T12:31:07.000Z">2019-03-22</time>更新</span><span class="level-item">25 分钟读完 (大约3709个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/Linux/">Linux</a></h1><div class="content"><p>终端上传下载文件</p>
+<p>在终端往linux上传文件<br><code>rz -b</code></p>
+<p>中文的无法上传，需要先将文件名改为英文的，上传上去后，再改为中文。</p>
+<p>下载<br><code>sz  -b</code></p>
+<p>参考:<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011048277">链接</a></p>
+<h2 id="一、命令基本格式"><a href="#一、命令基本格式" class="headerlink" title="一、命令基本格式"></a>一、命令基本格式</h2><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/ShaYeBlog/p/5576601.html">http://www.cnblogs.com/ShaYeBlog/p/5576601.html</a></p>
+<p>git 打tag</p>
+<blockquote>
+<p>命令 [选项][参数]</p>
+</blockquote>
+<p>注意：<br>    1. 个别命令不遵循此格式<br>    2. 有多个选项，可以写在一起<br>    3. 简写：-a == -all, ll == ls -l</p>
+<h3 id="1-1-ls"><a href="#1-1-ls" class="headerlink" title="1.1 ls"></a>1.1 ls</h3><ul>
+<li>ls -a 显示所有文件，包括隐藏文件</li>
+<li>ls -l 显示详细信息</li>
+<li>ls -d 查看目录属性</li>
+<li>ls -h 人性化显示文件大小 ，K/M</li>
+<li>ls -i 显示inode</li>
+</ul>
+<h3 id="1-2-文件权限-10位"><a href="#1-2-文件权限-10位" class="headerlink" title="1.2 文件权限(10位)"></a>1.2 文件权限(10位)</h3><blockquote>
+<p>第一位是文件类型，后面每3位一组</p>
+</blockquote>
+<p>-rw-r-r–</p>
+<ul>
+<li>-文件类型(-文件 d目录 l软链接)</li>
+<li>rw- u所有者</li>
+<li>r– g所属组</li>
+<li>r– o其他人</li>
+<li>r 读 w 写 x 执行</li>
+</ul></div><a class="article-more button is-small is-size-7" href="/posts/Linux/#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-10-08T12:31:07.000Z" title="2018-10-08T12:31:07.000Z">2018-10-08</time>发表</span><span class="level-item"><time dateTime="2019-03-22T12:31:07.000Z" title="2019-03-22T12:31:07.000Z">2019-03-22</time>更新</span><span class="level-item">35 分钟读完 (大约5278个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/linux%E5%AD%A6%E4%B9%A0/">Linux学习</a></h1><div class="content"><p>window远程连接工具：<br>secure CRT<br>配置：<br>选项-会话选项-仿真<br>    终端：x-term  ansi颜色<br>    外观：颜色方案：黄黑<br>        光标 竖线<br>    编码：回话选项-外观-字符编码-UTF-8</p>
+<h2 id="git-定时任务crontab"><a href="#git-定时任务crontab" class="headerlink" title="git 定时任务crontab"></a>git 定时任务crontab</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/peida/archive/2013/01/08/2850483.html">链接</a></p>
+<h2 id="在centos执行git-pull报错"><a href="#在centos执行git-pull报错" class="headerlink" title="在centos执行git pull报错"></a>在centos执行git pull报错</h2><p>Peer reports incompatible or unsupported protocol version.</p>
+<p>解决办法：</p>
+<p>yum update -y nss curl libcurl</p>
+<p>执行后，可以正常运行。</p>
+<h2 id="文件与目录管理"><a href="#文件与目录管理" class="headerlink" title="==++文件与目录管理++=="></a>==++文件与目录管理++==</h2><h3 id="新建文件夹"><a href="#新建文件夹" class="headerlink" title="新建文件夹"></a>新建文件夹</h3><p>mkdir</p>
+<p>eg:mkdir test</p>
+<p>mkdir -p test/123/abc</p>
+<p>-p 递归创建目录，即使上级目录不存在。<br>还有一种情况就是如果你想要创建的目录存在的话，会提示报错，然后你加上-p参数后，就不会报错了。</p>
+<h3 id="命令详情"><a href="#命令详情" class="headerlink" title="命令详情"></a>命令详情</h3><p> man rm,<br> man ls</p>
+<h3 id="复制文件"><a href="#复制文件" class="headerlink" title="复制文件"></a>复制文件</h3><p>cp</p>
+<p>eg: cp a b</p>
+<p>cp copy的简写，即拷贝。格式为 cp [选项] [ 来源文件 ] [目的文件] ，例如我想把test1 拷贝成test2 ，这样即可 cp test1 test2，</p>
+<p>-d 这里涉及到一个“连接”的概念。连接分为软连接和硬连接</p>
+<p>如果不加这个-d 则拷贝软连接时会把软连接的目标文件拷贝过去，而加上后，其实只是拷贝了一个连接文件（即快捷方式）。</p>
+<ul>
+<li><p>-r 如果你要拷贝一个目录，必须要加-r选项，否则你是拷贝不了目录的。 omitting directory ‘d’</p>
+</li>
+<li><p>-i 如果遇到一个存在的文件，会问是否覆盖。</p>
+</li>
+<li><p>-u 该选项仅当目标文件存在时才会生效，如果源文件比目标文件新才会拷贝，否则不做任何动作</p>
+</li>
+</ul>
+<h3 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h3><p>mv 移动的意思，是move的简写。格式为 mv [ 选项 ] [源文件] [目标文件]。</p>
+<ul>
+<li><p>-i 和cp的-i 一样，当目标文件存在时会问用户是否要覆盖。</p>
+</li>
+<li><p>-u 和上边cp 命令的-u选项一个作用，当目标文件存在时才会生效，如果源文件比目标文件新才会移动，否则不做任何动作。</p>
+</li>
+</ul>
+<p>-</p>
+<p>windows下的重命名，在linux下用mv就可以搞定。</p>
+<h3 id="删除文件夹"><a href="#删除文件夹" class="headerlink" title="删除文件夹"></a>删除文件夹</h3><p> rm -rf</p>
+<p> eg:rm -rf testCLI</p>
+<p>rmdir 只能删除目录但不能删除文件，要想删除一个文件，则要用rm命令了。</p>
+<p>-f 强制的意思，如果不加这个选项，当删除一个不存在的文件时会报错。</p>
+<p>-i 这个选项的作用是，当用户删除一个文件时会提示用户是否真的删除。</p>
+<p>-r 当删除目录时，加该选项，如果不加这个选项会报错。rm是可以删除不为空的目录的。</p>
+<h3 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h3><p>touch a</p>
+<blockquote>
+<p>a.txt 可以创建一个文件<br>a也是一个文件<br>vi a</p>
+</blockquote>
+<p>vi a /vim a 可以查看文件内容</p>
+<p>输入i，进入编辑模式</p>
+<p>按esc，退出编辑模式</p>
+<p>输入:wq退出查看文件</p>
+<h2 id="进入linux的主目录"><a href="#进入linux的主目录" class="headerlink" title="进入linux的主目录"></a><strong>进入linux的主目录</strong></h2><p>cd /home</p>
+<p>pwd 这个命令打印出当前所在目录<br>./ 指的是当前目录</p>
+<p>../ 指的是当前目录的上一级目录。<br>cd wwwroot/<br>ls</p>
+<blockquote>
+<p>绝对路径：路径的写法一定由根目录”/”写起，例如/usr/local/mysql 这就是绝对路径。</p>
+</blockquote>
+<p>相对路径：路径的写法不是由根目录”/”写起，例如，首先用户进入到/ 然后再进入到 home ，命令为 cd /home 然后 cd test 此时用户所在的路径为 /home/test 。第一个cd命令后跟 /home 第二个 cd 命令后跟 test ，并没有斜杠，这个test是相对于/home 目录来讲的，所以叫做相对路径。</p>
+<h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><p>echo 变量<br>echo ‘abc’&gt;111 将字符输出到一个文件中<br>大于号”&gt;” 在linux中这叫做重定向，即把前面产生的输出写入到后面的文件中。<br>”&gt;&gt;”是追加的意思，而用”&gt;”，如果文件中有内容则会删除文件中内容，而”&gt;&gt;”则不会。</p>
+<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><ul>
+<li><p>cat 比较常用的一个命令，即查看一个文件的内容并显示在屏幕上<br>  -n 查看文件时，把行号也显示到屏幕上。<br>  -A 显示所有东西出来，包括特殊字符</p>
+</li>
+<li><p>tac 其实是cat的反写，同样的功能也是反向打印文件的内容到屏幕上。</p>
+</li>
+<li><p>more也是用来查看一个文件的内容。当文件内容太多，一屏幕不能占下，而你用cat肯定是看不前面的内容的，那么使用more就可以解决这个问题了。当看完一屏后按<strong>空格键</strong>继续看下一屏。但看完所有内容后就会退出。如果你想提前退出，只需按q键即可。</p>
+</li>
+<li><p>less作用跟more一样，但比more好在可以上翻，下翻。空格键同样可以翻页，而<strong>按”j”键可以向下移动</strong>（按一下就向下移动一行）<strong>，按”k”键向上移动</strong>。在使用more和less查看某个文件时，你可以按一下”/” 键，然后输入一个word回车，这样就可以查找这个word了。如果是多个该word可以按”n”键显示下一个。另外你也可以不按”/”而是按”?”后边同样跟word来搜索这个word，唯一不同的是，<strong>”/”是在当前行向下搜索，而”?”是在当前行向上搜索</strong>。</p>
+<p>  <strong>按n向上，按N向下显示</strong>–老罗</p>
+</li>
+<li><p>vim</p>
+</li>
+<li><p>head head后直接跟文件名，则显示文件的前十行。如果加 –n 选项则显示文件前n行。</p>
+</li>
+<li><p>tail 和head一样，后面直接跟文件名，则显示文件最后十行。如果加-n 选项则显示文件最后n行。</p>
+</li>
+<li><p>-f <strong>动态显示文件的最后十行</strong>，如果文件是不断增加的，则用-f 选项。如：tail -f /var/log/messages</p>
+</li>
+</ul>
+<p>-</p>
+<h3 id="实时查看文件内容"><a href="#实时查看文件内容" class="headerlink" title="实时查看文件内容"></a>实时查看文件内容</h3><ul>
+<li>tail -f catalina.out  ！！！！！！！！</li>
+</ul>
+<h2 id="文件的所属主以及所属组"><a href="#文件的所属主以及所属组" class="headerlink" title="文件的所属主以及所属组"></a>文件的所属主以及所属组</h2><p>所属组”就派上用场了。即，创建一个群组users，让user0和user1同属于users组，然后建立一个文件test2，且其所属组为users，那么user0和user1都可以访问test2文件。</p>
+<h2 id="查看文件列表list"><a href="#查看文件列表list" class="headerlink" title="查看文件列表list"></a>查看文件列表list</h2><p>ls<br>ls -l<br>-a 全部的档案都列出，包括隐藏的。</p>
+<p>-l 详细列出文件的属性信息，包括大小、创建日期、所属主所属组等等。ll 这个命令等同于ls –l 。</p>
+<p>-d 后边跟目录，如果不加这个选项则列出目录下的文件，加上后只列车目录本身。</p>
+<h2 id="linux-文件属性"><a href="#linux-文件属性" class="headerlink" title="linux 文件属性"></a>linux 文件属性</h2><p>用ls –l 查看当前目录下的文件时，共显示了9列内容（用空格划分列），都代表了什么含义呢？</p>
+<p>第1列，包含的东西有该文件类型和所属主、所属组以及其他用户对该文件的权限。第一列共10位。其中第一位用来描述该文件的类型。上例中，我们看到的类型有”d”, “-“ ，其实除了这两种外还有”l”, “b”, “c”,”s”等。</p>
+<p>d 表示该文件为目录；</p>
+<ul>
+<li>表示该文件为普通文件；</li>
+</ul>
+<p>l 表示该文件为连接文件（linux file），上边提到的软连接即为该类型；</p>
+<p>b 表示该文件为块设备文件，比如磁盘分区</p>
+<p>c 表示该文件为串行端口设备，例如键盘、鼠标。</p>
+<p>s 表示该文件为套接字文件（socket），用于进程间通信。</p>
+<p>后边的9位，每三个为一组。均为rwx 三个参数的组合。其中r 代表可读，w代表可写，x代表可执行。前三位为所属主（user）的权限，中间三位为所属组（group）的权限，最后三位为其他非本群组（others）的权限。下面拿一个具体的例子来述说一下。</p>
+<p>一个文件的属性为-rwxr-xr– ，它代表的意思是，该文件为普通文件，文件拥有者可读可写可执行，文件所属组对其可读不可写可执行，其他用户对其只可读。</p>
+<p>对于一个目录来讲，打开这个目录即为执行这个目录，所以任何一个目录必须要有x权限才能打开并查看该目录。例如一个目录的属性为 drwxr–r– 其所属主为root，那么除了root外的其他用户是不能打开这个目录的。</p>
+<p>第2列，表示为连接占用的节点（inode），若为目录时，通常与该目录地下还有多少目录有关系，关于连接（link）在以后章节详细介绍。</p>
+<p>第3列，表示该文件的所属主。</p>
+<p>第4列，表示该文件的所属组。</p>
+<p>第5列，表示该文件的大小。</p>
+<p>第6列、第7列和第8列为该文件的创建日期或者最近的修改日期，分别为月份日期以及时间。</p>
+<p>第9列，文件名。如果前面有一个. 则表示该文件为隐藏文件。</p>
+<h2 id="更改文件的权限"><a href="#更改文件的权限" class="headerlink" title="更改文件的权限"></a>更改文件的权限</h2><p>==？？？太多了？？？以后再学==</p>
+<h2 id="在-linux-下搜索一个文件"><a href="#在-linux-下搜索一个文件" class="headerlink" title="在 linux 下搜索一个文件"></a>在 linux 下搜索一个文件</h2><ul>
+<li><p>which 用来查找可执行文件的绝对路径</p>
+<p>  which只能用来查找PATH环境变量中出现的路径下的可执行文件。不知道某个命令的绝对路径，which一下就知道了。</p>
+</li>
+<li><p>whereis 通过预先生成的一个文件列表库去查找跟给出的文件名相关的文件。</p>
+<p>  语法： whereis [-bmsu] [文件名称]</p>
+<p>  -b：只找binary 文件</p>
+<p>  -m：只找在说明文件manual路径下的文件</p>
+<p>  -s：只找source来源文件</p>
+<p>  -u：没有说明档的文件</p>
+</li>
+<li><p>locate 类似于whereis，也是通过查找预先生成的文件列表库来告诉用户要查找的文件在哪里。后边直接跟文件名。</p>
+</li>
+<li><p><strong>find</strong> 用的最多，务必要熟悉。<br>  语法： find [路径] [参数] 下面介绍几个笔者经常用的参数</p>
+<p>  -atime +n ：访问或执行时间大于n天的文件</p>
+<p>  -ctime +n ：写入、更改inode属性（例如更改所有者、权限或者连接）时间大于n天的文件</p>
+<p>  -mtime +n ：写入时间大于n天的文件</p>
+<p>  -name filename <strong>直接查找该文件名的文件，这个使用最多了。</strong></p>
+<p>  -type type ：通过文件类型查找。type 包含了 f, b, c, d, l, s 等等。后续的内容还会介绍文件类型的。</p>
+</li>
+</ul>
+<p>你对这三个time是不是有些晕了，那笔者就先给你介绍一下这三个time属性。</p>
+<p>文件的 Access time，atime 是在读取文件或者执行文件时更改的。文件的 Modified time，mtime 是在写入文件时随文件内容的更改而更改的。<br>文件的 Create time，ctime 是在写入文件、更改所有者、权限或链接设置时随 Inode 的内容更改而更改的。<br>因此，更改文件的内容即会更改 mtime 和 ctime，但是文件的 ctime 可能会在 mtime 未发生任何变化时更改，例如，更改了文件的权限，但是文件内容没有变化。 如何获得一个文件的atime mtime 以及ctime ？</p>
+<p>ls -l 命令可用来列出文件的 atime、ctime 和 mtime。</p>
+<p>ls -lc filename         列出文件的 ctime</p>
+<p>ls -lu filename         列出文件的 atime</p>
+<p>ls -l filename          列出文件的 mtime</p>
+<p>atime不一定在访问文件之后被修改，因为：<br>使用ext3文件系统的时候，如果在mount的时候使用了noatime参数那么就不会更新atime的信息。而这是加了 noatime 取消了, 不代表真实情況。<br>反正, 這三個 time stamp 都放在 inode 中。若 mtime, atime 修改inode 就一定會改, 既然 inode 改了, 那 ctime 也就跟著要改了。</p>
+<h2 id="linux-文件类型"><a href="#linux-文件类型" class="headerlink" title="linux 文件类型"></a>linux 文件类型</h2><p>1）正规文件（regular file）：就是一般类型的文件，当用ls –l 查看某个目录时，第一个属性为”-“的文件就是正规文件，或者叫普通文件。正规文件又可分成纯文字文件（ascii）和二进制文件（binary）。纯文本文件是可以通过cat, more, less等工具直接查看内容的，而二进制文件并不能。例如我们用的命令/bin/ls 这就是一个二进制文件。</p>
+<p>2）目录（directory）即文件夹,ls –l 查看第一个属性为”d”。</p>
+<p>3）连接档（link）：ls –l 查看第一个属性为 “l”，类似windows下的快捷方式。</p>
+<p>4）设备档（device）：与系统周边相关的一些档案，通常都集中在 /dev 这个目录之下！通常又分为两种：<br>    区块 (block) 设备档：说就是硬盘啦！例如你的一号硬盘的代码是 /dev/hda1 等等的档案啦！第一个属性为 “ b “；<br>    字符 (character) 设备档：亦即是一些串行端口的接口设备，例如键盘、鼠标等等！第一个属性为 “ c “。</p>
+<h3 id="linux-文件后缀名"><a href="#linux-文件后缀名" class="headerlink" title="linux 文件后缀名"></a>linux 文件后缀名</h3><p>1.sh代表它是一个shell script<br>2.tar.gz 代表它是一个压缩包，<br>3.my.cnf 代表它是一个配置文件，<br>4.test.zip 代表它是一个压缩文件。<br>早期Unix系统文件名最多允许14个字符，而新的Unix或者linux系统中，文件名最长可以到达 256 个字符！</p>
+<h2 id="压缩-解压缩"><a href="#压缩-解压缩" class="headerlink" title="压缩 解压缩"></a>压缩 解压缩</h2><p>tar</p>
+<p>  解包：tar zxvf filename.tar</p>
+<p>  打包：tar czvf filename.tar dirname</p>
+<p>zip命令</p>
+<p>解压：unzip filename.zip</p>
+<p>压缩：zip filename.zip dirname</p>
+<h2 id="ln-建立连接档"><a href="#ln-建立连接档" class="headerlink" title="ln 建立连接档"></a>ln 建立连接档</h2><p>ln 语法： ln [-s] [来源文件] [目的文件]<br>ln 常用的选项就一个-s ，如果不加就是建立硬连接，加上就建立软连接。</p>
+<p>Hard Link 的限制太多了，包括无法做目录的 link ，所以在用途上面是比较受限的！反而是 Symbolic Link 的使用方向较广！<br>在建立硬连接前后，空间大小不改变。<br>不能创建目录的硬连接。<br>目录是可以软连接的。<br>删除软连接对源文件没有任何影响。</p>
+<h2 id="环境变量-PATH"><a href="#环境变量-PATH" class="headerlink" title="环境变量 PATH"></a>环境变量 PATH</h2><p>有两个方法。</p>
+<p>一种方法是直接将 /root 的路径加入 PATH 当中！如何增加？可以使用： 　</p>
+<p>PATH=”$PATH”:/root</p>
+<p>另一种方式则是使用完整档名，亦即直接使用相对或绝对路径来执行，例如：</p>
+<p>/root/ls</p>
+<p>./ls</p>
+<p>====</p>
+<h3 id="vim查看版本"><a href="#vim查看版本" class="headerlink" title="vim查看版本"></a>vim查看版本</h3><p>vim</p>
+<h4 id="设置vim编码"><a href="#设置vim编码" class="headerlink" title="设置vim编码"></a>设置vim编码</h4><p>vim ~/.vimrc</p>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><h3 id="vim-编辑"><a href="#vim-编辑" class="headerlink" title="vim 编辑"></a>vim 编辑</h3><p> 按i ,进入编辑模式，</p>
+<p> 编辑完成后，按esc退出编辑模式</p>
+<h4 id="退出保存"><a href="#退出保存" class="headerlink" title="退出保存"></a>退出保存</h4><p> :wq</p>
+<h4 id="退出不保存"><a href="#退出不保存" class="headerlink" title="退出不保存"></a>退出不保存</h4><p> :q<br>会提示: No write since last change (add ! to override)<br>再输入一次</p>
+<p>:q!<br>即可</p>
+<p>将以下复制到其中</p>
+<p>syntax on<br>set nu!<br>set encoding=utf-8<br>set fenc=utf-8<br>set fileencodings=ucs-bom,utf-8,cp936,gb2312,gb18030</p>
+<h4 id="查看系统的编码"><a href="#查看系统的编码" class="headerlink" title="查看系统的编码"></a>查看系统的编码</h4><p>echo $LANG</p>
+<h2 id="乱码解决方案"><a href="#乱码解决方案" class="headerlink" title="乱码解决方案"></a>乱码解决方案</h2><ol>
+<li>系统编码</li>
+<li>vim的编码</li>
+<li>连接服务器的终端。<ol>
+<li>SecureCRT设置字条编码<br>Option–Session Option–Appearance<br>设置字符编码</li>
+</ol>
+</li>
+</ol>
+<h2 id="命令行远程登录服务器"><a href="#命令行远程登录服务器" class="headerlink" title="命令行远程登录服务器"></a>命令行远程登录服务器</h2><p>ssh <a href="mailto:&#x72;&#111;&#111;&#x74;&#x40;&#x31;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x31;&#46;&#50;&#x35;">&#x72;&#111;&#111;&#x74;&#x40;&#x31;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x31;&#46;&#50;&#x35;</a><br>    用户名@ip</p>
+<h2 id="服务器上安装公钥"><a href="#服务器上安装公钥" class="headerlink" title="服务器上安装公钥"></a>服务器上安装公钥</h2><p>键入以下命令，在服务器上安装公钥：</p>
+<p>[root@host ~]$ cd .ssh</p>
+<p>[root@host .ssh]$ cat id_rsa.pub &gt;&gt; authorized_keys</p>
+<p>将本地的key复制到authorized_keys文件中</p>
+<h3 id="从gitbash中获ssh-key"><a href="#从gitbash中获ssh-key" class="headerlink" title="从gitbash中获ssh key"></a>从gitbash中获ssh key</h3><p>  clip &lt; ~/.ssh/id_rsa.pub</p>
+<p> ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOmNk1rDPVPv+DTpe/ynM9dLDj/FjG/3xkAvjz8EoxSM/QBXNLj69m0SXA4jI6LOIwuS3Pdn011qWGa14zHPDI0wY9cGzlC+AvcuAZ0s+ndppAVk5PktYM0zCfBhlpLyHCgCVNxDxv1shd1A+gG3Lbi+tJ75oOnvJ5uSWC6x6wJgwJy/zUdQHTA3od4Mfkbz/6hr1sWqnCJE3r4H9Na6XtYMbjyl+O+JnePxH4PDwT/0MVxPpojyEqAv/FE9Gb7WjqmLsT5TWEoRhb4V0pm75moh6QObgqQ+RfJLS6Cz+NIvep980qVrYaRQGQG+7bEwy3fNDZlSGXRUALgELceVP/ HP@HP-PC</p>
+<h2 id="查看版本号"><a href="#查看版本号" class="headerlink" title="查看版本号"></a>查看版本号</h2><p> uname -r</p>
+<h2 id="查看系统"><a href="#查看系统" class="headerlink" title="查看系统"></a>查看系统</h2><p>uname</p>
+<h2 id="查看当前正在进行的进程"><a href="#查看当前正在进行的进程" class="headerlink" title="查看当前正在进行的进程"></a>查看当前正在进行的进程</h2><p> jobs</p>
+<h2 id="启一个服务，在后台执行，并将日志输出到log"><a href="#启一个服务，在后台执行，并将日志输出到log" class="headerlink" title="启一个服务，在后台执行，并将日志输出到log"></a>启一个服务，在后台执行，并将日志输出到log</h2><p> node . &gt;log 2&gt;&amp;1 &amp;</p>
+<p> tail -f log</p>
+<h2 id="查找某个进程-eg-node"><a href="#查找某个进程-eg-node" class="headerlink" title="查找某个进程(eg:node)"></a>查找某个进程(eg:node)</h2><p> ps -ef|grep node</p>
+<h2 id="在历史命令中查找某个命令"><a href="#在历史命令中查找某个命令" class="headerlink" title="在历史命令中查找某个命令"></a>在历史命令中查找某个命令</h2><p> history|grep cd</p>
+<h2 id="写了脚本以后执行一个脚本"><a href="#写了脚本以后执行一个脚本" class="headerlink" title="写了脚本以后执行一个脚本"></a>写了脚本以后执行一个脚本</h2><p>./control.sh</p>
+<h2 id="linux-查找文件"><a href="#linux-查找文件" class="headerlink" title="linux 查找文件"></a>linux 查找文件</h2><p>find / -name nginx.conf</p>
+<p>find / -name php.ini</p>
+<p>find / -name my.cnf</p>
+<p>find / -name httpd.conf</p>
+<h2 id="php-相关"><a href="#php-相关" class="headerlink" title="php 相关"></a>php 相关</h2><p> 查看php运行目录命令：<br>which php</p>
+<p>which 用来查找一个命令的绝对路径</p>
+<p>/usr/bin/php<br>查看php-fpm进程数：</p>
+<p>ps aux | grep -c php-fpm</p>
+<p>查看运行内存<br>/usr/bin/php  -i|grep mem</p>
+<p>关闭PHP</p>
+<p>killall php-fpm</p>
+<p>php重启</p>
+<p>/usr/local/php/sbin/php-fpm &amp;</p>
+<h2 id="php-配置"><a href="#php-配置" class="headerlink" title="php 配置"></a>php 配置</h2><ol>
+<li>端口 httpd.conf listen 80</li>
+</ol>
+<p>2.</p>
+<h2 id="查看linux-IP"><a href="#查看linux-IP" class="headerlink" title="查看linux IP"></a>查看linux IP</h2><h3 id="公网IP"><a href="#公网IP" class="headerlink" title="公网IP"></a>公网IP</h3><p>curl members.3322.org/dyndns/getip</p>
+<p>47.94.93.83</p>
+<h3 id="内网IP"><a href="#内网IP" class="headerlink" title="内网IP"></a>内网IP</h3><p>ifconfig</p>
+<p>inet addr:192.168.42.128</p>
+<h2 id="NGINX"><a href="#NGINX" class="headerlink" title="NGINX"></a>NGINX</h2><p>启动：/usr/local/nginx/sbin/nginx</p>
+<p>service nginx start<br>关闭：/usr/local/nginx/sbin/nginx  -s stop</p>
+<p>service nginx stop</p>
+<p>重启：/usr/local/nginx/sbin/nginx -s  reload</p>
+<p>查看nginx状态<br> service nginx status</p>
+<p>查看当前nginx目录<br>ps -ef | grep nginx<br>可以在conf目录下的nginx.conf中找到对应的配置。</p>
+<p>查看一个服务是否已经启动：</p>
+<p>ps -A | grep nginx</p>
+<p>如果返回结果的话，说明有nginx在运行，服务已经启动</p>
+<p>nginx -V 查看nginx安装目录</p>
+<p>cd /usr/local/etc/nginx 里有nginx.conf</p>
+<p>sudo nginx -s reload<br>Sudo nginx -s stop</p>
+<p>openresty/nginx/coupon</p>
+<p>./sbin/nginx -s reload</p>
+<p>Nginx 命令<br>service nginx stop/start/status/reload</p>
+<p>2、查看nginx.conf配置文件目录</p>
+<p>输入命令</p>
+<h3 id="nginx-t"><a href="#nginx-t" class="headerlink" title="nginx -t"></a>nginx -t</h3><p>返回结果包含配置文件目录<br>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</p>
+<p>nginx: configuration file /etc/nginx/nginx.conf test is successful</p>
+<p>检查下80端口是否被其他进程占用了。<br>lsof -i:80</p>
+<h3 id="Nginx-配置实现CORS"><a href="#Nginx-配置实现CORS" class="headerlink" title="Nginx 配置实现CORS"></a>Nginx 配置实现CORS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">location ^~ &#x2F;api&#x2F;v1 &#123;</span><br><span class="line"></span><br><span class="line"> add_header &#39;Access-Control-Allow-Origin&#39; &quot;$http_origin&quot;;</span><br><span class="line"> add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, PUT, DELETE, OPTIONS&#39;;</span><br><span class="line"> add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type    &#39;;</span><br><span class="line"> add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;;</span><br><span class="line"> if ($request_method &#x3D; &#39;OPTIONS&#39;) &#123;</span><br><span class="line">  add_header &#39;Access-Control-Allow-Origin&#39; &quot;$http_origin&quot;;</span><br><span class="line">  add_header &#39;Access-Control-Allow-Methods&#39; &#39;GET, POST, PUT, DELETE, OPTIONS&#39;;</span><br><span class="line">  add_header &#39;Access-Control-Allow-Headers&#39; &#39;DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type    &#39;;</span><br><span class="line">  add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39;;</span><br><span class="line">  add_header &#39;Access-Control-Max-Age&#39; 1728000; # 20 天</span><br><span class="line">  add_header &#39;Content-Type&#39; &#39;text&#x2F;html charset&#x3D;UTF-8&#39;;</span><br><span class="line">  add_header &#39;Content-Length&#39; 0;</span><br><span class="line">  return 200;</span><br><span class="line"> &#125;</span><br><span class="line">    # 这下面是要被代理的后端服务器，它们就不需要修改代码来支持跨域了</span><br><span class="line"> proxy_pass http:&#x2F;&#x2F;127.0.0.1:8085;</span><br><span class="line"> proxy_set_header Host $host;</span><br><span class="line"> proxy_redirect off;</span><br><span class="line"> proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line"> proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"> proxy_connect_timeout 60;</span><br><span class="line"> proxy_read_timeout 60;</span><br><span class="line"> proxy_send_timeout 60;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-{% block title %}{{ __('title.tag') }}: {{ page.tag }} | {{ title }}{% endblock %}
+<h2 id="telnet-80-d端口ping不通"><a href="#telnet-80-d端口ping不通" class="headerlink" title="telnet 80 d端口ping不通"></a>telnet 80 d端口ping不通</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl &lt;http://127.0.0.1&gt;</span><br><span class="line">curl http:oriht.com</span><br></pre></td></tr></table></figure>
 
-{% block content %}
+<p>查看实例安全组规则  端口范围是否有80端口</p>
+<p>允许自定义 TCP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">80&#x2F;80 地址段访问</span><br><span class="line">0.0.0.0&#x2F;0</span><br><span class="line">-</span><br><span class="line"></span><br><span class="line">1 2017-09-25 11:03:54</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 
-  {#################}
-  {### TAG BLOCK ###}
-  {#################}
-  <div class="post-block tag">
+<p>如果新配置nginx一直403 禁止访问的话</p>
+<p>修改/etc/selinux/config<br>将SELINUX=enforcing 改为<br>SELINUX=disabled</p>
+<h2 id="跟着吴博学linux"><a href="#跟着吴博学linux" class="headerlink" title="跟着吴博学linux"></a>跟着吴博学linux</h2><p>ls -lh</p>
+<p>sudo sh updata_<a target="_blank" rel="noopener" href="http://www.sh/">www.sh</a></p>
+<p>less update_<a target="_blank" rel="noopener" href="http://www.sh/">www.sh</a></p>
+<p>ls -l</p>
+<p>sudo su root</p>
+<p>git branch -r</p>
+<h2 id="bin-bash"><a href="#bin-bash" class="headerlink" title="!/bin/bash"></a>!/bin/bash</h2><p>rm www-old<br>mv ./www ./www-old<br>ln -s ./ac-www-releases/ac-www-2016-10-17/ www<br>sh git.pull.sh</p>
+<p>exit</p>
+<p>sudo sh update_<a target="_blank" rel="noopener" href="http://www.sh/">www.sh</a></p>
+<hr>
+<h2 id="找不到httpd-conf"><a href="#找不到httpd-conf" class="headerlink" title="找不到httpd.conf"></a>找不到httpd.conf</h2><p>httpd.conf的位置一般位于<br>/etc/httpd/conf/httpd.conf</p>
+<p>如果没<br>执行命令<br>yum install httpd<br>重新安装一下，</p>
+<h2 id="根据nginx配置，查找文件目录"><a href="#根据nginx配置，查找文件目录" class="headerlink" title="根据nginx配置，查找文件目录"></a>根据nginx配置，查找文件目录</h2><p>原本nginx配置好后，目录应该在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root &#x2F;data&#x2F;www&#x2F;hosts;</span><br></pre></td></tr></table></figure>
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <{% if theme.seo %}h2{% else %}h1{% endif %}>{#
-        #}{{ page.tag }}{#
-        #}<small>{{  __('title.tag')  }}</small>
-        </{% if theme.seo %}h2{% else %}h1{% endif %}>
-      </div>
+<p>但如果有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location ^~ &#x2F; &#123;</span><br><span class="line">    proxy_buffering off;</span><br><span class="line">    proxy_pass http:&#x2F;&#x2F;127.0.0.1:3001&#x2F;;</span><br><span class="line">    proxy_set_header Host $host;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      {% for post in page.posts %}
-        {{ post_template.render(post) }}
-      {% endfor %}
-    </div>
+<p>则应根据3001端口来找具体进程对应的进程</p>
+<p>执行 如下命令找到对应进程的pid</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -nplt | grep 3001</span><br></pre></td></tr></table></figure>
 
-  </div>
-  {#####################}
-  {### END TAG BLOCK ###}
-  {#####################}
+<p>根据pid来找到目录，执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep 37098</span><br></pre></td></tr></table></figure>
 
-  {% include '_partials/pagination.swig' %}
-{% endblock %}
+<p>出现如下结果，则为对应的目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">501      37098  0.0  0.2 1209696 42828 ?       Ssl  Aug08   8:37 node /home/nodeProjects/express/dist/index.js</span><br></pre></td></tr></table></figure>
 
-{% block sidebar %}
-  {{ sidebar_template.render(false) }}
-{% endblock %}
+<h2 id="跟着立斌学命令行"><a href="#跟着立斌学命令行" class="headerlink" title="跟着立斌学命令行"></a>跟着立斌学命令行</h2><p>dash<br>zsh<br>/oh-my-zsh<br>oh-my-zsh</p>
+<p>sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;">https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;</a><br>需要提前装zsh，<br> yum install zsh</p>
+<h2 id="切换到zsh"><a href="#切换到zsh" class="headerlink" title="切换到zsh"></a>切换到zsh</h2><p>chsh -s /usr/local/bin/zsh</p>
+<p>修改主题，目录<br>/root/.oh-my-zsh/templates/zshrc.zsh-template</p>
+<p>zsh-autosuggestions</p>
+<p>安装方法：<br>git clone git://github.com/zsh-users/zsh-autosuggestions <del>/.zsh/zsh-autosuggestions<br>source</del>/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh</p>
+<p>看一下自己目前使用的终端是什么：</p>
+<p>echo $SHELL</p>
+<p>查看当前主题</p>
+<p>echo $ZSH_THEME</p>
+<p>我用的主题<br>robbyrussell</p>
+<p> 主题修改文件路径:sudo vim ~/.zshrc</p>
+<h2 id="linux-用命令启动服务不掉线"><a href="#linux-用命令启动服务不掉线" class="headerlink" title="linux 用命令启动服务不掉线"></a>linux 用命令启动服务不掉线</h2><p>创建control.sh<br>  运行./control.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">nohup npm start ./ 1&gt;&gt;<span class="built_in">log</span> 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>cat access.log | cut -d’ ‘ -f7 | sort | uniq -c | sort -nr | head -n30</p>
+<hr>
+</div></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-08-25T12:31:07.000Z" title="2018-08-25T12:31:07.000Z">2018-08-25</time>发表</span><span class="level-item"><time dateTime="2019-03-22T12:31:07.000Z" title="2019-03-22T12:31:07.000Z">2019-03-22</time>更新</span><span class="level-item">5 分钟读完 (大约767个字)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/">网站搭建</a></h1><div class="content"><h2 id="网站创建历程"><a href="#网站创建历程" class="headerlink" title="网站创建历程"></a>网站创建历程</h2><h2 id="1-买域名"><a href="#1-买域名" class="headerlink" title="1. 买域名"></a>1. 买域名</h2><pre><code>https://wanwang.aliyun.com/domain/searchresult/
+
+先要起名字，找到合适的域名。
+找好后直接付款支付就ok了。</code></pre>
+<h3 id="1-1-实名制"><a href="#1-1-实名制" class="headerlink" title="1.1  实名制"></a>1.1  实名制</h3><pre><code>需要身份证照片。
+直接拍照，上传，ok，等2个工作日。</code></pre>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p> <a target="_blank" rel="noopener" href="https://cn.aliyun.com/easybuy?spm=5176.8142029.418687.2.QpC6Vr">购买地址</a></p>
+<p>云服务器ECS（包年包月）<br>地域: 华北 1<br>可用区: 华北 1 可用区 B<br>I/O 优化实例: 非 I/O 优化实例<br>实例规格: 1 核 2GB<br>网络类型: 经典网络<br>带宽: 1Mbps（按固定带宽）<br>操作系统: CentOS 7.2 64位<br>系统盘: 40GB 普通云盘<br>密码: 已设置<br>实例名称: oriht</p>
+<p>linux学习：<br><a target="_blank" rel="noopener" href="http://wiki.jikexueyuan.com/project/linux-command/chap03.html">http://wiki.jikexueyuan.com/project/linux-command/chap03.html</a></p>
+<p>登陆的操作：<br>ssh root@ip</p>
+<p>三：连接数据库：mysql -uroot -proot //p</p>
+<p>还有就是遇到死链接的问题需要</p>
+<p>配置路由：‘URL_MODEL’=2;<br>或者配置为0 和3 这里需要仔细查看TP手册部署那里。</p>
+<p>直接写路径就可以</p>
+<p>3。chkconfig –level 35 vsftpd on4.yum -y install vsftpd;5 cd /home/wwwroot/default/6 chmod 777 /home/wwwroot/default/chmod 777 /home/wwwroot/default/ -R<br>这里要注意的是权限问题：你要把application目录权限-777例如：chmod 777 /home/wwwroot/default/ -Rchmod -R 777 /home/wwwroot/default/</p>
+<p><a target="_blank" rel="noopener" href="http://www.centoscn.com/image-text/install/2014/0514/2972.html">在centos上安装git</a></p>
+<h2 id="备案流程"><a href="#备案流程" class="headerlink" title="备案流程"></a>备案流程</h2><p> 网站备案信息真实性核验单 [查看样例] 请打印3份，按照样例分别填写并全部邮寄</p>
+<p> 申请邮寄幕布 您自行拍照后上传</p>
+<h2 id="远程拷贝"><a href="#远程拷贝" class="headerlink" title="远程拷贝"></a>远程拷贝</h2><p>拷贝远程服务器的文件到本地:</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r -P 端口号 用户名@IP地址:/usr/<span class="built_in">local</span>/tomcat_airc/webapps/  /tmp/kyj/</span><br></pre></td></tr></table></figure></code></pre>
+<p>拷贝本地文件到远程服务器:</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r /tmp/kyj/sys.war 用户名@IP地址:/usr/<span class="built_in">local</span>/tomcat_airc/webapps/</span><br></pre></td></tr></table></figure></code></pre>
+<h2 id="服务器信息"><a href="#服务器信息" class="headerlink" title="服务器信息"></a>服务器信息</h2><p> php的默认端口是8080<br> nginx的默认端口改成80</p>
+<h2 id="https配置"><a href="#https配置" class="headerlink" title="https配置"></a>https配置</h2><p> 在阿里云买好证书，</p>
+<ol>
+<li><p>在nginx安装目录下新建cert目录<br>cd /usr/local/nginx<br>mkdir cert</p>
+</li>
+<li><p>将证书下载下来，复制到cert目录下<br> scp -r 本地文件目录 root@(ip):/usr/local/nginx/cert/<br> 这里有123.pem 和123.key,两个都要传到远程服务器</p>
+</li>
+<li><p>配置后不生效</p>
+</li>
+<li><p>curl -l <a target="_blank" rel="noopener" href="http://oriht.com/">http://oriht.com</a></p>
+</li>
+<li><p>wget <a target="_blank" rel="noopener" href="http://oriht.com/">http://oriht.com</a></p>
+</li>
+<li><p>需要进入阿里云服务器的实例里，找到安全组规则，配置443访问权限。才能访问https的端口</p>
+</li>
+<li><p>nginx no input file specified 查看nginx error.log, 发现是nginx之前的配置找不到路径之类的问题，先将所有的其他配置注释掉，mv **.conf **.conf.bak</p>
+</li>
+<li><p>又报502 Bad Gateway 说是nginx-fpm的占用内存太多，默认进程数太少</p>
+</li>
+</ol>
+<p>1、查看php fastcgi的进程数（max_children值）</p>
+<p><code>netstat -anop | grep php-cgi | wc -l</code><br>1、查看php fastcgi的进程数（max_children值）</p>
+<p><code>netstat -anop | grep php-cgi | wc -l</code></p>
+<p>3、调整/usr/local/php/etc/php-fpm.conf 的相关设置</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pm.max_children &#x3D; 5</span><br><span class="line">request_terminate_timeout &#x3D; 60</span><br></pre></td></tr></table></figure></code></pre>
+<p>部分PHP程序的执行时间超过了Nginx的等待时间，可以适当增加nginx.conf配置文件中FastCGI的timeout时间，例如：</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">http</span><br><span class="line">&#123;</span><br><span class="line">……</span><br><span class="line">fastcgi_connect_timeout 300;</span><br><span class="line">fastcgi_send_timeout 300;</span><br><span class="line">fastcgi_read_timeout 300;</span><br><span class="line">……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></code></pre>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">94</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">95</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/believeZJP" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/believeZJP"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="微博" href="https://weibo.com/u/6021664425"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="QQ" href="tencent://message/?uin=421790588&amp;Site=www&amp;Menu=yes"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/es6/"><span class="level-start"><span class="level-item">es6</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/http/"><span class="level-start"><span class="level-item">http</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/http/%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-27T07:25:36.000Z">2020-11-27</time></p><p class="title"><a href="/posts/%E7%BE%BD%E6%AF%9B%E7%90%83%E9%80%9F%E6%88%90/">羽毛球速成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-09-11T08:55:34.116Z">2020-09-11</time></p><p class="title"><a href="/posts/Alfred/">Alfred</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-08-20T08:18:50.000Z">2020-08-20</time></p><p class="title"><a href="/posts/React%E4%B8%ADAPI%E4%BD%BF%E7%94%A8%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/">React中API使用的正确姿势</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-07-23T16:06:49.000Z">2020-07-24</time></p><p class="title"><a href="/posts/%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8standard%E8%A7%84%E8%8C%83%E5%B9%B6%E7%94%A8eslint%E8%87%AA%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%A3%E7%A0%81/">项目使用standard规范并用eslint自动格式化代码</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-07-07T01:02:45.000Z">2020-07-07</time></p><p class="title"><a href="/posts/node-cli%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">node cli开发调试经验总结</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/01/"><span class="level-start"><span class="level-item">一月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/12/"><span class="level-start"><span class="level-item">十二月 2019</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">十一月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">八月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">一月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">十一月 2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">十月 2018</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/08/"><span class="level-start"><span class="level-item">八月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/03/"><span class="level-start"><span class="level-item">三月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3-8%E5%AE%8C%E7%BB%93-2019-11-13-20-27-45/"><span class="tag">3-8完结 2019-11-13 20:27:45</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/5-1%E5%AE%8C%E7%BB%93-2019-11-15-19-36-48/"><span class="tag">5-1完结 2019-11-15 19:36:48</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/5-3%E5%AE%8C%E7%BB%93-2019-11-18-19-55-00/"><span class="tag">5-3完结 2019-11-18 19:55:00</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/5-8%E5%AE%8C%E7%BB%93-2019-11-18-19-55-00/"><span class="tag">5-8完结 2019-11-18 19:55:00</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Alfred/"><span class="tag">Alfred</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS/"><span class="tag">CSS</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS3/"><span class="tag">CSS3</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EventLoop/"><span class="tag">EventLoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/GitKraken/"><span class="tag">GitKraken</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Javascript/"><span class="tag">Javascript</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Koa/"><span class="tag">Koa</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NgVinx/"><span class="tag">NgVinx</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Nginx/"><span class="tag">Nginx</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NodeJS/"><span class="tag">NodeJS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Promise/"><span class="tag">Promise</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React-Native/"><span class="tag">React Native</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React%E8%BF%81%E7%A7%BB%E5%88%B0%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">React迁移到百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSR/"><span class="tag">SSR</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SmartGit/"><span class="tag">SmartGit</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vue/"><span class="tag">Vue</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Webpack/"><span class="tag">Webpack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/antDesign/"><span class="tag">antDesign</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/async/"><span class="tag">async</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/await/"><span class="tag">await</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/centos/"><span class="tag">centos</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/compose/"><span class="tag">compose</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es6/"><span class="tag">es6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es8/"><span class="tag">es8</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/finish-webpack6-7-2019-11-28-20-09-56/"><span class="tag">finish webpack6-7 2019-11-28 20:09:56</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for-of/"><span class="tag">for of</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/generator/"><span class="tag">generator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iTerm2/"><span class="tag">iTerm2</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterator/"><span class="tag">iterator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/jQuery/"><span class="tag">jQuery</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/nextTick/"><span class="tag">nextTick</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/node/"><span class="tag">node</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/react/"><span class="tag">react</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/redis/"><span class="tag">redis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setImmediate/"><span class="tag">setImmediate</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setTimeout/"><span class="tag">setTimeout</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webpack4/"><span class="tag">webpack4</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B8%9A%E5%8A%A1/"><span class="tag">业务</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/"><span class="tag">代码优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"><span class="tag">代码示例</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"><span class="tag">内存泄漏</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%A5%E6%83%B3/"><span class="tag">冥想</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%93%B2%E5%AD%A6/"><span class="tag">哲学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><span class="tag">基础知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98/"><span class="tag">处理问题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"><span class="tag">学习方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="tag">学习笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%9A%E6%97%B6%E5%99%A8/"><span class="tag">定时器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%81%E8%A3%85/"><span class="tag">封装</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/"><span class="tag">思维导图</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"><span class="tag">性能优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8A%80%E6%9C%AF/"><span class="tag">技术</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8F%92%E4%BB%B6/"><span class="tag">插件</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%88%E7%8E%87/"><span class="tag">效率</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%99%E7%A8%8B/"><span class="tag">教程</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="tag">数据结构</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E7%A7%AF%E7%B4%AF/"><span class="tag">日常积累</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%AD%A3%E5%88%99/"><span class="tag">正则</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B2%9F%E9%80%9A%E6%8A%80%E5%B7%A7/"><span class="tag">沟通技巧</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/"><span class="tag">理论知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9B%91%E6%8E%A7/"><span class="tag">监控</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="tag">知识点</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%B2%BE%E8%AF%BB/"><span class="tag">精读</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BA%BF%E4%B8%8A%E4%BA%8B%E6%95%85/"><span class="tag">线上事故</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%84%E5%90%88%E5%87%BD%E6%95%B0/"><span class="tag">组合函数</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%88%E7%AB%AF/"><span class="tag">终端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/"><span class="tag">经验积累</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A1%A5%E5%85%85%E6%85%95%E8%AF%BE%E7%BD%91webpack4-0%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%8C%E7%BB%93/"><span class="tag">补充慕课网webpack4.0视频笔记--第二章完结</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B7%91%E6%AD%A5/"><span class="tag">跑步</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E5%8A%A8/"><span class="tag">运动</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"><span class="tag">进程管理</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a><p class="is-size-7"><span>&copy; 2020 believeZJP</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

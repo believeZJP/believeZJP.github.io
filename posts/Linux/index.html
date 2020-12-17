@@ -1,25 +1,356 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Linux - believeZJP</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="believeZJP"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="believeZJP"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="终端上传下载文件 在终端往linux上传文件rz -b 中文的无法上传，需要先将文件名改为英文的，上传上去后，再改为中文。 下载sz  -b 参考:链接 一、命令基本格式http:&amp;#x2F;&amp;#x2F;www.cnblogs.com&amp;#x2F;ShaYeBlog&amp;#x2F;p&amp;#x2F;5576601.html git 打tag  命令 [选项][参数]  注意：    1. 个别命令不遵循此格式    2. 有多个选项，可以写在一起    3"><meta property="og:type" content="blog"><meta property="og:title" content="Linux"><meta property="og:url" content="http://believezjp.oriht.com/posts/Linux/"><meta property="og:site_name" content="believeZJP"><meta property="og:description" content="终端上传下载文件 在终端往linux上传文件rz -b 中文的无法上传，需要先将文件名改为英文的，上传上去后，再改为中文。 下载sz  -b 参考:链接 一、命令基本格式http:&amp;#x2F;&amp;#x2F;www.cnblogs.com&amp;#x2F;ShaYeBlog&amp;#x2F;p&amp;#x2F;5576601.html git 打tag  命令 [选项][参数]  注意：    1. 个别命令不遵循此格式    2. 有多个选项，可以写在一起    3"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://believezjp.oriht.com/img/og_image.png"><meta property="article:published_time" content="2019-03-22T12:31:07.000Z"><meta property="article:modified_time" content="2019-03-22T12:31:07.000Z"><meta property="article:author" content="believeZJP"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Nginx"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://believezjp.oriht.com/posts/Linux/"},"headline":"believeZJP","image":["http://believezjp.oriht.com/img/og_image.png"],"datePublished":"2019-03-22T12:31:07.000Z","dateModified":"2019-03-22T12:31:07.000Z","author":{"@type":"Person","name":"believeZJP"},"description":"终端上传下载文件 在终端往linux上传文件rz -b 中文的无法上传，需要先将文件名改为英文的，上传上去后，再改为中文。 下载sz  -b 参考:链接 一、命令基本格式http:&#x2F;&#x2F;www.cnblogs.com&#x2F;ShaYeBlog&#x2F;p&#x2F;5576601.html git 打tag  命令 [选项][参数]  注意：    1. 个别命令不遵循此格式    2. 有多个选项，可以写在一起    3"}</script><link rel="canonical" href="http://believezjp.oriht.com/posts/Linux/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-03-22T12:31:07.000Z" title="2019-03-22T12:31:07.000Z">2019-03-22</time>发表</span><span class="level-item"><time dateTime="2019-03-22T12:31:07.000Z" title="2019-03-22T12:31:07.000Z">2019-03-22</time>更新</span><span class="level-item">25 分钟读完 (大约3709个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Linux</h1><div class="content"><p>终端上传下载文件</p>
+<p>在终端往linux上传文件<br><code>rz -b</code></p>
+<p>中文的无法上传，需要先将文件名改为英文的，上传上去后，再改为中文。</p>
+<p>下载<br><code>sz  -b</code></p>
+<p>参考:<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000011048277">链接</a></p>
+<h2 id="一、命令基本格式"><a href="#一、命令基本格式" class="headerlink" title="一、命令基本格式"></a>一、命令基本格式</h2><p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/ShaYeBlog/p/5576601.html">http://www.cnblogs.com/ShaYeBlog/p/5576601.html</a></p>
+<p>git 打tag</p>
+<blockquote>
+<p>命令 [选项][参数]</p>
+</blockquote>
+<p>注意：<br>    1. 个别命令不遵循此格式<br>    2. 有多个选项，可以写在一起<br>    3. 简写：-a == -all, ll == ls -l</p>
+<h3 id="1-1-ls"><a href="#1-1-ls" class="headerlink" title="1.1 ls"></a>1.1 ls</h3><ul>
+<li>ls -a 显示所有文件，包括隐藏文件</li>
+<li>ls -l 显示详细信息</li>
+<li>ls -d 查看目录属性</li>
+<li>ls -h 人性化显示文件大小 ，K/M</li>
+<li>ls -i 显示inode</li>
+</ul>
+<h3 id="1-2-文件权限-10位"><a href="#1-2-文件权限-10位" class="headerlink" title="1.2 文件权限(10位)"></a>1.2 文件权限(10位)</h3><blockquote>
+<p>第一位是文件类型，后面每3位一组</p>
+</blockquote>
+<p>-rw-r-r–</p>
+<ul>
+<li>-文件类型(-文件 d目录 l软链接)</li>
+<li>rw- u所有者</li>
+<li>r– g所属组</li>
+<li>r– o其他人</li>
+<li>r 读 w 写 x 执行</li>
+</ul>
+<a id="more"></a>
 
+<h2 id="二、文件处理命令"><a href="#二、文件处理命令" class="headerlink" title="二、文件处理命令"></a>二、文件处理命令</h2><p>linux中一切皆文件。目录为目录文件。普通文件用来保存数据，目录文件用来保存目录。</p>
+<h3 id="2-1-常用目录介绍及作用"><a href="#2-1-常用目录介绍及作用" class="headerlink" title="2.1 常用目录介绍及作用"></a>2.1 常用目录介绍及作用</h3><ol>
+<li><p>/ 根目录</p>
+</li>
+<li><p>/sbin ，/bin 命令保存目录</p>
+<blockquote>
+<p>根目录下的bin和sbin，usr下的bin 和sbin都是用来保存系统命令。bin目录下的命令任何用户都可以执行，sbin下只有root才可以执行。Linux通过此方式区分用户权限</p>
+</blockquote>
+</li>
+<li><p>/boot 启动目录，启动相关文件</p>
+</li>
+<li><p>/dev 设备文件保存目录</p>
+</li>
+<li><p>/etc 配置文件保存目录</p>
+</li>
+<li><p>/home  普通用户的家目录</p>
+</li>
+<li><p>/lib 系统库保存目录</p>
+</li>
+<li><p>/mnt 系统挂载u盘、移动硬盘目录</p>
+</li>
+<li><p>/media 挂载光盘目录</p>
+</li>
+<li><p>/misc 外接磁带机挂载目录</p>
+</li>
+<li><p>/root 超级用户的家目录</p>
+</li>
+<li><p>/tmp 临时目录 可存放临时数据</p>
+</li>
+<li><p>/proc 直接写入内存的</p>
+</li>
+<li><p>/sys 同 /proc不能直接操作</p>
+</li>
+<li><p>/usr 系统软件资源目录</p>
+<ul>
+<li>/usr/bin/ 系统命令 (普通用户)</li>
+<li>/usr/sbin/ 系统命令 (超级用户)</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-2-目录处理文件命令"><a href="#2-2-目录处理文件命令" class="headerlink" title="2.2 目录处理文件命令"></a>2.2 目录处理文件命令</h3><ul>
+<li><p>mkdir -p [目录名]<br>  -p 递归创建<br>  make directories<br>  mkdir  src<br>  mkdir  bin</p>
+</li>
+<li><p>cd 切换所在目录</p>
+<p>  change directory</p>
+<blockquote>
+<p>简化操作</p>
+</blockquote>
+<p>  cd ~ 进入当前用户的家目录<br>  cd - 进入上次目录<br>  cd .. 进入上一级目录<br>  cd . 进入当前目录</p>
+</li>
+<li><p>pwd 查看当前所在目录位置<br>  print working directory</p>
+</li>
+</ul>
+<h3 id="2-3-文件处理命令"><a href="#2-3-文件处理命令" class="headerlink" title="2.3 文件处理命令"></a>2.3 文件处理命令</h3><ul>
+<li><p>rmdir [目录名] 删除空目录</p>
+<p>  remove empty directory</p>
+</li>
+<li><p>rm -rf [文件或目录] 删除文件或目录</p>
+<p>  选项：</p>
+<pre><code>-r 删除目录
+-f 强制
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
+rm [文件名] :提示是否删除
+rm -r [目录]: 删除目录需加-r，目录中含有子文件，将继续询问是否删除
+rm -rf [目录]: 删除目录，直接删除
 
-{% block page_class %}page-post-detail{% endblock %}
+**自杀指令** rm -rf /</code></pre>
+</li>
+<li><p>cp [选项] [原文件或目录] [目标目录] 复制</p>
+<p>  copy</p>
+<pre><code>  -r 复制目录
+  -p 连带文件属性复制
+  -d 若源文件是链接文件，则复制链接属性
+  -a 相当于-pdr 目标文件和源文件属性相同
+  被复制文件的时间为执行复制命令的时间，若要使被复制的文件与原文件属性完全一致，需加 -a</code></pre>
+<hr>
+<pre><code>eg:
+cp abc /tmp/ 若目标目录不加文件名，则原名复制
+cp abc /tmp/ana 目标文件加入文件名，改名复制
+cp -r ja/ /tmp/ 复制目录
+cp -a ja/ /tmp/ 完全复制，包含所有属性</code></pre>
+</li>
+<li><p>mv [原文件或目录] [目标目录] move</p>
+<pre><code>eg:
+mv ja /tmp/ 剪切
+mv abc longls 原文件与目标目录在同一个目录，则为重命名</code></pre>
+</li>
+<li><p>date 查看当前系统时间</p>
+</li>
+</ul>
+<h3 id="2-4-链接命令"><a href="#2-4-链接命令" class="headerlink" title="2.4 链接命令"></a>2.4 链接命令</h3><ul>
+<li><p>格式化硬盘<br>??</p>
+</li>
+<li><p>ln -s [源文件] [目标文件]    link</p>
+</li>
+</ul>
+<blockquote>
+<p>选项 -s 创建软链接</p>
+</blockquote>
+<ul>
+<li><p>硬链接特征</p>
+<p>  拥有相同i节点和存储block块，可以看做是同一个文件。</p>
+<p>  硬链接与源文件拥有相同的i节点。</p>
+<p>  删除原文件或硬链接文件的任何一文件，不影响文件索引操作？？？原文件删除了吗？</p>
+<pre><code>1）可以通过i节点识别
+2）不能跨分区建立
+3）ln ./source/abc ./target/bcd.hard 创建后，引用计数+1
+1) ls -i ./souce/abc ./target/bcd.hard 可使用ls -i 来查看文件i节点</code></pre>
+<p>  不建议创建硬链接文件：</p>
+<ul>
+<li>文件过于隐蔽，除了i节点很难区分它是不是硬链接</li>
+<li>硬链接限制较多，不能跨分区，不能针对目录，使用中容易出现错误使用方法</li>
+</ul>
+</li>
+<li><p>软链接特征</p>
+<ol>
+<li>类似于Windows的快捷方式</li>
+<li>软链接拥有自己的i节点和block块，只保存原文件的文件名和节点号，并没有实际的文件数据。</li>
+<li>软链接的权限都为777，但实际权限要看原文件权限。</li>
+<li>修改任意文件，另一个都会改变。</li>
+<li>删除原文件，软链接不能用</li>
+<li>创建软链接，原文件一定要写绝对路径，否则软链接会到它所在的同一个目录去找原文件</li>
+</ol>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.processon.com/view/link/59b296fae4b0d3fbea262c6c%22">硬链接与软链接图</a></p>
+<h2 id="三、文件搜索命令"><a href="#三、文件搜索命令" class="headerlink" title="三、文件搜索命令"></a>三、文件搜索命令</h2><h3 id="3-1-locate-文件名"><a href="#3-1-locate-文件名" class="headerlink" title="3.1 locate 文件名"></a>3.1 locate 文件名</h3><pre><code>速度快，但只能按照文件名搜索，不能进行更复杂的搜索</code></pre>
+<h3 id="3-2-whereis"><a href="#3-2-whereis" class="headerlink" title="3.2 whereis"></a>3.2 whereis</h3><pre><code>用于搜索命令所在的路径已经帮助文档所在的位置
+-b: 只查找可执行文件
+-m: 只查找帮助文件</code></pre>
+<h3 id="3-3-which"><a href="#3-3-which" class="headerlink" title="3.3 which"></a>3.3 which</h3><pre><code>能看到命令的路径，如果有别名，还能看到别名的说明
+只能看到外部安装的命令，如pwd.</code></pre>
+<h3 id="3-4-PATH"><a href="#3-4-PATH" class="headerlink" title="3.4 $PATH"></a>3.4 $PATH</h3><pre><code>类似于Windows的环境变量，执行命令时，从path定义的目录中寻找
+echo $PATH</code></pre>
+<h3 id="3-5-whoami"><a href="#3-5-whoami" class="headerlink" title="3.5 whoami"></a>3.5 whoami</h3><pre><code>显示当前用户</code></pre>
+<h3 id="3-6-whatis"><a href="#3-6-whatis" class="headerlink" title="3.6 whatis"></a>3.6 whatis</h3><pre><code>查询一个命令执行什么功能，并将结果打印到终端上</code></pre>
+<h3 id="3-7-find-搜索范围-搜索条件"><a href="#3-7-find-搜索范围-搜索条件" class="headerlink" title="3.7 find [搜索范围] [搜索条件]"></a>3.7 find [搜索范围] [搜索条件]</h3><blockquote>
+<ol>
+<li>默认完全匹配</li>
+<li>避免大范围搜索，非常浪费资源，建议不在直接’/‘目录下搜索</li>
+</ol>
+</blockquote>
+<pre><code>find /root -iname test 不区分要搜索的test大小写格式
+find /root -user root 搜索root目录下所有属于root用户的文件
+find /root -nouser 没有所属者的文件。
 
+linux中每个文件都有所属者，如果没有，一般都是垃圾文件。
+但还是有特殊的，内核产生的文件，就没有所属者，一般在proc和sys目录下；
+还有外来文件，u盘拷入的文件也会忽略所有者</code></pre>
+<h4 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4><pre><code>通配符有3种
+1. * 匹配任何字符
+    find /home -name &quot;*test*&quot;,显示所有名字带test的文件
+    find /home -name &quot;*&quot;, home目录下所有文件，包括隐藏文件
+2. ? 匹配任意一个字符
+3. [] 匹配任意一个中括号内的字符，
+    find /home -name &quot;test[12]&quot; 显示test1 test2文件
+    find /home -name &quot;[12]*&quot; 显示1或2开头的文件
+    find /home -name &quot;*[12]&quot; 显示所有1或2结尾的文件</code></pre>
+<h4 id="find-按文件时间搜索"><a href="#find-按文件时间搜索" class="headerlink" title="find 按文件时间搜索"></a>find 按文件时间搜索</h4><pre><code>1. find /home -mtime +10 在home目录下，查找10天前修改的文件
+2. find /home -mtime 10                    10天前当天的文件
+3. find /home -mtime -10                   10天内修改的文件
 
-{% block content %}
+atime 文件访问时间  ctime 改变文件属性 mtime 修改文件内容</code></pre>
+<h4 id="find-目录-size-大小"><a href="#find-目录-size-大小" class="headerlink" title="find 目录 -size 大小"></a>find 目录 -size 大小</h4><pre><code>小写k和大写M
+find /etc -size +20k -a -size -50k  查找/etc/目录下大于20k并且小于50k的文件
+-a and 与，两个条件都满足
+-o or  或，两个条件满足一个即可
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
-  </div>
+find /etc -size +20k -a -size -50k -exec ls -lh &#123;&#125; \;
+查找/etc 目录下，大于20k且小于50k的文件，并显示详细信息
+-exec/ -ok 命令 &#123;&#125; \; 对搜索结果执行操作
 
-{% endblock %}
+固定格式：-exec &#123;&#125; \\ ，表示直接对前面的搜索结果进行后面的命令处理。？？？</code></pre>
+<h4 id="grep-选项-字符串-文件名"><a href="#grep-选项-字符串-文件名" class="headerlink" title="grep [选项] 字符串 文件名"></a>grep [选项] 字符串 文件名</h4><pre><code>-i 忽略大小写
+-v 排除指定字符串</code></pre>
+<blockquote>
+<p>find与grep的区别</p>
+</blockquote>
+<pre><code>find: 在系统中搜索符合条件的文件名，如果需要匹配，使用通配符，为完全匹配
+grep: 在文件中搜索符合条件的字符串，如果需要匹配，使用正则表达式，为包含匹配</code></pre>
+<h2 id="四、帮助命令"><a href="#四、帮助命令" class="headerlink" title="四、帮助命令"></a>四、帮助命令</h2><h3 id="4-1-man-命令名称-manual"><a href="#4-1-man-命令名称-manual" class="headerlink" title="4.1 man 命令名称  manual"></a>4.1 man 命令名称  manual</h3><p>进入man命令操作，q退出；输入: / -d 搜索’-d’字符串；按n往下搜，shfit+n 网上搜</p>
+<h3 id="4-2-其他帮助命令"><a href="#4-2-其他帮助命令" class="headerlink" title="4.2 其他帮助命令"></a>4.2 其他帮助命令</h3><ul>
+<li><p>命令 –help</p>
+</li>
+<li><p>info 命令<br>  ls –help</p>
+<p>  -回车 进入带*号的命令<br>  -u 进入上层页面<br>  -n 进入下一个帮助小节<br>  -p 进入上一个帮助小节<br>  -q 退出</p>
+</li>
+</ul>
+<h2 id="五、压缩与解压缩命令"><a href="#五、压缩与解压缩命令" class="headerlink" title="五、压缩与解压缩命令"></a>五、压缩与解压缩命令</h2><blockquote>
+<p>.zip .gz .bz2 .tar.gz .tar.bz2</p>
+</blockquote>
+<h3 id="5-1-zip"><a href="#5-1-zip" class="headerlink" title="5.1 zip"></a>5.1 zip</h3><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zip 压缩文件名 源文件 <span class="comment"># 压缩文件</span></span><br><span class="line">zip -r 压缩目录名 源目录 <span class="comment"># 压缩目录</span></span><br><span class="line"></span><br><span class="line">unzip 压缩文件 <span class="comment"># 解压缩文件</span></span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="5-2-gz"><a href="#5-2-gz" class="headerlink" title="5.2 gz"></a>5.2 gz</h3><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gzip 源文件 <span class="comment"># 压缩为.gz格式的压缩文件，源文件会消失</span></span><br><span class="line">gzip -c 源文件&gt;压缩文件 <span class="comment"># 压缩为.gz格式，源文件会保留</span></span><br><span class="line">gzip -r 目录 <span class="comment"># 压缩目录下所有的文件夹，但不能压缩目录</span></span><br><span class="line"></span><br><span class="line">gzip -d 压缩文件 <span class="comment"># 解压缩文件</span></span><br><span class="line">gunzip 压缩文件 <span class="comment"># 解压缩文件</span></span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="5-3-bzip格式"><a href="#5-3-bzip格式" class="headerlink" title="5.3 bzip格式"></a>5.3 bzip格式</h3><p>bzip 不能压缩目录</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bzip2 源文件 <span class="comment"># 压缩文件 源文件会消失</span></span><br><span class="line">bzip2 -k 源文件 <span class="comment"># 压缩后 保留源文件</span></span><br><span class="line"></span><br><span class="line">bzip -d 压缩文件 <span class="comment"># 解压bzip2文件</span></span><br><span class="line">bunbzip 压缩文件 <span class="comment"># 解压文件</span></span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="5-4-tar-gz-tar-bz2"><a href="#5-4-tar-gz-tar-bz2" class="headerlink" title="5.4 tar.gz tar.bz2"></a>5.4 tar.gz tar.bz2</h3><pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf 打包文件名 源文件 <span class="comment"># 压缩为tar格式</span></span><br><span class="line">tar -zvcf 压缩包名.tar.gz 源文件 <span class="comment"># 压缩为.tar.gz格式</span></span><br><span class="line">tar -jvcf 压缩包名.tar.bz2 源文件 <span class="comment"># 压缩为.tar.bz2格式</span></span><br><span class="line"><span class="comment"># -c 打包</span></span><br><span class="line"><span class="comment"># -v 显示过程</span></span><br><span class="line"><span class="comment"># -f 指定打包后的文件名</span></span><br><span class="line"></span><br><span class="line">tar -xvf 打包文件名 <span class="comment"># 解压tar格式</span></span><br><span class="line">tar -zxvf 压缩包名.tar.gz <span class="comment"># 解压.tar.gz格式</span></span><br><span class="line">tar -jxvf 压缩包名.tar.bz2 <span class="comment"># 解压.tar.bz2格式</span></span><br><span class="line"><span class="comment"># -x 解压包</span></span><br><span class="line"><span class="comment"># -z 压缩为tar.gz格式</span></span><br><span class="line"><span class="comment"># -j 压缩为.tar.bz2格式</span></span><br></pre></td></tr></table></figure></code></pre>
+<blockquote>
+<p>其他用法</p>
+</blockquote>
+<pre><code>1. 指定解压位置
+tar -jxvf打包文件名 -C 绝对路径
+2. 同时压缩多个文件到指定路径
+tar -zcvf 绝对路径 （/tmp/） 打包文件名 源文件 源文件
+3. 查看压缩包内文件，不解压
+tar -ztvf 压缩包文件名
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar –cvf jpg.tar *.jpg <span class="comment"># 将目录里所有jpg文件打包成tar.jpg</span></span><br><span class="line">tar –czf jpg.tar.gz *.jpg <span class="comment"># 将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</span></span><br><span class="line">tar –cjf jpg.tar.bz2 *.jpg <span class="comment"># 将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</span></span><br><span class="line">tar –cZf jpg.tar.Z *.jpg <span class="comment"># 将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</span></span><br><span class="line">rar a jpg.rar *.jpg <span class="comment"># rar格式的压缩，需要先下载rar for linux</span></span><br><span class="line">zip jpg.zip *.jpg <span class="comment"># zip格式的压缩，需要先下载zip for linux</span></span><br></pre></td></tr></table></figure></code></pre>
+<p>解压</p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tar –xvf file.tar <span class="comment"># 解压 tar包</span></span><br><span class="line">tar -xzvf file.tar.gz <span class="comment"># 解压tar.gz</span></span><br><span class="line">tar -xjvf file.tar.bz2 <span class="comment"># 解压 tar.bz2</span></span><br><span class="line">tar –xZvf file.tar.Z <span class="comment"># 解压tar.Z</span></span><br><span class="line">unrar e file.rar <span class="comment"># 解压rar</span></span><br><span class="line">unzip file.zip <span class="comment"># 解压zip</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></code></pre>
+<h2 id="六、关机和重启命令"><a href="#六、关机和重启命令" class="headerlink" title="六、关机和重启命令"></a>六、关机和重启命令</h2><h3 id="6-1-关机和重启"><a href="#6-1-关机和重启" class="headerlink" title="6.1 关机和重启"></a>6.1 关机和重启</h3><blockquote>
+<p>shutdown [选项] 时间</p>
+</blockquote>
+<pre><code>时间后面加&quot;&amp;&quot;,表示将当前计划任务放置后台运行！若不放置，当前界面直到关机/重启都无法进行操作。
+这时，如果当前用户按下ctrl+c ，可以取消本次关机或重启的操作；
+而其他用户按下ctrl+c，不会取消关机或重启，但可以中断退出，继续其他操作。</code></pre>
+<h4 id="选项"><a href="#选项" class="headerlink" title="选项"></a>选项</h4><pre><code>-h 关机
+-r 重启
+-c 取消上一个关机命令</code></pre>
+<h4 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h4><pre><code> now //现在
+ 时: 分 // 后面的时间可以使用[+m]格式，表示多少分钟后执行。
+ 也可以用[hh:mm]格式，表示指定的时间执行，该时间是24小时制的</code></pre>
+<h4 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h4><pre><code>shutdown -h 05:30 设定凌晨05:30关机
+shutdown -h now 立即关机
+shutdown -r 05:30 设定凌晨05:30重启
+shutdown -r now 立即重启
+shutdown -c 取消前一个关机或重启命令</code></pre>
+<h3 id="6-2-系统运行级别"><a href="#6-2-系统运行级别" class="headerlink" title="6.2 系统运行级别"></a>6.2 系统运行级别</h3><pre><code>runlevel 查看运行级别 前级别 当前级别
+logout 注销
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+0    //关机
+1    //单用户(类似windows安全模式）
+2    //不完全多用户，不含NFS服务（字符界面，不包含文件共享服务）
+3    //完全多用户（字符界面）
+4    //未分配
+5    //图形界面
+6    //重启</code></pre>
+<h2 id="七、挂载与卸载命令"><a href="#七、挂载与卸载命令" class="headerlink" title="七、挂载与卸载命令"></a>七、挂载与卸载命令</h2><h3 id="7-1-挂载-可理解为分配盘符"><a href="#7-1-挂载-可理解为分配盘符" class="headerlink" title="7.1 挂载(可理解为分配盘符)"></a>7.1 挂载(可理解为分配盘符)</h3><p>(1)查询与自动挂载</p>
+<p>mount 查询系统中已挂载的设备<br>mount -a 依据配置文件/etc/fstab的内容，自动挂载</p>
+<p>光盘 U盘 数据不建议写入自动挂载</p>
+<p>(2) 挂载命令的格式</p>
+<blockquote>
+<p>mount [-t 文件系统] [-o 特殊选项][设备文件名][挂载点]</p>
+</blockquote>
+<h4 id="mount选项"><a href="#mount选项" class="headerlink" title="mount选项"></a>mount选项</h4><p>-t 文件系统：加入文件系统类型来指定挂载的类型，ext3,ext4,光盘：iso9660等文件系统<br>-o 特殊选项：可以指定挂载的额外选项</p>
+<h2 id="7-2-挂载-卸载光盘-没用了吧"><a href="#7-2-挂载-卸载光盘-没用了吧" class="headerlink" title="7.2 挂载/卸载光盘 没用了吧"></a>7.2 挂载/卸载光盘 没用了吧</h2><h2 id="7-3-挂载U盘"><a href="#7-3-挂载U盘" class="headerlink" title="7.3 挂载U盘"></a>7.3 挂载U盘</h2><p>先看U盘的设备名，然后再挂载</p>
+<p>fdisk -l //查看系统中已经识别的硬盘</p>
+<p>mount -t vfat /dev/sdb1 /mnt/usb/</p>
+<p>注:</p>
+<pre><code>vfat 指的是fat32文件系统，单个文件不超过4G
+Linux默认不支持NTFS文件系统，可以下载ntfs-3g软件安装</code></pre>
+<h2 id="八、用户登录查看命令"><a href="#八、用户登录查看命令" class="headerlink" title="八、用户登录查看命令"></a>八、用户登录查看命令</h2><h3 id="8-1-w"><a href="#8-1-w" class="headerlink" title="8.1 w"></a>8.1 w</h3><pre><code>查看系统当前信息(负载和开机时间等信息) 当前已经登录的用户及用什么终端进入。</code></pre>
+<blockquote>
+<p>load average: X.XX X.XX X.XX 表示系统在1分钟内 5分钟内 15分钟内 的平均负载(CPU内存)<br>USER: 用户<br>TTY:登录终端 pts/0 第一个远程终端<br>LOGIN@: 登录时间<br>IDLE: 用户闲置时间<br>JCPU: 指的是和该终端连接的所有进程占用的时间。<br>PCPU: 指当前进程所占用的时间<br>WHAT: 当前正在运行的命令</p>
+</blockquote>
+<h3 id="8-2-who-与w类似，但信息有所简化"><a href="#8-2-who-与w类似，但信息有所简化" class="headerlink" title="8.2 who 与w类似，但信息有所简化"></a>8.2 who 与w类似，但信息有所简化</h3><pre><code>会显示登录来源IP地址</code></pre>
+<h3 id="8-3-last"><a href="#8-3-last" class="headerlink" title="8.3 last"></a>8.3 last</h3><pre><code>查看当前登录和过去登录的用户信息
+可以看到reboot时间，实际是查看/var/log/wtmp但必须用last命令才能看</code></pre>
+<h3 id="8-4-lastlog"><a href="#8-4-lastlog" class="headerlink" title="8.4 lastlog"></a>8.4 lastlog</h3><pre><code>查看所有用户最后一次登录时间
+/var/log/lastlog 不能直接看，也是用lastlog看</code></pre>
+<h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><ul>
+<li>:w 报错</li>
+<li>:q 退出</li>
+<li>:! 强制保存</li>
+<li>:ls 列出所有文件</li>
+<li>:n 下一个</li>
+<li>:N 上一个</li>
+<li>:15跳转到指定行</li>
+<li>/xxx 从光标位置开始向后搜索 xxx 字符串</li>
+<li>?xxx 从光标位置开始向前搜索</li>
+</ul>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Linux</p><p><a href="http://believezjp.oriht.com/posts/Linux/">http://believezjp.oriht.com/posts/Linux/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>believeZJP</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-03-22</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2019-03-22</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a><a class="link-muted mr-2" rel="tag" href="/tags/Nginx/">Nginx</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" href="/" target="_blank" rel="noopener" data-type="afdian"><span class="icon is-small"><i class="fas fa-charging-station"></i></span><span>爱发电</span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/res/images/alipay.jpeg" alt="支付宝"></span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="buymeacoffee"><span class="icon is-small"><i class="fas fa-coffee"></i></span><span>送我杯咖啡</span></a><a class="button donate" href="/" target="_blank" rel="noopener" data-type="patreon"><span class="icon is-small"><i class="fab fa-patreon"></i></span><span>Patreon</span></a><div class="notification is-danger">You forgot to set the <code>business</code> or <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.</div><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/posts/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E8%BF%BD%E6%9F%A5%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">线上问题追查通用方法</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/Javascript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="level-item">Javascript设计模式与开发实践-读书笔记</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'http://believezjp.oriht.com/posts/Linux/';
+            this.page.identifier = 'posts/Linux/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'hardy' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">94</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">95</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/believeZJP" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/believeZJP"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="微博" href="https://weibo.com/u/6021664425"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="QQ" href="tencent://message/?uin=421790588&amp;Site=www&amp;Menu=yes"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/es6/"><span class="level-start"><span class="level-item">es6</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/http/"><span class="level-start"><span class="level-item">http</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/http/%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-27T07:25:36.000Z">2020-11-27</time></p><p class="title"><a href="/posts/%E7%BE%BD%E6%AF%9B%E7%90%83%E9%80%9F%E6%88%90/">羽毛球速成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-09-11T08:55:34.116Z">2020-09-11</time></p><p class="title"><a href="/posts/Alfred/">Alfred</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-08-20T08:18:50.000Z">2020-08-20</time></p><p class="title"><a href="/posts/React%E4%B8%ADAPI%E4%BD%BF%E7%94%A8%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/">React中API使用的正确姿势</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-07-23T16:06:49.000Z">2020-07-24</time></p><p class="title"><a href="/posts/%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8standard%E8%A7%84%E8%8C%83%E5%B9%B6%E7%94%A8eslint%E8%87%AA%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%A3%E7%A0%81/">项目使用standard规范并用eslint自动格式化代码</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-07-07T01:02:45.000Z">2020-07-07</time></p><p class="title"><a href="/posts/node-cli%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/">node cli开发调试经验总结</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/01/"><span class="level-start"><span class="level-item">一月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/12/"><span class="level-start"><span class="level-item">十二月 2019</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">十一月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">八月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">一月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">十一月 2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">十月 2018</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/08/"><span class="level-start"><span class="level-item">八月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/03/"><span class="level-start"><span class="level-item">三月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/3-8%E5%AE%8C%E7%BB%93-2019-11-13-20-27-45/"><span class="tag">3-8完结 2019-11-13 20:27:45</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/5-1%E5%AE%8C%E7%BB%93-2019-11-15-19-36-48/"><span class="tag">5-1完结 2019-11-15 19:36:48</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/5-3%E5%AE%8C%E7%BB%93-2019-11-18-19-55-00/"><span class="tag">5-3完结 2019-11-18 19:55:00</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/5-8%E5%AE%8C%E7%BB%93-2019-11-18-19-55-00/"><span class="tag">5-8完结 2019-11-18 19:55:00</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Alfred/"><span class="tag">Alfred</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS/"><span class="tag">CSS</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS3/"><span class="tag">CSS3</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EventLoop/"><span class="tag">EventLoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/GitKraken/"><span class="tag">GitKraken</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Javascript/"><span class="tag">Javascript</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Koa/"><span class="tag">Koa</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NgVinx/"><span class="tag">NgVinx</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Nginx/"><span class="tag">Nginx</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NodeJS/"><span class="tag">NodeJS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Promise/"><span class="tag">Promise</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React-Native/"><span class="tag">React Native</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React%E8%BF%81%E7%A7%BB%E5%88%B0%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">React迁移到百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSR/"><span class="tag">SSR</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SmartGit/"><span class="tag">SmartGit</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vue/"><span class="tag">Vue</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Webpack/"><span class="tag">Webpack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/antDesign/"><span class="tag">antDesign</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/async/"><span class="tag">async</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/await/"><span class="tag">await</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/centos/"><span class="tag">centos</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/compose/"><span class="tag">compose</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es6/"><span class="tag">es6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es8/"><span class="tag">es8</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/finish-webpack6-7-2019-11-28-20-09-56/"><span class="tag">finish webpack6-7 2019-11-28 20:09:56</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for-of/"><span class="tag">for of</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/generator/"><span class="tag">generator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iTerm2/"><span class="tag">iTerm2</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterator/"><span class="tag">iterator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/jQuery/"><span class="tag">jQuery</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/nextTick/"><span class="tag">nextTick</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/node/"><span class="tag">node</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/react/"><span class="tag">react</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/redis/"><span class="tag">redis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setImmediate/"><span class="tag">setImmediate</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setTimeout/"><span class="tag">setTimeout</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webpack4/"><span class="tag">webpack4</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B8%9A%E5%8A%A1/"><span class="tag">业务</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/"><span class="tag">代码优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"><span class="tag">代码示例</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"><span class="tag">内存泄漏</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%A5%E6%83%B3/"><span class="tag">冥想</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%93%B2%E5%AD%A6/"><span class="tag">哲学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><span class="tag">基础知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98/"><span class="tag">处理问题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"><span class="tag">学习方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="tag">学习笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%9A%E6%97%B6%E5%99%A8/"><span class="tag">定时器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%81%E8%A3%85/"><span class="tag">封装</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/"><span class="tag">思维导图</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"><span class="tag">性能优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8A%80%E6%9C%AF/"><span class="tag">技术</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8F%92%E4%BB%B6/"><span class="tag">插件</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%88%E7%8E%87/"><span class="tag">效率</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%99%E7%A8%8B/"><span class="tag">教程</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="tag">数据结构</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E7%A7%AF%E7%B4%AF/"><span class="tag">日常积累</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%AD%A3%E5%88%99/"><span class="tag">正则</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B2%9F%E9%80%9A%E6%8A%80%E5%B7%A7/"><span class="tag">沟通技巧</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/"><span class="tag">理论知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9B%91%E6%8E%A7/"><span class="tag">监控</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="tag">知识点</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%B2%BE%E8%AF%BB/"><span class="tag">精读</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BA%BF%E4%B8%8A%E4%BA%8B%E6%95%85/"><span class="tag">线上事故</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%84%E5%90%88%E5%87%BD%E6%95%B0/"><span class="tag">组合函数</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%88%E7%AB%AF/"><span class="tag">终端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/"><span class="tag">经验积累</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%A1%A5%E5%85%85%E6%85%95%E8%AF%BE%E7%BD%91webpack4-0%E8%A7%86%E9%A2%91%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%8C%E7%BB%93/"><span class="tag">补充慕课网webpack4.0视频笔记--第二章完结</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B7%91%E6%AD%A5/"><span class="tag">跑步</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E5%8A%A8/"><span class="tag">运动</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"><span class="tag">进程管理</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a><p class="is-size-7"><span>&copy; 2020 believeZJP</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
