@@ -1,59 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Alfred</title>
-    <url>/posts/Alfred/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h2 id="Alfred是什么"><a href="#Alfred是什么" class="headerlink" title="Alfred是什么"></a>Alfred是什么</h2><ol>
-<li>可以当做app快速启动(关闭)工具来使用</li>
-<li>自定义搜索</li>
-<li>workflow</li>
-</ol>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="https://www.jianshu.com/p/72fe06566fce">下载</a></p>
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>唤起  <code>option+空格</code><br>设置  <code>command+,</code></p>
-<a id="more"></a>
-
-<h2 id="配置百度搜索"><a href="#配置百度搜索" class="headerlink" title="配置百度搜索"></a>配置百度搜索</h2><p>在配置页找到<code>Web Search</code> 点击右下角<code>Edit custom Search</code>. 在弹出框里配置</p>
-<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">Search URL: https://www.baidu.com/s?wd=&#123;query&#125;</span><br><span class="line">Title: 百度(随便写)</span><br><span class="line">keyWord: b</span><br></pre></td></tr></table></figure>
-
-<p>点save</p>
-<p>唤醒后再输入框输入<code>b (任意字符)</code> 会自动打开百度搜索</p>
-<p>完成上述步骤后， 再点击”Features”-&gt;Default Results-&gt;”Setup fallback results”-&gt;点击弹出的窗口右下角”+”号-&gt;选择Custom Rearch 下的百度(上一步设置的Title)，操作步骤如下图。</p>
-<p><img src="/posts/Alfred/addbaidu.png" alt="添加自定义search"><br><img src="/posts/Alfred/addbaidu-input.png" alt="设置百度内容"><br><img src="/posts/Alfred/setdefault.png" alt="修改默认搜索"><br><img src="/posts/Alfred/first-baidu.png" alt="修改默认搜索"></p>
-<h2 id="配置自定义终端"><a href="#配置自定义终端" class="headerlink" title="配置自定义终端"></a>配置自定义终端</h2><p>终端使用iTerm2, 可以如下设置<br>在设置页面，左下角<code>Terminal/Shell</code>, 选择Custom</p>
-<p>根据iTerm2的版本, <a href="https://github.com/stuartcryan/custom-iterm-applescripts-for-alfred">打开自定义脚本配置</a><br>复制到输入框,即可。</p>
-<p>唤醒后， 输入<code>&gt; [shell命令]</code>即可自动打开iTerm2，执行[shell命令]</p>
-<p>eg: <code>&gt; cd /</code></p>
-<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><h3 id="百度搜索"><a href="#百度搜索" class="headerlink" title="百度搜索"></a>百度搜索</h3><p><code>option+空格</code> 唤醒, 随便输入内容，下拉列表显示百度搜索，直接回车。</p>
-<h2 id="打开指定应用"><a href="#打开指定应用" class="headerlink" title="打开指定应用"></a>打开指定应用</h2><p><code>option+空格</code> 唤醒, 输入<code>设置</code>, <code>chrome</code>等应用名字，会直接显示app，回车打开。</p>
-<ul>
-<li><code>w</code> 可显示网易云音乐</li>
-<li>iterm 打开终端</li>
-</ul>
-<h2 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h2><p>唤醒直接在输入框输入算式，即可显示结果</p>
-<h2 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h2><p>在Web Search中添加<code>https://translate.google.cn/?text=&#123;query&#125;</code>，设置快捷键<code>tr</code></p>
-<p>唤醒后输入<code>tr 翻译内容</code> 回车，可自动打开谷歌翻译</p>
-<h3 id="默认字典翻译"><a href="#默认字典翻译" class="headerlink" title="默认字典翻译"></a>默认字典翻译</h3><p><code>define 翻译内容</code><br>只能翻译词, 没有谷歌智能,可以及时显示翻译内容，不用打开网页</p>
-<p>可以在<code>features-&gt;Dictionary-&gt;Defined a word</code>修改<code>denife</code>为<code>de</code></p>
-<h2 id="退出某个应用"><a href="#退出某个应用" class="headerlink" title="退出某个应用"></a>退出某个应用</h2><p><code>quit</code> 加空格</p>
-<h2 id="alfred-每次开机运行后都提示是否允许访问通讯录"><a href="#alfred-每次开机运行后都提示是否允许访问通讯录" class="headerlink" title="alfred 每次开机运行后都提示是否允许访问通讯录"></a>alfred 每次开机运行后都提示是否允许访问通讯录</h2><p>在终端输入如下命令解决</p>
-<p><code>sudo codesign -f -d -s - /Applications/Alfred\ 3.app/Contents/Frameworks/Alfred\ Framework.framework/Versions/A/Alfred\ Framework</code></p>
-<h2 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h2><p>open用来打开文件，find用来显示文件所在位置</p>
-<p>screensaver显示屏保</p>
-<p>lock锁屏—(不生效)</p>
-<p>sleep睡眠</p>
-<p>trash废纸篓，emptytrash清空废纸篓</p>
-<p>shutdown关机，restart重启，logout注销</p>
-<h2 id="workflow-查询本机IP"><a href="#workflow-查询本机IP" class="headerlink" title="workflow 查询本机IP"></a>workflow 查询本机IP</h2><p><a href="https://github.com/zenorocha/alfred-workflows/blob/master/ip-address/ip-address.alfredworkflow">下载地址</a></p>
-<p>双击导入， 输入ip，即可查询本机ip，按cmd+c可以复制</p>
-<h2 id="好的链接推荐"><a href="#好的链接推荐" class="headerlink" title="好的链接推荐"></a>好的链接推荐</h2><p><a href="https://www.jianshu.com/p/e9f3352c785f">5分钟上手Mac效率神器Alfred以及Alfred常用操作</a><br><a href="https://blog.csdn.net/sinat_32023305/article/details/78739118">Alfred Workflow教程与实例</a><br><a href="http://www.alfredworkflow.com/">Workflow列表</a></p>
-]]></content>
-      <tags>
-        <tag>Alfred</tag>
-        <tag>效率</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>7天入门数据结构和算法</title>
     <url>/posts/7%E5%A4%A9%E5%85%A5%E9%97%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h2 id="数据结构和算法总览"><a href="#数据结构和算法总览" class="headerlink" title="数据结构和算法总览"></a>数据结构和算法总览</h2><p>线上课程</p>
@@ -181,6 +128,59 @@
       </tags>
   </entry>
   <entry>
+    <title>Alfred</title>
+    <url>/posts/Alfred/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h2 id="Alfred是什么"><a href="#Alfred是什么" class="headerlink" title="Alfred是什么"></a>Alfred是什么</h2><ol>
+<li>可以当做app快速启动(关闭)工具来使用</li>
+<li>自定义搜索</li>
+<li>workflow</li>
+</ol>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="https://www.jianshu.com/p/72fe06566fce">下载</a></p>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>唤起  <code>option+空格</code><br>设置  <code>command+,</code></p>
+<a id="more"></a>
+
+<h2 id="配置百度搜索"><a href="#配置百度搜索" class="headerlink" title="配置百度搜索"></a>配置百度搜索</h2><p>在配置页找到<code>Web Search</code> 点击右下角<code>Edit custom Search</code>. 在弹出框里配置</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">Search URL: https://www.baidu.com/s?wd=&#123;query&#125;</span><br><span class="line">Title: 百度(随便写)</span><br><span class="line">keyWord: b</span><br></pre></td></tr></table></figure>
+
+<p>点save</p>
+<p>唤醒后再输入框输入<code>b (任意字符)</code> 会自动打开百度搜索</p>
+<p>完成上述步骤后， 再点击”Features”-&gt;Default Results-&gt;”Setup fallback results”-&gt;点击弹出的窗口右下角”+”号-&gt;选择Custom Rearch 下的百度(上一步设置的Title)，操作步骤如下图。</p>
+<p><img src="/posts/Alfred/addbaidu.png" alt="添加自定义search"><br><img src="/posts/Alfred/addbaidu-input.png" alt="设置百度内容"><br><img src="/posts/Alfred/setdefault.png" alt="修改默认搜索"><br><img src="/posts/Alfred/first-baidu.png" alt="修改默认搜索"></p>
+<h2 id="配置自定义终端"><a href="#配置自定义终端" class="headerlink" title="配置自定义终端"></a>配置自定义终端</h2><p>终端使用iTerm2, 可以如下设置<br>在设置页面，左下角<code>Terminal/Shell</code>, 选择Custom</p>
+<p>根据iTerm2的版本, <a href="https://github.com/stuartcryan/custom-iterm-applescripts-for-alfred">打开自定义脚本配置</a><br>复制到输入框,即可。</p>
+<p>唤醒后， 输入<code>&gt; [shell命令]</code>即可自动打开iTerm2，执行[shell命令]</p>
+<p>eg: <code>&gt; cd /</code></p>
+<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><h3 id="百度搜索"><a href="#百度搜索" class="headerlink" title="百度搜索"></a>百度搜索</h3><p><code>option+空格</code> 唤醒, 随便输入内容，下拉列表显示百度搜索，直接回车。</p>
+<h2 id="打开指定应用"><a href="#打开指定应用" class="headerlink" title="打开指定应用"></a>打开指定应用</h2><p><code>option+空格</code> 唤醒, 输入<code>设置</code>, <code>chrome</code>等应用名字，会直接显示app，回车打开。</p>
+<ul>
+<li><code>w</code> 可显示网易云音乐</li>
+<li>iterm 打开终端</li>
+</ul>
+<h2 id="计算器"><a href="#计算器" class="headerlink" title="计算器"></a>计算器</h2><p>唤醒直接在输入框输入算式，即可显示结果</p>
+<h2 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h2><p>在Web Search中添加<code>https://translate.google.cn/?text=&#123;query&#125;</code>，设置快捷键<code>tr</code></p>
+<p>唤醒后输入<code>tr 翻译内容</code> 回车，可自动打开谷歌翻译</p>
+<h3 id="默认字典翻译"><a href="#默认字典翻译" class="headerlink" title="默认字典翻译"></a>默认字典翻译</h3><p><code>define 翻译内容</code><br>只能翻译词, 没有谷歌智能,可以及时显示翻译内容，不用打开网页</p>
+<p>可以在<code>features-&gt;Dictionary-&gt;Defined a word</code>修改<code>denife</code>为<code>de</code></p>
+<h2 id="退出某个应用"><a href="#退出某个应用" class="headerlink" title="退出某个应用"></a>退出某个应用</h2><p><code>quit</code> 加空格</p>
+<h2 id="alfred-每次开机运行后都提示是否允许访问通讯录"><a href="#alfred-每次开机运行后都提示是否允许访问通讯录" class="headerlink" title="alfred 每次开机运行后都提示是否允许访问通讯录"></a>alfred 每次开机运行后都提示是否允许访问通讯录</h2><p>在终端输入如下命令解决</p>
+<p><code>sudo codesign -f -d -s - /Applications/Alfred\ 3.app/Contents/Frameworks/Alfred\ Framework.framework/Versions/A/Alfred\ Framework</code></p>
+<h2 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h2><p>open用来打开文件，find用来显示文件所在位置</p>
+<p>screensaver显示屏保</p>
+<p>lock锁屏—(不生效)</p>
+<p>sleep睡眠</p>
+<p>trash废纸篓，emptytrash清空废纸篓</p>
+<p>shutdown关机，restart重启，logout注销</p>
+<h2 id="workflow-查询本机IP"><a href="#workflow-查询本机IP" class="headerlink" title="workflow 查询本机IP"></a>workflow 查询本机IP</h2><p><a href="https://github.com/zenorocha/alfred-workflows/blob/master/ip-address/ip-address.alfredworkflow">下载地址</a></p>
+<p>双击导入， 输入ip，即可查询本机ip，按cmd+c可以复制</p>
+<h2 id="好的链接推荐"><a href="#好的链接推荐" class="headerlink" title="好的链接推荐"></a>好的链接推荐</h2><p><a href="https://www.jianshu.com/p/e9f3352c785f">5分钟上手Mac效率神器Alfred以及Alfred常用操作</a><br><a href="https://blog.csdn.net/sinat_32023305/article/details/78739118">Alfred Workflow教程与实例</a><br><a href="http://www.alfredworkflow.com/">Workflow列表</a></p>
+]]></content>
+      <tags>
+        <tag>Alfred</tag>
+        <tag>效率</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Bundler源码编写</title>
     <url>/posts/Bundler%E6%BA%90%E7%A0%81%E7%BC%96%E5%86%99/</url>
     <content><![CDATA[<p>安装依赖-<a href="https://babeljs.io/docs/en/babel-parser">相关文档</a></p>
@@ -199,9 +199,6 @@
 <p>bundler.js</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> parser = <span class="built_in">require</span>(<span class="string">&#x27;@babel/parser&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> traverse = <span class="built_in">require</span>(<span class="string">&#x27;@babel/traverse&#x27;</span>).default;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分析入口文件和依赖</span></span><br><span class="line"><span class="keyword">const</span> moduleAnalyser = <span class="function">(<span class="params">filename</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 读取文件内容</span></span><br><span class="line">    <span class="keyword">const</span> content = fs.readFileSync(filename, <span class="string">&#x27;utf-8&#x27;</span>);</span><br><span class="line">    <span class="comment">// 使用babel解析文件成抽象语法树</span></span><br><span class="line">    <span class="keyword">const</span> ast = parser.parse(content, &#123;</span><br><span class="line">        sourceType: <span class="string">&#x27;module&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> dependencies = &#123;&#125;;</span><br><span class="line">    traverse(ast, &#123;</span><br><span class="line">        <span class="comment">// 声明</span></span><br><span class="line">        <span class="function"><span class="title">ImportDeclaration</span>(<span class="params">&#123; node &#125;</span>)</span> &#123;</span><br><span class="line">            <span class="comment">// 获取绝对路径的文件</span></span><br><span class="line">            <span class="keyword">const</span> dirname = path.dirname(filename);</span><br><span class="line">            <span class="keyword">const</span> newFile = <span class="string">&#x27;./&#x27;</span> + path.join(dirname, node.source.value);</span><br><span class="line">            dependencies[node.source.value] = newFile;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// babel转化es6代码到es5</span></span><br><span class="line">    <span class="keyword">const</span> &#123; code &#125; = babel.transformFromAst(ast, <span class="literal">null</span>, &#123;</span><br><span class="line">        presets:: [<span class="string">&#x27;@babel/preset-env&#x27;</span>]</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 返回入口文件和依赖文件</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        filename,</span><br><span class="line">        dependencies,</span><br><span class="line">        code</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 测试入口文件解析是否正常</span></span><br><span class="line"><span class="comment">// moduleAnalyser(&#x27;./src/index.js&#x27;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 依赖图谱，分析入口文件及入口文件中引入文件的依赖</span></span><br><span class="line"><span class="keyword">const</span> makeDependenciesGraph = <span class="function">(<span class="params">entry</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> entryModule = moduleAnalyser(entry);</span><br><span class="line">    <span class="keyword">const</span> graphArr = [entryModule];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; graphArr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> item = graphArr[i];</span><br><span class="line">        <span class="keyword">const</span> &#123; dependencies &#125; = item;</span><br><span class="line">        <span class="keyword">if</span> (dependencies) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> j <span class="keyword">in</span> dependencies) &#123;</span><br><span class="line">                graphArr.push(moduleAnalyser(dependencies[j]));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> graph = &#123;&#125;;</span><br><span class="line">    graphArr.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        graph[item.filename] = &#123;</span><br><span class="line">            dependencies: item.dependencies,</span><br><span class="line">            code: item.code</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> graph;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 生成最终的代码</span></span><br><span class="line"><span class="keyword">const</span> generageCode = <span class="function">(<span class="params">entry</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> graph = <span class="built_in">JSON</span>.stringify(makeDependenciesGraph(entry));</span><br><span class="line">    <span class="comment">// 拿到entry, 执行entry对应的代码</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">`</span></span><br><span class="line"><span class="string">        (function(graph) &#123;</span></span><br><span class="line"><span class="string">            function require(module) &#123;</span></span><br><span class="line"><span class="string">                function localRequire(relativePath) &#123;</span></span><br><span class="line"><span class="string">                    return require(graph[module].dependencies[relativePath]);</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">                var exports = &#123;&#125;;</span></span><br><span class="line"><span class="string">                (function(require, exports, code)&#123;</span></span><br><span class="line"><span class="string">                    eval(code)</span></span><br><span class="line"><span class="string">                &#125;)(localRequire, exports, graph[module].code)</span></span><br><span class="line"><span class="string">                return exports;</span></span><br><span class="line"><span class="string">            &#125;;</span></span><br><span class="line"><span class="string">            require(&#x27;<span class="subst">$&#123;entry&#125;</span>&#x27;);</span></span><br><span class="line"><span class="string">        &#125;)(<span class="subst">$&#123;graph&#125;</span>);</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// const graphInfo = makeDependenciesGraph(&#x27;./src/index.js&#x27;);</span></span><br><span class="line"><span class="keyword">const</span> code = generageCode(<span class="string">&#x27;./src/index.js&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
-      <tags>
-        <tag>finish webpack6-7 2019-11-28 20:09:56</tag>
-      </tags>
   </entry>
   <entry>
     <title>CSS 代码示例</title>
@@ -514,100 +511,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaScript算法之复杂度分析</title>
-    <url>/posts/JavaScript%E7%AE%97%E6%B3%95%E4%B9%8B%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<p><a href="https://juejin.im/post/5c2a1d9d6fb9a04a0f654581">JavaScript 算法之复杂度分析</a></p>
-<p>想要学习数据结构与算法，首先要掌握一个数据结构与算法中最重要的概念—–复杂度分析。</p>
-<p>==<strong>是数据结构和算法学习的精髓。</strong>==</p>
-<p>是什么：<br>数据结构指的是“一组数据的存储结构”，算法指的是“操作数据的一组方法”。<br>数据结构是为算法服务的，算法是要作用再特定的数据结构上的。</p>
-<p>学什么：</p>
-<ol>
-<li>效率和资源消耗的度量衡–复杂度分析。</li>
-<li>最常用、最基础的20个数据结构与算法，学习他们的：“来历”、“特点”、“适合解决什么问题”和“实际的应用场景”。<br> 数据结构：数组、链表、栈、队列、散列表、二叉树、堆、跳表、图、Tire树<br> 算法： 递归、排序、二分查找、搜索、哈希算法、贪心算法、分治算法、回溯算法、动态规划、字符串匹配算法</li>
-</ol>
-<p>怎么学:</p>
-<ol>
-<li>边学边练，每周花 1~2 小时集中攻关三节课涉及的数据结构和算法，全部写出来。</li>
-<li>主动提问、多思考、多互动。在留言区增加自己的留言。</li>
-<li>自我激励，每次学习完做一篇学习笔记。</li>
-<li>沉下心不要浮躁，先把这些基础的数据结构和算法，还有学习方法熟练掌握后，再追求更高层次。</li>
-</ol>
-<a id="more"></a>
-
-<h2 id="为什么需要复杂度分析"><a href="#为什么需要复杂度分析" class="headerlink" title="为什么需要复杂度分析"></a>为什么需要复杂度分析</h2><p>执行代码进行复杂度分析弊端</p>
-<ol>
-<li>测试结果非常依赖测试环境</li>
-<li>测试结果受数据规模的影响很大</li>
-</ol>
-<h2 id="大O复杂度表示法"><a href="#大O复杂度表示法" class="headerlink" title="大O复杂度表示法"></a>大O复杂度表示法</h2><p>不需要具体的测试数据来测试，就可以粗略估计算法执行效率的方法</p>
-<p>一、什么是复杂度分析？</p>
-<ol>
-<li>数据结构和算法解决是“如何让计算机更快时间、更省空间的解决问题”。</li>
-<li>因此需从执行时间和占用空间两个维度来评估数据结构和算法的性能。</li>
-<li>分别用时间复杂度和空间复杂度两个概念来描述性能问题，二者统称为复杂度。</li>
-<li>复杂度描述的是算法执行时间（或占用空间）与数据规模的增长关系。</li>
-</ol>
-<p>二、为什么要进行复杂度分析？</p>
-<ol>
-<li>和性能测试相比，复杂度分析有不依赖执行环境、成本低、效率高、易操作、指导性强的特点。</li>
-<li>掌握复杂度分析，将能编写出性能更优的代码，有利于降低系统开发和维护成本。</li>
-</ol>
-<p>三、如何进行复杂度分析？</p>
-<ol>
-<li><p>大O表示法</p>
-<p> 1）来源<br> 算法的执行时间与每行代码的执行次数成正比，用T(n) = O(f(n))表示，其中T(n)表示算法执行总时间，f(n)表示每行代码执行总次数，而n往往表示数据的规模。<br> 2）特点<br> 以时间复杂度为例，由于时间复杂度描述的是算法执行时间与数据规模的增长变化趋势，所以常量阶、低阶以及系数实际上对这种增长趋势不产决定性影响，所以在做时间复杂度分析时忽略这些项。</p>
-</li>
-<li><p>复杂度分析法则</p>
-</li>
-</ol>
-<p>1）单段代码看高频：比如循环。<br>2）多段代码取最大：比如一段代码中有单循环和多重循环，那么取多重循环的复杂度。<br>3）嵌套代码求乘积：比如递归、多重循环等<br>4）多个规模求加法：比如方法有两个参数控制两个循环的次数，那么这时就取二者复杂度相加。</p>
-<p>四、常用的复杂度级别？</p>
-<p>多项式阶：随着数据规模的增长，算法的执行时间和空间占用，按照多项式的比例增长。包括，<br>O(1)（常数阶）、O(logn)（对数阶）、O(n)（线性阶）、O(nlogn)（线性对数阶）、O(n^2)（平方阶）、O(n^3)（立方阶）</p>
-<p>非多项式阶：随着数据规模的增长，算法的执行时间和空间占用暴增，这类算法性能极差。包括，<br>O(2^n)（指数阶）、O(n!)（阶乘阶）</p>
-<p>五、如何掌握好复杂度分析方法？<br>复杂度分析关键在于多练，所谓孰能生巧。</p>
-<h2 id="06-链表（上）：如何实现LRU缓存淘汰算法"><a href="#06-链表（上）：如何实现LRU缓存淘汰算法" class="headerlink" title="06 | 链表（上）：如何实现LRU缓存淘汰算法"></a>06 | 链表（上）：如何实现LRU缓存淘汰算法</h2><p>五、应用<br>1.如何分别用链表和数组实现LRU缓冲淘汰策略？<br>1）什么是缓存？<br>缓存是一种提高数据读取性能的技术，在硬件设计、软件开发中都有着非广泛的应用，比如常见的CPU缓存、数据库缓存、浏览器缓存等等。<br>2）为什么使用缓存？即缓存的特点<br>缓存的大小是有限的，当缓存被用满时，哪些数据应该被清理出去，哪些数据应该被保留？就需要用到缓存淘汰策略。<br>3）什么是缓存淘汰策略？<br>指的是当缓存被用满时清理数据的优先顺序。<br>4）有哪些缓存淘汰策略？<br>常见的3种包括先进先出策略FIFO（First In，First Out）、最少使用策略LFU（Least Frenquently Used）、最近最少使用策略LRU（Least Recently Used）。<br>5）链表实现LRU缓存淘汰策略<br>当访问的数据没有存储在缓存的链表中时，直接将数据插入链表表头，时间复杂度为O(1)；当访问的数据存在于存储的链表中时，将该数据对应的节点，插入到链表表头,时间复杂度为O(n)。如果缓存被占满，则从链表尾部的数据开始清理，时间复杂度为O(1)。<br>6）数组实现LRU缓存淘汰策略<br>方式一：首位置保存最新访问数据，末尾位置优先清理<br>当访问的数据未存在于缓存的数组中时，直接将数据插入数组第一个元素位置，此时数组所有元素需要向后移动1个位置，时间复杂度为O(n)；当访问的数据存在于缓存的数组中时，查找到数据并将其插入数组的第一个位置，此时亦需移动数组元素，时间复杂度为O(n)。缓存用满时，则清理掉末尾的数据，时间复杂度为O(1)。<br>方式二：首位置优先清理，末尾位置保存最新访问数据<br>当访问的数据未存在于缓存的数组中时，直接将数据添加进数组作为当前最有一个元素时间复杂度为O(1)；当访问的数据存在于缓存的数组中时，查找到数据并将其插入当前数组最后一个元素的位置，此时亦需移动数组元素，时间复杂度为O(n)。缓存用满时，则清理掉数组首位置的元素，且剩余数组元素需整体前移一位，时间复杂度为O(n)。（优化：清理的时候可以考虑一次性清理一定数量，从而降低清理次数，提高性能。）<br>2.如何通过单链表实现“判断某个字符串是否为水仙花字符串”？（比如 上海自来水来自海上）<br>1）前提：字符串以单个字符的形式存储在单链表中。<br>2）遍历链表，判断字符个数是否为奇数，若为偶数，则不是。<br>3）将链表中的字符倒序存储一份在另一个链表中。<br>4）同步遍历2个链表，比较对应的字符是否相等，若相等，则是水仙花字串，否则，不是。<br>六、设计思想<br>时空替换思想：“用空间换时间” 与 “用时间换空间”<br>当内存空间充足的时候，如果我们更加追求代码的执行速度，我们就可以选择空间复杂度相对较高，时间复杂度小相对较低的算法和数据结构，缓存就是空间换时间的例子。如果内存比较紧缺，比如代码跑在手机或者单片机上，这时，就要反过来用时间换空间的思路。</p>
-<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>一、什么是递归？</p>
-<ol>
-<li>递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法，比如DFS深度优先搜索、前中后序二叉树遍历等都是使用递归。</li>
-<li>方法或函数调用自身的方式称为递归调用，调用称为递，返回称为归。</li>
-<li>基本上，所有的递归问题都可以用递推公式来表示，比如</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">f(n) = f(n-<span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">f(n) = f(n-<span class="number">1</span>) + f(n-<span class="number">2</span>);</span><br><span class="line">f(n)=n*f(n-<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-<p>二、为什么使用递归？递归的优缺点？</p>
-<ol>
-<li>优点：代码的表达力很强，写起来简洁。</li>
-<li>缺点：空间复杂度高、有堆栈溢出风险、存在重复计算、过多的函数调用会耗时较多等问题。</li>
-</ol>
-<p>三、什么样的问题可以用递归解决呢？</p>
-<p>一个问题只要同时满足以下3个条件，就可以用递归来解决：</p>
-<ol>
-<li>问题的解可以分解为几个子问题的解。何为子问题？就是数据规模更小的问题。</li>
-<li>问题与子问题，除了数据规模不同，求解思路完全一样</li>
-<li>存在递归终止条件</li>
-</ol>
-<p>四、如何实现递归？</p>
-<ol>
-<li><p>递归代码编写</p>
-<p> 写递归代码的关键就是找到如何将大问题分解为小问题的规律，并且基于此写出递推公式，然后再推敲终止条件，最后将递推公式和终止条件翻译成代码。</p>
-</li>
-<li><p>递归代码理解</p>
-</li>
-</ol>
-<p>对于递归代码，若试图想清楚整个递和归的过程，实际上是进入了一个思维误区。<br>那该如何理解递归代码呢？如果一个问题A可以分解为若干个子问题B、C、D，你可以假设子问题B、C、D已经解决。<br>而且，你只需要思考问题A与子问题B、C、D两层之间的关系即可，不需要一层层往下思考子问题与子子问题，子子问题与子子子问题之间的关系。屏蔽掉递归细节，这样子理解起来就简单多了。<br>因此，理解递归代码，就把它抽象成一个递推公式，不用想一层层的调用关系，不要试图用人脑去分解递归的每个步骤。</p>
-<p>五、递归常见问题及解决方案</p>
-<ol>
-<li>警惕堆栈溢出：可以声明一个全局变量来控制递归的深度，从而避免堆栈溢出。</li>
-<li>警惕重复计算：通过某种数据结构来保存已经求解过的值，从而避免重复计算。</li>
-</ol>
-<p>六、如何将递归改写为非递归代码？</p>
-<p>笼统的讲，所有的递归代码都可以改写为迭代循环的非递归写法。如何做？抽象出递推公式、初始值和边界条件，然后用迭代循环实现。</p>
-]]></content>
-      <tags>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaScript:for-of到generator</title>
     <url>/posts/JavaScript-for-of%E5%88%B0generator/</url>
     <content><![CDATA[<h1 id="for-of"><a href="#for-of" class="headerlink" title="for of"></a>for of</h1><p>在<code>JavaScript</code>中, 循环数组可以通过<code>map, filter, for of</code> 等来遍历一个数组.</p>
@@ -730,6 +633,100 @@
         <tag>for of</tag>
         <tag>generator</tag>
         <tag>iterator</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript算法之复杂度分析</title>
+    <url>/posts/JavaScript%E7%AE%97%E6%B3%95%E4%B9%8B%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<p><a href="https://juejin.im/post/5c2a1d9d6fb9a04a0f654581">JavaScript 算法之复杂度分析</a></p>
+<p>想要学习数据结构与算法，首先要掌握一个数据结构与算法中最重要的概念—–复杂度分析。</p>
+<p>==<strong>是数据结构和算法学习的精髓。</strong>==</p>
+<p>是什么：<br>数据结构指的是“一组数据的存储结构”，算法指的是“操作数据的一组方法”。<br>数据结构是为算法服务的，算法是要作用再特定的数据结构上的。</p>
+<p>学什么：</p>
+<ol>
+<li>效率和资源消耗的度量衡–复杂度分析。</li>
+<li>最常用、最基础的20个数据结构与算法，学习他们的：“来历”、“特点”、“适合解决什么问题”和“实际的应用场景”。<br> 数据结构：数组、链表、栈、队列、散列表、二叉树、堆、跳表、图、Tire树<br> 算法： 递归、排序、二分查找、搜索、哈希算法、贪心算法、分治算法、回溯算法、动态规划、字符串匹配算法</li>
+</ol>
+<p>怎么学:</p>
+<ol>
+<li>边学边练，每周花 1~2 小时集中攻关三节课涉及的数据结构和算法，全部写出来。</li>
+<li>主动提问、多思考、多互动。在留言区增加自己的留言。</li>
+<li>自我激励，每次学习完做一篇学习笔记。</li>
+<li>沉下心不要浮躁，先把这些基础的数据结构和算法，还有学习方法熟练掌握后，再追求更高层次。</li>
+</ol>
+<a id="more"></a>
+
+<h2 id="为什么需要复杂度分析"><a href="#为什么需要复杂度分析" class="headerlink" title="为什么需要复杂度分析"></a>为什么需要复杂度分析</h2><p>执行代码进行复杂度分析弊端</p>
+<ol>
+<li>测试结果非常依赖测试环境</li>
+<li>测试结果受数据规模的影响很大</li>
+</ol>
+<h2 id="大O复杂度表示法"><a href="#大O复杂度表示法" class="headerlink" title="大O复杂度表示法"></a>大O复杂度表示法</h2><p>不需要具体的测试数据来测试，就可以粗略估计算法执行效率的方法</p>
+<p>一、什么是复杂度分析？</p>
+<ol>
+<li>数据结构和算法解决是“如何让计算机更快时间、更省空间的解决问题”。</li>
+<li>因此需从执行时间和占用空间两个维度来评估数据结构和算法的性能。</li>
+<li>分别用时间复杂度和空间复杂度两个概念来描述性能问题，二者统称为复杂度。</li>
+<li>复杂度描述的是算法执行时间（或占用空间）与数据规模的增长关系。</li>
+</ol>
+<p>二、为什么要进行复杂度分析？</p>
+<ol>
+<li>和性能测试相比，复杂度分析有不依赖执行环境、成本低、效率高、易操作、指导性强的特点。</li>
+<li>掌握复杂度分析，将能编写出性能更优的代码，有利于降低系统开发和维护成本。</li>
+</ol>
+<p>三、如何进行复杂度分析？</p>
+<ol>
+<li><p>大O表示法</p>
+<p> 1）来源<br> 算法的执行时间与每行代码的执行次数成正比，用T(n) = O(f(n))表示，其中T(n)表示算法执行总时间，f(n)表示每行代码执行总次数，而n往往表示数据的规模。<br> 2）特点<br> 以时间复杂度为例，由于时间复杂度描述的是算法执行时间与数据规模的增长变化趋势，所以常量阶、低阶以及系数实际上对这种增长趋势不产决定性影响，所以在做时间复杂度分析时忽略这些项。</p>
+</li>
+<li><p>复杂度分析法则</p>
+</li>
+</ol>
+<p>1）单段代码看高频：比如循环。<br>2）多段代码取最大：比如一段代码中有单循环和多重循环，那么取多重循环的复杂度。<br>3）嵌套代码求乘积：比如递归、多重循环等<br>4）多个规模求加法：比如方法有两个参数控制两个循环的次数，那么这时就取二者复杂度相加。</p>
+<p>四、常用的复杂度级别？</p>
+<p>多项式阶：随着数据规模的增长，算法的执行时间和空间占用，按照多项式的比例增长。包括，<br>O(1)（常数阶）、O(logn)（对数阶）、O(n)（线性阶）、O(nlogn)（线性对数阶）、O(n^2)（平方阶）、O(n^3)（立方阶）</p>
+<p>非多项式阶：随着数据规模的增长，算法的执行时间和空间占用暴增，这类算法性能极差。包括，<br>O(2^n)（指数阶）、O(n!)（阶乘阶）</p>
+<p>五、如何掌握好复杂度分析方法？<br>复杂度分析关键在于多练，所谓孰能生巧。</p>
+<h2 id="06-链表（上）：如何实现LRU缓存淘汰算法"><a href="#06-链表（上）：如何实现LRU缓存淘汰算法" class="headerlink" title="06 | 链表（上）：如何实现LRU缓存淘汰算法"></a>06 | 链表（上）：如何实现LRU缓存淘汰算法</h2><p>五、应用<br>1.如何分别用链表和数组实现LRU缓冲淘汰策略？<br>1）什么是缓存？<br>缓存是一种提高数据读取性能的技术，在硬件设计、软件开发中都有着非广泛的应用，比如常见的CPU缓存、数据库缓存、浏览器缓存等等。<br>2）为什么使用缓存？即缓存的特点<br>缓存的大小是有限的，当缓存被用满时，哪些数据应该被清理出去，哪些数据应该被保留？就需要用到缓存淘汰策略。<br>3）什么是缓存淘汰策略？<br>指的是当缓存被用满时清理数据的优先顺序。<br>4）有哪些缓存淘汰策略？<br>常见的3种包括先进先出策略FIFO（First In，First Out）、最少使用策略LFU（Least Frenquently Used）、最近最少使用策略LRU（Least Recently Used）。<br>5）链表实现LRU缓存淘汰策略<br>当访问的数据没有存储在缓存的链表中时，直接将数据插入链表表头，时间复杂度为O(1)；当访问的数据存在于存储的链表中时，将该数据对应的节点，插入到链表表头,时间复杂度为O(n)。如果缓存被占满，则从链表尾部的数据开始清理，时间复杂度为O(1)。<br>6）数组实现LRU缓存淘汰策略<br>方式一：首位置保存最新访问数据，末尾位置优先清理<br>当访问的数据未存在于缓存的数组中时，直接将数据插入数组第一个元素位置，此时数组所有元素需要向后移动1个位置，时间复杂度为O(n)；当访问的数据存在于缓存的数组中时，查找到数据并将其插入数组的第一个位置，此时亦需移动数组元素，时间复杂度为O(n)。缓存用满时，则清理掉末尾的数据，时间复杂度为O(1)。<br>方式二：首位置优先清理，末尾位置保存最新访问数据<br>当访问的数据未存在于缓存的数组中时，直接将数据添加进数组作为当前最有一个元素时间复杂度为O(1)；当访问的数据存在于缓存的数组中时，查找到数据并将其插入当前数组最后一个元素的位置，此时亦需移动数组元素，时间复杂度为O(n)。缓存用满时，则清理掉数组首位置的元素，且剩余数组元素需整体前移一位，时间复杂度为O(n)。（优化：清理的时候可以考虑一次性清理一定数量，从而降低清理次数，提高性能。）<br>2.如何通过单链表实现“判断某个字符串是否为水仙花字符串”？（比如 上海自来水来自海上）<br>1）前提：字符串以单个字符的形式存储在单链表中。<br>2）遍历链表，判断字符个数是否为奇数，若为偶数，则不是。<br>3）将链表中的字符倒序存储一份在另一个链表中。<br>4）同步遍历2个链表，比较对应的字符是否相等，若相等，则是水仙花字串，否则，不是。<br>六、设计思想<br>时空替换思想：“用空间换时间” 与 “用时间换空间”<br>当内存空间充足的时候，如果我们更加追求代码的执行速度，我们就可以选择空间复杂度相对较高，时间复杂度小相对较低的算法和数据结构，缓存就是空间换时间的例子。如果内存比较紧缺，比如代码跑在手机或者单片机上，这时，就要反过来用时间换空间的思路。</p>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>一、什么是递归？</p>
+<ol>
+<li>递归是一种非常高效、简洁的编码技巧，一种应用非常广泛的算法，比如DFS深度优先搜索、前中后序二叉树遍历等都是使用递归。</li>
+<li>方法或函数调用自身的方式称为递归调用，调用称为递，返回称为归。</li>
+<li>基本上，所有的递归问题都可以用递推公式来表示，比如</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">f(n) = f(n-<span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">f(n) = f(n-<span class="number">1</span>) + f(n-<span class="number">2</span>);</span><br><span class="line">f(n)=n*f(n-<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>二、为什么使用递归？递归的优缺点？</p>
+<ol>
+<li>优点：代码的表达力很强，写起来简洁。</li>
+<li>缺点：空间复杂度高、有堆栈溢出风险、存在重复计算、过多的函数调用会耗时较多等问题。</li>
+</ol>
+<p>三、什么样的问题可以用递归解决呢？</p>
+<p>一个问题只要同时满足以下3个条件，就可以用递归来解决：</p>
+<ol>
+<li>问题的解可以分解为几个子问题的解。何为子问题？就是数据规模更小的问题。</li>
+<li>问题与子问题，除了数据规模不同，求解思路完全一样</li>
+<li>存在递归终止条件</li>
+</ol>
+<p>四、如何实现递归？</p>
+<ol>
+<li><p>递归代码编写</p>
+<p> 写递归代码的关键就是找到如何将大问题分解为小问题的规律，并且基于此写出递推公式，然后再推敲终止条件，最后将递推公式和终止条件翻译成代码。</p>
+</li>
+<li><p>递归代码理解</p>
+</li>
+</ol>
+<p>对于递归代码，若试图想清楚整个递和归的过程，实际上是进入了一个思维误区。<br>那该如何理解递归代码呢？如果一个问题A可以分解为若干个子问题B、C、D，你可以假设子问题B、C、D已经解决。<br>而且，你只需要思考问题A与子问题B、C、D两层之间的关系即可，不需要一层层往下思考子问题与子子问题，子子问题与子子子问题之间的关系。屏蔽掉递归细节，这样子理解起来就简单多了。<br>因此，理解递归代码，就把它抽象成一个递推公式，不用想一层层的调用关系，不要试图用人脑去分解递归的每个步骤。</p>
+<p>五、递归常见问题及解决方案</p>
+<ol>
+<li>警惕堆栈溢出：可以声明一个全局变量来控制递归的深度，从而避免堆栈溢出。</li>
+<li>警惕重复计算：通过某种数据结构来保存已经求解过的值，从而避免重复计算。</li>
+</ol>
+<p>六、如何将递归改写为非递归代码？</p>
+<p>笼统的讲，所有的递归代码都可以改写为迭代循环的非递归写法。如何做？抽象出递推公式、初始值和边界条件，然后用迭代循环实现。</p>
+]]></content>
+      <tags>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -1676,7 +1673,6 @@ Linux默认不支持NTFS文件系统，可以下载ntfs-3g软件安装</code></p
 ]]></content>
       <tags>
         <tag>Vue</tag>
-        <tag>NgVinx</tag>
       </tags>
   </entry>
   <entry>
@@ -2676,6 +2672,52 @@ $('.hilight').hilight();
       </tags>
   </entry>
   <entry>
+    <title>学习方法</title>
+    <url>/posts/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="学习方法：如何在工作内外获得持续的技术成长"><a href="#学习方法：如何在工作内外获得持续的技术成长" class="headerlink" title="学习方法：如何在工作内外获得持续的技术成长"></a>学习方法：如何在工作内外获得持续的技术成长</h2><p>参考链接</p>
+<ul>
+<li><a href="https://juejin.im/post/5cbd7477f265da039d32834e">学习方法：如何在工作内外获得持续的技术成长</a></li>
+</ul>
+<p>看文章写的很好，摘一些对自己有用的东西保存下来</p>
+<h2 id="成长本质是突破天花板"><a href="#成长本质是突破天花板" class="headerlink" title="成长本质是突破天花板"></a>成长本质是突破天花板</h2><p>成长是一件很难捉摸和量化的事情，完全不同的环境和主观意识加上完全不同的行动措施既可以让一个人快速成为某个领域的顶尖高手，也可能完全相反。</p>
+<a id="more"></a>
+
+<h2 id="了解技术的成本和门槛"><a href="#了解技术的成本和门槛" class="headerlink" title="了解技术的成本和门槛"></a>了解技术的成本和门槛</h2><p>对技术寻根溯源追求本质是最重要的，但比这个更重要的是自己的时间分配和如何选择，你的时间远比你以为的要值钱的多，请珍惜它。</p>
+<p>哪些技术栈是时间长度相对可被接受，也就是哪些学习成本可以被接受是你需要思考的，思考清楚后，再去选择，会更有侧重，然后再来看不同的技术学习成本背后，哪个更贴合自己。</p>
+<h2 id="求变之前要先认清自己"><a href="#求变之前要先认清自己" class="headerlink" title="求变之前要先认清自己"></a>求变之前要先认清自己</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">我是谁？我的身份是？未来我想要做什么？当下我可以做什么？我擅长什么？我还需要学会什么？</span><br></pre></td></tr></table></figure>
+
+<p>答案永远在变化，也永远没在变，时间越久思考的越久经历也越多，就会距离它最真实的答案越近。</p>
+<p>其实有太多太多的问题，我们可以尝试问自己，但我们往往找别人去问，挑选跟自己内心与未来无关的话题，其实所有的答案都取决于自己接下来 3 ~ 9 个月具体的行动，这些答案来源于内心的原动力以及自己规划的最优或者最可执行路径，可一旦我们眼睛看到 9 个月后的结果，而忽视这个可执行路径，甚至忽略原动力的时候，结果就变得非常惋惜，忽略整个思考过程，也就压根无法了解自己的真实诉求和真实能力。</p>
+<h2 id="习惯养成与定目标计划"><a href="#习惯养成与定目标计划" class="headerlink" title="习惯养成与定目标计划"></a>习惯养成与定目标计划</h2><p>在经过深思熟虑后去制定的目标成功的概率更大，而脑袋一热跑出来的目标往往会泡汤，泡汤倒也罢了，这会让自己陷入定目标 - 执行难度过大 - 放弃 - 再定目标这样的死循环，信心和成就感一天天挫败下去，就变成了今日的自己，晚上想千万条路早上起来走原路，越来越麻木越来越气馁。</p>
+<p>建议: 制定目标要考虑能不能坚持下来，如果不能坚持下来，就修正。坚持两三周慢慢形成习惯，并从中受益获取一些兴趣和成就感，这时候才是定目标的时候，因为这时候，习惯正在养成。</p>
+<p>当有了一种正在建立或者成熟的习惯，也定了具体的目标后，就可以定具体的计划了。计划就是行动指南，要一板一眼的去执行，坚决不能马虎大意，最好一条条写下来。比如：</p>
+<ul>
+<li>每周晚上10点钟，花10分钟读书</li>
+<li>每周六花一小时整理笔记</li>
+<li>每周日花2小时对遇到的问题进行深入研究</li>
+</ul>
+<p>再把这个规律性的事项，分解到每一天，每一天都要打一个对勾，任务才算完成，完成后给自己一个激励，比如说连续5天完成，看场电影之类。指定明确的奖惩细则，叠加到每日的手机/电脑行程中，给自己强有力的提醒，坚持三个月，一个习惯大概率就能养成了，就可以定第二个目标去养成第二个习惯了。</p>
+<p>所以习惯和目标及计划的关系是，定目标前要尽可能先养成一个潜在的习惯，把自己的底线测试出来，然后调整目标，再拆解目标形成规律性的计划，最后把计划完成跟奖惩关联起来，并通过软硬件来跟自己进行互动提醒。这注定是一个单调的过程，但这一定是一个越坚持越好玩的过程，等习惯训练有了雏形的时候，才会真正启动持续成长这件事情。</p>
+<h2 id="训练稳定的思维路径"><a href="#训练稳定的思维路径" class="headerlink" title="训练稳定的思维路径"></a>训练稳定的思维路径</h2><p>我们前面对自己有了更客观的认知，也培养了完成目标的习惯，这两个前提条件就成立了，还缺第三样东西，就是稳定的思维路径，最刻板也最简单的思维方式就是穷尽式的提问，也就是前面认清自己这里，我用列举问题的这种办法，来让自己不断的接近某一个真相，那么面对任何一个困局的时候，都可以用这种方法。实际上，当你把几十个问题都回答一遍的过程中，你可以继续写下更击中灵魂的问题，而这次问题写下去的时候，往往答案就自然浮出水面。</p>
+<p>提问的套路可以更简单一些，就是 What Why How，这个问题是什么，当前的真相是什么，为什么发生，为什么走到这个地步，基于这些原因要如何解决，无论任何事情，都逼自己去捉摸它去思考它的前因后果，慢慢会发现自己会变成一个喜欢上思考和善于思考的人，再也不是之前的那个鲁莽的毛头小子，看问题只看负面看现象只看表面。</p>
+<p>认识自己、习惯养成、思维训练这三个要成年累月持续的做，当这些都逐渐变成长在自己身体内的一种能力的时候，所以你面临的问题都不会让你像之前那样焦虑，在做完这么长铺垫后，我们再来看如何获得持续的技术成长。</p>
+<h2 id="工作内外的技术成长"><a href="#工作内外的技术成长" class="headerlink" title="工作内外的技术成长"></a>工作内外的技术成长</h2><p>成长是经常不符合预期的，请记住，它大概率是不符合预期的，原因是自己的预期本身是非常主观不准确的，同时成长只是过程的积累并不是一个很直观的结果。<br>基于这样的背景，我们希望达成的共识是，无论成长是否预期，我都希望有持续的成长，同时盼望奇迹的发生 - 就是远超预期的成长会发生在我身上。</p>
+<h3 id="工作内的成长主要来自项目"><a href="#工作内的成长主要来自项目" class="headerlink" title="工作内的成长主要来自项目"></a>工作内的成长主要来自项目</h3><p>带着这样的期望，我们回到工作内工作外会发现，所有的成长最核心的过程指标就是项目经验，工作内天然就可以沉淀，那么如何沉淀或者挖掘成长点呢？</p>
+<p>很多人在面试中会被问到一个问题「你做的项目有什么难点」。可能大家会把思维局限在我做的这个业务有什么难的地方，我用了什么牛逼的技术去解决了业务上的什么难题。我相信大部分人不会有这样的经历，由此会觉得这个问题很难答。那么这个问题其实就可以引申为我们如何在工作中、业务中发现问题并得到成长？</p>
+<p>如何实现业务在大部分情况下不会是一个难题，<strong>但是如何把业务中相关的组件、逻辑等等可以复用的东西抽象出来，这就是一个难题了。你可以通过学习比你厉害的同事的代码，也可以学习这方面业内顶尖的库是如何实现的，这就是在工作中学习及成长。</strong></p>
+<p>在实现业务的过程中，大家肯定会使用各种各样的库及框架。那么当我们熟练使用这个库的时候，就应该尽可能的去了解常用的库的实现原理。我们可以通过文章去了解，也可以通过阅读源码去了解，这也是在工作中学习及成长。</p>
+<p>实际上大部分工作场景中的项目，深度的思考持续的思考都会带来较大的技术成长，但往往我们没有耐心和动力去做这件事情，因为会有雇佣心态，也就是你付我那点工资，凭什么我想破头皮去捉摸怎么优化它，这就等于是把自己拦到了池子之外，公司付薪水（无论多少）是购买了你的时间，而你的成长是基于这些时间如何在池子里学游泳技能，池子大小水温深浅甚至形状你都很难有控制权，但蛙泳仰泳自由泳甚至闭气潜水这些都是自己说了算，如果这些都玩溜了，去任意一个池子都能如鱼得水，不是么？</p>
+<p>例如：打造工作相关的工具链，让每个流程不独立进行。</p>
+<p>所以工作内，不仅靠耐心，还要有不怕吃亏的心态，更要有善于发现的双眼，无数机会都在你面前，都可以持续不断的带来成长，同时给自己团队和个人带来更多效率和体验的提升。</p>
+<h3 id="工作外的成长主要来自尝试与思考"><a href="#工作外的成长主要来自尝试与思考" class="headerlink" title="工作外的成长主要来自尝试与思考"></a>工作外的成长主要来自尝试与思考</h3><p>工作外的成长更简单易操作一些，往往就是技术储备、技术尝鲜和总结思考，技术储备一部分是为了自己的职业考虑，比如学习 RN/Flutter/Go 等，另一方面也可以是为了自己公司业务未来的可能性领域，比如 NodeJS/Taro/MPVue 等等，所有感兴趣的方向都可以去学习储备。<br>另外就是自己的想法，可以把他变成现实，比如一个行程提醒小工具，一个萝莉妹子叫起床小工具，一个自动生成周末食谱的工具等等，任何一个生活痛点和创意想法，都可以动手把它实现出来，前后端可以一起做，技术栈可以激进，所有的这些尝鲜都会带来技术视野的扩张，也会带来技术深度的沉淀。<br>最值得尝试的就是思考和总结，把任何自己学习的框架，看过的书，做过的项目，甚至解决过的 Bug，都可以有序的整理起来，把这些整理变成文字和图表，来强化自己对于技术的记忆，所有的这些记忆重复训练的次数越多，对于他们的理解和运营就越娴熟，往往最慢的反而是最有效的。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>成长是一个永恒的话题，互联网几十年来，无数的新人问成长，也无数的新人变老人，有的混成一方大拿，有的混成螺丝工头，抛开经济环境、行业趋势和公司经营，更多时候取决于我们成长的是一些学习方法，更根本上依然是我们对于自己的理解、规划和持之以恒的执行，这里面无关运气更关乎实力，不是环境带来的成长去选择你，而是你选择在任何环境中都能成长，具备选择权后，剩下的无非是规划、执行与坚持，无它！</p>
+]]></content>
+      <tags>
+        <tag>学习方法</tag>
+        <tag>经验积累</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>原型</title>
     <url>/posts/%E5%8E%9F%E5%9E%8B/</url>
     <content><![CDATA[<h2 id="js原型继承的几种方式"><a href="#js原型继承的几种方式" class="headerlink" title="js原型继承的几种方式"></a>js原型继承的几种方式</h2><ol>
@@ -2734,52 +2776,6 @@ $('.hilight').hilight();
         <tag>jQuery</tag>
         <tag>插件</tag>
         <tag>封装</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学习方法</title>
-    <url>/posts/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="学习方法：如何在工作内外获得持续的技术成长"><a href="#学习方法：如何在工作内外获得持续的技术成长" class="headerlink" title="学习方法：如何在工作内外获得持续的技术成长"></a>学习方法：如何在工作内外获得持续的技术成长</h2><p>参考链接</p>
-<ul>
-<li><a href="https://juejin.im/post/5cbd7477f265da039d32834e">学习方法：如何在工作内外获得持续的技术成长</a></li>
-</ul>
-<p>看文章写的很好，摘一些对自己有用的东西保存下来</p>
-<h2 id="成长本质是突破天花板"><a href="#成长本质是突破天花板" class="headerlink" title="成长本质是突破天花板"></a>成长本质是突破天花板</h2><p>成长是一件很难捉摸和量化的事情，完全不同的环境和主观意识加上完全不同的行动措施既可以让一个人快速成为某个领域的顶尖高手，也可能完全相反。</p>
-<a id="more"></a>
-
-<h2 id="了解技术的成本和门槛"><a href="#了解技术的成本和门槛" class="headerlink" title="了解技术的成本和门槛"></a>了解技术的成本和门槛</h2><p>对技术寻根溯源追求本质是最重要的，但比这个更重要的是自己的时间分配和如何选择，你的时间远比你以为的要值钱的多，请珍惜它。</p>
-<p>哪些技术栈是时间长度相对可被接受，也就是哪些学习成本可以被接受是你需要思考的，思考清楚后，再去选择，会更有侧重，然后再来看不同的技术学习成本背后，哪个更贴合自己。</p>
-<h2 id="求变之前要先认清自己"><a href="#求变之前要先认清自己" class="headerlink" title="求变之前要先认清自己"></a>求变之前要先认清自己</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">我是谁？我的身份是？未来我想要做什么？当下我可以做什么？我擅长什么？我还需要学会什么？</span><br></pre></td></tr></table></figure>
-
-<p>答案永远在变化，也永远没在变，时间越久思考的越久经历也越多，就会距离它最真实的答案越近。</p>
-<p>其实有太多太多的问题，我们可以尝试问自己，但我们往往找别人去问，挑选跟自己内心与未来无关的话题，其实所有的答案都取决于自己接下来 3 ~ 9 个月具体的行动，这些答案来源于内心的原动力以及自己规划的最优或者最可执行路径，可一旦我们眼睛看到 9 个月后的结果，而忽视这个可执行路径，甚至忽略原动力的时候，结果就变得非常惋惜，忽略整个思考过程，也就压根无法了解自己的真实诉求和真实能力。</p>
-<h2 id="习惯养成与定目标计划"><a href="#习惯养成与定目标计划" class="headerlink" title="习惯养成与定目标计划"></a>习惯养成与定目标计划</h2><p>在经过深思熟虑后去制定的目标成功的概率更大，而脑袋一热跑出来的目标往往会泡汤，泡汤倒也罢了，这会让自己陷入定目标 - 执行难度过大 - 放弃 - 再定目标这样的死循环，信心和成就感一天天挫败下去，就变成了今日的自己，晚上想千万条路早上起来走原路，越来越麻木越来越气馁。</p>
-<p>建议: 制定目标要考虑能不能坚持下来，如果不能坚持下来，就修正。坚持两三周慢慢形成习惯，并从中受益获取一些兴趣和成就感，这时候才是定目标的时候，因为这时候，习惯正在养成。</p>
-<p>当有了一种正在建立或者成熟的习惯，也定了具体的目标后，就可以定具体的计划了。计划就是行动指南，要一板一眼的去执行，坚决不能马虎大意，最好一条条写下来。比如：</p>
-<ul>
-<li>每周晚上10点钟，花10分钟读书</li>
-<li>每周六花一小时整理笔记</li>
-<li>每周日花2小时对遇到的问题进行深入研究</li>
-</ul>
-<p>再把这个规律性的事项，分解到每一天，每一天都要打一个对勾，任务才算完成，完成后给自己一个激励，比如说连续5天完成，看场电影之类。指定明确的奖惩细则，叠加到每日的手机/电脑行程中，给自己强有力的提醒，坚持三个月，一个习惯大概率就能养成了，就可以定第二个目标去养成第二个习惯了。</p>
-<p>所以习惯和目标及计划的关系是，定目标前要尽可能先养成一个潜在的习惯，把自己的底线测试出来，然后调整目标，再拆解目标形成规律性的计划，最后把计划完成跟奖惩关联起来，并通过软硬件来跟自己进行互动提醒。这注定是一个单调的过程，但这一定是一个越坚持越好玩的过程，等习惯训练有了雏形的时候，才会真正启动持续成长这件事情。</p>
-<h2 id="训练稳定的思维路径"><a href="#训练稳定的思维路径" class="headerlink" title="训练稳定的思维路径"></a>训练稳定的思维路径</h2><p>我们前面对自己有了更客观的认知，也培养了完成目标的习惯，这两个前提条件就成立了，还缺第三样东西，就是稳定的思维路径，最刻板也最简单的思维方式就是穷尽式的提问，也就是前面认清自己这里，我用列举问题的这种办法，来让自己不断的接近某一个真相，那么面对任何一个困局的时候，都可以用这种方法。实际上，当你把几十个问题都回答一遍的过程中，你可以继续写下更击中灵魂的问题，而这次问题写下去的时候，往往答案就自然浮出水面。</p>
-<p>提问的套路可以更简单一些，就是 What Why How，这个问题是什么，当前的真相是什么，为什么发生，为什么走到这个地步，基于这些原因要如何解决，无论任何事情，都逼自己去捉摸它去思考它的前因后果，慢慢会发现自己会变成一个喜欢上思考和善于思考的人，再也不是之前的那个鲁莽的毛头小子，看问题只看负面看现象只看表面。</p>
-<p>认识自己、习惯养成、思维训练这三个要成年累月持续的做，当这些都逐渐变成长在自己身体内的一种能力的时候，所以你面临的问题都不会让你像之前那样焦虑，在做完这么长铺垫后，我们再来看如何获得持续的技术成长。</p>
-<h2 id="工作内外的技术成长"><a href="#工作内外的技术成长" class="headerlink" title="工作内外的技术成长"></a>工作内外的技术成长</h2><p>成长是经常不符合预期的，请记住，它大概率是不符合预期的，原因是自己的预期本身是非常主观不准确的，同时成长只是过程的积累并不是一个很直观的结果。<br>基于这样的背景，我们希望达成的共识是，无论成长是否预期，我都希望有持续的成长，同时盼望奇迹的发生 - 就是远超预期的成长会发生在我身上。</p>
-<h3 id="工作内的成长主要来自项目"><a href="#工作内的成长主要来自项目" class="headerlink" title="工作内的成长主要来自项目"></a>工作内的成长主要来自项目</h3><p>带着这样的期望，我们回到工作内工作外会发现，所有的成长最核心的过程指标就是项目经验，工作内天然就可以沉淀，那么如何沉淀或者挖掘成长点呢？</p>
-<p>很多人在面试中会被问到一个问题「你做的项目有什么难点」。可能大家会把思维局限在我做的这个业务有什么难的地方，我用了什么牛逼的技术去解决了业务上的什么难题。我相信大部分人不会有这样的经历，由此会觉得这个问题很难答。那么这个问题其实就可以引申为我们如何在工作中、业务中发现问题并得到成长？</p>
-<p>如何实现业务在大部分情况下不会是一个难题，<strong>但是如何把业务中相关的组件、逻辑等等可以复用的东西抽象出来，这就是一个难题了。你可以通过学习比你厉害的同事的代码，也可以学习这方面业内顶尖的库是如何实现的，这就是在工作中学习及成长。</strong></p>
-<p>在实现业务的过程中，大家肯定会使用各种各样的库及框架。那么当我们熟练使用这个库的时候，就应该尽可能的去了解常用的库的实现原理。我们可以通过文章去了解，也可以通过阅读源码去了解，这也是在工作中学习及成长。</p>
-<p>实际上大部分工作场景中的项目，深度的思考持续的思考都会带来较大的技术成长，但往往我们没有耐心和动力去做这件事情，因为会有雇佣心态，也就是你付我那点工资，凭什么我想破头皮去捉摸怎么优化它，这就等于是把自己拦到了池子之外，公司付薪水（无论多少）是购买了你的时间，而你的成长是基于这些时间如何在池子里学游泳技能，池子大小水温深浅甚至形状你都很难有控制权，但蛙泳仰泳自由泳甚至闭气潜水这些都是自己说了算，如果这些都玩溜了，去任意一个池子都能如鱼得水，不是么？</p>
-<p>例如：打造工作相关的工具链，让每个流程不独立进行。</p>
-<p>所以工作内，不仅靠耐心，还要有不怕吃亏的心态，更要有善于发现的双眼，无数机会都在你面前，都可以持续不断的带来成长，同时给自己团队和个人带来更多效率和体验的提升。</p>
-<h3 id="工作外的成长主要来自尝试与思考"><a href="#工作外的成长主要来自尝试与思考" class="headerlink" title="工作外的成长主要来自尝试与思考"></a>工作外的成长主要来自尝试与思考</h3><p>工作外的成长更简单易操作一些，往往就是技术储备、技术尝鲜和总结思考，技术储备一部分是为了自己的职业考虑，比如学习 RN/Flutter/Go 等，另一方面也可以是为了自己公司业务未来的可能性领域，比如 NodeJS/Taro/MPVue 等等，所有感兴趣的方向都可以去学习储备。<br>另外就是自己的想法，可以把他变成现实，比如一个行程提醒小工具，一个萝莉妹子叫起床小工具，一个自动生成周末食谱的工具等等，任何一个生活痛点和创意想法，都可以动手把它实现出来，前后端可以一起做，技术栈可以激进，所有的这些尝鲜都会带来技术视野的扩张，也会带来技术深度的沉淀。<br>最值得尝试的就是思考和总结，把任何自己学习的框架，看过的书，做过的项目，甚至解决过的 Bug，都可以有序的整理起来，把这些整理变成文字和图表，来强化自己对于技术的记忆，所有的这些记忆重复训练的次数越多，对于他们的理解和运营就越娴熟，往往最慢的反而是最有效的。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>成长是一个永恒的话题，互联网几十年来，无数的新人问成长，也无数的新人变老人，有的混成一方大拿，有的混成螺丝工头，抛开经济环境、行业趋势和公司经营，更多时候取决于我们成长的是一些学习方法，更根本上依然是我们对于自己的理解、规划和持之以恒的执行，这里面无关运气更关乎实力，不是环境带来的成长去选择你，而是你选择在任何环境中都能成长，具备选择权后，剩下的无非是规划、执行与坚持，无它！</p>
-]]></content>
-      <tags>
-        <tag>学习方法</tag>
-        <tag>经验积累</tag>
       </tags>
   </entry>
   <entry>
@@ -2963,6 +2959,12 @@ $('.hilight').hilight();
 <li>友好的产品体验</li>
 <li>稳定的系统服务</li>
 </ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>思维导图列表</title>
+    <url>/posts/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%88%97%E8%A1%A8/</url>
+    <content><![CDATA[<p><a href="../img/xmind/%E6%89%A7%E8%A1%8C%E6%9C%89%E9%81%93%E5%9B%9B%E6%AD%A5%E6%B3%95.xmind">执行有道四步法</a></p>
 ]]></content>
   </entry>
   <entry>
@@ -4431,10 +4433,10 @@ $('.hilight').hilight();
 <p> Read-Search-Ask methodology</p>
 <p>git pull的时候遇到这样的问题：<br>The following untracked working tree files would be overwritten by merge balabala…<br>解决办法：<br>git clean -d -fx<br>备注：会删除掉没有add到仓库的文件，操作记得慎重，以免改动文件的丢失。本质上就是操作仓库中没有被追踪的本地文件<br>$ git clean -f -n         # 1<br>$ git clean -f            # 2<br>$ git clean -fd           # 3<br>$ git clean -fX           # 4<br>$ git clean -fx           # 5<br>(1): 选项-n将显示执行（2）时将会移除哪些文件。<br>(2): 该命令会移除所有命令（1）中显示的文件。<br>(3): 如果你还想移除文件件，请使用选项-d。<br>(4): 如果你只想移除已被忽略的文件，请使用选项-X。<br>(5): 如果你想移除已被忽略和未被忽略的文件，请使用选项-x。</p>
 <p>mkdir learngit<br>cd learngit<br>pwd<br>git init<br>git add readme.txt<br>git commit -m “wrote a readme file”<br>git status<br> git diff readme.txt //查看文件的区别<br>git log  历史记录<br>git log –pretty=oneline   一行显示<br> git reset –hard HEAD^   回退上一个版本<br>上上一个版本就是HEAD^^   写成HEAD~100  上100个版本<br>git reset –hard 3628164  指定回到未来的某个版本。版本号没必要写全，前几位就可以了，Git会自动去找<br>gitreflog   记录每一次命令<br>git diff //查看修改的内容<br>git diff HEAD – readme.txt命令可以查看工作区和版本库里面最新版本的区别<br>git checkout – readme.txt    丢弃工作区的修改</p>
-<p>命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br>    一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br>    一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br>    总之，就是让这个文件回到最近一次git commit或git add时的状态。<br>–很重要，没有–，就变成了“切换到另一个分支”的命令，<br>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。<br>git reset HEAD readme.txt   可以把暂存区的修改撤销掉（unstage），重新放回工作区：<br>    小结：<br>        场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>        场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git rese            t HEAD file，就回到了场景1，第二步按场景1操作。<br>        场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退，不过前提是没有推送到远程库                    。<br>—–删除文件—-<br>rm test.txt   直接在文件管理器中把没用的文件删了，或者用rm命令删了：—相当于从文件管理器删除<br> git rm test.txt   从版本库中删除该文件，那就用命令git rm删掉，并且git commit：<br>git commit -m “remove test.txt”<br>            文件就从版本库中被删除了。<br>———–远程关联————<br>git remote add origin git@server-name:path/repo-name.git；<br>      eg:  $ git remote add origin <a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;">&#103;&#x69;&#x74;&#64;&#103;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:michaelliao/learngit.git<br>git push -u origin master第一次推送master分支的所有内容；<br>每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；<br>git remote -v   看有没有权限推送</p>
-<p>————用命令克隆一个远程库—————-<br>git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#109;</a>:michaelliao/gitskills.git      用命令git clone克隆一个本地库：<br><a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>/believeZJP/believeZJP.github.io.git</p>
+<p>命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br>    一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br>    一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br>    总之，就是让这个文件回到最近一次git commit或git add时的状态。<br>–很重要，没有–，就变成了“切换到另一个分支”的命令，<br>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。<br>git reset HEAD readme.txt   可以把暂存区的修改撤销掉（unstage），重新放回工作区：<br>    小结：<br>        场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>        场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git rese            t HEAD file，就回到了场景1，第二步按场景1操作。<br>        场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退，不过前提是没有推送到远程库                    。<br>—–删除文件—-<br>rm test.txt   直接在文件管理器中把没用的文件删了，或者用rm命令删了：—相当于从文件管理器删除<br> git rm test.txt   从版本库中删除该文件，那就用命令git rm删掉，并且git commit：<br>git commit -m “remove test.txt”<br>            文件就从版本库中被删除了。<br>———–远程关联————<br>git remote add origin git@server-name:path/repo-name.git；<br>      eg:  $ git remote add origin <a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#99;&#111;&#109;">&#x67;&#105;&#116;&#x40;&#x67;&#105;&#x74;&#x68;&#117;&#98;&#46;&#99;&#111;&#109;</a>:michaelliao/learngit.git<br>git push -u origin master第一次推送master分支的所有内容；<br>每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；<br>git remote -v   看有没有权限推送</p>
+<p>————用命令克隆一个远程库—————-<br>git clone <a href="mailto:&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;">&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;</a>:michaelliao/gitskills.git      用命令git clone克隆一个本地库：<br><a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>/believeZJP/believeZJP.github.io.git</p>
 <p><a href="https://gitcafe.com/believeZJP/believeZJP.git">https://gitcafe.com/believeZJP/believeZJP.git</a></p>
-<p>git 只克隆一个分支<br> <code>git clone -b &lt;branch&gt; &lt;remote_repo&gt;</code><br> eg:      git clone -b gitcafe-pages  <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x63;&#97;&#x66;&#101;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#116;&#x40;&#103;&#105;&#116;&#x63;&#97;&#x66;&#101;&#46;&#99;&#111;&#109;</a>:believeZJP/believeZJP.git</p>
+<p>git 只克隆一个分支<br> <code>git clone -b &lt;branch&gt; &lt;remote_repo&gt;</code><br> eg:      git clone -b gitcafe-pages  <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x63;&#x61;&#102;&#101;&#x2e;&#x63;&#111;&#109;">&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x63;&#x61;&#102;&#101;&#x2e;&#x63;&#111;&#109;</a>:believeZJP/believeZJP.git</p>
 <p>————–切换分支————-<br>git checkout -b dev   checkout命令加上-b参数表示创建并切换，相当于以下两条命令：<br>git branch dev<br>git checkout dev<br>git branch   查看当前分支：会列出所有分支，当前分支前面会标一个*号<br>git checkout master         切换回master分支：<br> git merge dev                把dev分支的工作成果合并到master分支上<br>git branch -d dev            删除dev分支了<br>git branch -D feature-vulcan  强行删除分支</p>
 <p>小结<br>Git鼓励大量使用分支：<br>查看分支：git branch     //  git branch -a<br>创建分支：git branch <name><br>切换分支：git checkout <name><br>创建+切换分支：git checkout -b <name><br>合并某分支到当前分支：git merge <name><br>删除分支：git branch -d <name></p>
 <p> git log –graph –pretty=oneline –abbrev-commit   分支的合并情况：</p>
@@ -4444,7 +4446,7 @@ $('.hilight').hilight();
 <p>Git把stash内容存在某个地方，需要恢复，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；<br>另一种方式是用git stash pop，恢复的同时把stash内容也删了：</p>
 <p>可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：<br>$ git stash apply stash@{0}<br>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；<br>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
 <p>—————–多人协作——————–<br>小结<br>查看远程库信息，使用git remote -v；<br>本地新建的分支如果不推送到远程，对其他人就是不可见的；<br>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；<br>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；<br>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；<br>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
-<p>—————创建标签—————<br>git tag v1.0                默认标签是打在最新提交的commit上<br>git tag                    查看所有标签<br>git tag v0.96224937         打标签到某一个commit上<br> git show v0.9                查看标签信息<br>git tag -a v0.1 -m “version 0.1 released”3628164        创建带有说明的标签，用-a指定标签名，-m指定说明文字<br>git tag -s <tagname> -m “blablabla…”可以用PGP签名标签；<br>git tag -d v0.1               删除标签<br>git push origin v1.0            推送某个标签到远程<br> git push origin –tags            一次性推送全部尚未推送到远程的本地标签<br>git push origin :refs/tags/v0.9<br>签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：从远程删除。删除命令也是push，但是格式如下：<br>git push origin :refs/tags/v0.9<br>// To <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#x63;&#111;&#x6d;</a>:michaelliao/learngit.git   不知道有没有这个</p>
+<p>—————创建标签—————<br>git tag v1.0                默认标签是打在最新提交的commit上<br>git tag                    查看所有标签<br>git tag v0.96224937         打标签到某一个commit上<br> git show v0.9                查看标签信息<br>git tag -a v0.1 -m “version 0.1 released”3628164        创建带有说明的标签，用-a指定标签名，-m指定说明文字<br>git tag -s <tagname> -m “blablabla…”可以用PGP签名标签；<br>git tag -d v0.1               删除标签<br>git push origin v1.0            推送某个标签到远程<br> git push origin –tags            一次性推送全部尚未推送到远程的本地标签<br>git push origin :refs/tags/v0.9<br>签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：从远程删除。删除命令也是push，但是格式如下：<br>git push origin :refs/tags/v0.9<br>// To <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#111;&#x6d;</a>:michaelliao/learngit.git   不知道有没有这个</p>
 <p>小结<br>命令git push origin <tagname>可以推送一个本地标签；<br>命令git push origin –tags可以推送全部未推送过的本地标签；<br>命令git tag -d <tagname>可以删除一个本地标签；<br>命令git push origin :refs/tags/<tagname>可以删除一个远程标签。</p>
 <p>———-使用GitHub———————<br>小结<br>在GitHub上，可以任意Fork开源仓库；<br>自己拥有Fork后的仓库的读写权限；<br>可以推送pull request给官方仓库来贡献代码。</p>
 <p>——————自定义Git————————<br>git config –global color.ui true                让Git显示颜色，会让命令输出看起来更醒目<br>——————配置别名—————————–</p>
@@ -7321,7 +7323,7 @@ http://www.cnblogs.com/dongcanliang/archive/2017/04/01/6655061.html
 </ol>
 </li>
 </ol>
-<h2 id="命令行远程登录服务器"><a href="#命令行远程登录服务器" class="headerlink" title="命令行远程登录服务器"></a>命令行远程登录服务器</h2><p>ssh <a href="mailto:&#x72;&#111;&#111;&#x74;&#x40;&#x31;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x31;&#46;&#50;&#x35;">&#x72;&#111;&#111;&#x74;&#x40;&#x31;&#x39;&#50;&#x2e;&#x31;&#x36;&#56;&#x2e;&#x31;&#46;&#50;&#x35;</a><br>    用户名@ip</p>
+<h2 id="命令行远程登录服务器"><a href="#命令行远程登录服务器" class="headerlink" title="命令行远程登录服务器"></a>命令行远程登录服务器</h2><p>ssh <a href="mailto:&#x72;&#x6f;&#x6f;&#x74;&#64;&#x31;&#57;&#x32;&#46;&#x31;&#x36;&#56;&#x2e;&#x31;&#x2e;&#50;&#x35;">&#x72;&#x6f;&#x6f;&#x74;&#64;&#x31;&#57;&#x32;&#46;&#x31;&#x36;&#56;&#x2e;&#x31;&#x2e;&#50;&#x35;</a><br>    用户名@ip</p>
 <h2 id="服务器上安装公钥"><a href="#服务器上安装公钥" class="headerlink" title="服务器上安装公钥"></a>服务器上安装公钥</h2><p>键入以下命令，在服务器上安装公钥：</p>
 <p>[root@host ~]$ cd .ssh</p>
 <p>[root@host .ssh]$ cat id_rsa.pub &gt;&gt; authorized_keys</p>
@@ -8912,6 +8914,693 @@ http://www.cnblogs.com/dongcanliang/archive/2017/04/01/6655061.html
         <tag>React</tag>
         <tag>读书笔记</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>十大经典排序算法总结（JavaScript描述）</title>
+    <url>/posts/s/</url>
+    <content><![CDATA[<p>========================</p>
+<h2 id="ss"><a href="#ss" class="headerlink" title="ss"></a>ss</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<ul>
+<li><p>这世界上总存在着那么一些看似相似但有完全不同的东西，比如雷锋和雷峰塔，小平和小平头，玛丽和马里奥，Java和javascript….当年javascript为了抱Java大腿恬不知耻的让自己变成了Java的干儿子，哦，不是应该是跪舔，毕竟都跟了Java的姓了。可如今，javascript来了个咸鱼翻身，几乎要统治web领域，Nodejs，React Native的出现使得javascript在后端和移动端都开始占有了一席之地。可以这么说,在Web的江湖，JavaScript可谓风头无两，已经坐上了头把交椅。</p>
+</li>
+<li><p>在传统的计算机算法和数据结构领域，大多数专业教材和书籍的默认语言都是Java或者C/C+ +，O’REILLY家倒是出了一本叫做《数据结构与算法javascript描述》的书，但不得不说，不知道是作者吃了shit还是译者根本就没校对，满书的小错误，这就像那种无穷无尽的小bug一样,简直就是让人有种嘴里塞满了shit的感觉，吐也不是咽下去也不是。对于一个前端来说，尤其是笔试面试的时候，算法方面考的其实不难（十大排序算法或是和十大排序算法同等难度的），但就是之前没用javascript实现过或是没仔细看过相关算法的原理，导致写起来浪费很多时间。所以撸一撸袖子决定自己查资料自己总结一篇博客等用到了直接看自己的博客就OK了，正所谓靠天靠地靠大牛不如靠自己(ˉ(∞)ˉ)。</p>
+</li>
+<li><p>算法的由来：9世纪波斯数学家提出的：“al-Khowarizmi”就是下图这货（感觉重要数学元素提出者貌似都戴了顶白帽子），开个玩笑，阿拉伯人对于数学史的贡献还是值得人敬佩的。</p>
+<p>  <img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="大大"></p>
+</li>
+</ul>
+</blockquote>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="排序算法说明"><a href="#排序算法说明" class="headerlink" title="排序算法说明"></a>排序算法说明</h3><p><strong>（1）排序的定义：对一序列对象根据某个关键字进行排序；</strong></p>
+<p>输入：n个数：a1,a2,a3,…,an 输出：n个数的排列:a1’,a2’,a3’,…,an’，使得a1’&lt;=a2’&lt;=a3’&lt;=…&lt;=an’。</p>
+<p>再讲的形象点就是排排坐，调座位，高的站在后面，矮的站在前面咯。</p>
+<p><strong>（3）对于评述算法优劣术语的说明</strong></p>
+<p><strong>稳定</strong>：如果a原本在b前面，而a=b，排序之后a仍然在b的前面； <strong>不稳定</strong>：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面；</p>
+<p><strong>内排序</strong>：所有排序操作都在内存中完成； <strong>外排序</strong>：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；</p>
+<p><strong>时间复杂度</strong>: 一个算法执行所耗费的时间。 <strong>空间复杂度</strong>: 运行完一个程序所需内存的大小。</p>
+<p>关于时间空间复杂度的更多了解请戳<a href="http://blog.csdn.net/booirror/article/details/7707551/">这里</a>，或是看书程杰大大编写的《大话数据结构》还是很赞的，通俗易懂。</p>
+<p><strong>（4）排序算法图片总结(图片来源于网络):</strong></p>
+<p>排序对比：</p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<p><strong>图片名词解释：</strong> n: 数据规模 k:“桶”的个数 In-place: 占用常数内存，不占用额外内存 Out-place: 占用额外内存</p>
+<p>排序分类：</p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h3 id="1-冒泡排序（Bubble-Sort）"><a href="#1-冒泡排序（Bubble-Sort）" class="headerlink" title="1.冒泡排序（Bubble Sort）"></a>1.冒泡排序（Bubble Sort）</h3><blockquote>
+<p>好的，开始总结第一个排序算法，冒泡排序。我想对于它每个学过C语言的都会了解的吧，这可能是很多人接触的第一个排序算法。</p>
+</blockquote>
+<h4 id="1-算法描述"><a href="#1-算法描述" class="headerlink" title="(1)算法描述"></a>(1)算法描述</h4><blockquote>
+<p>冒泡排序是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。</p>
+</blockquote>
+<h4 id="2-算法描述和实现"><a href="#2-算法描述和实现" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.比较相邻的元素。如果第一个比第二个大，就交换它们两个；</li>
+<li>&lt;2&gt;.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；</li>
+<li>&lt;3&gt;.针对所有的元素重复以上的步骤，除了最后一个；</li>
+<li>&lt;4&gt;.重复步骤1~3，直到排序完成。</li>
+</ul>
+<p><strong>JavaScript代码实现：</strong></p>
+<pre><code>function bubbleSort(arr) &#123;
+    var len = arr.length;
+    for (var i = 0; i &lt; len; i++) &#123;
+        for (var j = 0; j &lt; len - 1 - i; j++) &#123;
+            if (arr[j] &gt; arr[j+1]) &#123;        //相邻元素两两对比
+                var temp = arr[j+1];        //元素交换
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+            &#125;
+        &#125;
+    &#125;
+    return arr;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(bubbleSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+复制代码</code></pre>
+<blockquote>
+<p>**改进冒泡排序： **设置一标志性变量pos,用于记录每趟排序中最后一次进行交换的位置。由于pos位置之后的记录均已交换到位,故在进行下一趟排序时只要扫描到pos位置即可。</p>
+</blockquote>
+<p>改进后算法如下:</p>
+<pre><code>function bubbleSort2(arr) &#123;
+    console.time(&#39;改进后冒泡排序耗时&#39;);
+    var i = arr.length-1;  //初始时,最后位置保持不变
+    while ( i&gt; 0) &#123;
+        var pos= 0; //每趟开始时,无记录交换
+        for (var j= 0; j&lt; i; j++)
+            if (arr[j]&gt; arr[j+1]) &#123;
+                pos= j; //记录交换的位置
+                var tmp = arr[j]; arr[j]=arr[j+1];arr[j+1]=tmp;
+            &#125;
+        i= pos; //为下一趟排序作准备
+     &#125;
+     console.timeEnd(&#39;改进后冒泡排序耗时&#39;);
+     return arr;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(bubbleSort2(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+复制代码</code></pre>
+<blockquote>
+<p>传统冒泡排序中每一趟排序操作只能找到一个最大值或最小值,我们考虑利用在每趟排序中进行正向和反向两遍冒泡的方法一次可以得到两个最终值(最大者和最小者) , 从而使排序趟数几乎减少了一半。</p>
+</blockquote>
+<p>改进后的算法实现为:</p>
+<pre><code>function bubbleSort3(arr3) &#123;
+    var low = 0;
+    var high= arr.length-1; //设置变量的初始值
+    var tmp,j;
+    console.time(&#39;2.改进后冒泡排序耗时&#39;);
+    while (low &lt; high) &#123;
+        for (j= low; j&lt; high; ++j) //正向冒泡,找到最大者
+            if (arr[j]&gt; arr[j+1]) &#123;
+                tmp = arr[j]; arr[j]=arr[j+1];arr[j+1]=tmp;
+            &#125;
+        --high;                 //修改high值, 前移一位
+        for (j=high; j&gt;low; --j) //反向冒泡,找到最小者
+            if (arr[j]&lt;arr[j-1]) &#123;
+                tmp = arr[j]; arr[j]=arr[j-1];arr[j-1]=tmp;
+            &#125;
+        ++low;                  //修改low值,后移一位
+    &#125;
+    console.timeEnd(&#39;2.改进后冒泡排序耗时&#39;);
+    return arr3;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(bubbleSort3(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+复制代码</code></pre>
+<p>三种方法耗时对比：</p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<blockquote>
+<p>由图可以看出改进后的冒泡排序明显的时间复杂度更低，耗时更短了。读者自行尝试可以戳这，博主在github建了个库，读者可以Clone下来本地尝试。此博文配合源码体验更棒哦~~~</p>
+</blockquote>
+<p><strong>冒泡排序动图演示:</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<p><strong>(3)算法分析</strong></p>
+<ul>
+<li>最佳情况：T(n) = O(n)</li>
+</ul>
+<blockquote>
+<p>当输入的数据已经是正序时（都已经是正序了，为毛何必还排序呢….）</p>
+</blockquote>
+<ul>
+<li>最差情况：T(n) = O(n2)</li>
+</ul>
+<blockquote>
+<p>当输入的数据是反序时(卧槽，我直接反序不就完了….)</p>
+</blockquote>
+<ul>
+<li>平均情况：T(n) = O(n2)</li>
+</ul>
+<h3 id="2-选择排序（Selection-Sort）"><a href="#2-选择排序（Selection-Sort）" class="headerlink" title="2.选择排序（Selection Sort）"></a>2.选择排序（Selection Sort）</h3><blockquote>
+<p>表现最稳定的排序算法之一(这个稳定不是指算法层面上的稳定哈，相信聪明的你能明白我说的意思2333)，因为无论什么数据进去都是O(n²)的时间复杂度…..所以用到它的时候，数据规模越小越好。唯一的好处可能就是不占用额外的内存空间了吧。理论上讲，选择排序可能也是平时排序一般人想到的最多的排序方法了吧。</p>
+</blockquote>
+<h4 id="1-算法简介"><a href="#1-算法简介" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>选择排序(Selection-sort)是一种简单直观的排序算法。它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-1"><a href="#2-算法描述和实现-1" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结果。具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.初始状态：无序区为R[1..n]，有序区为空；</li>
+<li>&lt;2&gt;.第i趟排序(i=1,2,3…n-1)开始时，当前有序区和无序区分别为R[1..i-1]和R(i..n）。该趟排序从当前无序区中-选出关键字最小的记录 R[k]，将它与无序区的第1个记录R交换，使R[1..i]和R[i+1..n)分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区；</li>
+<li>&lt;3&gt;.n-1趟结束，数组有序化了。</li>
+</ul>
+<p><strong>Javascript代码实现:</strong></p>
+<pre><code>function selectionSort(arr) &#123;
+    var len = arr.length;
+    var minIndex, temp;
+    console.time(&#39;选择排序耗时&#39;);
+    for (var i = 0; i &lt; len - 1; i++) &#123;
+        minIndex = i;
+        for (var j = i + 1; j &lt; len; j++) &#123;
+            if (arr[j] &lt; arr[minIndex]) &#123;     //寻找最小的数
+                minIndex = j;                 //将最小数的索引保存
+            &#125;
+        &#125;
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    &#125;
+    console.timeEnd(&#39;选择排序耗时&#39;);
+    return arr;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(selectionSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+
+复制代码</code></pre>
+<p><strong>选择排序动图演示：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析"><a href="#3-算法分析" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(n2)</li>
+<li>最差情况：T(n) = O(n2)</li>
+<li>平均情况：T(n) = O(n2)</li>
+</ul>
+<h2 id="3-插入排序（Insertion-Sort）"><a href="#3-插入排序（Insertion-Sort）" class="headerlink" title="3.插入排序（Insertion Sort）"></a>3.插入排序（Insertion Sort）</h2><blockquote>
+<p>插入排序的代码实现虽然没有冒泡排序和选择排序那么简单粗暴，但它的原理应该是最容易理解的了，因为只要打过扑克牌的人都应该能够秒懂。当然，如果你说你打扑克牌摸牌的时候从来不按牌的大小整理牌，那估计这辈子你对插入排序的算法都不会产生任何兴趣了…..</p>
+</blockquote>
+<h4 id="1-算法简介-1"><a href="#1-算法简介-1" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>插入排序（Insertion-Sort）的算法描述是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-2"><a href="#2-算法描述和实现-2" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>一般来说，插入排序都采用in-place在数组上实现。具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.从第一个元素开始，该元素可以认为已经被排序；</li>
+<li>&lt;2&gt;.取出下一个元素，在已经排序的元素序列中从后向前扫描；</li>
+<li>&lt;3&gt;.如果该元素（已排序）大于新元素，将该元素移到下一位置；</li>
+<li>&lt;4&gt;.重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；</li>
+<li>&lt;5&gt;.将新元素插入到该位置后；</li>
+<li>&lt;6&gt;.重复步骤2~5。</li>
+</ul>
+<p><strong>Javascript代码实现:</strong></p>
+<pre><code>function insertionSort(array) &#123;
+    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
+        console.time(&#39;插入排序耗时：&#39;);
+        for (var i = 1; i &lt; array.length; i++) &#123;
+            var key = array[i];
+            var j = i - 1;
+            while (j &gt;= 0 &amp;&amp; array[j] &gt; key) &#123;
+                array[j + 1] = array[j];
+                j--;
+            &#125;
+            array[j + 1] = key;
+        &#125;
+        console.timeEnd(&#39;插入排序耗时：&#39;);
+        return array;
+    &#125; else &#123;
+        return &#39;array is not an Array!&#39;;
+    &#125;
+&#125;
+
+复制代码</code></pre>
+<blockquote>
+<p><strong>改进插入排序：</strong> 查找插入位置时使用二分查找的方式</p>
+</blockquote>
+<pre><code>function binaryInsertionSort(array) &#123;
+    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
+        console.time(&#39;二分插入排序耗时：&#39;);
+
+        for (var i = 1; i &lt; array.length; i++) &#123;
+            var key = array[i], left = 0, right = i - 1;
+            while (left &lt;= right) &#123;
+                var middle = parseInt((left + right) / 2);
+                if (key &lt; array[middle]) &#123;
+                    right = middle - 1;
+                &#125; else &#123;
+                    left = middle + 1;
+                &#125;
+            &#125;
+            for (var j = i - 1; j &gt;= left; j--) &#123;
+                array[j + 1] = array[j];
+            &#125;
+            array[left] = key;
+        &#125;
+        console.timeEnd(&#39;二分插入排序耗时：&#39;);
+
+        return array;
+    &#125; else &#123;
+        return &#39;array is not an Array!&#39;;
+    &#125;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(binaryInsertionSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+复制代码</code></pre>
+<blockquote>
+<p>改进前后对比：</p>
+</blockquote>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<p><strong>插入排序动图演示:</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-1"><a href="#3-算法分析-1" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：输入数组按升序排列。T(n) = O(n)</li>
+<li>最坏情况：输入数组按降序排列。T(n) = O(n2)</li>
+<li>平均情况：T(n) = O(n2)</li>
+</ul>
+<h3 id="4-希尔排序（Shell-Sort）"><a href="#4-希尔排序（Shell-Sort）" class="headerlink" title="4.希尔排序（Shell Sort）"></a>4.希尔排序（Shell Sort）</h3><blockquote>
+<p>1959年Shell发明； 第一个突破O(n^2)的排序算法；是简单插入排序的改进版；它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序</p>
+</blockquote>
+<h4 id="1-算法简介-2"><a href="#1-算法简介-2" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。动态定义间隔序列的算法是《算法（第4版》的合著者Robert Sedgewick提出的。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-3"><a href="#2-算法描述和实现-3" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，具体算法描述：</p>
+<ul>
+<li>&lt;1&gt;. 选择一个增量序列t1，t2，…，tk，其中ti&gt;tj，tk=1；</li>
+<li>&lt;2&gt;.按增量序列个数k，对序列进行k 趟排序；</li>
+<li>&lt;3&gt;.每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>function shellSort(arr) &#123;
+    var len = arr.length,
+        temp,
+        gap = 1;
+    console.time(&#39;希尔排序耗时:&#39;);
+    while(gap &lt; len/5) &#123;          //动态定义间隔序列
+        gap =gap*5+1;
+    &#125;
+    for (gap; gap &gt; 0; gap = Math.floor(gap/5)) &#123;
+        for (var i = gap; i &lt; len; i++) &#123;
+            temp = arr[i];
+            for (var j = i-gap; j &gt;= 0 &amp;&amp; arr[j] &gt; temp; j-=gap) &#123;
+                arr[j+gap] = arr[j];
+            &#125;
+            arr[j+gap] = temp;
+        &#125;
+    &#125;
+    console.timeEnd(&#39;希尔排序耗时:&#39;);
+    return arr;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(shellSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+复制代码</code></pre>
+<p><strong>希尔排序图示（图片来源网络）：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="（3）算法分析"><a href="#（3）算法分析" class="headerlink" title="（3）算法分析"></a>（3）算法分析</h4><ul>
+<li>最佳情况：T(n) = O(nlog2 n)</li>
+<li>最坏情况：T(n) = O(nlog2 n)</li>
+<li>平均情况：T(n) =O(nlog n)</li>
+</ul>
+<h3 id="5-归并排序（Merge-Sort）"><a href="#5-归并排序（Merge-Sort）" class="headerlink" title="5.归并排序（Merge Sort）"></a>5.归并排序（Merge Sort）</h3><blockquote>
+<p>和选择排序一样，归并排序的性能不受输入数据的影响，但表现比选择排序好的多，因为始终都是O(n log n）的时间复杂度。代价是需要额外的内存空间。</p>
+</blockquote>
+<h4 id="1-算法简介-3"><a href="#1-算法简介-3" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p> 归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。归并排序是一种稳定的排序方法。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为2-路归并。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-4"><a href="#2-算法描述和实现-4" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.把长度为n的输入序列分成两个长度为n/2的子序列；</li>
+<li>&lt;2&gt;.对这两个子序列分别采用归并排序；</li>
+<li>&lt;3&gt;.将两个排序好的子序列合并成一个最终的排序序列。</li>
+</ul>
+<p><strong>Javscript代码实现:</strong></p>
+<pre><code>function mergeSort(arr) &#123;  //采用自上而下的递归方法
+    var len = arr.length;
+    if(len &lt; 2) &#123;
+        return arr;
+    &#125;
+    var middle = Math.floor(len / 2),
+        left = arr.slice(0, middle),
+        right = arr.slice(middle);
+    return merge(mergeSort(left), mergeSort(right));
+&#125;
+
+function merge(left, right)
+&#123;
+    var result = [];
+    console.time(&#39;归并排序耗时&#39;);
+    while (left.length &amp;&amp; right.length) &#123;
+        if (left[0] &lt;= right[0]) &#123;
+            result.push(left.shift());
+        &#125; else &#123;
+            result.push(right.shift());
+        &#125;
+    &#125;
+
+    while (left.length)
+        result.push(left.shift());
+
+    while (right.length)
+        result.push(right.shift());
+    console.timeEnd(&#39;归并排序耗时&#39;);
+    return result;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(mergeSort(arr));
+
+复制代码</code></pre>
+<p><strong>归并排序动图演示:</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-2"><a href="#3-算法分析-2" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(n)</li>
+<li>最差情况：T(n) = O(nlogn)</li>
+<li>平均情况：T(n) = O(nlogn)</li>
+</ul>
+<h3 id="6-快速排序（Quick-Sort）"><a href="#6-快速排序（Quick-Sort）" class="headerlink" title="6.快速排序（Quick Sort）"></a>6.快速排序（Quick Sort）</h3><blockquote>
+<p>快速排序的名字起的是简单粗暴，因为一听到这个名字你就知道它存在的意义，就是快，而且效率高! 它是处理大数据最快的排序算法之一了。</p>
+</blockquote>
+<h4 id="1-算法简介-4"><a href="#1-算法简介-4" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>快速排序的基本思想：通过一趟排序将待排记录分隔成独立的两部分，其中一部分记录的关键字均比另一部分的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-5"><a href="#2-算法描述和实现-5" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>快速排序使用分治法来把一个串（list）分为两个子串（sub-lists）。具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.从数列中挑出一个元素，称为 “基准”（pivot）；</li>
+<li>&lt;2&gt;.重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</li>
+<li>&lt;3&gt;.递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>/*方法说明：快速排序
+@param  array 待排序数组*/
+//方法一
+function quickSort(array, left, right) &#123;
+    console.time(&#39;1.快速排序耗时&#39;);
+    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39; &amp;&amp; typeof left === &#39;number&#39; &amp;&amp; typeof right === &#39;number&#39;) &#123;
+        if (left &lt; right) &#123;
+            var x = array[right], i = left - 1, temp;
+            for (var j = left; j &lt;= right; j++) &#123;
+                if (array[j] &lt;= x) &#123;
+                    i++;
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                &#125;
+            &#125;
+            quickSort(array, left, i - 1);
+            quickSort(array, i + 1, right);
+        &#125;
+        console.timeEnd(&#39;1.快速排序耗时&#39;);
+        return array;
+    &#125; else &#123;
+        return &#39;array is not an Array or left or right is not a number!&#39;;
+    &#125;
+&#125;
+
+//方法二
+var quickSort2 = function(arr) &#123;
+    console.time(&#39;2.快速排序耗时&#39;);
+&amp;emsp;&amp;emsp;if (arr.length &lt;= 1) &#123; return arr; &#125;
+&amp;emsp;&amp;emsp;var pivotIndex = Math.floor(arr.length / 2);
+&amp;emsp;&amp;emsp;var pivot = arr.splice(pivotIndex, 1)[0];
+&amp;emsp;&amp;emsp;var left = [];
+&amp;emsp;&amp;emsp;var right = [];
+&amp;emsp;&amp;emsp;for (var i = 0; i &lt; arr.length; i++)&#123;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;if (arr[i] &lt; pivot) &#123;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;left.push(arr[i]);
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&#125; else &#123;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;right.push(arr[i]);
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&#125;
+&amp;emsp;&amp;emsp;&#125;
+console.timeEnd(&#39;2.快速排序耗时&#39;);
+&amp;emsp;&amp;emsp;return quickSort2(left).concat([pivot], quickSort2(right));
+&#125;;
+
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(quickSort(arr,0,arr.length-1));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+console.log(quickSort2(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+
+复制代码</code></pre>
+<p><strong>快速排序动图演示：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="快速排序"></p>
+<h4 id="3-算法分析-3"><a href="#3-算法分析-3" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(nlogn)</li>
+<li>最差情况：T(n) = O(n2)</li>
+<li>平均情况：T(n) = O(nlogn)</li>
+</ul>
+<h3 id="7-堆排序（Heap-Sort）"><a href="#7-堆排序（Heap-Sort）" class="headerlink" title="7.堆排序（Heap Sort）"></a>7.堆排序（Heap Sort）</h3><blockquote>
+<p>堆排序可以说是一种利用堆的概念来排序的选择排序。</p>
+</blockquote>
+<h4 id="1-算法简介-5"><a href="#1-算法简介-5" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-6"><a href="#2-算法描述和实现-6" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.将初始待排序关键字序列(R1,R2….Rn)构建成大顶堆，此堆为初始的无序区；</li>
+<li>&lt;2&gt;.将堆顶元素R[1]与最后一个元素R[n]交换，此时得到新的无序区(R1,R2,……Rn-1)和新的有序区(Rn),且满足R[1,2…n-1]&lt;=R[n]；</li>
+<li>&lt;3&gt;.由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区(R1,R2,……Rn-1)调整为新堆，然后再次将R[1]与无序区最后一个元素交换，得到新的无序区(R1,R2….Rn-2)和新的有序区(Rn-1,Rn)。不断重复此过程直到有序区的元素个数为n-1，则整个排序过程完成。</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>/*方法说明：堆排序
+@param  array 待排序数组*/
+function heapSort(array) &#123;
+    console.time(&#39;堆排序耗时&#39;);
+    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
+        //建堆
+        var heapSize = array.length, temp;
+        for (var i = Math.floor(heapSize / 2) - 1; i &gt;= 0; i--) &#123;
+            heapify(array, i, heapSize);
+        &#125;
+
+        //堆排序
+        for (var j = heapSize - 1; j &gt;= 1; j--) &#123;
+            temp = array[0];
+            array[0] = array[j];
+            array[j] = temp;
+            heapify(array, 0, --heapSize);
+        &#125;
+        console.timeEnd(&#39;堆排序耗时&#39;);
+        return array;
+    &#125; else &#123;
+        return &#39;array is not an Array!&#39;;
+    &#125;
+&#125;
+/*方法说明：维护堆的性质
+@param  arr 数组
+@param  x   数组下标
+@param  len 堆大小*/
+function heapify(arr, x, len) &#123;
+    if (Object.prototype.toString.call(arr).slice(8, -1) === &#39;Array&#39; &amp;&amp; typeof x === &#39;number&#39;) &#123;
+        var l = 2 * x + 1, r = 2 * x + 2, largest = x, temp;
+        if (l &lt; len &amp;&amp; arr[l] &gt; arr[largest]) &#123;
+            largest = l;
+        &#125;
+        if (r &lt; len &amp;&amp; arr[r] &gt; arr[largest]) &#123;
+            largest = r;
+        &#125;
+        if (largest != x) &#123;
+            temp = arr[x];
+            arr[x] = arr[largest];
+            arr[largest] = temp;
+            heapify(arr, largest, len);
+        &#125;
+    &#125; else &#123;
+        return &#39;arr is not an Array or x is not a number!&#39;;
+    &#125;
+&#125;
+var arr=[91,60,96,13,35,65,46,65,10,30,20,31,77,81,22];
+console.log(heapSort(arr));//[10, 13, 20, 22, 30, 31, 35, 46, 60, 65, 65, 77, 81, 91, 96]
+
+复制代码</code></pre>
+<p><strong>堆排序动图演示：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-4"><a href="#3-算法分析-4" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(nlogn)</li>
+<li>最差情况：T(n) = O(nlogn)</li>
+<li>平均情况：T(n) = O(nlogn)</li>
+</ul>
+<h3 id="8-计数排序（Counting-Sort）"><a href="#8-计数排序（Counting-Sort）" class="headerlink" title="8.计数排序（Counting Sort）"></a>8.计数排序（Counting Sort）</h3><blockquote>
+<p>计数排序的核心在于将输入的数据值转化为键存储在额外开辟的数组空间中。 作为一种线性时间复杂度的排序，计数排序要求输入的数据必须是有确定范围的整数。</p>
+</blockquote>
+<h4 id="1-算法简介-6"><a href="#1-算法简介-6" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>计数排序(Counting sort)是一种稳定的排序算法。计数排序使用一个额外的数组C，其中第i个元素是待排序数组A中值等于i的元素的个数。然后根据数组C来将A中的元素排到正确的位置。它只能对整数进行排序。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-7"><a href="#2-算法描述和实现-7" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;. 找出待排序的数组中最大和最小的元素；</li>
+<li>&lt;2&gt;. 统计数组中每个值为i的元素出现的次数，存入数组C的第i项；</li>
+<li>&lt;3&gt;. 对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）；</li>
+<li>&lt;4&gt;. 反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1。</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>function countingSort(array) &#123;
+    var len = array.length,
+        B = [],
+        C = [],
+        min = max = array[0];
+    console.time(&#39;计数排序耗时&#39;);
+    for (var i = 0; i &lt; len; i++) &#123;
+        min = min &lt;= array[i] ? min : array[i];
+        max = max &gt;= array[i] ? max : array[i];
+        C[array[i]] = C[array[i]] ? C[array[i]] + 1 : 1;
+    &#125;
+    for (var j = min; j &lt; max; j++) &#123;
+        C[j + 1] = (C[j + 1] || 0) + (C[j] || 0);
+    &#125;
+    for (var k = len - 1; k &gt;= 0; k--) &#123;
+        B[C[array[k]] - 1] = array[k];
+        C[array[k]]--;
+    &#125;
+    console.timeEnd(&#39;计数排序耗时&#39;);
+    return B;
+&#125;
+var arr = [2, 2, 3, 8, 7, 1, 2, 2, 2, 7, 3, 9, 8, 2, 1, 4, 2, 4, 6, 9, 2];
+console.log(countingSort(arr)); //[1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 4, 4, 6, 7, 7, 8, 8, 9, 9]
+
+复制代码</code></pre>
+<p><strong>JavaScript动图演示：</strong>、</p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-5"><a href="#3-算法分析-5" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><blockquote>
+<p>当输入的元素是n 个0到k之间的整数时，它的运行时间是 O(n + k)。计数排序不是比较排序，排序的速度快于任何比较排序算法。由于用来计数的数组C的长度取决于待排序数组中数据的范围（等于待排序数组的最大值与最小值的差加上1），这使得计数排序对于数据范围很大的数组，需要大量时间和内存。</p>
+</blockquote>
+<ul>
+<li>最佳情况：T(n) = O(n+k)</li>
+<li>最差情况：T(n) = O(n+k)</li>
+<li>平均情况：T(n) = O(n+k)</li>
+</ul>
+<h3 id="9-桶排序（Bucket-Sort）"><a href="#9-桶排序（Bucket-Sort）" class="headerlink" title="9.桶排序（Bucket Sort）"></a>9.桶排序（Bucket Sort）</h3><blockquote>
+<p>桶排序是计数排序的升级版。它利用了函数的映射关系，高效与否的关键就在于这个映射函数的确定。</p>
+</blockquote>
+<h4 id="1-算法简介-7"><a href="#1-算法简介-7" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>桶排序 (Bucket sort)的工作的原理：假设输入数据服从均匀分布，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排</p>
+</blockquote>
+<h4 id="2-算法描述和实现-8"><a href="#2-算法描述和实现-8" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.设置一个定量的数组当作空桶；</li>
+<li>&lt;2&gt;.遍历输入数据，并且把数据一个一个放到对应的桶里去；</li>
+<li>&lt;3&gt;.对每个不是空的桶进行排序；</li>
+<li>&lt;4&gt;.从不是空的桶里把排好序的数据拼接起来。</li>
+</ul>
+<p><strong>Javascript代码实现:</strong></p>
+<pre><code>/*方法说明：桶排序
+@param  array 数组
+@param  num   桶的数量*/
+function bucketSort(array, num) &#123;
+    if (array.length &lt;= 1) &#123;
+        return array;
+    &#125;
+    var len = array.length, buckets = [], result = [], min = max = array[0], regex = &#39;/^[1-9]+[0-9]*$/&#39;, space, n = 0;
+    num = num || ((num &gt; 1 &amp;&amp; regex.test(num)) ? num : 10);
+    console.time(&#39;桶排序耗时&#39;);
+    for (var i = 1; i &lt; len; i++) &#123;
+        min = min &lt;= array[i] ? min : array[i];
+        max = max &gt;= array[i] ? max : array[i];
+    &#125;
+    space = (max - min + 1) / num;
+    for (var j = 0; j &lt; len; j++) &#123;
+        var index = Math.floor((array[j] - min) / space);
+        if (buckets[index]) &#123;   //  非空桶，插入排序
+            var k = buckets[index].length - 1;
+            while (k &gt;= 0 &amp;&amp; buckets[index][k] &gt; array[j]) &#123;
+                buckets[index][k + 1] = buckets[index][k];
+                k--;
+            &#125;
+            buckets[index][k + 1] = array[j];
+        &#125; else &#123;    //空桶，初始化
+            buckets[index] = [];
+            buckets[index].push(array[j]);
+        &#125;
+    &#125;
+    while (n &lt; num) &#123;
+        result = result.concat(buckets[n]);
+        n++;
+    &#125;
+    console.timeEnd(&#39;桶排序耗时&#39;);
+    return result;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(bucketSort(arr,4));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+复制代码</code></pre>
+<p><strong>桶排序图示（图片来源网络）：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<p>关于桶排序<a href="http://www.cnblogs.com/lonelyxmas/p/3561938.html">更多</a></p>
+<h4 id="3-算法分析-6"><a href="#3-算法分析-6" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><blockquote>
+<p> 桶排序最好情况下使用线性时间O(n)，桶排序的时间复杂度，取决与对各个桶之间数据进行排序的时间复杂度，因为其它部分的时间复杂度都为O(n)。很显然，桶划分的越小，各个桶之间的数据越少，排序所用的时间也会越少。但相应的空间消耗就会增大。</p>
+</blockquote>
+<ul>
+<li>最佳情况：T(n) = O(n+k)</li>
+<li>最差情况：T(n) = O(n+k)</li>
+<li>平均情况：T(n) = O(n2)</li>
+</ul>
+<h3 id="10-基数排序（Radix-Sort）"><a href="#10-基数排序（Radix-Sort）" class="headerlink" title="10.基数排序（Radix Sort）"></a>10.基数排序（Radix Sort）</h3><blockquote>
+<p>基数排序也是非比较的排序算法，对每一位进行排序，从最低位开始排序，复杂度为O(kn),为数组长度，k为数组中的数的最大的位数；</p>
+</blockquote>
+<h4 id="1-算法简介-8"><a href="#1-算法简介-8" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>基数排序是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。有时候有些属性是有优先级顺序的，先按低优先级排序，再按高优先级排序。最后的次序就是高优先级高的在前，高优先级相同的低优先级高的在前。基数排序基于分别排序，分别收集，所以是稳定的。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-9"><a href="#2-算法描述和实现-9" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.取得数组中的最大数，并取得位数；</li>
+<li>&lt;2&gt;.arr为原始数组，从最低位开始取每个位组成radix数组；</li>
+<li>&lt;3&gt;.对radix进行计数排序（利用计数排序适用于小范围数的特点）；</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>/**
+ * 基数排序适用于：
+ *  (1)数据范围较小，建议在小于1000
+ *  (2)每个数值都要大于等于0
+ * @author xiazdong
+ * @param  arr 待排序数组
+ * @param  maxDigit 最大位数
+ */
+//LSD Radix Sort
+
+function radixSort(arr, maxDigit) &#123;
+    var mod = 10;
+    var dev = 1;
+    var counter = [];
+    console.time(&#39;基数排序耗时&#39;);
+    for (var i = 0; i &lt; maxDigit; i++, dev *= 10, mod *= 10) &#123;
+        for(var j = 0; j &lt; arr.length; j++) &#123;
+            var bucket = parseInt((arr[j] % mod) / dev);
+            if(counter[bucket]== null) &#123;
+                counter[bucket] = [];
+            &#125;
+            counter[bucket].push(arr[j]);
+        &#125;
+        var pos = 0;
+        for(var j = 0; j &lt; counter.length; j++) &#123;
+            var value = null;
+            if(counter[j]!=null) &#123;
+                while ((value = counter[j].shift()) != null) &#123;
+                      arr[pos++] = value;
+                &#125;
+          &#125;
+        &#125;
+    &#125;
+    console.timeEnd(&#39;基数排序耗时&#39;);
+    return arr;
+&#125;
+var arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];
+console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+复制代码</code></pre>
+<p><strong>基数排序LSD动图演示：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-7"><a href="#3-算法分析-7" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(n * k)</li>
+<li>最差情况：T(n) = O(n * k)</li>
+<li>平均情况：T(n) = O(n * k)</li>
+</ul>
+<p>基数排序有两种方法：</p>
+<ul>
+<li>MSD 从高位开始进行排序</li>
+<li>LSD 从低位开始进行排序</li>
+</ul>
+<p><strong>基数排序 vs 计数排序 vs 桶排序</strong></p>
+<p>这三种排序算法都利用了桶的概念，但对桶的使用方法上有明显差异：</p>
+<ol>
+<li>基数排序：根据键值的每位数字来分配桶</li>
+<li>计数排序：每个桶只存储单一键值</li>
+<li>桶排序：每个桶存储一定范围的数值</li>
+</ol>
+<p>![<a href="https://user-gold-cdn.xitu.io/2020/2/3/1700919fb9a285de?w=450&amp;h=359&amp;f=png&amp;s=66765%5D">https://user-gold-cdn.xitu.io/2020/2/3/1700919fb9a285de?w=450&amp;h=359&amp;f=png&amp;s=66765]</a>(<a href="https://juejin.cn/post/data:image/svg+xml;utf8">https://juejin.cn/post/data:image/svg+xml;utf8</a><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="450" height="359"></svg>)</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><blockquote>
+<p>十大排序算法的总结到这里就算告一段落了。博主总结完之后只有一个感觉，排序算法博大精深，前辈们用了数年甚至一辈子的心血研究出来的算法更值得我们推敲。站在十大算法的门前心里还是诚惶诚恐的，身为一个小学生，博主的总结难免会有所疏漏，欢迎各位批评指定。</p>
+</blockquote>
+<p>.markdown-body pre,.markdown-body pre&gt;code.hljs{color:#333;background:#f8f8f8}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</p>
+]]></content>
   </entry>
   <entry>
     <title>精读你不知道的JavaScript上卷</title>
@@ -12484,11 +13173,6 @@ limitLoad(urls, loadImg, 3)
         <tag>Webpack</tag>
         <tag>学习笔记</tag>
         <tag>webpack4</tag>
-        <tag>补充慕课网webpack4.0视频笔记--第二章完结</tag>
-        <tag>3-8完结 2019-11-13 20:27:45</tag>
-        <tag>5-1完结 2019-11-15 19:36:48</tag>
-        <tag>5-3完结 2019-11-18 19:55:00</tag>
-        <tag>5-8完结 2019-11-18 19:55:00</tag>
       </tags>
   </entry>
   <entry>

@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>十大经典排序算法总结（JavaScript描述） - believeZJP</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="believeZJP"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="believeZJP"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D; ss前言  这世界上总存在着那么一些看似相似但有完全不同的东西，比如雷锋和雷峰塔，小平和小平头，玛丽和马里奥，Java和javascript….当年javascript为了抱Java大腿恬不知耻的让自己变成了Java的干儿子，哦，不是应该是跪舔，毕竟都跟了Java的姓了。可如今，javascript来了个咸鱼翻身，几乎要统治web领域，Nodejs"><meta property="og:type" content="blog"><meta property="og:title" content="十大经典排序算法总结（JavaScript描述）"><meta property="og:url" content="http://believezjp.oriht.com/posts/s/"><meta property="og:site_name" content="believeZJP"><meta property="og:description" content="&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D;&amp;#x3D; ss前言  这世界上总存在着那么一些看似相似但有完全不同的东西，比如雷锋和雷峰塔，小平和小平头，玛丽和马里奥，Java和javascript….当年javascript为了抱Java大腿恬不知耻的让自己变成了Java的干儿子，哦，不是应该是跪舔，毕竟都跟了Java的姓了。可如今，javascript来了个咸鱼翻身，几乎要统治web领域，Nodejs"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="og:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><meta property="article:published_time" content="2018-10-18T06:38:00.000Z"><meta property="article:modified_time" content="2020-12-29T11:33:42.985Z"><meta property="article:author" content="believeZJP"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://juejin.cn/post/data:image/svg+xml;utf8"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://believezjp.oriht.com/posts/s/"},"headline":"believeZJP","image":[],"datePublished":"2018-10-18T06:38:00.000Z","dateModified":"2020-12-29T11:33:42.985Z","author":{"@type":"Person","name":"believeZJP"},"description":"&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; ss前言  这世界上总存在着那么一些看似相似但有完全不同的东西，比如雷锋和雷峰塔，小平和小平头，玛丽和马里奥，Java和javascript….当年javascript为了抱Java大腿恬不知耻的让自己变成了Java的干儿子，哦，不是应该是跪舔，毕竟都跟了Java的姓了。可如今，javascript来了个咸鱼翻身，几乎要统治web领域，Nodejs"}</script><link rel="canonical" href="http://believezjp.oriht.com/posts/s/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?60d1b1f3f98701021581fc14f9ca17b7";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/believeZJP"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-10-18T06:38:00.000Z" title="2018-10-18T06:38:00.000Z">2018-10-18</time>发表</span><span class="level-item"><time dateTime="2020-12-29T11:33:42.985Z" title="2020-12-29T11:33:42.985Z">2020-12-29</time>更新</span><span class="level-item">1 小时读完 (大约7342个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">十大经典排序算法总结（JavaScript描述）</h1><div class="content"><p>========================</p>
+<h2 id="ss"><a href="#ss" class="headerlink" title="ss"></a>ss</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<ul>
+<li><p>这世界上总存在着那么一些看似相似但有完全不同的东西，比如雷锋和雷峰塔，小平和小平头，玛丽和马里奥，Java和javascript….当年javascript为了抱Java大腿恬不知耻的让自己变成了Java的干儿子，哦，不是应该是跪舔，毕竟都跟了Java的姓了。可如今，javascript来了个咸鱼翻身，几乎要统治web领域，Nodejs，React Native的出现使得javascript在后端和移动端都开始占有了一席之地。可以这么说,在Web的江湖，JavaScript可谓风头无两，已经坐上了头把交椅。</p>
+</li>
+<li><p>在传统的计算机算法和数据结构领域，大多数专业教材和书籍的默认语言都是Java或者C/C+ +，O’REILLY家倒是出了一本叫做《数据结构与算法javascript描述》的书，但不得不说，不知道是作者吃了shit还是译者根本就没校对，满书的小错误，这就像那种无穷无尽的小bug一样,简直就是让人有种嘴里塞满了shit的感觉，吐也不是咽下去也不是。对于一个前端来说，尤其是笔试面试的时候，算法方面考的其实不难（十大排序算法或是和十大排序算法同等难度的），但就是之前没用javascript实现过或是没仔细看过相关算法的原理，导致写起来浪费很多时间。所以撸一撸袖子决定自己查资料自己总结一篇博客等用到了直接看自己的博客就OK了，正所谓靠天靠地靠大牛不如靠自己(ˉ(∞)ˉ)。</p>
+</li>
+<li><p>算法的由来：9世纪波斯数学家提出的：“al-Khowarizmi”就是下图这货（感觉重要数学元素提出者貌似都戴了顶白帽子），开个玩笑，阿拉伯人对于数学史的贡献还是值得人敬佩的。</p>
+<p>  <img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="大大"></p>
+</li>
+</ul>
+</blockquote>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="排序算法说明"><a href="#排序算法说明" class="headerlink" title="排序算法说明"></a>排序算法说明</h3><p><strong>（1）排序的定义：对一序列对象根据某个关键字进行排序；</strong></p>
+<p>输入：n个数：a1,a2,a3,…,an 输出：n个数的排列:a1’,a2’,a3’,…,an’，使得a1’&lt;=a2’&lt;=a3’&lt;=…&lt;=an’。</p>
+<p>再讲的形象点就是排排坐，调座位，高的站在后面，矮的站在前面咯。</p>
+<p><strong>（3）对于评述算法优劣术语的说明</strong></p>
+<p><strong>稳定</strong>：如果a原本在b前面，而a=b，排序之后a仍然在b的前面； <strong>不稳定</strong>：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面；</p>
+<p><strong>内排序</strong>：所有排序操作都在内存中完成； <strong>外排序</strong>：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；</p>
+<p><strong>时间复杂度</strong>: 一个算法执行所耗费的时间。 <strong>空间复杂度</strong>: 运行完一个程序所需内存的大小。</p>
+<p>关于时间空间复杂度的更多了解请戳<a target="_blank" rel="noopener" href="http://blog.csdn.net/booirror/article/details/7707551/">这里</a>，或是看书程杰大大编写的《大话数据结构》还是很赞的，通俗易懂。</p>
+<p><strong>（4）排序算法图片总结(图片来源于网络):</strong></p>
+<p>排序对比：</p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<p><strong>图片名词解释：</strong> n: 数据规模 k:“桶”的个数 In-place: 占用常数内存，不占用额外内存 Out-place: 占用额外内存</p>
+<p>排序分类：</p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h3 id="1-冒泡排序（Bubble-Sort）"><a href="#1-冒泡排序（Bubble-Sort）" class="headerlink" title="1.冒泡排序（Bubble Sort）"></a>1.冒泡排序（Bubble Sort）</h3><blockquote>
+<p>好的，开始总结第一个排序算法，冒泡排序。我想对于它每个学过C语言的都会了解的吧，这可能是很多人接触的第一个排序算法。</p>
+</blockquote>
+<h4 id="1-算法描述"><a href="#1-算法描述" class="headerlink" title="(1)算法描述"></a>(1)算法描述</h4><blockquote>
+<p>冒泡排序是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。</p>
+</blockquote>
+<h4 id="2-算法描述和实现"><a href="#2-算法描述和实现" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.比较相邻的元素。如果第一个比第二个大，就交换它们两个；</li>
+<li>&lt;2&gt;.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；</li>
+<li>&lt;3&gt;.针对所有的元素重复以上的步骤，除了最后一个；</li>
+<li>&lt;4&gt;.重复步骤1~3，直到排序完成。</li>
+</ul>
+<p><strong>JavaScript代码实现：</strong></p>
+<pre><code>function bubbleSort(arr) &#123;
+    var len = arr.length;
+    for (var i = 0; i &lt; len; i++) &#123;
+        for (var j = 0; j &lt; len - 1 - i; j++) &#123;
+            if (arr[j] &gt; arr[j+1]) &#123;        //相邻元素两两对比
+                var temp = arr[j+1];        //元素交换
+                arr[j+1] = arr[j];
+                arr[j] = temp;
+            &#125;
+        &#125;
+    &#125;
+    return arr;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(bubbleSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+复制代码</code></pre>
+<blockquote>
+<p>**改进冒泡排序： **设置一标志性变量pos,用于记录每趟排序中最后一次进行交换的位置。由于pos位置之后的记录均已交换到位,故在进行下一趟排序时只要扫描到pos位置即可。</p>
+</blockquote>
+<p>改进后算法如下:</p>
+<pre><code>function bubbleSort2(arr) &#123;
+    console.time(&#39;改进后冒泡排序耗时&#39;);
+    var i = arr.length-1;  //初始时,最后位置保持不变
+    while ( i&gt; 0) &#123;
+        var pos= 0; //每趟开始时,无记录交换
+        for (var j= 0; j&lt; i; j++)
+            if (arr[j]&gt; arr[j+1]) &#123;
+                pos= j; //记录交换的位置
+                var tmp = arr[j]; arr[j]=arr[j+1];arr[j+1]=tmp;
+            &#125;
+        i= pos; //为下一趟排序作准备
+     &#125;
+     console.timeEnd(&#39;改进后冒泡排序耗时&#39;);
+     return arr;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(bubbleSort2(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+复制代码</code></pre>
+<blockquote>
+<p>传统冒泡排序中每一趟排序操作只能找到一个最大值或最小值,我们考虑利用在每趟排序中进行正向和反向两遍冒泡的方法一次可以得到两个最终值(最大者和最小者) , 从而使排序趟数几乎减少了一半。</p>
+</blockquote>
+<p>改进后的算法实现为:</p>
+<pre><code>function bubbleSort3(arr3) &#123;
+    var low = 0;
+    var high= arr.length-1; //设置变量的初始值
+    var tmp,j;
+    console.time(&#39;2.改进后冒泡排序耗时&#39;);
+    while (low &lt; high) &#123;
+        for (j= low; j&lt; high; ++j) //正向冒泡,找到最大者
+            if (arr[j]&gt; arr[j+1]) &#123;
+                tmp = arr[j]; arr[j]=arr[j+1];arr[j+1]=tmp;
+            &#125;
+        --high;                 //修改high值, 前移一位
+        for (j=high; j&gt;low; --j) //反向冒泡,找到最小者
+            if (arr[j]&lt;arr[j-1]) &#123;
+                tmp = arr[j]; arr[j]=arr[j-1];arr[j-1]=tmp;
+            &#125;
+        ++low;                  //修改low值,后移一位
+    &#125;
+    console.timeEnd(&#39;2.改进后冒泡排序耗时&#39;);
+    return arr3;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(bubbleSort3(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+复制代码</code></pre>
+<p>三种方法耗时对比：</p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<blockquote>
+<p>由图可以看出改进后的冒泡排序明显的时间复杂度更低，耗时更短了。读者自行尝试可以戳这，博主在github建了个库，读者可以Clone下来本地尝试。此博文配合源码体验更棒哦~~~</p>
+</blockquote>
+<p><strong>冒泡排序动图演示:</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<p><strong>(3)算法分析</strong></p>
+<ul>
+<li>最佳情况：T(n) = O(n)</li>
+</ul>
+<blockquote>
+<p>当输入的数据已经是正序时（都已经是正序了，为毛何必还排序呢….）</p>
+</blockquote>
+<ul>
+<li>最差情况：T(n) = O(n2)</li>
+</ul>
+<blockquote>
+<p>当输入的数据是反序时(卧槽，我直接反序不就完了….)</p>
+</blockquote>
+<ul>
+<li>平均情况：T(n) = O(n2)</li>
+</ul>
+<h3 id="2-选择排序（Selection-Sort）"><a href="#2-选择排序（Selection-Sort）" class="headerlink" title="2.选择排序（Selection Sort）"></a>2.选择排序（Selection Sort）</h3><blockquote>
+<p>表现最稳定的排序算法之一(这个稳定不是指算法层面上的稳定哈，相信聪明的你能明白我说的意思2333)，因为无论什么数据进去都是O(n²)的时间复杂度…..所以用到它的时候，数据规模越小越好。唯一的好处可能就是不占用额外的内存空间了吧。理论上讲，选择排序可能也是平时排序一般人想到的最多的排序方法了吧。</p>
+</blockquote>
+<h4 id="1-算法简介"><a href="#1-算法简介" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>选择排序(Selection-sort)是一种简单直观的排序算法。它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-1"><a href="#2-算法描述和实现-1" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结果。具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.初始状态：无序区为R[1..n]，有序区为空；</li>
+<li>&lt;2&gt;.第i趟排序(i=1,2,3…n-1)开始时，当前有序区和无序区分别为R[1..i-1]和R(i..n）。该趟排序从当前无序区中-选出关键字最小的记录 R[k]，将它与无序区的第1个记录R交换，使R[1..i]和R[i+1..n)分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区；</li>
+<li>&lt;3&gt;.n-1趟结束，数组有序化了。</li>
+</ul>
+<p><strong>Javascript代码实现:</strong></p>
+<pre><code>function selectionSort(arr) &#123;
+    var len = arr.length;
+    var minIndex, temp;
+    console.time(&#39;选择排序耗时&#39;);
+    for (var i = 0; i &lt; len - 1; i++) &#123;
+        minIndex = i;
+        for (var j = i + 1; j &lt; len; j++) &#123;
+            if (arr[j] &lt; arr[minIndex]) &#123;     //寻找最小的数
+                minIndex = j;                 //将最小数的索引保存
+            &#125;
+        &#125;
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    &#125;
+    console.timeEnd(&#39;选择排序耗时&#39;);
+    return arr;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(selectionSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+
+复制代码</code></pre>
+<p><strong>选择排序动图演示：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析"><a href="#3-算法分析" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(n2)</li>
+<li>最差情况：T(n) = O(n2)</li>
+<li>平均情况：T(n) = O(n2)</li>
+</ul>
+<h2 id="3-插入排序（Insertion-Sort）"><a href="#3-插入排序（Insertion-Sort）" class="headerlink" title="3.插入排序（Insertion Sort）"></a>3.插入排序（Insertion Sort）</h2><blockquote>
+<p>插入排序的代码实现虽然没有冒泡排序和选择排序那么简单粗暴，但它的原理应该是最容易理解的了，因为只要打过扑克牌的人都应该能够秒懂。当然，如果你说你打扑克牌摸牌的时候从来不按牌的大小整理牌，那估计这辈子你对插入排序的算法都不会产生任何兴趣了…..</p>
+</blockquote>
+<h4 id="1-算法简介-1"><a href="#1-算法简介-1" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>插入排序（Insertion-Sort）的算法描述是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-2"><a href="#2-算法描述和实现-2" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>一般来说，插入排序都采用in-place在数组上实现。具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.从第一个元素开始，该元素可以认为已经被排序；</li>
+<li>&lt;2&gt;.取出下一个元素，在已经排序的元素序列中从后向前扫描；</li>
+<li>&lt;3&gt;.如果该元素（已排序）大于新元素，将该元素移到下一位置；</li>
+<li>&lt;4&gt;.重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；</li>
+<li>&lt;5&gt;.将新元素插入到该位置后；</li>
+<li>&lt;6&gt;.重复步骤2~5。</li>
+</ul>
+<p><strong>Javascript代码实现:</strong></p>
+<pre><code>function insertionSort(array) &#123;
+    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
+        console.time(&#39;插入排序耗时：&#39;);
+        for (var i = 1; i &lt; array.length; i++) &#123;
+            var key = array[i];
+            var j = i - 1;
+            while (j &gt;= 0 &amp;&amp; array[j] &gt; key) &#123;
+                array[j + 1] = array[j];
+                j--;
+            &#125;
+            array[j + 1] = key;
+        &#125;
+        console.timeEnd(&#39;插入排序耗时：&#39;);
+        return array;
+    &#125; else &#123;
+        return &#39;array is not an Array!&#39;;
+    &#125;
+&#125;
+
+复制代码</code></pre>
+<blockquote>
+<p><strong>改进插入排序：</strong> 查找插入位置时使用二分查找的方式</p>
+</blockquote>
+<pre><code>function binaryInsertionSort(array) &#123;
+    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
+        console.time(&#39;二分插入排序耗时：&#39;);
+
+        for (var i = 1; i &lt; array.length; i++) &#123;
+            var key = array[i], left = 0, right = i - 1;
+            while (left &lt;= right) &#123;
+                var middle = parseInt((left + right) / 2);
+                if (key &lt; array[middle]) &#123;
+                    right = middle - 1;
+                &#125; else &#123;
+                    left = middle + 1;
+                &#125;
+            &#125;
+            for (var j = i - 1; j &gt;= left; j--) &#123;
+                array[j + 1] = array[j];
+            &#125;
+            array[left] = key;
+        &#125;
+        console.timeEnd(&#39;二分插入排序耗时：&#39;);
+
+        return array;
+    &#125; else &#123;
+        return &#39;array is not an Array!&#39;;
+    &#125;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(binaryInsertionSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+复制代码</code></pre>
+<blockquote>
+<p>改进前后对比：</p>
+</blockquote>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<p><strong>插入排序动图演示:</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-1"><a href="#3-算法分析-1" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：输入数组按升序排列。T(n) = O(n)</li>
+<li>最坏情况：输入数组按降序排列。T(n) = O(n2)</li>
+<li>平均情况：T(n) = O(n2)</li>
+</ul>
+<h3 id="4-希尔排序（Shell-Sort）"><a href="#4-希尔排序（Shell-Sort）" class="headerlink" title="4.希尔排序（Shell Sort）"></a>4.希尔排序（Shell Sort）</h3><blockquote>
+<p>1959年Shell发明； 第一个突破O(n^2)的排序算法；是简单插入排序的改进版；它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序</p>
+</blockquote>
+<h4 id="1-算法简介-2"><a href="#1-算法简介-2" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。动态定义间隔序列的算法是《算法（第4版》的合著者Robert Sedgewick提出的。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-3"><a href="#2-算法描述和实现-3" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，具体算法描述：</p>
+<ul>
+<li>&lt;1&gt;. 选择一个增量序列t1，t2，…，tk，其中ti&gt;tj，tk=1；</li>
+<li>&lt;2&gt;.按增量序列个数k，对序列进行k 趟排序；</li>
+<li>&lt;3&gt;.每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>function shellSort(arr) &#123;
+    var len = arr.length,
+        temp,
+        gap = 1;
+    console.time(&#39;希尔排序耗时:&#39;);
+    while(gap &lt; len/5) &#123;          //动态定义间隔序列
+        gap =gap*5+1;
+    &#125;
+    for (gap; gap &gt; 0; gap = Math.floor(gap/5)) &#123;
+        for (var i = gap; i &lt; len; i++) &#123;
+            temp = arr[i];
+            for (var j = i-gap; j &gt;= 0 &amp;&amp; arr[j] &gt; temp; j-=gap) &#123;
+                arr[j+gap] = arr[j];
+            &#125;
+            arr[j+gap] = temp;
+        &#125;
+    &#125;
+    console.timeEnd(&#39;希尔排序耗时:&#39;);
+    return arr;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(shellSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+复制代码</code></pre>
+<p><strong>希尔排序图示（图片来源网络）：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="（3）算法分析"><a href="#（3）算法分析" class="headerlink" title="（3）算法分析"></a>（3）算法分析</h4><ul>
+<li>最佳情况：T(n) = O(nlog2 n)</li>
+<li>最坏情况：T(n) = O(nlog2 n)</li>
+<li>平均情况：T(n) =O(nlog n)</li>
+</ul>
+<h3 id="5-归并排序（Merge-Sort）"><a href="#5-归并排序（Merge-Sort）" class="headerlink" title="5.归并排序（Merge Sort）"></a>5.归并排序（Merge Sort）</h3><blockquote>
+<p>和选择排序一样，归并排序的性能不受输入数据的影响，但表现比选择排序好的多，因为始终都是O(n log n）的时间复杂度。代价是需要额外的内存空间。</p>
+</blockquote>
+<h4 id="1-算法简介-3"><a href="#1-算法简介-3" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p> 归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。归并排序是一种稳定的排序方法。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为2-路归并。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-4"><a href="#2-算法描述和实现-4" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.把长度为n的输入序列分成两个长度为n/2的子序列；</li>
+<li>&lt;2&gt;.对这两个子序列分别采用归并排序；</li>
+<li>&lt;3&gt;.将两个排序好的子序列合并成一个最终的排序序列。</li>
+</ul>
+<p><strong>Javscript代码实现:</strong></p>
+<pre><code>function mergeSort(arr) &#123;  //采用自上而下的递归方法
+    var len = arr.length;
+    if(len &lt; 2) &#123;
+        return arr;
+    &#125;
+    var middle = Math.floor(len / 2),
+        left = arr.slice(0, middle),
+        right = arr.slice(middle);
+    return merge(mergeSort(left), mergeSort(right));
+&#125;
+
+function merge(left, right)
+&#123;
+    var result = [];
+    console.time(&#39;归并排序耗时&#39;);
+    while (left.length &amp;&amp; right.length) &#123;
+        if (left[0] &lt;= right[0]) &#123;
+            result.push(left.shift());
+        &#125; else &#123;
+            result.push(right.shift());
+        &#125;
+    &#125;
+
+    while (left.length)
+        result.push(left.shift());
+
+    while (right.length)
+        result.push(right.shift());
+    console.timeEnd(&#39;归并排序耗时&#39;);
+    return result;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(mergeSort(arr));
+
+复制代码</code></pre>
+<p><strong>归并排序动图演示:</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-2"><a href="#3-算法分析-2" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(n)</li>
+<li>最差情况：T(n) = O(nlogn)</li>
+<li>平均情况：T(n) = O(nlogn)</li>
+</ul>
+<h3 id="6-快速排序（Quick-Sort）"><a href="#6-快速排序（Quick-Sort）" class="headerlink" title="6.快速排序（Quick Sort）"></a>6.快速排序（Quick Sort）</h3><blockquote>
+<p>快速排序的名字起的是简单粗暴，因为一听到这个名字你就知道它存在的意义，就是快，而且效率高! 它是处理大数据最快的排序算法之一了。</p>
+</blockquote>
+<h4 id="1-算法简介-4"><a href="#1-算法简介-4" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>快速排序的基本思想：通过一趟排序将待排记录分隔成独立的两部分，其中一部分记录的关键字均比另一部分的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-5"><a href="#2-算法描述和实现-5" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>快速排序使用分治法来把一个串（list）分为两个子串（sub-lists）。具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.从数列中挑出一个元素，称为 “基准”（pivot）；</li>
+<li>&lt;2&gt;.重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</li>
+<li>&lt;3&gt;.递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>/*方法说明：快速排序
+@param  array 待排序数组*/
+//方法一
+function quickSort(array, left, right) &#123;
+    console.time(&#39;1.快速排序耗时&#39;);
+    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39; &amp;&amp; typeof left === &#39;number&#39; &amp;&amp; typeof right === &#39;number&#39;) &#123;
+        if (left &lt; right) &#123;
+            var x = array[right], i = left - 1, temp;
+            for (var j = left; j &lt;= right; j++) &#123;
+                if (array[j] &lt;= x) &#123;
+                    i++;
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                &#125;
+            &#125;
+            quickSort(array, left, i - 1);
+            quickSort(array, i + 1, right);
+        &#125;
+        console.timeEnd(&#39;1.快速排序耗时&#39;);
+        return array;
+    &#125; else &#123;
+        return &#39;array is not an Array or left or right is not a number!&#39;;
+    &#125;
+&#125;
+
+//方法二
+var quickSort2 = function(arr) &#123;
+    console.time(&#39;2.快速排序耗时&#39;);
+&amp;emsp;&amp;emsp;if (arr.length &lt;= 1) &#123; return arr; &#125;
+&amp;emsp;&amp;emsp;var pivotIndex = Math.floor(arr.length / 2);
+&amp;emsp;&amp;emsp;var pivot = arr.splice(pivotIndex, 1)[0];
+&amp;emsp;&amp;emsp;var left = [];
+&amp;emsp;&amp;emsp;var right = [];
+&amp;emsp;&amp;emsp;for (var i = 0; i &lt; arr.length; i++)&#123;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;if (arr[i] &lt; pivot) &#123;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;left.push(arr[i]);
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&#125; else &#123;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;right.push(arr[i]);
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&#125;
+&amp;emsp;&amp;emsp;&#125;
+console.timeEnd(&#39;2.快速排序耗时&#39;);
+&amp;emsp;&amp;emsp;return quickSort2(left).concat([pivot], quickSort2(right));
+&#125;;
+
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(quickSort(arr,0,arr.length-1));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+console.log(quickSort2(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+
+复制代码</code></pre>
+<p><strong>快速排序动图演示：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="快速排序"></p>
+<h4 id="3-算法分析-3"><a href="#3-算法分析-3" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(nlogn)</li>
+<li>最差情况：T(n) = O(n2)</li>
+<li>平均情况：T(n) = O(nlogn)</li>
+</ul>
+<h3 id="7-堆排序（Heap-Sort）"><a href="#7-堆排序（Heap-Sort）" class="headerlink" title="7.堆排序（Heap Sort）"></a>7.堆排序（Heap Sort）</h3><blockquote>
+<p>堆排序可以说是一种利用堆的概念来排序的选择排序。</p>
+</blockquote>
+<h4 id="1-算法简介-5"><a href="#1-算法简介-5" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-6"><a href="#2-算法描述和实现-6" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.将初始待排序关键字序列(R1,R2….Rn)构建成大顶堆，此堆为初始的无序区；</li>
+<li>&lt;2&gt;.将堆顶元素R[1]与最后一个元素R[n]交换，此时得到新的无序区(R1,R2,……Rn-1)和新的有序区(Rn),且满足R[1,2…n-1]&lt;=R[n]；</li>
+<li>&lt;3&gt;.由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区(R1,R2,……Rn-1)调整为新堆，然后再次将R[1]与无序区最后一个元素交换，得到新的无序区(R1,R2….Rn-2)和新的有序区(Rn-1,Rn)。不断重复此过程直到有序区的元素个数为n-1，则整个排序过程完成。</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>/*方法说明：堆排序
+@param  array 待排序数组*/
+function heapSort(array) &#123;
+    console.time(&#39;堆排序耗时&#39;);
+    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
+        //建堆
+        var heapSize = array.length, temp;
+        for (var i = Math.floor(heapSize / 2) - 1; i &gt;= 0; i--) &#123;
+            heapify(array, i, heapSize);
+        &#125;
+
+        //堆排序
+        for (var j = heapSize - 1; j &gt;= 1; j--) &#123;
+            temp = array[0];
+            array[0] = array[j];
+            array[j] = temp;
+            heapify(array, 0, --heapSize);
+        &#125;
+        console.timeEnd(&#39;堆排序耗时&#39;);
+        return array;
+    &#125; else &#123;
+        return &#39;array is not an Array!&#39;;
+    &#125;
+&#125;
+/*方法说明：维护堆的性质
+@param  arr 数组
+@param  x   数组下标
+@param  len 堆大小*/
+function heapify(arr, x, len) &#123;
+    if (Object.prototype.toString.call(arr).slice(8, -1) === &#39;Array&#39; &amp;&amp; typeof x === &#39;number&#39;) &#123;
+        var l = 2 * x + 1, r = 2 * x + 2, largest = x, temp;
+        if (l &lt; len &amp;&amp; arr[l] &gt; arr[largest]) &#123;
+            largest = l;
+        &#125;
+        if (r &lt; len &amp;&amp; arr[r] &gt; arr[largest]) &#123;
+            largest = r;
+        &#125;
+        if (largest != x) &#123;
+            temp = arr[x];
+            arr[x] = arr[largest];
+            arr[largest] = temp;
+            heapify(arr, largest, len);
+        &#125;
+    &#125; else &#123;
+        return &#39;arr is not an Array or x is not a number!&#39;;
+    &#125;
+&#125;
+var arr=[91,60,96,13,35,65,46,65,10,30,20,31,77,81,22];
+console.log(heapSort(arr));//[10, 13, 20, 22, 30, 31, 35, 46, 60, 65, 65, 77, 81, 91, 96]
+
+复制代码</code></pre>
+<p><strong>堆排序动图演示：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-4"><a href="#3-算法分析-4" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(nlogn)</li>
+<li>最差情况：T(n) = O(nlogn)</li>
+<li>平均情况：T(n) = O(nlogn)</li>
+</ul>
+<h3 id="8-计数排序（Counting-Sort）"><a href="#8-计数排序（Counting-Sort）" class="headerlink" title="8.计数排序（Counting Sort）"></a>8.计数排序（Counting Sort）</h3><blockquote>
+<p>计数排序的核心在于将输入的数据值转化为键存储在额外开辟的数组空间中。 作为一种线性时间复杂度的排序，计数排序要求输入的数据必须是有确定范围的整数。</p>
+</blockquote>
+<h4 id="1-算法简介-6"><a href="#1-算法简介-6" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>计数排序(Counting sort)是一种稳定的排序算法。计数排序使用一个额外的数组C，其中第i个元素是待排序数组A中值等于i的元素的个数。然后根据数组C来将A中的元素排到正确的位置。它只能对整数进行排序。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-7"><a href="#2-算法描述和实现-7" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;. 找出待排序的数组中最大和最小的元素；</li>
+<li>&lt;2&gt;. 统计数组中每个值为i的元素出现的次数，存入数组C的第i项；</li>
+<li>&lt;3&gt;. 对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）；</li>
+<li>&lt;4&gt;. 反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1。</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>function countingSort(array) &#123;
+    var len = array.length,
+        B = [],
+        C = [],
+        min = max = array[0];
+    console.time(&#39;计数排序耗时&#39;);
+    for (var i = 0; i &lt; len; i++) &#123;
+        min = min &lt;= array[i] ? min : array[i];
+        max = max &gt;= array[i] ? max : array[i];
+        C[array[i]] = C[array[i]] ? C[array[i]] + 1 : 1;
+    &#125;
+    for (var j = min; j &lt; max; j++) &#123;
+        C[j + 1] = (C[j + 1] || 0) + (C[j] || 0);
+    &#125;
+    for (var k = len - 1; k &gt;= 0; k--) &#123;
+        B[C[array[k]] - 1] = array[k];
+        C[array[k]]--;
+    &#125;
+    console.timeEnd(&#39;计数排序耗时&#39;);
+    return B;
+&#125;
+var arr = [2, 2, 3, 8, 7, 1, 2, 2, 2, 7, 3, 9, 8, 2, 1, 4, 2, 4, 6, 9, 2];
+console.log(countingSort(arr)); //[1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 4, 4, 6, 7, 7, 8, 8, 9, 9]
+
+复制代码</code></pre>
+<p><strong>JavaScript动图演示：</strong>、</p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-5"><a href="#3-算法分析-5" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><blockquote>
+<p>当输入的元素是n 个0到k之间的整数时，它的运行时间是 O(n + k)。计数排序不是比较排序，排序的速度快于任何比较排序算法。由于用来计数的数组C的长度取决于待排序数组中数据的范围（等于待排序数组的最大值与最小值的差加上1），这使得计数排序对于数据范围很大的数组，需要大量时间和内存。</p>
+</blockquote>
+<ul>
+<li>最佳情况：T(n) = O(n+k)</li>
+<li>最差情况：T(n) = O(n+k)</li>
+<li>平均情况：T(n) = O(n+k)</li>
+</ul>
+<h3 id="9-桶排序（Bucket-Sort）"><a href="#9-桶排序（Bucket-Sort）" class="headerlink" title="9.桶排序（Bucket Sort）"></a>9.桶排序（Bucket Sort）</h3><blockquote>
+<p>桶排序是计数排序的升级版。它利用了函数的映射关系，高效与否的关键就在于这个映射函数的确定。</p>
+</blockquote>
+<h4 id="1-算法简介-7"><a href="#1-算法简介-7" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>桶排序 (Bucket sort)的工作的原理：假设输入数据服从均匀分布，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排</p>
+</blockquote>
+<h4 id="2-算法描述和实现-8"><a href="#2-算法描述和实现-8" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.设置一个定量的数组当作空桶；</li>
+<li>&lt;2&gt;.遍历输入数据，并且把数据一个一个放到对应的桶里去；</li>
+<li>&lt;3&gt;.对每个不是空的桶进行排序；</li>
+<li>&lt;4&gt;.从不是空的桶里把排好序的数据拼接起来。</li>
+</ul>
+<p><strong>Javascript代码实现:</strong></p>
+<pre><code>/*方法说明：桶排序
+@param  array 数组
+@param  num   桶的数量*/
+function bucketSort(array, num) &#123;
+    if (array.length &lt;= 1) &#123;
+        return array;
+    &#125;
+    var len = array.length, buckets = [], result = [], min = max = array[0], regex = &#39;/^[1-9]+[0-9]*$/&#39;, space, n = 0;
+    num = num || ((num &gt; 1 &amp;&amp; regex.test(num)) ? num : 10);
+    console.time(&#39;桶排序耗时&#39;);
+    for (var i = 1; i &lt; len; i++) &#123;
+        min = min &lt;= array[i] ? min : array[i];
+        max = max &gt;= array[i] ? max : array[i];
+    &#125;
+    space = (max - min + 1) / num;
+    for (var j = 0; j &lt; len; j++) &#123;
+        var index = Math.floor((array[j] - min) / space);
+        if (buckets[index]) &#123;   //  非空桶，插入排序
+            var k = buckets[index].length - 1;
+            while (k &gt;= 0 &amp;&amp; buckets[index][k] &gt; array[j]) &#123;
+                buckets[index][k + 1] = buckets[index][k];
+                k--;
+            &#125;
+            buckets[index][k + 1] = array[j];
+        &#125; else &#123;    //空桶，初始化
+            buckets[index] = [];
+            buckets[index].push(array[j]);
+        &#125;
+    &#125;
+    while (n &lt; num) &#123;
+        result = result.concat(buckets[n]);
+        n++;
+    &#125;
+    console.timeEnd(&#39;桶排序耗时&#39;);
+    return result;
+&#125;
+var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
+console.log(bucketSort(arr,4));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+复制代码</code></pre>
+<p><strong>桶排序图示（图片来源网络）：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<p>关于桶排序<a target="_blank" rel="noopener" href="http://www.cnblogs.com/lonelyxmas/p/3561938.html">更多</a></p>
+<h4 id="3-算法分析-6"><a href="#3-算法分析-6" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><blockquote>
+<p> 桶排序最好情况下使用线性时间O(n)，桶排序的时间复杂度，取决与对各个桶之间数据进行排序的时间复杂度，因为其它部分的时间复杂度都为O(n)。很显然，桶划分的越小，各个桶之间的数据越少，排序所用的时间也会越少。但相应的空间消耗就会增大。</p>
+</blockquote>
+<ul>
+<li>最佳情况：T(n) = O(n+k)</li>
+<li>最差情况：T(n) = O(n+k)</li>
+<li>平均情况：T(n) = O(n2)</li>
+</ul>
+<h3 id="10-基数排序（Radix-Sort）"><a href="#10-基数排序（Radix-Sort）" class="headerlink" title="10.基数排序（Radix Sort）"></a>10.基数排序（Radix Sort）</h3><blockquote>
+<p>基数排序也是非比较的排序算法，对每一位进行排序，从最低位开始排序，复杂度为O(kn),为数组长度，k为数组中的数的最大的位数；</p>
+</blockquote>
+<h4 id="1-算法简介-8"><a href="#1-算法简介-8" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
+<p>基数排序是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。有时候有些属性是有优先级顺序的，先按低优先级排序，再按高优先级排序。最后的次序就是高优先级高的在前，高优先级相同的低优先级高的在前。基数排序基于分别排序，分别收集，所以是稳定的。</p>
+</blockquote>
+<h4 id="2-算法描述和实现-9"><a href="#2-算法描述和实现-9" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
+<ul>
+<li>&lt;1&gt;.取得数组中的最大数，并取得位数；</li>
+<li>&lt;2&gt;.arr为原始数组，从最低位开始取每个位组成radix数组；</li>
+<li>&lt;3&gt;.对radix进行计数排序（利用计数排序适用于小范围数的特点）；</li>
+</ul>
+<p><strong>Javascript代码实现：</strong></p>
+<pre><code>/**
+ * 基数排序适用于：
+ *  (1)数据范围较小，建议在小于1000
+ *  (2)每个数值都要大于等于0
+ * @author xiazdong
+ * @param  arr 待排序数组
+ * @param  maxDigit 最大位数
+ */
+//LSD Radix Sort
+
+function radixSort(arr, maxDigit) &#123;
+    var mod = 10;
+    var dev = 1;
+    var counter = [];
+    console.time(&#39;基数排序耗时&#39;);
+    for (var i = 0; i &lt; maxDigit; i++, dev *= 10, mod *= 10) &#123;
+        for(var j = 0; j &lt; arr.length; j++) &#123;
+            var bucket = parseInt((arr[j] % mod) / dev);
+            if(counter[bucket]== null) &#123;
+                counter[bucket] = [];
+            &#125;
+            counter[bucket].push(arr[j]);
+        &#125;
+        var pos = 0;
+        for(var j = 0; j &lt; counter.length; j++) &#123;
+            var value = null;
+            if(counter[j]!=null) &#123;
+                while ((value = counter[j].shift()) != null) &#123;
+                      arr[pos++] = value;
+                &#125;
+          &#125;
+        &#125;
+    &#125;
+    console.timeEnd(&#39;基数排序耗时&#39;);
+    return arr;
+&#125;
+var arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];
+console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
+
+复制代码</code></pre>
+<p><strong>基数排序LSD动图演示：</strong></p>
+<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
+<h4 id="3-算法分析-7"><a href="#3-算法分析-7" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
+<li>最佳情况：T(n) = O(n * k)</li>
+<li>最差情况：T(n) = O(n * k)</li>
+<li>平均情况：T(n) = O(n * k)</li>
+</ul>
+<p>基数排序有两种方法：</p>
+<ul>
+<li>MSD 从高位开始进行排序</li>
+<li>LSD 从低位开始进行排序</li>
+</ul>
+<p><strong>基数排序 vs 计数排序 vs 桶排序</strong></p>
+<p>这三种排序算法都利用了桶的概念，但对桶的使用方法上有明显差异：</p>
+<ol>
+<li>基数排序：根据键值的每位数字来分配桶</li>
+<li>计数排序：每个桶只存储单一键值</li>
+<li>桶排序：每个桶存储一定范围的数值</li>
+</ol>
+<p>![<a target="_blank" rel="noopener" href="https://user-gold-cdn.xitu.io/2020/2/3/1700919fb9a285de?w=450&amp;h=359&amp;f=png&amp;s=66765%5D">https://user-gold-cdn.xitu.io/2020/2/3/1700919fb9a285de?w=450&amp;h=359&amp;f=png&amp;s=66765]</a>(<a target="_blank" rel="noopener" href="https://juejin.cn/post/data:image/svg+xml;utf8">https://juejin.cn/post/data:image/svg+xml;utf8</a><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="450" height="359"></svg>)</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><blockquote>
+<p>十大排序算法的总结到这里就算告一段落了。博主总结完之后只有一个感觉，排序算法博大精深，前辈们用了数年甚至一辈子的心血研究出来的算法更值得我们推敲。站在十大算法的门前心里还是诚惶诚恐的，身为一个小学生，博主的总结难免会有所疏漏，欢迎各位批评指定。</p>
+</blockquote>
+<p>.markdown-body pre,.markdown-body pre&gt;code.hljs{color:#333;background:#f8f8f8}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>十大经典排序算法总结（JavaScript描述）</p><p><a href="http://believezjp.oriht.com/posts/s/">http://believezjp.oriht.com/posts/s/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>believeZJP</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2018-10-18</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-12-29</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/posts/test/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">test</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/hexo%E7%AC%94%E8%AE%B0/"><span class="level-item">搭建Hexo博客笔记</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'http://believezjp.oriht.com/posts/s/';
+            this.page.identifier = 'posts/s/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'hardy' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Hardy"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Hardy</p><p class="is-size-6 is-block">不积跬步无以至千里</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>北京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">96</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">88</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/believeZJP" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/believeZJP"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="微博" href="https://weibo.com/u/6021664425"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="QQ" href="tencent://message/?uin=421790588&amp;Site=www&amp;Menu=yes"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/es6/"><span class="level-start"><span class="level-item">es6</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/http/"><span class="level-start"><span class="level-item">http</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/http/%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-12-29T11:36:01.000Z">2020-12-29</time></p><p class="title"><a href="/posts/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%88%97%E8%A1%A8/">思维导图列表</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-27T07:25:36.000Z">2020-11-27</time></p><p class="title"><a href="/posts/%E7%BE%BD%E6%AF%9B%E7%90%83%E9%80%9F%E6%88%90/">羽毛球速成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-09-11T08:55:34.116Z">2020-09-11</time></p><p class="title"><a href="/posts/Alfred/">Alfred</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-08-20T08:18:50.000Z">2020-08-20</time></p><p class="title"><a href="/posts/React%E4%B8%ADAPI%E4%BD%BF%E7%94%A8%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/">React中API使用的正确姿势</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-07-23T16:06:49.000Z">2020-07-24</time></p><p class="title"><a href="/posts/%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8standard%E8%A7%84%E8%8C%83%E5%B9%B6%E7%94%A8eslint%E8%87%AA%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%A3%E7%A0%81/">项目使用standard规范并用eslint自动格式化代码</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/01/"><span class="level-start"><span class="level-item">一月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/12/"><span class="level-start"><span class="level-item">十二月 2019</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">十一月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">八月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">一月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">十一月 2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">十月 2018</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/08/"><span class="level-start"><span class="level-item">八月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/03/"><span class="level-start"><span class="level-item">三月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Alfred/"><span class="tag">Alfred</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS/"><span class="tag">CSS</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS3/"><span class="tag">CSS3</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EventLoop/"><span class="tag">EventLoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/GitKraken/"><span class="tag">GitKraken</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Javascript/"><span class="tag">Javascript</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Koa/"><span class="tag">Koa</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Nginx/"><span class="tag">Nginx</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NodeJS/"><span class="tag">NodeJS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Promise/"><span class="tag">Promise</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React-Native/"><span class="tag">React Native</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React%E8%BF%81%E7%A7%BB%E5%88%B0%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">React迁移到百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSR/"><span class="tag">SSR</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SmartGit/"><span class="tag">SmartGit</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vue/"><span class="tag">Vue</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Webpack/"><span class="tag">Webpack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/antDesign/"><span class="tag">antDesign</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/async/"><span class="tag">async</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/await/"><span class="tag">await</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/centos/"><span class="tag">centos</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/compose/"><span class="tag">compose</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es6/"><span class="tag">es6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es8/"><span class="tag">es8</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for-of/"><span class="tag">for of</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/generator/"><span class="tag">generator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iTerm2/"><span class="tag">iTerm2</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterator/"><span class="tag">iterator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/jQuery/"><span class="tag">jQuery</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/nextTick/"><span class="tag">nextTick</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/node/"><span class="tag">node</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/react/"><span class="tag">react</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/redis/"><span class="tag">redis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setImmediate/"><span class="tag">setImmediate</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setTimeout/"><span class="tag">setTimeout</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webpack4/"><span class="tag">webpack4</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B8%9A%E5%8A%A1/"><span class="tag">业务</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/"><span class="tag">代码优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"><span class="tag">代码示例</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"><span class="tag">内存泄漏</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%A5%E6%83%B3/"><span class="tag">冥想</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%93%B2%E5%AD%A6/"><span class="tag">哲学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><span class="tag">基础知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98/"><span class="tag">处理问题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"><span class="tag">学习方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="tag">学习笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%9A%E6%97%B6%E5%99%A8/"><span class="tag">定时器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%81%E8%A3%85/"><span class="tag">封装</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/"><span class="tag">思维导图</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"><span class="tag">性能优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8A%80%E6%9C%AF/"><span class="tag">技术</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8F%92%E4%BB%B6/"><span class="tag">插件</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%88%E7%8E%87/"><span class="tag">效率</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%99%E7%A8%8B/"><span class="tag">教程</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="tag">数据结构</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E7%A7%AF%E7%B4%AF/"><span class="tag">日常积累</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%AD%A3%E5%88%99/"><span class="tag">正则</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B2%9F%E9%80%9A%E6%8A%80%E5%B7%A7/"><span class="tag">沟通技巧</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/"><span class="tag">理论知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9B%91%E6%8E%A7/"><span class="tag">监控</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="tag">知识点</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%B2%BE%E8%AF%BB/"><span class="tag">精读</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BA%BF%E4%B8%8A%E4%BA%8B%E6%95%85/"><span class="tag">线上事故</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%84%E5%90%88%E5%87%BD%E6%95%B0/"><span class="tag">组合函数</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%88%E7%AB%AF/"><span class="tag">终端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/"><span class="tag">经验积累</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B7%91%E6%AD%A5/"><span class="tag">跑步</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E5%8A%A8/"><span class="tag">运动</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"><span class="tag">进程管理</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a><p class="is-size-7"><span>&copy; 2020 believeZJP</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
