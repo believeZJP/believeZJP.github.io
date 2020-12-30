@@ -1,11 +1,279 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>前端经验积累 - believeZJP</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="believeZJP"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="believeZJP"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="判断一个对象是不是数组 instanceof操作符用来判断要检测对象的原型链上是否存在某个构造函数的prototype属性。  12345678var a&amp;#x3D;&amp;amp;#123;&amp;amp;#125;;var b&amp;#x3D;[];console.log(a instanceof Object);&amp;#x2F;&amp;#x2F;trueconsole.log(b instanceof Array);&amp;#x2F;&amp;amp;#x"><meta property="og:type" content="blog"><meta property="og:title" content="前端经验积累"><meta property="og:url" content="http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/"><meta property="og:site_name" content="believeZJP"><meta property="og:description" content="判断一个对象是不是数组 instanceof操作符用来判断要检测对象的原型链上是否存在某个构造函数的prototype属性。  12345678var a&amp;#x3D;&amp;amp;#123;&amp;amp;#125;;var b&amp;#x3D;[];console.log(a instanceof Object);&amp;#x2F;&amp;#x2F;trueconsole.log(b instanceof Array);&amp;#x2F;&amp;amp;#x"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://believezjp.oriht.com/img/og_image.png"><meta property="article:published_time" content="2018-07-03T13:42:02.000Z"><meta property="article:modified_time" content="2018-11-29T13:42:02.000Z"><meta property="article:author" content="believeZJP"><meta property="article:tag" content="jQuery"><meta property="article:tag" content="插件"><meta property="article:tag" content="封装"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/"},"headline":"believeZJP","image":["http://believezjp.oriht.com/img/og_image.png"],"datePublished":"2018-07-03T13:42:02.000Z","dateModified":"2018-11-29T13:42:02.000Z","author":{"@type":"Person","name":"believeZJP"},"description":"判断一个对象是不是数组 instanceof操作符用来判断要检测对象的原型链上是否存在某个构造函数的prototype属性。  12345678var a&#x3D;&amp;#123;&amp;#125;;var b&#x3D;[];console.log(a instanceof Object);&#x2F;&#x2F;trueconsole.log(b instanceof Array);&#x2F;&amp;#x"}</script><link rel="canonical" href="http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?60d1b1f3f98701021581fc14f9ca17b7";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/believeZJP"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-07-03T13:42:02.000Z" title="2018-07-03T13:42:02.000Z">2018-07-03</time>发表</span><span class="level-item"><time dateTime="2018-11-29T13:42:02.000Z" title="2018-11-29T13:42:02.000Z">2018-11-29</time>更新</span><span class="level-item">2 小时读完 (大约16587个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">前端经验积累</h1><div class="content"><h1 id="判断一个对象是不是数组"><a href="#判断一个对象是不是数组" class="headerlink" title="判断一个对象是不是数组"></a>判断一个对象是不是数组</h1><ol>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="判断一个对象是不是数组 instanceof操作符用来判断要检测对象的原型链上是否存在某个构造函数的prototype属性。  12345678var a&#x3D;&amp;#123;&amp;#125;;var b&#x3D;[];console.log(a instanceof Object);&#x2F;&#x2F;trueconsole.log(b instanceof Array);&#x2F;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端经验积累">
+<meta property="og:url" content="http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/index.html">
+<meta property="og:site_name" content="believeZJP">
+<meta property="og:description" content="判断一个对象是不是数组 instanceof操作符用来判断要检测对象的原型链上是否存在某个构造函数的prototype属性。  12345678var a&#x3D;&amp;#123;&amp;#125;;var b&#x3D;[];console.log(a instanceof Object);&#x2F;&#x2F;trueconsole.log(b instanceof Array);&#x2F;&amp;#x">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-07-03T13:42:02.000Z">
+<meta property="article:modified_time" content="2018-11-29T13:42:02.000Z">
+<meta property="article:author" content="believeZJP">
+<meta property="article:tag" content="jQuery">
+<meta property="article:tag" content="插件">
+<meta property="article:tag" content="封装">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>前端经验积累 | believeZJP</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">believeZJP</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录成长路径</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E4%B8%8D%E6%98%AF%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">判断一个对象是不是数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9C%9F%E5%80%BC-%E5%81%87%E5%80%BC%EF%BC%88Truthy-Falsy%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">真值 &#x2F; 假值（Truthy &#x2F; Falsy）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E8%AF%AD%E5%8F%A5%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E4%BB%A5%E2%80%9Cfunction%E2%80%9D%E5%92%8C%E5%A4%A7%E6%8B%AC%E5%8F%B7%E5%BC%80%E5%A4%B4"><span class="nav-number">3.</span> <span class="nav-text">JS语句为什么不能以“function”和大括号开头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-assign-JSON-stringify%E6%98%AF%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%90%97"><span class="nav-number">4.</span> <span class="nav-text">Object.assign, JSON.stringify是深拷贝吗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#immutable-js-%E8%BF%99%E4%B8%AA%E4%B8%93%E9%97%A8%E5%A4%84%E7%90%86%E4%B8%8D%E5%8F%98%E6%80%A7%E6%95%B0%E6%8D%AE%E7%9A%84%E5%BA%93-%E4%B9%9F%E6%98%AFfacebook%E5%87%BA%E5%93%81-%EF%BC%8C%E5%AE%83%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%B1%BB%E4%BC%BC%E8%B5%8B%E5%80%BC%E7%9A%84%E6%96%B9%E5%BC%8F%E7%94%9F%E6%88%90%E6%B5%85%E5%A4%8D%E5%88%B6%E7%9A%84%E4%B8%8D%E5%8F%98%E6%80%A7%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%B8%8B%E9%9D%A2%E6%9D%A5%E7%9C%8B%E7%9C%8B%E5%AE%83%E6%80%8E%E4%B9%88%E7%AE%80%E5%8C%96%E6%88%91%E4%BB%AC%E7%9A%84%E5%BC%80%E5%8F%91"><span class="nav-number">4.0.1.</span> <span class="nav-text">immutable.js 这个专门处理不变性数据的库(也是facebook出品)，它可以使用类似赋值的方式生成浅复制的不变性数据，下面来看看它怎么简化我们的开发</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSONP-%E5%90%8E%E7%AB%AF%E8%BF%94%E5%9B%9Ealert-data-%EF%BC%8C%E5%89%8D%E7%AB%AF%E4%BC%9A%E6%89%A7%E8%A1%8C%E5%90%97"><span class="nav-number">5.</span> <span class="nav-text">JSONP 后端返回alert(data)，前端会执行吗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#js-css%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%EF%BC%8C%E5%B9%B6%E8%A1%8C%E4%B8%B2%E8%A1%8C%EF%BC%8C%E9%98%BB%E5%A1%9E"><span class="nav-number">6.</span> <span class="nav-text">js,css执行顺序，并行串行，阻塞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">7.</span> <span class="nav-text">进制转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E5%AF%B9%E8%B1%A1%E5%88%A4%E6%96%AD"><span class="nav-number">8.</span> <span class="nav-text">两个对象判断&#x3D;&#x3D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FOUC%E6%97%A0%E6%A0%B7%E5%BC%8F%E5%86%85%E5%AE%B9%E9%97%AA%E7%83%81"><span class="nav-number">9.</span> <span class="nav-text">FOUC无样式内容闪烁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#js%E5%AE%9E%E7%8E%B0jQuery-clone"><span class="nav-number">10.</span> <span class="nav-text">js实现jQuery.clone</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#i18n"><span class="nav-number">11.</span> <span class="nav-text">i18n</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ajax%E5%8F%82%E6%95%B0"><span class="nav-number">12.</span> <span class="nav-text">ajax参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery%E6%8F%92%E4%BB%B6"><span class="nav-number">13.</span> <span class="nav-text">jQuery插件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#exports-module-exports%E5%8C%BA%E5%88%AB"><span class="nav-number">14.</span> <span class="nav-text">exports, module.exports区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">15.</span> <span class="nav-text">上传文件方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sass"><span class="nav-number">16.</span> <span class="nav-text">Sass</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cookie%E5%92%8Csession%E5%8C%BA%E5%88%AB"><span class="nav-number">17.</span> <span class="nav-text">cookie和session区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AMD-CMD-CommonJS"><span class="nav-number">18.</span> <span class="nav-text">AMD, CMD, CommonJS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#import%E5%BC%95%E5%85%A5%E6%A8%A1%E5%9D%97"><span class="nav-number">18.0.1.</span> <span class="nav-text">import引入模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-%E6%A8%A1%E5%9D%97%E4%B8%8E-CommonJS-%E6%A8%A1%E5%9D%97%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">18.0.2.</span> <span class="nav-text">ES6 模块与 CommonJS 模块的差异</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#position%E5%8F%96%E5%80%BC"><span class="nav-number">19.</span> <span class="nav-text">position取值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E7%BB%84%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">20.</span> <span class="nav-text">类数组转换为数组的方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#call%E5%92%8Capply-bind%E5%8C%BA%E5%88%AB"><span class="nav-number">21.</span> <span class="nav-text">call和apply, bind区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E6%80%8E%E4%B9%88%E7%BB%91%E5%AE%9A%E5%85%A8%E5%B1%80this"><span class="nav-number">22.</span> <span class="nav-text">箭头函数怎么绑定全局this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#es6%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">23.</span> <span class="nav-text">es6新特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#foreach-map-reduce-filter%E5%8C%BA%E5%88%AB"><span class="nav-number">24.</span> <span class="nav-text">foreach, map, reduce, filter区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E-amp-%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">25.</span> <span class="nav-text">函数声明&amp;函数表达式的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="nav-number">26.</span> <span class="nav-text">DOM事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#addEventListener-evtype-fn-useCapture"><span class="nav-number">26.0.0.0.1.</span> <span class="nav-text">addEventListener(evtype,fn,useCapture)</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-%E9%97%AE%E9%A2%98"><span class="nav-number">27.</span> <span class="nav-text">git 问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#let-var-const-%E5%8C%BA%E5%88%AB"><span class="nav-number">28.</span> <span class="nav-text">let var const 区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AD%E5%8C%85"><span class="nav-number">29.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E4%B8%BA%E6%95%B0%E7%BB%84"><span class="nav-number">30.</span> <span class="nav-text">判断是否为数组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="nav-number">31.</span> <span class="nav-text">找出数组中的最大值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript%E7%9A%84this%E7%94%A8%E6%B3%95"><span class="nav-number">32.</span> <span class="nav-text">Javascript的this用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%BA%AF%E7%B2%B9%E7%9A%84%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8-%E5%B1%9E%E4%BA%8E%E5%85%A8%E5%B1%80%E6%80%A7%E8%B0%83%E7%94%A8%EF%BC%8C%E5%9B%A0%E6%AD%A4this%E5%B0%B1%E4%BB%A3%E8%A1%A8%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1Global"><span class="nav-number">32.0.1.</span> <span class="nav-text">一、纯粹的函数调用   属于全局性调用，因此this就代表全局对象Global</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BD%9C%E4%B8%BA%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8-this%E5%B0%B1%E6%8C%87%E8%BF%99%E4%B8%AA%E4%B8%8A%E7%BA%A7%E5%AF%B9%E8%B1%A1"><span class="nav-number">32.0.2.</span> <span class="nav-text">二、作为对象方法的调用    this就指这个上级对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-%E4%BD%9C%E4%B8%BA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">32.0.3.</span> <span class="nav-text">三 作为构造函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-apply%E8%B0%83%E7%94%A8"><span class="nav-number">32.0.4.</span> <span class="nav-text">四 apply调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94-this%E6%8C%87%E5%90%91%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E7%9A%84dom%E5%85%83%E7%B4%A0"><span class="nav-number">32.0.5.</span> <span class="nav-text">五 this指向绑定事件的dom元素</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%A4%9A%E5%B0%91"><span class="nav-number">33.</span> <span class="nav-text">Q: 设计模式你了解多少</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-JS-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">34.</span> <span class="nav-text">Q: JS 的基本数据类型有哪些</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-null-%E5%92%8C-undefined-%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">35.</span> <span class="nav-text">Q: null 和 undefined 的差异</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B-%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E6%98%AF%E5%93%AA%E4%B8%80%E7%A7%8D"><span class="nav-number">36.</span> <span class="nav-text">Q: 清除浮动的方式有哪些?比较好的是哪一种</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98"><span class="nav-number">37.</span> <span class="nav-text">Q: 跨域问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-%E5%AF%B9%E4%BA%8EXSS-%E5%92%8C-CSRF-%E5%A6%82%E4%BD%95%E9%98%B2%E8%8C%83"><span class="nav-number">38.</span> <span class="nav-text">Q: 对于XSS 和 CSRF 如何防范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Q-%E8%B0%88%E8%B0%88%E4%BD%A0%E5%AF%B9-Promise-%E7%9A%84%E7%90%86%E8%A7%A3-%E5%92%8C-ajax-%E6%9C%89%E5%85%B3%E7%B3%BB%E4%B9%88"><span class="nav-number">39.</span> <span class="nav-text">Q: 谈谈你对 Promise 的理解? 和 ajax 有关系么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A5%BD%E5%A4%84"><span class="nav-number">39.1.</span> <span class="nav-text">好处</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise%E5%AF%B9%E8%B1%A1%E4%B8%A4%E4%B8%AA%E7%89%B9%E7%82%B9"><span class="nav-number">39.1.1.</span> <span class="nav-text">Promise对象两个特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%EF%BC%88%E5%8D%81%E9%81%93%E9%A2%98%EF%BC%89"><span class="nav-number">40.</span> <span class="nav-text">Promise 必知必会（十道题）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B"><span class="nav-number">41.</span> <span class="nav-text">浏览器渲染主要流程</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">believeZJP</p>
+  <div class="site-description" itemprop="description">积土成山，风雨兴焉；积水成渊，蛟龙生焉;</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="believeZJP">
+      <meta itemprop="description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="believeZJP">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端经验积累
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-07-03 21:42:02" itemprop="dateCreated datePublished" datetime="2018-07-03T21:42:02+08:00">2018-07-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2018-11-29 21:42:02" itemprop="dateModified" datetime="2018-11-29T21:42:02+08:00">2018-11-29</time>
+      </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="判断一个对象是不是数组"><a href="#判断一个对象是不是数组" class="headerlink" title="判断一个对象是不是数组"></a>判断一个对象是不是数组</h1><ol>
 <li>instanceof操作符用来判断要检测对象的原型链上是否存在某个构造函数的prototype属性。</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var a&#x3D;&#123;&#125;;</span><br><span class="line">var b&#x3D;[];</span><br><span class="line">console.log(a instanceof Object);&#x2F;&#x2F;true</span><br><span class="line">console.log(b instanceof Array);&#x2F;&#x2F;true</span><br><span class="line"></span><br><span class="line">注意！！！！！！</span><br><span class="line">console.log(b instanceof Object);&#x2F;&#x2F;true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -441,57 +709,118 @@ HTTP的缓存头使用的合理
 <p>for in 可以遍历到myObject的原型方法method,<br>如果不想遍历原型方法和属性的话，<br>可以在循环内部判断一下,<br>hasOwnPropery方法可以判断<br>某属性是否是该对象的实例属性</p>
 <p>for (var key in myObject) {<br>　　if（myObject.hasOwnProperty(key)){<br>　　　　console.log(key);<br>　　}<br>}</p>
 <pre><code></code></pre>
-</div><div class="article-licensing box"><div class="licensing-title"><p>前端经验积累</p><p><a href="http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/">http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>believeZJP</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2018-07-03</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2018-11-29</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/jQuery/">jQuery</a><a class="link-muted mr-2" rel="tag" href="/tags/%E6%8F%92%E4%BB%B6/">插件</a><a class="link-muted mr-2" rel="tag" href="/tags/%E5%B0%81%E8%A3%85/">封装</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/posts/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">网站搭建</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/React%20%E5%92%8CVue/"><span class="level-item">React和Vue</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
-            this.page.url = 'http://believezjp.oriht.com/posts/%E5%89%8D%E7%AB%AF%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/';
-            this.page.identifier = 'posts/前端经验积累/';
-        };
-        (function() {
-            var d = document, s = d.createElement('script');  
-            s.src = '//' + 'hardy' + '.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Hardy"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Hardy</p><p class="is-size-6 is-block">不积跬步无以至千里</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>北京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">96</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">88</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/believeZJP" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/believeZJP"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="微博" href="https://weibo.com/u/6021664425"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="QQ" href="tencent://message/?uin=421790588&amp;Site=www&amp;Menu=yes"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/es6/"><span class="level-start"><span class="level-item">es6</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/http/"><span class="level-start"><span class="level-item">http</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/http/%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-12-29T11:36:01.000Z">2020-12-29</time></p><p class="title"><a href="/posts/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%88%97%E8%A1%A8/">思维导图列表</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-27T07:25:36.000Z">2020-11-27</time></p><p class="title"><a href="/posts/%E7%BE%BD%E6%AF%9B%E7%90%83%E9%80%9F%E6%88%90/">羽毛球速成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-09-11T08:55:34.116Z">2020-09-11</time></p><p class="title"><a href="/posts/Alfred/">Alfred</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-08-20T08:18:50.000Z">2020-08-20</time></p><p class="title"><a href="/posts/React%E4%B8%ADAPI%E4%BD%BF%E7%94%A8%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/">React中API使用的正确姿势</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-07-23T16:06:49.000Z">2020-07-24</time></p><p class="title"><a href="/posts/%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8standard%E8%A7%84%E8%8C%83%E5%B9%B6%E7%94%A8eslint%E8%87%AA%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%A3%E7%A0%81/">项目使用standard规范并用eslint自动格式化代码</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/01/"><span class="level-start"><span class="level-item">一月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/12/"><span class="level-start"><span class="level-item">十二月 2019</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">十一月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">八月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">一月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">十一月 2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">十月 2018</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/08/"><span class="level-start"><span class="level-item">八月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/03/"><span class="level-start"><span class="level-item">三月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Alfred/"><span class="tag">Alfred</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS/"><span class="tag">CSS</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS3/"><span class="tag">CSS3</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EventLoop/"><span class="tag">EventLoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/GitKraken/"><span class="tag">GitKraken</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Javascript/"><span class="tag">Javascript</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Koa/"><span class="tag">Koa</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Nginx/"><span class="tag">Nginx</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NodeJS/"><span class="tag">NodeJS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Promise/"><span class="tag">Promise</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React-Native/"><span class="tag">React Native</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React%E8%BF%81%E7%A7%BB%E5%88%B0%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">React迁移到百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSR/"><span class="tag">SSR</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SmartGit/"><span class="tag">SmartGit</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vue/"><span class="tag">Vue</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Webpack/"><span class="tag">Webpack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/antDesign/"><span class="tag">antDesign</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/async/"><span class="tag">async</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/await/"><span class="tag">await</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/centos/"><span class="tag">centos</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/compose/"><span class="tag">compose</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es6/"><span class="tag">es6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es8/"><span class="tag">es8</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for-of/"><span class="tag">for of</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/generator/"><span class="tag">generator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iTerm2/"><span class="tag">iTerm2</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterator/"><span class="tag">iterator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/jQuery/"><span class="tag">jQuery</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/nextTick/"><span class="tag">nextTick</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/node/"><span class="tag">node</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/react/"><span class="tag">react</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/redis/"><span class="tag">redis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setImmediate/"><span class="tag">setImmediate</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setTimeout/"><span class="tag">setTimeout</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webpack4/"><span class="tag">webpack4</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B8%9A%E5%8A%A1/"><span class="tag">业务</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/"><span class="tag">代码优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"><span class="tag">代码示例</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"><span class="tag">内存泄漏</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%A5%E6%83%B3/"><span class="tag">冥想</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%93%B2%E5%AD%A6/"><span class="tag">哲学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><span class="tag">基础知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98/"><span class="tag">处理问题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"><span class="tag">学习方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="tag">学习笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%9A%E6%97%B6%E5%99%A8/"><span class="tag">定时器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%81%E8%A3%85/"><span class="tag">封装</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/"><span class="tag">思维导图</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"><span class="tag">性能优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8A%80%E6%9C%AF/"><span class="tag">技术</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8F%92%E4%BB%B6/"><span class="tag">插件</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%88%E7%8E%87/"><span class="tag">效率</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%99%E7%A8%8B/"><span class="tag">教程</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="tag">数据结构</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E7%A7%AF%E7%B4%AF/"><span class="tag">日常积累</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%AD%A3%E5%88%99/"><span class="tag">正则</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B2%9F%E9%80%9A%E6%8A%80%E5%B7%A7/"><span class="tag">沟通技巧</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/"><span class="tag">理论知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9B%91%E6%8E%A7/"><span class="tag">监控</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="tag">知识点</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%B2%BE%E8%AF%BB/"><span class="tag">精读</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BA%BF%E4%B8%8A%E4%BA%8B%E6%95%85/"><span class="tag">线上事故</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%84%E5%90%88%E5%87%BD%E6%95%B0/"><span class="tag">组合函数</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%88%E7%AB%AF/"><span class="tag">终端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/"><span class="tag">经验积累</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B7%91%E6%AD%A5/"><span class="tag">跑步</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E5%8A%A8/"><span class="tag">运动</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"><span class="tag">进程管理</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a><p class="is-size-7"><span>&copy; 2020 believeZJP</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+              <a href="/tags/%E6%8F%92%E4%BB%B6/" rel="tag"># 插件</a>
+              <a href="/tags/%E5%B0%81%E8%A3%85/" rel="tag"># 封装</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/React%20%E5%92%8CVue/" rel="prev" title="React和Vue">
+                  <i class="fa fa-chevron-left"></i> React和Vue
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" rel="next" title="网站搭建">
+                  网站搭建 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">believeZJP</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">758k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">11:29</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

@@ -1,11 +1,271 @@
-<!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Promise深度解析 - believeZJP</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="believeZJP"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="believeZJP"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="这一章节就是整理了45道Promise的笔试题让大家爽一爽 😁。 这篇文章是一篇比较纯的Promise笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。 本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在Node的执行结果，执行结果全为浏览器环境下。 OK👌， 来看看通过阅读本篇文章你可以学到："><meta property="og:type" content="blog"><meta property="og:title" content="Promise深度解析"><meta property="og:url" content="http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/"><meta property="og:site_name" content="believeZJP"><meta property="og:description" content="这一章节就是整理了45道Promise的笔试题让大家爽一爽 😁。 这篇文章是一篇比较纯的Promise笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。 本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在Node的执行结果，执行结果全为浏览器环境下。 OK👌， 来看看通过阅读本篇文章你可以学到："><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/2/28/1708baaf2b1e9075?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"><meta property="article:published_time" content="2020-06-19T06:48:30.000Z"><meta property="article:modified_time" content="2020-06-19T06:48:30.000Z"><meta property="article:author" content="believeZJP"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://user-gold-cdn.xitu.io/2020/2/28/1708baaf2b1e9075?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/"},"headline":"believeZJP","image":[],"datePublished":"2020-06-19T06:48:30.000Z","dateModified":"2020-06-19T06:48:30.000Z","author":{"@type":"Person","name":"believeZJP"},"description":"这一章节就是整理了45道Promise的笔试题让大家爽一爽 😁。 这篇文章是一篇比较纯的Promise笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。 本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在Node的执行结果，执行结果全为浏览器环境下。 OK👌， 来看看通过阅读本篇文章你可以学到："}</script><link rel="canonical" href="http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><script>var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?60d1b1f3f98701021581fc14f9ca17b7";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/believeZJP"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-06-19T06:48:30.000Z" title="2020-06-19T06:48:30.000Z">2020-06-19</time>发表</span><span class="level-item"><time dateTime="2020-06-19T06:48:30.000Z" title="2020-06-19T06:48:30.000Z">2020-06-19</time>更新</span><span class="level-item">2 小时读完 (大约14059个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Promise深度解析</h1><div class="content"><p>这一章节就是整理了<code>45</code>道<code>Promise</code>的笔试题让大家爽一爽 😁。</p>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="这一章节就是整理了45道Promise的笔试题让大家爽一爽 😁。 这篇文章是一篇比较纯的Promise笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。 本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在Node的执行结果，执行结果全为浏览器环境下。 OK👌， 来看看通过阅读本篇文章你可以学到：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise深度解析">
+<meta property="og:url" content="http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="believeZJP">
+<meta property="og:description" content="这一章节就是整理了45道Promise的笔试题让大家爽一爽 😁。 这篇文章是一篇比较纯的Promise笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。 本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在Node的执行结果，执行结果全为浏览器环境下。 OK👌， 来看看通过阅读本篇文章你可以学到：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/2/28/1708baaf2b1e9075?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="article:published_time" content="2020-06-19T06:48:30.000Z">
+<meta property="article:modified_time" content="2020-06-19T06:48:30.000Z">
+<meta property="article:author" content="believeZJP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2020/2/28/1708baaf2b1e9075?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+
+<link rel="canonical" href="http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>Promise深度解析 | believeZJP</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">believeZJP</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录成长路径</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Promise%E7%9A%84%E5%87%A0%E9%81%93%E5%9F%BA%E7%A1%80%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">1. Promise的几道基础题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 题目二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 题目三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E9%A2%98%E7%9B%AE%E5%9B%9B"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 题目四</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E9%A2%98%E7%9B%AE%E4%BA%94"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 题目五</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-%E9%A2%98%E7%9B%AE%E5%85%AD"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6 题目六</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Promise%E7%BB%93%E5%90%88setTimeout"><span class="nav-number">1.2.</span> <span class="nav-text">2. Promise结合setTimeout</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 题目二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 题目三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E9%A2%98%E7%9B%AE%E4%B8%89-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.3 题目三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E9%A2%98%E7%9B%AE%E5%9B%9B"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.4 题目四</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E9%A2%98%E7%9B%AE%E4%BA%94"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.5 题目五</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Promise%E4%B8%AD%E7%9A%84then%E3%80%81catch%E3%80%81finally"><span class="nav-number">1.3.</span> <span class="nav-text">3. Promise中的then、catch、finally</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 题目二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 题目三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E9%A2%98%E7%9B%AE%E5%9B%9B"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 题目四</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E9%A2%98%E7%9B%AE%E4%BA%94"><span class="nav-number">1.3.5.</span> <span class="nav-text">3.5 题目五</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-%E9%A2%98%E7%9B%AE%E5%85%AD"><span class="nav-number">1.3.6.</span> <span class="nav-text">3.6 题目六</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-%E9%A2%98%E7%9B%AE%E4%B8%83"><span class="nav-number">1.3.7.</span> <span class="nav-text">3.7 题目七</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-8-%E9%A2%98%E7%9B%AE%E5%85%AB"><span class="nav-number">1.3.8.</span> <span class="nav-text">3.8 题目八</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-9-%E9%A2%98%E7%9B%AE%E4%B9%9D"><span class="nav-number">1.3.9.</span> <span class="nav-text">3.9 题目九</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-10-%E9%A2%98%E7%9B%AE%E5%8D%81"><span class="nav-number">1.3.10.</span> <span class="nav-text">3.10 题目十</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Promise%E4%B8%AD%E7%9A%84all%E5%92%8Crace"><span class="nav-number">1.4.</span> <span class="nav-text">4. Promise中的all和race</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 题目二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 题目三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-%E9%A2%98%E7%9B%AE%E5%9B%9B"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 题目四</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-async-await%E7%9A%84%E5%87%A0%E9%81%93%E9%A2%98"><span class="nav-number">1.5.</span> <span class="nav-text">5. async&#x2F;await的几道题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 题目二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3 题目三</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-4-%E9%A2%98%E7%9B%AE%E5%9B%9B"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.4 题目四</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-5-%E9%A2%98%E7%9B%AE%E4%BA%94"><span class="nav-number">1.5.5.</span> <span class="nav-text">5.5 题目五</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-6-%E9%A2%98%E7%9B%AE%E5%85%AD"><span class="nav-number">1.5.6.</span> <span class="nav-text">5.6 题目六</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-7-%E9%A2%98%E7%9B%AE%E4%B8%83"><span class="nav-number">1.5.7.</span> <span class="nav-text">5.7 题目七</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-8-%E9%A2%98%E7%9B%AE%E5%85%AB"><span class="nav-number">1.5.8.</span> <span class="nav-text">5.8 题目八</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-9-%E9%A2%98%E7%9B%AE%E4%B9%9D"><span class="nav-number">1.5.9.</span> <span class="nav-text">5.9 题目九</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-async%E5%A4%84%E7%90%86%E9%94%99%E8%AF%AF"><span class="nav-number">1.6.</span> <span class="nav-text">6. async处理错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 题目二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E7%BB%BC%E5%90%88%E9%A2%98"><span class="nav-number">1.7.</span> <span class="nav-text">7. 综合题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1-%E9%A2%98%E7%9B%AE%E4%B8%80"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1 题目一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2-%E9%A2%98%E7%9B%AE%E4%BA%8C"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2 题目二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3-%E9%A2%98%E7%9B%AE%E4%B8%89"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3 题目三</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E5%87%A0%E9%81%93%E5%A4%A7%E5%8E%82%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="nav-number">1.8.</span> <span class="nav-text">8. 几道大厂的面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-1-%E4%BD%BF%E7%94%A8Promise%E5%AE%9E%E7%8E%B0%E6%AF%8F%E9%9A%941%E7%A7%92%E8%BE%93%E5%87%BA1-2-3"><span class="nav-number">1.8.1.</span> <span class="nav-text">8.1 使用Promise实现每隔1秒输出1,2,3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-2-%E4%BD%BF%E7%94%A8Promise%E5%AE%9E%E7%8E%B0%E7%BA%A2%E7%BB%BF%E7%81%AF%E4%BA%A4%E6%9B%BF%E9%87%8D%E5%A4%8D%E4%BA%AE"><span class="nav-number">1.8.2.</span> <span class="nav-text">8.2 使用Promise实现红绿灯交替重复亮</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-3-%E5%AE%9E%E7%8E%B0mergePromise%E5%87%BD%E6%95%B0"><span class="nav-number">1.8.3.</span> <span class="nav-text">8.3 实现mergePromise函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-4-%E6%A0%B9%E6%8D%AEpromiseA-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84promise"><span class="nav-number">1.8.4.</span> <span class="nav-text">8.4 根据promiseA+实现一个自己的promise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-5-%E5%B0%81%E8%A3%85%E4%B8%80%E4%B8%AA%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.5.</span> <span class="nav-text">8.5 封装一个异步加载图片的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-6-%E9%99%90%E5%88%B6%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C%E7%9A%84%E5%B9%B6%E5%8F%91%E4%B8%AA%E6%95%B0%E5%B9%B6%E5%B0%BD%E5%8F%AF%E8%83%BD%E5%BF%AB%E7%9A%84%E5%AE%8C%E6%88%90%E5%85%A8%E9%83%A8"><span class="nav-number">1.8.6.</span> <span class="nav-text">8.6 限制异步操作的并发个数并尽可能快的完成全部</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E8%AF%AD"><span class="nav-number">2.</span> <span class="nav-text">后语</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">believeZJP</p>
+  <div class="site-description" itemprop="description">积土成山，风雨兴焉；积水成渊，蛟龙生焉;</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="believeZJP">
+      <meta itemprop="description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="believeZJP">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Promise深度解析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-06-19 14:48:30" itemprop="dateCreated datePublished" datetime="2020-06-19T14:48:30+08:00">2020-06-19</time>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>0</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>这一章节就是整理了<code>45</code>道<code>Promise</code>的笔试题让大家爽一爽 😁。</p>
 <p>这篇文章是一篇比较纯的<code>Promise</code>笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。</p>
 <p>本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在<code>Node</code>的执行结果，执行结果全为浏览器环境下。</p>
 <p>OK👌， 来看看通过阅读本篇文章你可以学到：</p>
@@ -1646,57 +1906,113 @@ limitLoad(urls, loadImg, 3)
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/guolinengineer/article/details/85067924">《今日头条async/await面试题执行顺序》</a></li>
 <li><a target="_blank" rel="noopener" href="https://juejin.im/post/5dd8b3a851882572f56b578f">《(2.4w字,建议收藏)😇原生JS灵魂之问(下), 冲刺🚀进阶最后一公里(附个人成长经验分享)》</a></li>
 </ul>
-</div><div class="article-licensing box"><div class="licensing-title"><p>Promise深度解析</p><p><a href="http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>believeZJP</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2020-06-19</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2020-06-19</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.png" alt="微信"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/posts/node-cli%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">node cli开发调试经验总结</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/%E4%BF%97%E8%AF%AD/"><span class="level-item">俗语</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
-            this.page.url = 'http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/';
-            this.page.identifier = 'posts/Promise深度解析/';
-        };
-        (function() {
-            var d = document, s = d.createElement('script');  
-            s.src = '//' + 'hardy' + '.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Hardy"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Hardy</p><p class="is-size-6 is-block">不积跬步无以至千里</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>北京</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">96</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">88</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/believeZJP" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/believeZJP"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="微博" href="https://weibo.com/u/6021664425"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="QQ" href="tencent://message/?uin=421790588&amp;Site=www&amp;Menu=yes"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/es6/"><span class="level-start"><span class="level-item">es6</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/http/"><span class="level-start"><span class="level-item">http</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/http/%E7%BD%91%E7%BB%9C/"><span class="level-start"><span class="level-item">网络</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-12-29T11:36:01.000Z">2020-12-29</time></p><p class="title"><a href="/posts/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%88%97%E8%A1%A8/">思维导图列表</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-11-27T07:25:36.000Z">2020-11-27</time></p><p class="title"><a href="/posts/%E7%BE%BD%E6%AF%9B%E7%90%83%E9%80%9F%E6%88%90/">羽毛球速成</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-09-11T08:55:34.116Z">2020-09-11</time></p><p class="title"><a href="/posts/Alfred/">Alfred</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-08-20T08:18:50.000Z">2020-08-20</time></p><p class="title"><a href="/posts/React%E4%B8%ADAPI%E4%BD%BF%E7%94%A8%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/">React中API使用的正确姿势</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-07-23T16:06:49.000Z">2020-07-24</time></p><p class="title"><a href="/posts/%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8standard%E8%A7%84%E8%8C%83%E5%B9%B6%E7%94%A8eslint%E8%87%AA%E5%8A%A8%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%BB%A3%E7%A0%81/">项目使用standard规范并用eslint自动格式化代码</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2020/12/"><span class="level-start"><span class="level-item">十二月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/11/"><span class="level-start"><span class="level-item">十一月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/09/"><span class="level-start"><span class="level-item">九月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/08/"><span class="level-start"><span class="level-item">八月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/07/"><span class="level-start"><span class="level-item">七月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/06/"><span class="level-start"><span class="level-item">六月 2020</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/05/"><span class="level-start"><span class="level-item">五月 2020</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/04/"><span class="level-start"><span class="level-item">四月 2020</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2020/01/"><span class="level-start"><span class="level-item">一月 2020</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/12/"><span class="level-start"><span class="level-item">十二月 2019</span></span><span class="level-end"><span class="level-item tag">12</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/11/"><span class="level-start"><span class="level-item">十一月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/08/"><span class="level-start"><span class="level-item">八月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/06/"><span class="level-start"><span class="level-item">六月 2019</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/04/"><span class="level-start"><span class="level-item">四月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/03/"><span class="level-start"><span class="level-item">三月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">一月 2019</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/11/"><span class="level-start"><span class="level-item">十一月 2018</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/10/"><span class="level-start"><span class="level-item">十月 2018</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/08/"><span class="level-start"><span class="level-item">八月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/07/"><span class="level-start"><span class="level-item">七月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/04/"><span class="level-start"><span class="level-item">四月 2018</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/03/"><span class="level-start"><span class="level-item">三月 2018</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/12/"><span class="level-start"><span class="level-item">十二月 2017</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2017/03/"><span class="level-start"><span class="level-item">三月 2017</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Alfred/"><span class="tag">Alfred</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS/"><span class="tag">CSS</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/CSS3/"><span class="tag">CSS3</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/EventLoop/"><span class="tag">EventLoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Git/"><span class="tag">Git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/GitKraken/"><span class="tag">GitKraken</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/JavaScript/"><span class="tag">JavaScript</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Javascript/"><span class="tag">Javascript</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Koa/"><span class="tag">Koa</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Linux/"><span class="tag">Linux</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Nginx/"><span class="tag">Nginx</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/NodeJS/"><span class="tag">NodeJS</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Promise/"><span class="tag">Promise</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React/"><span class="tag">React</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React-Native/"><span class="tag">React Native</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/React%E8%BF%81%E7%A7%BB%E5%88%B0%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">React迁移到百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSR/"><span class="tag">SSR</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SmartGit/"><span class="tag">SmartGit</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Vue/"><span class="tag">Vue</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Webpack/"><span class="tag">Webpack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/antDesign/"><span class="tag">antDesign</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/async/"><span class="tag">async</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/await/"><span class="tag">await</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/centos/"><span class="tag">centos</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/compose/"><span class="tag">compose</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es6/"><span class="tag">es6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es8/"><span class="tag">es8</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/for-of/"><span class="tag">for of</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/generator/"><span class="tag">generator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/git/"><span class="tag">git</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/http/"><span class="tag">http</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iTerm2/"><span class="tag">iTerm2</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/iterator/"><span class="tag">iterator</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/jQuery/"><span class="tag">jQuery</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/mac/"><span class="tag">mac</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/nextTick/"><span class="tag">nextTick</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/node/"><span class="tag">node</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/react/"><span class="tag">react</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/redis/"><span class="tag">redis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setImmediate/"><span class="tag">setImmediate</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/setTimeout/"><span class="tag">setTimeout</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webpack4/"><span class="tag">webpack4</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%B8%9A%E5%8A%A1/"><span class="tag">业务</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96/"><span class="tag">代码优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"><span class="tag">代码示例</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"><span class="tag">内存泄漏</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%86%A5%E6%83%B3/"><span class="tag">冥想</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%90%8E%E7%AB%AF/"><span class="tag">后端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%93%B2%E5%AD%A6/"><span class="tag">哲学</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"><span class="tag">基础知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%A4%84%E7%90%86%E9%97%AE%E9%A2%98/"><span class="tag">处理问题</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"><span class="tag">学习方法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="tag">学习笔记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%AE%9A%E6%97%B6%E5%99%A8/"><span class="tag">定时器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%81%E8%A3%85/"><span class="tag">封装</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">小程序</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/"><span class="tag">思维导图</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"><span class="tag">性能优化</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8A%80%E6%9C%AF/"><span class="tag">技术</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%8F%92%E4%BB%B6/"><span class="tag">插件</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%88%E7%8E%87/"><span class="tag">效率</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%99%E7%A8%8B/"><span class="tag">教程</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="tag">数据库</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><span class="tag">数据结构</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%97%A5%E5%B8%B8%E7%A7%AF%E7%B4%AF/"><span class="tag">日常积累</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%AD%A3%E5%88%99/"><span class="tag">正则</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%B2%9F%E9%80%9A%E6%8A%80%E5%B7%A7/"><span class="tag">沟通技巧</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/"><span class="tag">理论知识</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%99%BE%E5%BA%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="tag">百度小程序</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9B%91%E6%8E%A7/"><span class="tag">监控</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/"><span class="tag">知识点</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="tag">笔记</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tag">算法</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%B2%BE%E8%AF%BB/"><span class="tag">精读</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BA%BF%E4%B8%8A%E4%BA%8B%E6%95%85/"><span class="tag">线上事故</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%84%E5%90%88%E5%87%BD%E6%95%B0/"><span class="tag">组合函数</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%88%E7%AB%AF/"><span class="tag">终端</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BB%8F%E9%AA%8C%E7%A7%AF%E7%B4%AF/"><span class="tag">经验积累</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BD%91%E7%BB%9C/"><span class="tag">网络</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="tag">设计模式</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><span class="tag">读书笔记</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B7%91%E6%AD%A5/"><span class="tag">跑步</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%90%E5%8A%A8/"><span class="tag">运动</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"><span class="tag">进程管理</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%9D%A2%E8%AF%95/"><span class="tag">面试</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="believeZJP" height="28"></a><p class="is-size-7"><span>&copy; 2020 believeZJP</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
-            article: {
-                highlight: {
-                    clipboard: true,
-                    fold: 'unfolded'
-                }
-            }
-        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
-      window.cookieconsent.initialise({
-        type: "info",
-        theme: "edgeless",
-        static: false,
-        position: "bottom-left",
-        content: {
-          message: "此网站使用Cookie来改善您的体验。",
-          dismiss: "知道了！",
-          allow: "允许使用Cookie",
-          deny: "拒绝",
-          link: "了解更多",
-          policy: "Cookie政策",
-          href: "https://www.cookiesandyou.com/",
-        },
-        palette: {
-          popup: {
-            background: "#edeff5",
-            text: "#838391"
-          },
-          button: {
-            background: "#4b81e8"
-          },
-        },
-      });
-    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
-            if (typeof $.fn.lightGallery === 'function') {
-                $('.article').lightGallery({ selector: '.gallery-item' });
-            }
-            if (typeof $.fn.justifiedGallery === 'function') {
-                if ($('.justified-gallery > p > .gallery-item').length) {
-                    $('.justified-gallery > p > .gallery-item').unwrap();
-                }
-                $('.justified-gallery').justifiedGallery();
-            }
-        });</script><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
-            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
-        });</script></body></html>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/%E4%BF%97%E8%AF%AD/" rel="prev" title="俗语">
+                  <i class="fa fa-chevron-left"></i> 俗语
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/node-cli%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/" rel="next" title="node cli开发调试经验总结">
+                  node cli开发调试经验总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">believeZJP</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">758k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">11:29</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>
