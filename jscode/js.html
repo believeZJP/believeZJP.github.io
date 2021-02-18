@@ -21,17 +21,17 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="js 通过匿名空间隔开公有私有 123456789101112131415161718192021222324252627282930(function() &amp;#123;    var abc &#x3D; 5;    function TabView(cfg) &amp;#123;        this.a &#x3D; cfg.a;        this.b &#x3D; cfg.b;    &amp;#125;    TabView">
+<meta name="description" content="123456789101112131415161718192021222324252627282930(function() &amp;#123;    var abc &#x3D; 5;    function TabView(cfg) &amp;#123;        this.a &#x3D; cfg.a;        this.b &#x3D; cfg.b;    &amp;#125;    TabView.prototype &#x3D; &amp;">
 <meta property="og:type" content="website">
 <meta property="og:title" content="believeZJP">
 <meta property="og:url" content="http://believezjp.oriht.com/jscode/js.html">
 <meta property="og:site_name" content="believeZJP">
-<meta property="og:description" content="js 通过匿名空间隔开公有私有 123456789101112131415161718192021222324252627282930(function() &amp;#123;    var abc &#x3D; 5;    function TabView(cfg) &amp;#123;        this.a &#x3D; cfg.a;        this.b &#x3D; cfg.b;    &amp;#125;    TabView">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930(function() &amp;#123;    var abc &#x3D; 5;    function TabView(cfg) &amp;#123;        this.a &#x3D; cfg.a;        this.b &#x3D; cfg.b;    &amp;#125;    TabView.prototype &#x3D; &amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-11T08:55:34.180Z">
-<meta property="article:modified_time" content="2020-09-11T08:55:34.180Z">
+<meta property="article:published_time" content="2021-01-05T07:51:59.375Z">
+<meta property="article:modified_time" content="2021-01-05T07:51:59.375Z">
 <meta property="article:author" content="believeZJP">
 <meta name="twitter:card" content="summary">
 
@@ -114,15 +114,46 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -161,7 +192,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -177,6 +208,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/believeZJP" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;believeZJP" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -219,7 +255,8 @@
       
       
       <div class="post-body">
-          <p>js 通过匿名空间隔开公有私有</p>
+          <!-- js 通过匿名空间隔开公有私有 -->
+
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> abc = <span class="number">5</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">TabView</span>(<span class="params">cfg</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.a = cfg.a;</span><br><span class="line">        <span class="built_in">this</span>.b = cfg.b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    TabView.prototype = &#123;</span><br><span class="line">        c: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; abc++;&#125;,</span><br><span class="line">        d: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; abc--;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.TabView = TabView;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> abc = <span class="number">100</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">TreeView</span>(<span class="params">cfg</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.a = cfg.a;</span><br><span class="line">        <span class="built_in">this</span>.b = cfg.b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    TreeView.prototype = &#123;</span><br><span class="line">        c: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; abc *= <span class="number">2</span>;&#125;,</span><br><span class="line">        d: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; abc /= <span class="number">2</span>;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.TreeView = TreeView;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h1 id="基于-require-js-重写代码"><a href="#基于-require-js-重写代码" class="headerlink" title="基于 require.js 重写代码"></a>基于 require.js 重写代码</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// animate.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Animate</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">Animate</span>: Animate &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// treeview.js</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">TreeView</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    TreeView: TreeView</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// tabview.js</span></span><br><span class="line">define([<span class="string">&quot;animate&quot;</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">TabView</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.animate = <span class="keyword">new</span> a.Animate();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    TabView: TabView</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.js</span></span><br><span class="line"><span class="built_in">require</span>([<span class="string">&quot;tabview&quot;</span>, <span class="string">&quot;treeview&quot;</span>], <span class="function"><span class="keyword">function</span>(<span class="params">tab, tree</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> tabView = <span class="keyword">new</span> tab.TabView(),</span><br><span class="line">    treeView = <span class="keyword">new</span> tree.TreeView();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -265,7 +302,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -276,16 +313,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">758k</span>
+    <span title="站点总字数">659k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:29</span>
+    <span title="站点阅读时长">9:59</span>
   </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -293,10 +330,12 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+<script src="/js/local-search.js"></script>
 
 
 

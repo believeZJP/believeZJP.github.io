@@ -21,7 +21,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;">
 <meta property="og:type" content="website">
@@ -111,15 +111,46 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -157,7 +188,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -173,6 +204,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/believeZJP" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;believeZJP" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -197,6 +233,268 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://believezjp.oriht.com/posts/antDesign/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="believeZJP">
+      <meta itemprop="description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="believeZJP">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/antDesign/" class="post-title-link" itemprop="url">antDesign</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-07 19:33:28" itemprop="dateCreated datePublished" datetime="2018-11-07T19:33:28+08:00">2018-11-07</time>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="记录踩过的坑"><a href="#记录踩过的坑" class="headerlink" title="记录踩过的坑"></a>记录踩过的坑</h2><p>数组必须要key的解决办法</p>
+<p>由于有些数据没有唯一key值。需要自行添加</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> localCounter = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">this</span>.data.forEach(<span class="function"><span class="params">el</span>=&gt;</span>&#123;</span><br><span class="line">    el.id = localCounter++;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//向数组中动态添加元素时，</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createUser</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        ...user,</span><br><span class="line">        id: localCounter++</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态路由，传参获取参数"><a href="#动态路由，传参获取参数" class="headerlink" title="动态路由，传参获取参数"></a>动态路由，传参获取参数</h2><p>定义路由</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;/coupons/relateProducts/:couponBatchId&#x27;</span>: &#123;</span><br><span class="line">    component: dynamicWrapper(app, [<span class="string">&#x27;coupons&#x27;</span>], <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&#x27;../routes/Coupons/RelateProducts&#x27;</span>))</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>在组件中获取</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.props.match.params.couponBatchId</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由跳转"><a href="#路由跳转" class="headerlink" title="路由跳转"></a>路由跳转</h2><h2 id="多级对象setState"><a href="#多级对象setState" class="headerlink" title="多级对象setState"></a>多级对象setState</h2><p>可以单独取出来，修改后再整体放进去</p>
+<h2 id="一个组件是modal，打开就查询一次，在哪执行查询"><a href="#一个组件是modal，打开就查询一次，在哪执行查询" class="headerlink" title="一个组件是modal，打开就查询一次，在哪执行查询"></a>一个组件是modal，打开就查询一次，在哪执行查询</h2><p>在componentWillReceiveProps里</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentWillReceiveProps</span>(<span class="params">nextProps</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// 这里的nextProps为修改后的状态值</span></span><br><span class="line"></span><br><span class="line">    用<span class="built_in">this</span>.props可以获取到修改之前的props</span><br><span class="line"></span><br><span class="line">    通过<span class="built_in">this</span>.props和nextProps两者对比可以看是否需要更新和操作</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>componentwillreceiveprops会自动接收参数，导致页面不断渲染<br>需要配合this.props使用<br>componentDidMount不会触发</p>
+<p>lodash.has</p>
+<h2 id="select-用setFieldsValue赋值，类型要一样，数字就是数字，字符串就是字符串，才能正常显示"><a href="#select-用setFieldsValue赋值，类型要一样，数字就是数字，字符串就是字符串，才能正常显示" class="headerlink" title="select 用setFieldsValue赋值，类型要一样，数字就是数字，字符串就是字符串，才能正常显示"></a>select 用setFieldsValue赋值，类型要一样，数字就是数字，字符串就是字符串，才能正常显示</h2><h2 id="form表单重置按钮"><a href="#form表单重置按钮" class="headerlink" title="form表单重置按钮"></a>form表单重置按钮</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">handleReset = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.props.form.resetFields();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Select-组件使用"><a href="#Select-组件使用" class="headerlink" title="Select 组件使用"></a>Select 组件使用</h2><p>Select 赋值，用this.props.form.setFieldsValues();</p>
+<p>select动态赋值给select。，只显示value，没显示label，显示label无法提交<br>类型要匹配，数字就是数字，字符串就是字符串</p>
+<h2 id="a元素绑定事件"><a href="#a元素绑定事件" class="headerlink" title="a元素绑定事件"></a>a元素绑定事件</h2><p>给a绑定事件，一定要这样绑</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> &lt;a onClick=&#123;<span class="function"><span class="params">e</span> =&gt;</span> <span class="built_in">this</span>.showDetail(record.key)&#125;&gt;详情&lt;/a&gt;</span><br><span class="line">handleMouseOver = <span class="function">(<span class="params">key</span>) =&gt;</span> <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123; <span class="attr">display</span>: key &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写了models一定要在common的router.js中getRouterData<br>的dynamicWrapper<br>中引入文件夹名字，才能自动引入到app._models中</p>
+<p>service 中的api要添加request.</p>
+<p>models中要添加reducer，</p>
+<p>在页面中要用redux定义好的state，需要在connect中引入<br>@connect(({loading, coupons}) =&gt; ({<br>    data: coupons,<br>}))</p>
+<p>action调用成功后，在reducer里改了状态， 打印出来发生变化了，但页面没变化。</p>
+<p>在div中写的可以变化，在input或textarea中不会发生变化。</p>
+<p>加了mapPropsToFields后，修改的值回响应到textarea上，</p>
+<p>但所有输入框输入的值被清空了</p>
+<p>不想用redux，直接用组件里的state，怎么搞？</p>
+<p>在dispatch后添加callback.直接用</p>
+<p>this.props.form.setFieldsValue({<br>    uids: payload.data.join()<br>});</p>
+<p> 一个页面多个form，点击每个form的提交，其他form的字段会跟着提交</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Form的FormItem如果是rangePicker，则设置<span class="string">`style=&#123;&#123;width:100%&#125;&#125;`</span>，可以让输入框响应容器</span><br></pre></td></tr></table></figure>
+
+<p>Form的label和input输入框的宽度通过调节labelCol，wrapperCol<br>来设置，总长度为24</p>
+<p>啊啊啊啊大经验啊！！！！</p>
+<p>nginx的proxy配置一定要前后路径一致</p>
+<p><code>&#39;POST /coupon/v1/(.*)&#39;: &#39;&lt;http://10.64.38.89:8081/coupon/v1/&#39;,&gt;</code></p>
+<p>前面是coupon/v1后面也一定是coupon/v1,<br>不能前面是coupon 后面是coupon/v1<br>项目一定要放在www目录下</p>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://believezjp.oriht.com/posts/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="believeZJP">
+      <meta itemprop="description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="believeZJP">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">思维导图笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-11-07 19:05:36" itemprop="dateCreated datePublished" datetime="2018-11-07T19:05:36+08:00">2018-11-07</time>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>1.要想高效的利用本书，很重要的一点就是必须加强练习！！！</p>
+<p>2.左脑处理逻辑、词汇、表单、数字、线性和分析等所谓的学术活动。右脑主司节奏、想象、色彩、幻想、空间感、完整倾向(整体观念)和维度。 </p>
+<p>3.鼓励人们去开发他们以前认为很弱的脑区。会产生一种协同效应，使整个脑区的智力水平都随之提高。</p>
+<p>4.当我们说自己某些方面行，某些方面不行时，我们实际是指已经很成功的开发出来了的潜力和尚未开发出来的，仍然处在蛰伏状态的潜能。如果能将蛰伏状态下的潜能开发出来，大脑将释放出巨大的“能量”。</p>
+<p>5.大脑每分钟约要进行10万~100万次不同的化学反应。</p>
+<!---more--->
+
+
+<p><a href="/img/clipboard.png">记忆曲线</a><br><img data-src="/img/clipboard.png" ></p>
+<p>6.感知模型：眼睛-大脑-相机<br>        按照一般人做白日梦的样子，闭上眼睛，想象你最喜欢的物体，在你心目中已经很清晰地记住其图像后，再做下列这些练习:<br>        在面前转动它<br>从顶部看它<br>从底部看它<br>改变它的颜色，至少3次。<br>把她移开，就好像在很远处看它一样。<br>再把它移回来。<br>把它变的极大。<br>把他变小。<br>完全改变它的形状。<br>让它消失。<br>再让它出来。<br>这些活动你做起来好不费事，可是相机的零件却完全无法做到。</p>
+<p>思维导图_启动大脑  33页<br>—————————————-2014/10/27 00:03   ————————————————————————–</p>
+<ol start="3">
+<li><p>大脑受限制的原因</p>
+</li>
+<li><p>与承认失败相比，更多人会说”我们只是普通人”，这种说法不足以令人信服！我们必须学习大脑是如何工作的，以便充分发挥自身无限的潜力。</p>
+<p>2.我们的表现与我们甚至最小潜力不相符的原因就是，我们对自己所拥有的内在潜力一无所知，更不用说如何去充分利用了。<br>3.一个普遍并且被严重误导的神话：人类本身就有不足之处，因此，这场灾难的责任应归结于人类本身的“缺陷”。</p>
+<p>4.在全世界范围的教育系统内，人们之所以几乎没有花时间去学习如何学习，是因为我们对这台生物计算机的基本操作规则一无所知。</p>
+<p>《启动大脑》 是第一本“大脑使用说明书”，它是专门用来帮助你了解、充实和保养你自己的“超级生物计算机”的，并教你如何释放你所拥有的自然且非凡的智能。</p>
+</li>
+<li><p>更快、更有效的阅读</p>
+<p>   1.我阅读存在的问题</p>
+<pre><code>       阅读速度慢，阅读后会忘记、阅读的时间不能保证、阅读后当时掌握回头就会忘记、阅读的时候有些不能很快的理解</code></pre>
+<p>阅读定义:“从书中捕捉作者的意图”或“吸收所写文字的内容”。<br>阅读是个人与符号信息之间发生的全部相互联系；它通常是指学习的视觉方面，并包含下述7个步骤。</p>
+<pre><code>       辨识、吸收、内部整合、外部整合、保持、回忆、交流</code></pre>
+<p>4.3阅读问题存在的原因<br>   答案除了我们早先对大脑缺乏认识之外，主要是因为我们早期的阅读教育方法不当。</p>
+<p>眼睛在阅读时，实际是以一系列的停顿和快速跳跃的方式移动的。</p>
+<p>   提高速度</p>
+<pre><code>   1.消除回读----90%的回跳和回读是因为担心不能对阅读材料完全理解而引起的。
+   2.每次凝视的时间可减到最低的1/4秒，------人的眼睛可以在1/100秒的时间内摄入5个单词。
+   3.凝视的间隔可扩展到一次摄入3~5个单词。</code></pre>
+<p>快速阅读的好处<br>   快速阅读者的优势是他的眼睛在每一页上话费的物理运动较少，不会像慢速阅读者那样，每页紧张的聚焦凝视500多次。快速阅读者每页只凝视100次，其眼肌就不会疲劳。<br>   另一个好处：能有节奏、流畅的阅读和轻松愉快的领略文章的意思。<br>4.6  对阅读的误解<br>   1.一次只能看一个单词————错。人的凝视能力就可以扩展，我们阅读的目的不是理解单个的词，而是整体意思。<br>   2.阅读速度不可能超过每分钟500个单词—-错，每次凝视可以摄入6个单词，而且每秒钟可以凝视4次。这就意味着每分钟1000个单词的阅读速度是完全能达到的。<br>   3.快速阅读者没法欣赏文章———-错。因为快速阅读者能更多的理解所读的内容，能更专注地看材料，所以他有更多的时间去回顾他认为特别有趣的和重要的部分。<br>   4.速度越快注意力就越低——-错。读的越快，得到的刺激就越多，注意力就越集中。<br>   5.一般阅读速度更自然，因此也就最好——错。因为一般阅读速度并不自然。它是早期不完善的训练，加之缺乏眼睛和大脑能以各种可能的速度阅读等方面的知识所造成的。</p>
+</li>
+</ol>
+<p>4.7.1 高级阅读技巧——快上加快<br>        我们要做的不是叫他们把手指从书本上拿开，而是让他们更快的移动手指。它在帮助养成流畅的阅读节奏方面有着不可估量的作用。<br>        用辅助物 阅读时阅读的速度更快。<br>4.7.2                  ———扩大焦点<br>        结合视觉辅助技巧，特别适用于阅读一些轻松的材料和用来预习和复习，还可以提高正常的阅读速度。<br>            很重要的一点是必须使用视觉导引物<br>                    试着采用如斜对角线、曲线和沿书页直线向下等各种视觉导引物。<br>4.7.3  快速理解<br>        尽快从一页浏览到下一页，并尽可能多看一些单词。这种训练可增加每次凝视时摄入更大范围的单词群的能力，也适用于练习纵览和预览技巧，并能把大脑调整到适应更快速、更有效的整体阅读练习状态。</p>
+<p>4.8    动机训练<br>        计算每分钟阅读速度的公式：<br>            阅读速度=（所读页数*每页平均单词书）/阅读的分钟数<br>4.9    节拍训练<br>        调整到合理的节奏、即每一拍代表视觉引导物的一次移动的话，用这种方式可以保持一种稳定、连贯的节奏、并可克服阅读开始后不久出现的阅读速度下降的问题。一旦找到最佳的节奏，就可通过每分钟偶尔加一拍的方式提高你的阅读速度。<br>————2014/10/28 00:15——————-</p>
+<p>5.3  记忆趋势：在学习期间的开头和结尾记得多；多次重复、易感知、有节奏的内容记得多；突出或独特的内容记得多———–冯-雷斯托夫效应，而学习期间的中间阶段所能机翼的内容却相当少。</p>
+<pre><code> 要想保持在一个相当高的水准，必须找到记忆与理解最和谐的工作点。
+在正常情况下，这一点出现在学习开始的20~50分钟之间。
+学习期间的短暂间隔也常用于放松、消遣。可以使集中注意力学习时紧张的肌肉和神经得以放松。
+学习后的回忆量最初是上升，之后才是下降，再后是一条逐渐下降的、以水平线结尾的凹形曲线。
+
+    短暂上升的原因：在学习结束的瞬间，大脑没有足够的时间去整合刚学的新信息，尤其是最后的部分。它需要几分钟的时间将新材料之间的相关联系牢固地连接起来，即使之“沉淀下来”。
+    小幅上升之后是一个陡峻的下降，在学习一个小时之后的24小时之内，至少有80%的细节被遗忘了。</code></pre>
+<p>5.5 记忆–复习的技巧和理论<br>        安排有计划的复习，而且每次复习必须安排在回忆刚开始下降之前。<br>        eg:第一次复习应该在学习1小时之后的10分钟开始，复习时间以5分钟为宜。这样可以使记忆在高位保持1天左右，然后应该进行第二次复习，时间为2~4分钟。此后，记忆将保持一周左右，然后在一个月之后再次复习约2分钟。经过这最后一次复习，此项知识将被转为长期记忆。</p>
+<pre><code>    如果已经做过笔记的话，第一次复习应该是对笔记的全面修订过程，这就意味着要取代原来的笔记的“最终版本”。而第二、三和四次复习则应采用下列方式:不看整理过的笔记，用一张纸概括记下所能回忆的一切，然后将其与整理后的笔记对照，再进行修改和补充。笔记和草稿都应做成思维导图。
+    合理复习最重要的一个方面是作用于学习、思维和记忆等各方面的累计效应。
+
+    每次接触新知识时，人们对已学知识的记忆处于低谷，原有知识间自动产生的连接会解体。这样，他对新知识的理解就不能达到应有的水平，效率和速度也必然很低。这种连续的消极过程会使人感到沮丧，最终对能学好的东西也失去了信心-----只要一学新东西就会忘记，一接触新东西心理上就会感到压抑。结果是很多人在完成了正式的考试之后，就很少甚至根本不再碰书本。
+
+
+    失败的复习对整体记忆同样有害，如果忽略每条新信息的话，那么它将不再保持在意识层中，也不能形成新的记忆链接。由于记忆是一个以连接和联想为基础的过程，因而“记忆库”中的东西越少，其接纳和连接新知识的可能性就越小。
+    相反，复习的好处是无穷的。</code></pre>
+<p>2014/10/29 10:54<br>    使用某些方法使我们能利用记忆的连接和联想能力，来把这些事项与其对应的数字关联起来。<br>   最好的方法是数字-韵律法。</p>
+<p>5.7记忆的“SMASHIN” SCOPE 法<br>        在这种方法中最重要的是要保证押韵字与所要记忆的单词必须全部准确的连接起来。<br>    1.通感/感官(Synaesthesia/Sensuality)<br>            通感，指的是多种感觉的融合。<br>            视觉、听觉、嗅觉、味觉、触觉、动觉—对身体在空间中的位置与运动的感觉。<br>    2.运动(Movenment)<br>            在任何记忆的形象中，运动可以极大的增加大脑连接和记住东西的可能性。—-这里指记忆的形象的运动性。<br>    3.联想(Association)<br>            确保使它与你的内省的某些稳定不变的事物联想或连接起来。衣钩法：1=面包。<br>    4.性(Sexuality)<br>            要加以利用!<br>    5.幽默(Humour)<br>            想象越有趣、越荒谬、越愚蠢、超越现实，就越容易被记住。<br>    6.想象(Imagination)<br>            爱因斯坦说：“想象比知识更重要，因为知识是有限的，而想象却能包容全世界、促进进步、孕育革新。”<br>            在记忆中应用的想象越多，记忆就会越好。<br>    7.编号(Number)<br>            按数字编号使顺序及次序的规则更有针对性，更有效。<br>    8.符号(Symbolism)<br>            用丰富多彩的想象；可以用传统的符号，如休止符、灯泡。<br>    9.颜色(Color)<br>            在适当的地方尽可能使用各种颜色，可使你的想法色彩斑斓，更易于记忆。<br>    10.顺序和/或次序(Order and /or Seguence)<br>            结合其他规则，排列顺序和次序起到了更直接的参考作用，并增加了大脑“随机存取”的可能性。将排列顺序和次序的应用加以扩展，能使你开发记忆矩阵，如自我增强型记忆矩阵。<br>    11.“积极”的形象(Positive Images)<br>            积极愉快的形象更利于记忆，这使大脑乐于工作。<br>    12.夸张(Exageration)<br>            在所想象的情景中，夸大尺寸、形象和声音。</p>
+<pre><code>    12个记忆要素很容易用它们的首字母组成的单词“SMASHIN” SCOPE 来记。</code></pre>
+<p>5.8  数字–韵律法<br>        在形成头脑中的形象时，很重要的一点是,要在“心目”中看到清晰的图像。经常闭上眼睛，将想象的情景投影到你的眼脸内部，或投影到你大脑的屏幕上，并且去听、去感觉、去闻，或者用对你来说最有效的方式去体验。原书84页。<br>        所有方法中尤其有效的是基本记忆法。它能以“数字-韵律法”的方式记住1000条以上的信息，并且能给出记忆数字与日期的关键方法。“名字-面孔记忆法”能避免你在碰到曾经见过面的人时，避免尴尬。<br>5.9 不可能完成的任务<br>        记忆基本上是一个联想和连接的过程，而且很大程度上取决于关键字，以及用于恰当想象的关键概念。</p>
+<p>6.思维导图–词汇与思维特征的介绍<br>6.1 练习与讨论蟋蟀</p>
+<p>四象限法则<br>策略：<br>如果你总是有紧急又重要的事情要做，说明你在时间管理上存在问题，设法减少它。<br>尽可能地把时间花在重要但不紧急（第二象限）的事情上，这样才能减少第一象限的工作量。<br>对于紧急但不重要的事情的处理原则是授权，让别人去做。<br>不重要也不紧急的事情尽量少做。</p>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -250,14 +548,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>11k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>10 分钟</span>
     </span>
 </div>
 
@@ -286,6 +584,8 @@
     
     
     
+      
+
 
     <footer class="post-footer">
         <div class="post-eof"></div>
@@ -353,14 +653,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>17k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>15 分钟</span>
     </span>
 </div>
 
@@ -393,6 +693,8 @@
     
     
     
+      
+
 
     <footer class="post-footer">
         <div class="post-eof"></div>
@@ -454,7 +756,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>64</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -480,774 +782,8 @@
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
       
-    </footer>
-  </article>
-</div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://believezjp.oriht.com/posts/s/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="believeZJP">
-      <meta itemprop="description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="believeZJP">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/s/" class="post-title-link" itemprop="url">十大经典排序算法总结（JavaScript描述）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-10-18 14:38:00" itemprop="dateCreated datePublished" datetime="2018-10-18T14:38:00+08:00">2018-10-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-29 19:33:42" itemprop="dateModified" datetime="2020-12-29T19:33:42+08:00">2020-12-29</time>
-      </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>========================</p>
-<h2 id="ss"><a href="#ss" class="headerlink" title="ss"></a>ss</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<ul>
-<li><p>这世界上总存在着那么一些看似相似但有完全不同的东西，比如雷锋和雷峰塔，小平和小平头，玛丽和马里奥，Java和javascript….当年javascript为了抱Java大腿恬不知耻的让自己变成了Java的干儿子，哦，不是应该是跪舔，毕竟都跟了Java的姓了。可如今，javascript来了个咸鱼翻身，几乎要统治web领域，Nodejs，React Native的出现使得javascript在后端和移动端都开始占有了一席之地。可以这么说,在Web的江湖，JavaScript可谓风头无两，已经坐上了头把交椅。</p>
-</li>
-<li><p>在传统的计算机算法和数据结构领域，大多数专业教材和书籍的默认语言都是Java或者C/C+ +，O’REILLY家倒是出了一本叫做《数据结构与算法javascript描述》的书，但不得不说，不知道是作者吃了shit还是译者根本就没校对，满书的小错误，这就像那种无穷无尽的小bug一样,简直就是让人有种嘴里塞满了shit的感觉，吐也不是咽下去也不是。对于一个前端来说，尤其是笔试面试的时候，算法方面考的其实不难（十大排序算法或是和十大排序算法同等难度的），但就是之前没用javascript实现过或是没仔细看过相关算法的原理，导致写起来浪费很多时间。所以撸一撸袖子决定自己查资料自己总结一篇博客等用到了直接看自己的博客就OK了，正所谓靠天靠地靠大牛不如靠自己(ˉ(∞)ˉ)。</p>
-</li>
-<li><p>算法的由来：9世纪波斯数学家提出的：“al-Khowarizmi”就是下图这货（感觉重要数学元素提出者貌似都戴了顶白帽子），开个玩笑，阿拉伯人对于数学史的贡献还是值得人敬佩的。</p>
-<p>  <img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="大大"></p>
-</li>
-</ul>
-</blockquote>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="排序算法说明"><a href="#排序算法说明" class="headerlink" title="排序算法说明"></a>排序算法说明</h3><p><strong>（1）排序的定义：对一序列对象根据某个关键字进行排序；</strong></p>
-<p>输入：n个数：a1,a2,a3,…,an 输出：n个数的排列:a1’,a2’,a3’,…,an’，使得a1’&lt;=a2’&lt;=a3’&lt;=…&lt;=an’。</p>
-<p>再讲的形象点就是排排坐，调座位，高的站在后面，矮的站在前面咯。</p>
-<p><strong>（3）对于评述算法优劣术语的说明</strong></p>
-<p><strong>稳定</strong>：如果a原本在b前面，而a=b，排序之后a仍然在b的前面； <strong>不稳定</strong>：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面；</p>
-<p><strong>内排序</strong>：所有排序操作都在内存中完成； <strong>外排序</strong>：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行；</p>
-<p><strong>时间复杂度</strong>: 一个算法执行所耗费的时间。 <strong>空间复杂度</strong>: 运行完一个程序所需内存的大小。</p>
-<p>关于时间空间复杂度的更多了解请戳<a target="_blank" rel="noopener" href="http://blog.csdn.net/booirror/article/details/7707551/">这里</a>，或是看书程杰大大编写的《大话数据结构》还是很赞的，通俗易懂。</p>
-<p><strong>（4）排序算法图片总结(图片来源于网络):</strong></p>
-<p>排序对比：</p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<p><strong>图片名词解释：</strong> n: 数据规模 k:“桶”的个数 In-place: 占用常数内存，不占用额外内存 Out-place: 占用额外内存</p>
-<p>排序分类：</p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<h3 id="1-冒泡排序（Bubble-Sort）"><a href="#1-冒泡排序（Bubble-Sort）" class="headerlink" title="1.冒泡排序（Bubble Sort）"></a>1.冒泡排序（Bubble Sort）</h3><blockquote>
-<p>好的，开始总结第一个排序算法，冒泡排序。我想对于它每个学过C语言的都会了解的吧，这可能是很多人接触的第一个排序算法。</p>
-</blockquote>
-<h4 id="1-算法描述"><a href="#1-算法描述" class="headerlink" title="(1)算法描述"></a>(1)算法描述</h4><blockquote>
-<p>冒泡排序是一种简单的排序算法。它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。这个算法的名字由来是因为越小的元素会经由交换慢慢“浮”到数列的顶端。</p>
-</blockquote>
-<h4 id="2-算法描述和实现"><a href="#2-算法描述和实现" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;.比较相邻的元素。如果第一个比第二个大，就交换它们两个；</li>
-<li>&lt;2&gt;.对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；</li>
-<li>&lt;3&gt;.针对所有的元素重复以上的步骤，除了最后一个；</li>
-<li>&lt;4&gt;.重复步骤1~3，直到排序完成。</li>
-</ul>
-<p><strong>JavaScript代码实现：</strong></p>
-<pre><code>function bubbleSort(arr) &#123;
-    var len = arr.length;
-    for (var i = 0; i &lt; len; i++) &#123;
-        for (var j = 0; j &lt; len - 1 - i; j++) &#123;
-            if (arr[j] &gt; arr[j+1]) &#123;        //相邻元素两两对比
-                var temp = arr[j+1];        //元素交换
-                arr[j+1] = arr[j];
-                arr[j] = temp;
-            &#125;
-        &#125;
-    &#125;
-    return arr;
-&#125;
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(bubbleSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-复制代码</code></pre>
-<blockquote>
-<p>**改进冒泡排序： **设置一标志性变量pos,用于记录每趟排序中最后一次进行交换的位置。由于pos位置之后的记录均已交换到位,故在进行下一趟排序时只要扫描到pos位置即可。</p>
-</blockquote>
-<p>改进后算法如下:</p>
-<pre><code>function bubbleSort2(arr) &#123;
-    console.time(&#39;改进后冒泡排序耗时&#39;);
-    var i = arr.length-1;  //初始时,最后位置保持不变
-    while ( i&gt; 0) &#123;
-        var pos= 0; //每趟开始时,无记录交换
-        for (var j= 0; j&lt; i; j++)
-            if (arr[j]&gt; arr[j+1]) &#123;
-                pos= j; //记录交换的位置
-                var tmp = arr[j]; arr[j]=arr[j+1];arr[j+1]=tmp;
-            &#125;
-        i= pos; //为下一趟排序作准备
-     &#125;
-     console.timeEnd(&#39;改进后冒泡排序耗时&#39;);
-     return arr;
-&#125;
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(bubbleSort2(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-复制代码</code></pre>
-<blockquote>
-<p>传统冒泡排序中每一趟排序操作只能找到一个最大值或最小值,我们考虑利用在每趟排序中进行正向和反向两遍冒泡的方法一次可以得到两个最终值(最大者和最小者) , 从而使排序趟数几乎减少了一半。</p>
-</blockquote>
-<p>改进后的算法实现为:</p>
-<pre><code>function bubbleSort3(arr3) &#123;
-    var low = 0;
-    var high= arr.length-1; //设置变量的初始值
-    var tmp,j;
-    console.time(&#39;2.改进后冒泡排序耗时&#39;);
-    while (low &lt; high) &#123;
-        for (j= low; j&lt; high; ++j) //正向冒泡,找到最大者
-            if (arr[j]&gt; arr[j+1]) &#123;
-                tmp = arr[j]; arr[j]=arr[j+1];arr[j+1]=tmp;
-            &#125;
-        --high;                 //修改high值, 前移一位
-        for (j=high; j&gt;low; --j) //反向冒泡,找到最小者
-            if (arr[j]&lt;arr[j-1]) &#123;
-                tmp = arr[j]; arr[j]=arr[j-1];arr[j-1]=tmp;
-            &#125;
-        ++low;                  //修改low值,后移一位
-    &#125;
-    console.timeEnd(&#39;2.改进后冒泡排序耗时&#39;);
-    return arr3;
-&#125;
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(bubbleSort3(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-复制代码</code></pre>
-<p>三种方法耗时对比：</p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<blockquote>
-<p>由图可以看出改进后的冒泡排序明显的时间复杂度更低，耗时更短了。读者自行尝试可以戳这，博主在github建了个库，读者可以Clone下来本地尝试。此博文配合源码体验更棒哦~~~</p>
-</blockquote>
-<p><strong>冒泡排序动图演示:</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<p><strong>(3)算法分析</strong></p>
-<ul>
-<li>最佳情况：T(n) = O(n)</li>
-</ul>
-<blockquote>
-<p>当输入的数据已经是正序时（都已经是正序了，为毛何必还排序呢….）</p>
-</blockquote>
-<ul>
-<li>最差情况：T(n) = O(n2)</li>
-</ul>
-<blockquote>
-<p>当输入的数据是反序时(卧槽，我直接反序不就完了….)</p>
-</blockquote>
-<ul>
-<li>平均情况：T(n) = O(n2)</li>
-</ul>
-<h3 id="2-选择排序（Selection-Sort）"><a href="#2-选择排序（Selection-Sort）" class="headerlink" title="2.选择排序（Selection Sort）"></a>2.选择排序（Selection Sort）</h3><blockquote>
-<p>表现最稳定的排序算法之一(这个稳定不是指算法层面上的稳定哈，相信聪明的你能明白我说的意思2333)，因为无论什么数据进去都是O(n²)的时间复杂度…..所以用到它的时候，数据规模越小越好。唯一的好处可能就是不占用额外的内存空间了吧。理论上讲，选择排序可能也是平时排序一般人想到的最多的排序方法了吧。</p>
-</blockquote>
-<h4 id="1-算法简介"><a href="#1-算法简介" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p>选择排序(Selection-sort)是一种简单直观的排序算法。它的工作原理：首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
-</blockquote>
-<h4 id="2-算法描述和实现-1"><a href="#2-算法描述和实现-1" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结果。具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;.初始状态：无序区为R[1..n]，有序区为空；</li>
-<li>&lt;2&gt;.第i趟排序(i=1,2,3…n-1)开始时，当前有序区和无序区分别为R[1..i-1]和R(i..n）。该趟排序从当前无序区中-选出关键字最小的记录 R[k]，将它与无序区的第1个记录R交换，使R[1..i]和R[i+1..n)分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区；</li>
-<li>&lt;3&gt;.n-1趟结束，数组有序化了。</li>
-</ul>
-<p><strong>Javascript代码实现:</strong></p>
-<pre><code>function selectionSort(arr) &#123;
-    var len = arr.length;
-    var minIndex, temp;
-    console.time(&#39;选择排序耗时&#39;);
-    for (var i = 0; i &lt; len - 1; i++) &#123;
-        minIndex = i;
-        for (var j = i + 1; j &lt; len; j++) &#123;
-            if (arr[j] &lt; arr[minIndex]) &#123;     //寻找最小的数
-                minIndex = j;                 //将最小数的索引保存
-            &#125;
-        &#125;
-        temp = arr[i];
-        arr[i] = arr[minIndex];
-        arr[minIndex] = temp;
-    &#125;
-    console.timeEnd(&#39;选择排序耗时&#39;);
-    return arr;
-&#125;
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(selectionSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-
-
-复制代码</code></pre>
-<p><strong>选择排序动图演示：</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<h4 id="3-算法分析"><a href="#3-算法分析" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
-<li>最佳情况：T(n) = O(n2)</li>
-<li>最差情况：T(n) = O(n2)</li>
-<li>平均情况：T(n) = O(n2)</li>
-</ul>
-<h2 id="3-插入排序（Insertion-Sort）"><a href="#3-插入排序（Insertion-Sort）" class="headerlink" title="3.插入排序（Insertion Sort）"></a>3.插入排序（Insertion Sort）</h2><blockquote>
-<p>插入排序的代码实现虽然没有冒泡排序和选择排序那么简单粗暴，但它的原理应该是最容易理解的了，因为只要打过扑克牌的人都应该能够秒懂。当然，如果你说你打扑克牌摸牌的时候从来不按牌的大小整理牌，那估计这辈子你对插入排序的算法都不会产生任何兴趣了…..</p>
-</blockquote>
-<h4 id="1-算法简介-1"><a href="#1-算法简介-1" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p>插入排序（Insertion-Sort）的算法描述是一种简单直观的排序算法。它的工作原理是通过构建有序序列，对于未排序数据，在已排序序列中从后向前扫描，找到相应位置并插入。插入排序在实现上，通常采用in-place排序（即只需用到O(1)的额外空间的排序），因而在从后向前扫描过程中，需要反复把已排序元素逐步向后挪位，为最新元素提供插入空间。</p>
-</blockquote>
-<h4 id="2-算法描述和实现-2"><a href="#2-算法描述和实现-2" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>一般来说，插入排序都采用in-place在数组上实现。具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;.从第一个元素开始，该元素可以认为已经被排序；</li>
-<li>&lt;2&gt;.取出下一个元素，在已经排序的元素序列中从后向前扫描；</li>
-<li>&lt;3&gt;.如果该元素（已排序）大于新元素，将该元素移到下一位置；</li>
-<li>&lt;4&gt;.重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；</li>
-<li>&lt;5&gt;.将新元素插入到该位置后；</li>
-<li>&lt;6&gt;.重复步骤2~5。</li>
-</ul>
-<p><strong>Javascript代码实现:</strong></p>
-<pre><code>function insertionSort(array) &#123;
-    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
-        console.time(&#39;插入排序耗时：&#39;);
-        for (var i = 1; i &lt; array.length; i++) &#123;
-            var key = array[i];
-            var j = i - 1;
-            while (j &gt;= 0 &amp;&amp; array[j] &gt; key) &#123;
-                array[j + 1] = array[j];
-                j--;
-            &#125;
-            array[j + 1] = key;
-        &#125;
-        console.timeEnd(&#39;插入排序耗时：&#39;);
-        return array;
-    &#125; else &#123;
-        return &#39;array is not an Array!&#39;;
-    &#125;
-&#125;
-
-复制代码</code></pre>
-<blockquote>
-<p><strong>改进插入排序：</strong> 查找插入位置时使用二分查找的方式</p>
-</blockquote>
-<pre><code>function binaryInsertionSort(array) &#123;
-    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
-        console.time(&#39;二分插入排序耗时：&#39;);
-
-        for (var i = 1; i &lt; array.length; i++) &#123;
-            var key = array[i], left = 0, right = i - 1;
-            while (left &lt;= right) &#123;
-                var middle = parseInt((left + right) / 2);
-                if (key &lt; array[middle]) &#123;
-                    right = middle - 1;
-                &#125; else &#123;
-                    left = middle + 1;
-                &#125;
-            &#125;
-            for (var j = i - 1; j &gt;= left; j--) &#123;
-                array[j + 1] = array[j];
-            &#125;
-            array[left] = key;
-        &#125;
-        console.timeEnd(&#39;二分插入排序耗时：&#39;);
-
-        return array;
-    &#125; else &#123;
-        return &#39;array is not an Array!&#39;;
-    &#125;
-&#125;
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(binaryInsertionSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-复制代码</code></pre>
-<blockquote>
-<p>改进前后对比：</p>
-</blockquote>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<p><strong>插入排序动图演示:</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<h4 id="3-算法分析-1"><a href="#3-算法分析-1" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
-<li>最佳情况：输入数组按升序排列。T(n) = O(n)</li>
-<li>最坏情况：输入数组按降序排列。T(n) = O(n2)</li>
-<li>平均情况：T(n) = O(n2)</li>
-</ul>
-<h3 id="4-希尔排序（Shell-Sort）"><a href="#4-希尔排序（Shell-Sort）" class="headerlink" title="4.希尔排序（Shell Sort）"></a>4.希尔排序（Shell Sort）</h3><blockquote>
-<p>1959年Shell发明； 第一个突破O(n^2)的排序算法；是简单插入排序的改进版；它与插入排序的不同之处在于，它会优先比较距离较远的元素。希尔排序又叫缩小增量排序</p>
-</blockquote>
-<h4 id="1-算法简介-2"><a href="#1-算法简介-2" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p>希尔排序的核心在于间隔序列的设定。既可以提前设定好间隔序列，也可以动态的定义间隔序列。动态定义间隔序列的算法是《算法（第4版》的合著者Robert Sedgewick提出的。</p>
-</blockquote>
-<h4 id="2-算法描述和实现-3"><a href="#2-算法描述和实现-3" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，具体算法描述：</p>
-<ul>
-<li>&lt;1&gt;. 选择一个增量序列t1，t2，…，tk，其中ti&gt;tj，tk=1；</li>
-<li>&lt;2&gt;.按增量序列个数k，对序列进行k 趟排序；</li>
-<li>&lt;3&gt;.每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。</li>
-</ul>
-<p><strong>Javascript代码实现：</strong></p>
-<pre><code>function shellSort(arr) &#123;
-    var len = arr.length,
-        temp,
-        gap = 1;
-    console.time(&#39;希尔排序耗时:&#39;);
-    while(gap &lt; len/5) &#123;          //动态定义间隔序列
-        gap =gap*5+1;
-    &#125;
-    for (gap; gap &gt; 0; gap = Math.floor(gap/5)) &#123;
-        for (var i = gap; i &lt; len; i++) &#123;
-            temp = arr[i];
-            for (var j = i-gap; j &gt;= 0 &amp;&amp; arr[j] &gt; temp; j-=gap) &#123;
-                arr[j+gap] = arr[j];
-            &#125;
-            arr[j+gap] = temp;
-        &#125;
-    &#125;
-    console.timeEnd(&#39;希尔排序耗时:&#39;);
-    return arr;
-&#125;
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(shellSort(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-
-复制代码</code></pre>
-<p><strong>希尔排序图示（图片来源网络）：</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<h4 id="（3）算法分析"><a href="#（3）算法分析" class="headerlink" title="（3）算法分析"></a>（3）算法分析</h4><ul>
-<li>最佳情况：T(n) = O(nlog2 n)</li>
-<li>最坏情况：T(n) = O(nlog2 n)</li>
-<li>平均情况：T(n) =O(nlog n)</li>
-</ul>
-<h3 id="5-归并排序（Merge-Sort）"><a href="#5-归并排序（Merge-Sort）" class="headerlink" title="5.归并排序（Merge Sort）"></a>5.归并排序（Merge Sort）</h3><blockquote>
-<p>和选择排序一样，归并排序的性能不受输入数据的影响，但表现比选择排序好的多，因为始终都是O(n log n）的时间复杂度。代价是需要额外的内存空间。</p>
-</blockquote>
-<h4 id="1-算法简介-3"><a href="#1-算法简介-3" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p> 归并排序是建立在归并操作上的一种有效的排序算法。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。归并排序是一种稳定的排序方法。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为2-路归并。</p>
-</blockquote>
-<h4 id="2-算法描述和实现-4"><a href="#2-算法描述和实现-4" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;.把长度为n的输入序列分成两个长度为n/2的子序列；</li>
-<li>&lt;2&gt;.对这两个子序列分别采用归并排序；</li>
-<li>&lt;3&gt;.将两个排序好的子序列合并成一个最终的排序序列。</li>
-</ul>
-<p><strong>Javscript代码实现:</strong></p>
-<pre><code>function mergeSort(arr) &#123;  //采用自上而下的递归方法
-    var len = arr.length;
-    if(len &lt; 2) &#123;
-        return arr;
-    &#125;
-    var middle = Math.floor(len / 2),
-        left = arr.slice(0, middle),
-        right = arr.slice(middle);
-    return merge(mergeSort(left), mergeSort(right));
-&#125;
-
-function merge(left, right)
-&#123;
-    var result = [];
-    console.time(&#39;归并排序耗时&#39;);
-    while (left.length &amp;&amp; right.length) &#123;
-        if (left[0] &lt;= right[0]) &#123;
-            result.push(left.shift());
-        &#125; else &#123;
-            result.push(right.shift());
-        &#125;
-    &#125;
-
-    while (left.length)
-        result.push(left.shift());
-
-    while (right.length)
-        result.push(right.shift());
-    console.timeEnd(&#39;归并排序耗时&#39;);
-    return result;
-&#125;
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(mergeSort(arr));
-
-复制代码</code></pre>
-<p><strong>归并排序动图演示:</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<h4 id="3-算法分析-2"><a href="#3-算法分析-2" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
-<li>最佳情况：T(n) = O(n)</li>
-<li>最差情况：T(n) = O(nlogn)</li>
-<li>平均情况：T(n) = O(nlogn)</li>
-</ul>
-<h3 id="6-快速排序（Quick-Sort）"><a href="#6-快速排序（Quick-Sort）" class="headerlink" title="6.快速排序（Quick Sort）"></a>6.快速排序（Quick Sort）</h3><blockquote>
-<p>快速排序的名字起的是简单粗暴，因为一听到这个名字你就知道它存在的意义，就是快，而且效率高! 它是处理大数据最快的排序算法之一了。</p>
-</blockquote>
-<h4 id="1-算法简介-4"><a href="#1-算法简介-4" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p>快速排序的基本思想：通过一趟排序将待排记录分隔成独立的两部分，其中一部分记录的关键字均比另一部分的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序。</p>
-</blockquote>
-<h4 id="2-算法描述和实现-5"><a href="#2-算法描述和实现-5" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>快速排序使用分治法来把一个串（list）分为两个子串（sub-lists）。具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;.从数列中挑出一个元素，称为 “基准”（pivot）；</li>
-<li>&lt;2&gt;.重新排序数列，所有元素比基准值小的摆放在基准前面，所有元素比基准值大的摆在基准的后面（相同的数可以到任一边）。在这个分区退出之后，该基准就处于数列的中间位置。这个称为分区（partition）操作；</li>
-<li>&lt;3&gt;.递归地（recursive）把小于基准值元素的子数列和大于基准值元素的子数列排序。</li>
-</ul>
-<p><strong>Javascript代码实现：</strong></p>
-<pre><code>/*方法说明：快速排序
-@param  array 待排序数组*/
-//方法一
-function quickSort(array, left, right) &#123;
-    console.time(&#39;1.快速排序耗时&#39;);
-    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39; &amp;&amp; typeof left === &#39;number&#39; &amp;&amp; typeof right === &#39;number&#39;) &#123;
-        if (left &lt; right) &#123;
-            var x = array[right], i = left - 1, temp;
-            for (var j = left; j &lt;= right; j++) &#123;
-                if (array[j] &lt;= x) &#123;
-                    i++;
-                    temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp;
-                &#125;
-            &#125;
-            quickSort(array, left, i - 1);
-            quickSort(array, i + 1, right);
-        &#125;
-        console.timeEnd(&#39;1.快速排序耗时&#39;);
-        return array;
-    &#125; else &#123;
-        return &#39;array is not an Array or left or right is not a number!&#39;;
-    &#125;
-&#125;
-
-//方法二
-var quickSort2 = function(arr) &#123;
-    console.time(&#39;2.快速排序耗时&#39;);
-&amp;emsp;&amp;emsp;if (arr.length &lt;= 1) &#123; return arr; &#125;
-&amp;emsp;&amp;emsp;var pivotIndex = Math.floor(arr.length / 2);
-&amp;emsp;&amp;emsp;var pivot = arr.splice(pivotIndex, 1)[0];
-&amp;emsp;&amp;emsp;var left = [];
-&amp;emsp;&amp;emsp;var right = [];
-&amp;emsp;&amp;emsp;for (var i = 0; i &lt; arr.length; i++)&#123;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;if (arr[i] &lt; pivot) &#123;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;left.push(arr[i]);
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&#125; else &#123;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;right.push(arr[i]);
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&#125;
-&amp;emsp;&amp;emsp;&#125;
-console.timeEnd(&#39;2.快速排序耗时&#39;);
-&amp;emsp;&amp;emsp;return quickSort2(left).concat([pivot], quickSort2(right));
-&#125;;
-
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(quickSort(arr,0,arr.length-1));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-console.log(quickSort2(arr));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-
-
-复制代码</code></pre>
-<p><strong>快速排序动图演示：</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="快速排序"></p>
-<h4 id="3-算法分析-3"><a href="#3-算法分析-3" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
-<li>最佳情况：T(n) = O(nlogn)</li>
-<li>最差情况：T(n) = O(n2)</li>
-<li>平均情况：T(n) = O(nlogn)</li>
-</ul>
-<h3 id="7-堆排序（Heap-Sort）"><a href="#7-堆排序（Heap-Sort）" class="headerlink" title="7.堆排序（Heap Sort）"></a>7.堆排序（Heap Sort）</h3><blockquote>
-<p>堆排序可以说是一种利用堆的概念来排序的选择排序。</p>
-</blockquote>
-<h4 id="1-算法简介-5"><a href="#1-算法简介-5" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p>堆排序（Heapsort）是指利用堆这种数据结构所设计的一种排序算法。堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（或者大于）它的父节点。</p>
-</blockquote>
-<h4 id="2-算法描述和实现-6"><a href="#2-算法描述和实现-6" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;.将初始待排序关键字序列(R1,R2….Rn)构建成大顶堆，此堆为初始的无序区；</li>
-<li>&lt;2&gt;.将堆顶元素R[1]与最后一个元素R[n]交换，此时得到新的无序区(R1,R2,……Rn-1)和新的有序区(Rn),且满足R[1,2…n-1]&lt;=R[n]；</li>
-<li>&lt;3&gt;.由于交换后新的堆顶R[1]可能违反堆的性质，因此需要对当前无序区(R1,R2,……Rn-1)调整为新堆，然后再次将R[1]与无序区最后一个元素交换，得到新的无序区(R1,R2….Rn-2)和新的有序区(Rn-1,Rn)。不断重复此过程直到有序区的元素个数为n-1，则整个排序过程完成。</li>
-</ul>
-<p><strong>Javascript代码实现：</strong></p>
-<pre><code>/*方法说明：堆排序
-@param  array 待排序数组*/
-function heapSort(array) &#123;
-    console.time(&#39;堆排序耗时&#39;);
-    if (Object.prototype.toString.call(array).slice(8, -1) === &#39;Array&#39;) &#123;
-        //建堆
-        var heapSize = array.length, temp;
-        for (var i = Math.floor(heapSize / 2) - 1; i &gt;= 0; i--) &#123;
-            heapify(array, i, heapSize);
-        &#125;
-
-        //堆排序
-        for (var j = heapSize - 1; j &gt;= 1; j--) &#123;
-            temp = array[0];
-            array[0] = array[j];
-            array[j] = temp;
-            heapify(array, 0, --heapSize);
-        &#125;
-        console.timeEnd(&#39;堆排序耗时&#39;);
-        return array;
-    &#125; else &#123;
-        return &#39;array is not an Array!&#39;;
-    &#125;
-&#125;
-/*方法说明：维护堆的性质
-@param  arr 数组
-@param  x   数组下标
-@param  len 堆大小*/
-function heapify(arr, x, len) &#123;
-    if (Object.prototype.toString.call(arr).slice(8, -1) === &#39;Array&#39; &amp;&amp; typeof x === &#39;number&#39;) &#123;
-        var l = 2 * x + 1, r = 2 * x + 2, largest = x, temp;
-        if (l &lt; len &amp;&amp; arr[l] &gt; arr[largest]) &#123;
-            largest = l;
-        &#125;
-        if (r &lt; len &amp;&amp; arr[r] &gt; arr[largest]) &#123;
-            largest = r;
-        &#125;
-        if (largest != x) &#123;
-            temp = arr[x];
-            arr[x] = arr[largest];
-            arr[largest] = temp;
-            heapify(arr, largest, len);
-        &#125;
-    &#125; else &#123;
-        return &#39;arr is not an Array or x is not a number!&#39;;
-    &#125;
-&#125;
-var arr=[91,60,96,13,35,65,46,65,10,30,20,31,77,81,22];
-console.log(heapSort(arr));//[10, 13, 20, 22, 30, 31, 35, 46, 60, 65, 65, 77, 81, 91, 96]
-
-复制代码</code></pre>
-<p><strong>堆排序动图演示：</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<h4 id="3-算法分析-4"><a href="#3-算法分析-4" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
-<li>最佳情况：T(n) = O(nlogn)</li>
-<li>最差情况：T(n) = O(nlogn)</li>
-<li>平均情况：T(n) = O(nlogn)</li>
-</ul>
-<h3 id="8-计数排序（Counting-Sort）"><a href="#8-计数排序（Counting-Sort）" class="headerlink" title="8.计数排序（Counting Sort）"></a>8.计数排序（Counting Sort）</h3><blockquote>
-<p>计数排序的核心在于将输入的数据值转化为键存储在额外开辟的数组空间中。 作为一种线性时间复杂度的排序，计数排序要求输入的数据必须是有确定范围的整数。</p>
-</blockquote>
-<h4 id="1-算法简介-6"><a href="#1-算法简介-6" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p>计数排序(Counting sort)是一种稳定的排序算法。计数排序使用一个额外的数组C，其中第i个元素是待排序数组A中值等于i的元素的个数。然后根据数组C来将A中的元素排到正确的位置。它只能对整数进行排序。</p>
-</blockquote>
-<h4 id="2-算法描述和实现-7"><a href="#2-算法描述和实现-7" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;. 找出待排序的数组中最大和最小的元素；</li>
-<li>&lt;2&gt;. 统计数组中每个值为i的元素出现的次数，存入数组C的第i项；</li>
-<li>&lt;3&gt;. 对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）；</li>
-<li>&lt;4&gt;. 反向填充目标数组：将每个元素i放在新数组的第C(i)项，每放一个元素就将C(i)减去1。</li>
-</ul>
-<p><strong>Javascript代码实现：</strong></p>
-<pre><code>function countingSort(array) &#123;
-    var len = array.length,
-        B = [],
-        C = [],
-        min = max = array[0];
-    console.time(&#39;计数排序耗时&#39;);
-    for (var i = 0; i &lt; len; i++) &#123;
-        min = min &lt;= array[i] ? min : array[i];
-        max = max &gt;= array[i] ? max : array[i];
-        C[array[i]] = C[array[i]] ? C[array[i]] + 1 : 1;
-    &#125;
-    for (var j = min; j &lt; max; j++) &#123;
-        C[j + 1] = (C[j + 1] || 0) + (C[j] || 0);
-    &#125;
-    for (var k = len - 1; k &gt;= 0; k--) &#123;
-        B[C[array[k]] - 1] = array[k];
-        C[array[k]]--;
-    &#125;
-    console.timeEnd(&#39;计数排序耗时&#39;);
-    return B;
-&#125;
-var arr = [2, 2, 3, 8, 7, 1, 2, 2, 2, 7, 3, 9, 8, 2, 1, 4, 2, 4, 6, 9, 2];
-console.log(countingSort(arr)); //[1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 4, 4, 6, 7, 7, 8, 8, 9, 9]
-
-复制代码</code></pre>
-<p><strong>JavaScript动图演示：</strong>、</p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<h4 id="3-算法分析-5"><a href="#3-算法分析-5" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><blockquote>
-<p>当输入的元素是n 个0到k之间的整数时，它的运行时间是 O(n + k)。计数排序不是比较排序，排序的速度快于任何比较排序算法。由于用来计数的数组C的长度取决于待排序数组中数据的范围（等于待排序数组的最大值与最小值的差加上1），这使得计数排序对于数据范围很大的数组，需要大量时间和内存。</p>
-</blockquote>
-<ul>
-<li>最佳情况：T(n) = O(n+k)</li>
-<li>最差情况：T(n) = O(n+k)</li>
-<li>平均情况：T(n) = O(n+k)</li>
-</ul>
-<h3 id="9-桶排序（Bucket-Sort）"><a href="#9-桶排序（Bucket-Sort）" class="headerlink" title="9.桶排序（Bucket Sort）"></a>9.桶排序（Bucket Sort）</h3><blockquote>
-<p>桶排序是计数排序的升级版。它利用了函数的映射关系，高效与否的关键就在于这个映射函数的确定。</p>
-</blockquote>
-<h4 id="1-算法简介-7"><a href="#1-算法简介-7" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p>桶排序 (Bucket sort)的工作的原理：假设输入数据服从均匀分布，将数据分到有限数量的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序进行排</p>
-</blockquote>
-<h4 id="2-算法描述和实现-8"><a href="#2-算法描述和实现-8" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;.设置一个定量的数组当作空桶；</li>
-<li>&lt;2&gt;.遍历输入数据，并且把数据一个一个放到对应的桶里去；</li>
-<li>&lt;3&gt;.对每个不是空的桶进行排序；</li>
-<li>&lt;4&gt;.从不是空的桶里把排好序的数据拼接起来。</li>
-</ul>
-<p><strong>Javascript代码实现:</strong></p>
-<pre><code>/*方法说明：桶排序
-@param  array 数组
-@param  num   桶的数量*/
-function bucketSort(array, num) &#123;
-    if (array.length &lt;= 1) &#123;
-        return array;
-    &#125;
-    var len = array.length, buckets = [], result = [], min = max = array[0], regex = &#39;/^[1-9]+[0-9]*$/&#39;, space, n = 0;
-    num = num || ((num &gt; 1 &amp;&amp; regex.test(num)) ? num : 10);
-    console.time(&#39;桶排序耗时&#39;);
-    for (var i = 1; i &lt; len; i++) &#123;
-        min = min &lt;= array[i] ? min : array[i];
-        max = max &gt;= array[i] ? max : array[i];
-    &#125;
-    space = (max - min + 1) / num;
-    for (var j = 0; j &lt; len; j++) &#123;
-        var index = Math.floor((array[j] - min) / space);
-        if (buckets[index]) &#123;   //  非空桶，插入排序
-            var k = buckets[index].length - 1;
-            while (k &gt;= 0 &amp;&amp; buckets[index][k] &gt; array[j]) &#123;
-                buckets[index][k + 1] = buckets[index][k];
-                k--;
-            &#125;
-            buckets[index][k + 1] = array[j];
-        &#125; else &#123;    //空桶，初始化
-            buckets[index] = [];
-            buckets[index].push(array[j]);
-        &#125;
-    &#125;
-    while (n &lt; num) &#123;
-        result = result.concat(buckets[n]);
-        n++;
-    &#125;
-    console.timeEnd(&#39;桶排序耗时&#39;);
-    return result;
-&#125;
-var arr=[3,44,38,5,47,15,36,26,27,2,46,4,19,50,48];
-console.log(bucketSort(arr,4));//[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-
-复制代码</code></pre>
-<p><strong>桶排序图示（图片来源网络）：</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<p>关于桶排序<a target="_blank" rel="noopener" href="http://www.cnblogs.com/lonelyxmas/p/3561938.html">更多</a></p>
-<h4 id="3-算法分析-6"><a href="#3-算法分析-6" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><blockquote>
-<p> 桶排序最好情况下使用线性时间O(n)，桶排序的时间复杂度，取决与对各个桶之间数据进行排序的时间复杂度，因为其它部分的时间复杂度都为O(n)。很显然，桶划分的越小，各个桶之间的数据越少，排序所用的时间也会越少。但相应的空间消耗就会增大。</p>
-</blockquote>
-<ul>
-<li>最佳情况：T(n) = O(n+k)</li>
-<li>最差情况：T(n) = O(n+k)</li>
-<li>平均情况：T(n) = O(n2)</li>
-</ul>
-<h3 id="10-基数排序（Radix-Sort）"><a href="#10-基数排序（Radix-Sort）" class="headerlink" title="10.基数排序（Radix Sort）"></a>10.基数排序（Radix Sort）</h3><blockquote>
-<p>基数排序也是非比较的排序算法，对每一位进行排序，从最低位开始排序，复杂度为O(kn),为数组长度，k为数组中的数的最大的位数；</p>
-</blockquote>
-<h4 id="1-算法简介-8"><a href="#1-算法简介-8" class="headerlink" title="(1)算法简介"></a>(1)算法简介</h4><blockquote>
-<p>基数排序是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。有时候有些属性是有优先级顺序的，先按低优先级排序，再按高优先级排序。最后的次序就是高优先级高的在前，高优先级相同的低优先级高的在前。基数排序基于分别排序，分别收集，所以是稳定的。</p>
-</blockquote>
-<h4 id="2-算法描述和实现-9"><a href="#2-算法描述和实现-9" class="headerlink" title="(2)算法描述和实现"></a>(2)算法描述和实现</h4><p>具体算法描述如下：</p>
-<ul>
-<li>&lt;1&gt;.取得数组中的最大数，并取得位数；</li>
-<li>&lt;2&gt;.arr为原始数组，从最低位开始取每个位组成radix数组；</li>
-<li>&lt;3&gt;.对radix进行计数排序（利用计数排序适用于小范围数的特点）；</li>
-</ul>
-<p><strong>Javascript代码实现：</strong></p>
-<pre><code>/**
- * 基数排序适用于：
- *  (1)数据范围较小，建议在小于1000
- *  (2)每个数值都要大于等于0
- * @author xiazdong
- * @param  arr 待排序数组
- * @param  maxDigit 最大位数
- */
-//LSD Radix Sort
-
-function radixSort(arr, maxDigit) &#123;
-    var mod = 10;
-    var dev = 1;
-    var counter = [];
-    console.time(&#39;基数排序耗时&#39;);
-    for (var i = 0; i &lt; maxDigit; i++, dev *= 10, mod *= 10) &#123;
-        for(var j = 0; j &lt; arr.length; j++) &#123;
-            var bucket = parseInt((arr[j] % mod) / dev);
-            if(counter[bucket]== null) &#123;
-                counter[bucket] = [];
-            &#125;
-            counter[bucket].push(arr[j]);
-        &#125;
-        var pos = 0;
-        for(var j = 0; j &lt; counter.length; j++) &#123;
-            var value = null;
-            if(counter[j]!=null) &#123;
-                while ((value = counter[j].shift()) != null) &#123;
-                      arr[pos++] = value;
-                &#125;
-          &#125;
-        &#125;
-    &#125;
-    console.timeEnd(&#39;基数排序耗时&#39;);
-    return arr;
-&#125;
-var arr = [3, 44, 38, 5, 47, 15, 36, 26, 27, 2, 46, 4, 19, 50, 48];
-console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47, 48, 50]
-
-复制代码</code></pre>
-<p><strong>基数排序LSD动图演示：</strong></p>
-<p><img src="https://juejin.cn/post/data:image/svg+xml;utf8" alt="这里写图片描述"></p>
-<h4 id="3-算法分析-7"><a href="#3-算法分析-7" class="headerlink" title="(3)算法分析"></a>(3)算法分析</h4><ul>
-<li>最佳情况：T(n) = O(n * k)</li>
-<li>最差情况：T(n) = O(n * k)</li>
-<li>平均情况：T(n) = O(n * k)</li>
-</ul>
-<p>基数排序有两种方法：</p>
-<ul>
-<li>MSD 从高位开始进行排序</li>
-<li>LSD 从低位开始进行排序</li>
-</ul>
-<p><strong>基数排序 vs 计数排序 vs 桶排序</strong></p>
-<p>这三种排序算法都利用了桶的概念，但对桶的使用方法上有明显差异：</p>
-<ol>
-<li>基数排序：根据键值的每位数字来分配桶</li>
-<li>计数排序：每个桶只存储单一键值</li>
-<li>桶排序：每个桶存储一定范围的数值</li>
-</ol>
-<p>![<a target="_blank" rel="noopener" href="https://user-gold-cdn.xitu.io/2020/2/3/1700919fb9a285de?w=450&amp;h=359&amp;f=png&amp;s=66765%5D">https://user-gold-cdn.xitu.io/2020/2/3/1700919fb9a285de?w=450&amp;h=359&amp;f=png&amp;s=66765]</a>(<a target="_blank" rel="noopener" href="https://juejin.cn/post/data:image/svg+xml;utf8">https://juejin.cn/post/data:image/svg+xml;utf8</a><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="450" height="359"></svg>)</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><blockquote>
-<p>十大排序算法的总结到这里就算告一段落了。博主总结完之后只有一个感觉，排序算法博大精深，前辈们用了数年甚至一辈子的心血研究出来的算法更值得我们推敲。站在十大算法的门前心里还是诚惶诚恐的，身为一个小学生，博主的总结难免会有所疏漏，欢迎各位批评指定。</p>
-</blockquote>
-<p>.markdown-body pre,.markdown-body pre&gt;code.hljs{color:#333;background:#f8f8f8}.hljs-comment,.hljs-quote{color:#998;font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-subst{color:#333;font-weight:700}.hljs-literal,.hljs-number,.hljs-tag .hljs-attr,.hljs-template-variable,.hljs-variable{color:teal}.hljs-doctag,.hljs-string{color:#d14}.hljs-section,.hljs-selector-id,.hljs-title{color:#900;font-weight:700}.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type{color:#458;font-weight:700}.hljs-attribute,.hljs-name,.hljs-tag{color:navy;font-weight:400}.hljs-link,.hljs-regexp{color:#009926}.hljs-bullet,.hljs-symbol{color:#990073}.hljs-built_in,.hljs-builtin-name{color:#0086b3}.hljs-meta{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}</p>
-
-      
-    </div>
-
-    
-    
-    
 
     <footer class="post-footer">
         <div class="post-eof"></div>
@@ -1302,14 +838,14 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>9.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>9 分钟</span>
     </span>
 </div>
 
@@ -1353,6 +889,8 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
     
     
     
+      
+
 
     <footer class="post-footer">
         <div class="post-eof"></div>
@@ -1414,14 +952,14 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>10k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>9 分钟</span>
     </span>
 </div>
 
@@ -1600,7 +1138,7 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
 </ol>
 </li>
 </ol>
-<h2 id="命令行远程登录服务器"><a href="#命令行远程登录服务器" class="headerlink" title="命令行远程登录服务器"></a>命令行远程登录服务器</h2><p>ssh <a href="mailto:&#114;&#x6f;&#111;&#x74;&#x40;&#49;&#57;&#50;&#x2e;&#x31;&#x36;&#x38;&#46;&#x31;&#x2e;&#50;&#53;">&#114;&#x6f;&#111;&#x74;&#x40;&#49;&#57;&#50;&#x2e;&#x31;&#x36;&#x38;&#46;&#x31;&#x2e;&#50;&#53;</a><br>    用户名@ip</p>
+<h2 id="命令行远程登录服务器"><a href="#命令行远程登录服务器" class="headerlink" title="命令行远程登录服务器"></a>命令行远程登录服务器</h2><p>ssh <a href="mailto:&#x72;&#x6f;&#111;&#116;&#64;&#49;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#49;&#46;&#x32;&#x35;">&#x72;&#x6f;&#111;&#116;&#64;&#49;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#49;&#46;&#x32;&#x35;</a><br>    用户名@ip</p>
 <h2 id="服务器上安装公钥"><a href="#服务器上安装公钥" class="headerlink" title="服务器上安装公钥"></a>服务器上安装公钥</h2><p>键入以下命令，在服务器上安装公钥：</p>
 <p>[root@host ~]$ cd .ssh</p>
 <p>[root@host .ssh]$ cat id_rsa.pub &gt;&gt; authorized_keys</p>
@@ -1719,6 +1257,8 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
     
     
     
+      
+
 
     <footer class="post-footer">
         <div class="post-eof"></div>
@@ -1773,7 +1313,7 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>367</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1811,6 +1351,8 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
     
     
     
+      
+
 
     <footer class="post-footer">
         <div class="post-eof"></div>
@@ -1872,14 +1414,14 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -1946,6 +1488,8 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
     
     
     
+      
+
 
     <footer class="post-footer">
         <div class="post-eof"></div>
@@ -2007,14 +1551,14 @@ console.log(radixSort(arr,2)); //[2, 3, 4, 5, 15, 19, 26, 27, 36, 38, 44, 46, 47
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>37k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>34 分钟</span>
     </span>
 </div>
 
@@ -2468,373 +2012,8 @@ HTTP的缓存头使用的合理
     
     
     
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
       
-    </footer>
-  </article>
-</div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://believezjp.oriht.com/posts/React%20%E5%92%8CVue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="believeZJP">
-      <meta itemprop="description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="believeZJP">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/React%20%E5%92%8CVue/" class="post-title-link" itemprop="url">React和Vue</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-04-26 21:42:02" itemprop="dateCreated datePublished" datetime="2018-04-26T21:42:02+08:00">2018-04-26</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2018-11-29 21:42:02" itemprop="dateModified" datetime="2018-11-29T21:42:02+08:00">2018-11-29</time>
-      </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="在jsx文件中为什么一定要引用react"><a href="#在jsx文件中为什么一定要引用react" class="headerlink" title="在jsx文件中为什么一定要引用react"></a>在jsx文件中为什么一定要引用react</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">JSX 语法就是用React.createElement()来构建 React 元素的。</span><br><span class="line">它接受三个参数，第一个参数可以是一个标签名。</span><br><span class="line">如div、span，或者 React 组件。</span><br><span class="line">第二个参数为传入的属性。</span><br><span class="line">第三个以及之后的参数，皆作为组件的子组件。</span><br><span class="line"></span><br><span class="line">React.createElement(</span><br><span class="line">    type,</span><br><span class="line">    [props],</span><br><span class="line">    [...children]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">React.cloneElement()</span><br><span class="line"></span><br><span class="line">React.cloneElement()与React.createElement()相似，</span><br><span class="line">不同的是它传入的第一个参数是一个 React</span><br><span class="line">元素，而不是标签名或组件。</span><br><span class="line">新添加的属性会并入原有的属性，</span><br><span class="line">传入到返回的新元素中，而就的子元素奖杯替换。</span><br><span class="line"></span><br><span class="line">React.cloneElement(</span><br><span class="line">  element,</span><br><span class="line">  [props],</span><br><span class="line">  [...children]</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="React-组件"><a href="#React-组件" class="headerlink" title="React 组件"></a>React 组件</h1><p>React 中有三种构建组件的方式。React.createClass()、ES6 class和无状态函数。</p>
-<h2 id="React-createClass"><a href="#React-createClass" class="headerlink" title="React.createClass()"></a>React.createClass()</h2><p>React.createClass()是三种方式中最早，兼容性最好的方法。在0.14版本前官方指定的组件写法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var Greeting &#x3D; React.createClass(&#123;</span><br><span class="line">  render: function() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="ES6-class"><a href="#ES6-class" class="headerlink" title="ES6 class"></a>ES6 class</h2><p>ES6 class是目前官方推荐的使用方式，它使用了ES6标准语法来构建，但它的实现仍是调用React.createClass()来实现了，ES6 class的生命周期和自动绑定方式与React.createClass()略有不同。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Greeting extemds React.Component&#123;</span><br><span class="line">  render: function() &#123;</span><br><span class="line">    return &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="无状态函数"><a href="#无状态函数" class="headerlink" title="无状态函数"></a>无状态函数</h1><p>无状态函数是使用函数构建的无状态组件，无状态组件传入props和context两个参数，它没有state，除了render()，没有其它生命周期方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function Greeting (props) &#123;</span><br><span class="line">  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>React.createClass()和ES6 class构建的组件的数据结构是类，无状态组件数据结构是函数，它们在 React 被视为是一样的。</p>
-<h1 id="元素与组件的区别"><a href="#元素与组件的区别" class="headerlink" title="元素与组件的区别"></a>元素与组件的区别</h1><p>组件是由元素构成的。元素数据结构是普通对象，而组件数据结构是类或纯函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function Greeting (props) &#123;</span><br><span class="line">  return &lt;h1&gt;Hello, &#123;props.name&#125;&lt;&#x2F;h1&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="componentWillReceiveProps应用场景"><a href="#componentWillReceiveProps应用场景" class="headerlink" title="componentWillReceiveProps应用场景"></a>componentWillReceiveProps应用场景</h1><p>如果子组件需要的数据是直接由父组件通过props传递过来就不需要在componentwillreceiveprops中setState，但是如果子组件有自己的状态，同时这个状态依赖于父组件的数据，那么就需要子组件单独进行setState操作，否则无法完成子组件的更新。同时有一点，在componentwillreceiveprops中写setState不会再次触发子组件的render。解释一下：父组件setState时会触发子组件的render，此时如果在子组件的componentwillreceiveprops里setState，给人的感觉是会再一次触发子组件的render（加上前面的一次就是两次），实际情况是不会的</p>
-<h1 id="vuex和redux使用有什么不同"><a href="#vuex和redux使用有什么不同" class="headerlink" title="vuex和redux使用有什么不同"></a>vuex和redux使用有什么不同</h1><p>Vuex 其实是一个针对 Vue 特化的 Flux，主要是为了配合 Vue 本身的响应式机制。当然吸取了一些 Redux 的特点，比如单状态树和便于测试和热重载的 API，但是也选择性的放弃了一些在 Vue 的场景下并不契合的特性，比如强制的 immutability（在保证了每一次状态变化都能追踪的情况下强制的 immutability 带来的收益就很有限了）、为了同构而设计得较为繁琐的 API、必须依赖第三方库才能相对高效率地获得状态树的局部状态等等（相比之下 Vuex 直接用 Vue 本身的计算属性就可以）所以 Vue + Vuex 会更简洁，也不需要考虑性能问题，代价就是 Vuex 只能和 Vue 配合。Vue + Redux 也不是不可以，但是 Redux 作为一个泛用的实现和 Vue 的契合度肯定不如 Vuex。</p>
-<h1 id="nextTick的作用，原理，用api的场景"><a href="#nextTick的作用，原理，用api的场景" class="headerlink" title="nextTick的作用，原理，用api的场景"></a>nextTick的作用，原理，用api的场景</h1><p>$nextTick 是在下次 DOM 更新循环结束之后执行延迟回调，在修改数据之后使用 $nextTick，则可以在回调中获取更新后的 DOM</p>
-<p>也许有人会问，我在 Vue 实例方法中修改了数据，然后再在 $nextTick 回调中获取该数据在相应 DOM 元素所绑定的内容（或属性）殊无必要，我为什么需要这样的 API 呢？</p>
-<p>考虑这样一种场景，你有一个 jQuery 插件，希望在 DOM 元素中某些属性发生变化之后重新应用该插件，这时候就需要在 $nextTick 的回调函数中执行重新应用插件的方法。</p>
-<p>在数据变化后要执行的某个操作，而这个操作需要使用随数据改变而改变的DOM结构的时候，这个操作都应该放进Vue.nextTick()的回调函数中。</p>
-<p>原因是，Vue是异步执行dom更新的，一旦观察到数据变化，Vue就会开启一个队列，然后把在同一个事件循环 (event loop) 当中观察到数据变化的 watcher 推送进这个队列。如果这个watcher被触发多次，只会被推送到队列一次。这种缓冲行为可以有效的去掉重复数据造成的不必要的计算和DOm操作。而在下一个事件循环时，Vue会清空队列，并进行必要的DOM更新。</p>
-<p>当你设置 vm.someData = ‘new value’，DOM 并不会马上更新，而是在异步队列被清除，也就是下一个事件循环开始时执行更新时才会进行必要的DOM更新。如果此时你想要根据更新的 DOM 状态去做某些事情，就会出现问题。。为了在数据变化之后等待 Vue 完成更新 DOM ，可以在数据变化之后立即使用 Vue.nextTick(callback) 。这样回调函数在 DOM 更新完成后就会调用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  &#x2F;&#x2F; ...</span><br><span class="line">  methods: &#123;</span><br><span class="line">    &#x2F;&#x2F; ...</span><br><span class="line">    example: function () &#123;</span><br><span class="line">      &#x2F;&#x2F; modify data</span><br><span class="line">      this.message &#x3D; &#39;changed&#39;</span><br><span class="line">      &#x2F;&#x2F; DOM is not updated yet</span><br><span class="line">      this.$nextTick(function () &#123;</span><br><span class="line">        &#x2F;&#x2F; DOM is now updated</span><br><span class="line">        &#x2F;&#x2F; &#96;this&#96; is bound to the current instance</span><br><span class="line">        this.doSomethingElse()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>在数据变化后要执行的某个操作，而这个操作需要使用随数据改变而改变的DOM结构的时候，这个操作都应该放进Vue.nextTick()的回调函数中</p>
-<h1 id="vue的props，state-compute区别"><a href="#vue的props，state-compute区别" class="headerlink" title="vue的props，state, compute区别"></a>vue的props，state, compute区别</h1><p>data: Vue 实例的数据对象。Vue 将会递归将 data 的属性转换为 getter/setter，从而让 data 的属性能够响应数据变化。</p>
-<p>props: 可以是数组或对象，用于接收来自父组件的数据。props 可以是简单的数组，或者使用对象作为替代，对象允许配置高级选项，如类型检测、自定义校验和设置默认值。</p>
-<p>两个的区别就是data是响应式的？</p>
-<p>计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。</p>
-<p>注意如果你为一个计算属性使用了箭头函数，则 this 不会指向这个组件的实例，不过你仍然可以将其实例作为函数的第一个参数来访问。</p>
-<p>计算属性的结果会被缓存，除非依赖的响应式属性变化才会重新计算。注意，如果某个依赖 (比如非响应式属性) 在该实例范畴之外，则计算属性是不会被更新的。</p>
-<h1 id="react-native-和原生的怎么通信"><a href="#react-native-和原生的怎么通信" class="headerlink" title="react native 和原生的怎么通信"></a>react native 和原生的怎么通信</h1><h1 id="pure-component"><a href="#pure-component" class="headerlink" title="pure component"></a>pure component</h1><p>React15.3中新加了一个 PureComponent 类， 也就是纯组件，取代其前身 PureRenderMixin , PureComponent 是优化 React 应用程序最重要的方法之一，易于实施，只要把继承类从 Component 换成 PureComponent 即可，</p>
-<p>可以减少不必要的 render 操作的次数，从而提高性能，而且可以少写 shouldComponentUpdate 函数，节省了点代码。</p>
-<h1 id="React-Native-与-原生交互"><a href="#React-Native-与-原生交互" class="headerlink" title="React Native 与 原生交互"></a>React Native 与 原生交互</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/41dd77a83c13">链接</a></p>
-<h1 id="vue-js-和vue-runtime-js区别"><a href="#vue-js-和vue-runtime-js区别" class="headerlink" title="vue.js 和vue.runtime.js区别"></a>vue.js 和vue.runtime.js区别</h1><p>vue.js</p>
-<p>完整版：同时包含编译器和运行时的版本。</p>
-<p>runtime.js</p>
-<p>运行时：用来创建 Vue 实例、渲染并处理虚拟 DOM 等的代码。基本上就是除去编译器的其它一切。</p>
-<p>编译器：用来将模板字符串编译成为 JavaScript 渲染函数的代码。</p>
-<h1 id="高阶组件？？-解决了什么问题"><a href="#高阶组件？？-解决了什么问题" class="headerlink" title="高阶组件？？ 解决了什么问题"></a>高阶组件？？ 解决了什么问题</h1><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010371752">链接</a></p>
-<p>适配器模式，</p>
-<p>高阶函数的定义：接收函数作为输入，或者输出另一个函数的一类函数，被称作高阶函数。</p>
-<p>对于高阶组件，它描述的便是接受React组件作为输入，输出一个新的React组件的组件。</p>
-<p>高阶组件通过包裹（wrapped）被传入的React组件，经过一系列处理，最终返回一个相对增强（enhanced）的React组件，供其他组件调用。</p>
-<p>高阶组件的主要功能是封装并抽离组件的通用逻辑，让此部分逻辑在组件间更好地被复用。</p>
-<h1 id="setState源码剖析，多次调用解密"><a href="#setState源码剖析，多次调用解密" class="headerlink" title="setState源码剖析，多次调用解密"></a>setState源码剖析，多次调用解密</h1><p>setState流程还是很复杂的，设计也很精巧，<br>避免了重复无谓的刷新组件。它的主要流程如下</p>
-<ol>
-<li><p>enqueueSetState将state放入队列中，并调用enqueueUpdate处理要更新的Component</p>
-</li>
-<li><p>如果组件当前正处于update事务中，则先将Component存入dirtyComponent中。否则调用batchedUpdates处理。</p>
-</li>
-<li><p>batchedUpdates发起一次transaction.perform()事务<br>开始执行事务初始化，运行，结束三个阶段</p>
-<p> 1 初始化：事务初始化阶段没有注册方法，故无方法要执行</p>
-<p> 2 运行：执行setSate时传入的callback方法，一般不会传callback参数</p>
-<p> 3 结束：更新isBatchingUpdates为false，并执行FLUSH_BATCHED_UPDATES这个wrapper中的close方法<br>FLUSH_BATCHED_UPDATES在close阶段，会循环遍历所有的dirtyComponents，调用updateComponent刷新组件，并执行它的pendingCallbacks, 也就是setState中设置的callback。</p>
-</li>
-</ol>
-<p>会调用到batchedUpdates进行批处理更新，<br>React以事务的方式处理组件update，事务处理完后会调用wrapper.close(),</p>
-<h1 id="react-diff"><a href="#react-diff" class="headerlink" title="react diff"></a>react diff</h1><p><a target="_blank" rel="noopener" href="https://github.com/purplebamboo/blog/issues/3">链接</a></p>
-<p>三大要点</p>
-<ul>
-<li>tree diff<br>  两棵树只会对同一层次的节点进行比较。</li>
-<li>component diff<br>  判断是否是同一类型组件</li>
-<li>element diff<br>  同一节点 插入，删除，移动属性</li>
-</ul>
-<p>在reactjs中我们需要更新时都是调用的setState</p>
-<p>setState主要调用了对应的component的receiveComponent来实现更新。所有的挂载，更新都应该交给对应的component来管理。</p>
-<p>就像所有的component都实现了mountComponent来处理第一次渲染，所有的componet类都应该实现receiveComponent用来处理自己的更新。</p>
-<p>会合并改动，生成最新的state,props然后拿以前的render返回的element跟现在最新调用render生成的element进行对比（_shouldUpdateReactComponent），看看需不需要更新，如果要更新就继续调用对应的component类对应的receiveComponent就好啦，其实就是直接当甩手掌柜，事情直接丢给手下去办了。当然还有种情况是，两次生成的element差别太大，就不是一个类型的，那好办直接重新生成一份新的代码重新渲染一次就o了。</p>
-<p>本质上还是递归调用receiveComponent的过程。</p>
-<p>这里注意两个函数：</p>
-<p>inst.shouldComponentUpdate是实例方法，当我们不希望某次setState后更新，我们就可以重写这个方法，返回false就好了。</p>
-<p>_shouldUpdateReactComponent是一个全局方法，这个是一种reactjs的优化机制。用来决定是直接全部替换，还是使用很细微的改动。当两次render出来的子节点key不同，直接全部重新渲染一遍，替换就好了。否则，我们就得来个递归的更新，保证最小化的更新机制，这样可以不会有太大的闪烁。</p>
-<p>==简单回顾下reactjs的差异算法：==</p>
-<p>首先是所有的component都实现了receiveComponent来负责自己的更新，而浏览器默认元素的更新最为复杂，也就是经常说的 diff algorithm。</p>
-<p>react有一个全局_shouldUpdateReactComponent用来根据element的key来判断是更新还是重新渲染，这是第一个差异判断。比如自定义元素里，就使用这个判断，通过这种标识判断，会变得特别高效。</p>
-<p>每个类型的元素都要处理好自己的更新：</p>
-<p>自定义元素的更新，主要是更新render出的节点，做甩手掌柜交给render出的节点的对应component去管理更新。</p>
-<p>text节点的更新很简单，直接更新文案。</p>
-<p>浏览器基本元素的更新，分为两块：</p>
-<p>先是更新属性，对比出前后属性的不同，局部更新。并且处理特殊属性，比如事件绑定。</p>
-<p>然后是子节点的更新，子节点更新主要是找出差异对象，找差异对象的时候也会使用上面的_shouldUpdateReactComponent来判断，如果是可以直接更新的就会递归调用子节点的更新，这样也会递归查找差异对象，这里还会使用lastIndex这种做一种优化，使一些节点保留位置，之后根据差异对象操作dom元素（位置变动，删除，添加等）。<br>整个reactjs的差异算法就是这个样子。</p>
-<p>最核心的两个_shouldUpdateReactComponent以及diff,patch算法。</p>
-<p>//_diff用来递归找出差别,组装差异对象,添加到更新队列diffQueue。</p>
-<p>_patch主要就是挨个遍历差异队列，遍历两次，第一次删除掉所有需要变动的节点，然后第二次插入新的节点还有修改的节点。这里为什么可以直接挨个的插入呢？原因就是我们在diff阶段添加差异节点到差异队列时，本身就是有序的，也就是说对于新增节点（包括move和insert的）在队列里的顺序就是最终dom的顺序，所以我们才可以挨个的直接根据index去塞入节点。</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20346379?refer=purerender">链接</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">总结</span><br><span class="line"></span><br><span class="line">React 通过制定大胆的 diff 策略，将 O(n3)</span><br><span class="line">复杂度的问题转换成 O(n) 复杂度的问题；</span><br><span class="line"></span><br><span class="line">React 通过分层求异的策略，对 tree diff 进行算法优化；</span><br><span class="line"></span><br><span class="line">React 通过相同类生成相似树形结构，</span><br><span class="line">不同类生成不同树形结构的策略，</span><br><span class="line">对 component diff 进行算法优化；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">React 通过设置唯一 key的策略，</span><br><span class="line">对 element diff 进行算法优化；</span><br><span class="line"></span><br><span class="line">建议，在开发组件时，保持稳定的 DOM</span><br><span class="line">结构会有助于性能的提升；</span><br><span class="line"></span><br><span class="line">建议，在开发过程中，尽量减少类似将最后一个节点移</span><br><span class="line">动到列表首部的操作，当节点数量过大或更新操作</span><br><span class="line">过于频繁时，在一定程度上会影响 React 的渲染性能。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tree diff</span><br><span class="line"></span><br><span class="line">React 对树的算法进行了简洁明了的优化，</span><br><span class="line">即对树进行分层比较，两棵树只会对同一层次的</span><br><span class="line">节点进行比较。</span><br><span class="line"></span><br><span class="line">component diff</span><br><span class="line"></span><br><span class="line">如果是同一类型的组件，按照原策略继续比较 virtual DOM tree。</span><br><span class="line"></span><br><span class="line">如果不是，则将该组件判断为 dirty component，</span><br><span class="line">从而替换整个组件下的所有子节点。</span><br><span class="line"></span><br><span class="line">对于同一类型的组件，有可能其 Virtual DOM</span><br><span class="line">没有任何变化，如果能够确切的知道这点那可以</span><br><span class="line">节省大量的 diff 运算时间，因此 React 允许用户通过</span><br><span class="line">shouldComponentUpdate() 来判断该组件是否需要进行 diff。</span><br><span class="line"></span><br><span class="line">element diff</span><br><span class="line"></span><br><span class="line">当节点处于同一层级时，React diff 提供了三种节点操作，分别为：INSERT_MARKUP（插入）、MOVE_EXISTING（移动）和 REMOVE_NODE（删除）。</span><br><span class="line"></span><br><span class="line">INSERT_MARKUP，新的 component 类型不在老集合里， 即是全新的节点，需要对新节点执行插入操作。</span><br><span class="line"></span><br><span class="line">MOVE_EXISTING，在老集合有新 component 类型，且 element 是可更新的类型，generateComponentChildren 已调用 receiveComponent，这种情况下 prevChild&#x3D;nextChild，就需要做移动操作，可以复用以前的 DOM 节点。</span><br><span class="line"></span><br><span class="line">REMOVE_NODE，老 component 类型，在新集合里也有，但对应的 element 不同则不能直接复用和更新，需要执行删除操作，或者老 component 不在新集合里的，也需要执行删除操作。</span><br><span class="line"></span><br><span class="line">React 发现这类操作繁琐冗余，因为这些都是相同的节点，但由于位置发生变化，导致需要进行繁杂低效的删除、创建操作，其实只要对这些节点进行位置移动即可。</span><br><span class="line"></span><br><span class="line">针对这一现象，React 提出优化策略：允许开发者对同一层级的同组子节点，添加唯一 key 进行区分，虽然只是小小的改动，性能上却发生了翻天覆地的变化！</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="设计组件"><a href="#设计组件" class="headerlink" title="设计组件"></a>设计组件</h1><p>组件尽量只做渲染，逻辑处理放到reducer中</p>
-<h1 id="redux-中的action"><a href="#redux-中的action" class="headerlink" title="redux 中的action"></a>redux 中的action</h1><p>Action Creator 的唯一功能就是返回一个Action供 dispatch 进行调用。</p>
-<p>在Flux的架构中，一个Action要符合 FSA(Flux Standard Action) 规范，需要满足如下条件：</p>
-<p>是一个纯文本对象</p>
-<p>只具备 type 、payload、error 和 meta 中的一个或者多个属性。</p>
-<p>type 字段不可缺省，其它字段可缺省</p>
-<p>若 Action 报错，error 字段不可缺省，切必须为 true</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">在 redux 全家桶中，可以利用 redux-actions 来创建符合 FSA 规范的Action：</span><br><span class="line"></span><br><span class="line">import &#123;creatAction&#125; from &#39;redux-actions&#39;;</span><br><span class="line"></span><br><span class="line">let addTodo &#x3D; creatAction(ADD_TODO)</span><br><span class="line">&#x2F;&#x2F;same as</span><br><span class="line">let addTodo &#x3D; creatAction(ADD_TODO,data&#x3D;&gt;data)</span><br><span class="line"></span><br><span class="line">Redux 本身不处理异步行为，需要依赖中间件。结合 redux-actions 使用，Redux 有两个推荐的异步中间件：</span><br><span class="line"></span><br><span class="line">redux-thunk</span><br><span class="line">redux-promise</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用connect将组件绑定到redux</span><br><span class="line">export const ButtonContainer &#x3D; connect(</span><br><span class="line">  mapStateToProps,</span><br><span class="line">  mapDispatchToProps</span><br><span class="line">)(Buttons);</span><br><span class="line"></span><br><span class="line">容器组件实现 mapStateToProps()（用于将状态映射到数据）</span><br><span class="line">和 mapDispatchToProps()（用于将状态映射到行为）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">同步操作只要发出一种 Action 即可，异步操作的差别是它要发出三种 Action。</span><br><span class="line"></span><br><span class="line">操作发起时的 Action</span><br><span class="line">操作成功时的 Action</span><br><span class="line">操作失败时的 Action</span><br><span class="line"></span><br><span class="line">操作开始时，送出一个 Action，触发 State 更新为&quot;正在操作&quot;状态，View 重新渲染</span><br><span class="line"></span><br><span class="line">用户触发第一个 Action，这个跟同步操作一样，没有问题；</span><br><span class="line">如何才能在操作结束时，系统自动送出第二个 Action 呢？</span><br><span class="line"></span><br><span class="line">Action 是由store.dispatch方法发送的。</span><br><span class="line">而store.dispatch方法正常情况下，参数只能是对象，</span><br><span class="line">不能是函数。</span><br><span class="line"></span><br><span class="line">这时，就要使用中间件redux-thunk。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const fetchPosts &#x3D; postTitle &#x3D;&gt; (dispatch, getState) &#x3D;&gt; &#123;</span><br><span class="line">  dispatch(requestPosts(postTitle));</span><br><span class="line">  return fetch(&#96;&#x2F;some&#x2F;API&#x2F;$&#123;postTitle&#125;.json&#96;)</span><br><span class="line">    .then(response &#x3D;&gt; response.json())</span><br><span class="line">    .then(json &#x3D;&gt; dispatch(receivePosts(postTitle, json)));</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 使用方法一</span><br><span class="line">store.dispatch(fetchPosts(&#39;reactjs&#39;));</span><br><span class="line">&#x2F;&#x2F; 使用方法二</span><br><span class="line">store.dispatch(fetchPosts(&#39;reactjs&#39;)).then(() &#x3D;&gt;</span><br><span class="line">  console.log(store.getState())</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">看这里，返回的是Promise，</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>==用redux-thunk中间件，改造store.dispatch，使得后者可以接受函数作为参数。==</p>
-<p>store.dispatch方法可以接受 Promise 对象作为参数。这时，Action Creator 有两种写法。写法一，返回值是一个 Promise 对象。</p>
-<p>Action 对象的payload属性是一个 Promise 对象。这需要从redux-actions模块引入createAction方法，</p>
-<p>Redux的单向数据流是同步操作，驱动Redux流程的是action对象，每一个action对象被派发到Store上之后，同步地被分配给所有的reducer函数，每个reducer都是纯函数，纯函数不产生任何副作用，自然是完成数据操作之后立刻同步返回，reducer返回的结果又被同步地拿去更新Store上的状态数据，更新状态数据的操作会立刻被同步给监听Store状态改变的函数，从而引发作为视图的React组件更新过程。</p>
-<p>这个过程从头到尾，Redux马不停蹄地一路同步执行，根本没有执行异步操作的机会，那应该在哪里插入访问服务器的异步操作呢？</p>
-<p>Redux创立之初就意识到了这种问题，所以提供了thunk这种解决方法，但是thunk并没有作为Redux的一部分一起发布，而是存在一个独立的redux-thunk发布包中，</p>
-<p>redux-thunk只是Redux中异步操作的解决方法之一</p>
-<p>在Redux架构下，一个action对象在通过store.dispatch派发，在调用reducer函数之前，会先经过一个中间件的环节，这就是产生异步操作的机会，实际上redux-thunk提供的就是一个Redux中间件，我们需要在创建Store时用上这个中间件。</p>
-<h1 id="异步action对象"><a href="#异步action对象" class="headerlink" title="异步action对象"></a>异步action对象</h1><h2 id="非常好的讲解"><a href="#非常好的讲解" class="headerlink" title="非常好的讲解"></a><a target="_blank" rel="noopener" href="http://geek.csdn.net/news/detail/202352">非常好的讲解</a></h2><p>当我们想要让Redux帮忙处理一个异步操作的时候，代码一样也要派发一个action对象，毕竟Redux单向数据流就是由action对象驱动的。但是这个引发异步操作的action对象比较特殊，我们叫它们“异步action对象”。</p>
-<p>前面例子中的action构造函数返回的都是一个普通的对象，这个对象包含若干字段，其中必不可少的字段是type，但是“异步action对象”不是一个普通JavaScript对象，而是一个函数。</p>
-<p>如果没有redux-thunk中间件的存在，这样一个函数类型的action对象被派发出来会一路发送到各个reducer函数，reducer函数从这些实际上是函数的action对象上是无法获得type字段的，所以也做不了什么实质的处理。</p>
-<p>不过，有了redux-thunk中间件之后，这些action对象根本没有机会触及到reducer函数，在中间件一层就被redux-thunk截获。</p>
-<p>redux-thunk的工作是检查action对象是不是函数，如果不是函数就放行，完成普通action对象的生命周期，而如果发现action对象是函数，那就执行这个函数，并把Store的dispatch函数和getState函数作为参数传递到函数中去，处理过程到此为止，不会让这个异步action对象继续往前派发到reducer函数。</p>
-<p>举一个并不涉及网络API访问的异步操作例子，在Counter组件中存在一个普通的同步增加计数的action构造函数increment，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const increment &#x3D; () &#x3D;&gt; (&#123;</span><br><span class="line">  type: ActionTypes.INCREMENT,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>派发increment执行返回的action对象，Redux会同步更新Store状态和视图，但是我们现在想要创造一个功能，能够发出一个“让Counter组件在1秒之后计数加一”的指令，这就需要定义一个新的异步action构造函数，代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const incrementAsync &#x3D; () &#x3D;&gt; &#123;</span><br><span class="line">  return (dispatch) &#x3D;&gt; &#123;</span><br><span class="line">    setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">      dispatch(increment());</span><br><span class="line">    &#125;, 1000);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">&#96;&#96;&#96;&#96;</span><br><span class="line"></span><br><span class="line">异步action构造函数incrementAsync返回的是一个新的函数，这样一个函数被dispatch函数派发之后，会被redux-thunk中间件执行，于是setTimeout函数就会发生作用，在1秒之后利用参数dispatch函数派发出同步action构造函数increment的结果。</span><br><span class="line"></span><br><span class="line">这就是异步action的工作机理，这个例子虽然简单，但是可以看得出来，异步action最终还是要产生同步action派发才能对Redux系统产生影响。</span><br><span class="line"></span><br><span class="line">redux-thunk要做的工作也就不过如此，但因为引入了一次函数执行，而且这个函数还能够访问到dispatch和getState，就给异步操作带来了可能。</span><br><span class="line"></span><br><span class="line">action对象函数中完全可以通过fetch发起一个对服务器的异步请求，当得到服务器结果之后，通过参数dispatch，把成功或者失败的结果当做action对象再派发出去。这一次派发的是普通的action对象，就不会被redux-thunk截获，而是直接被派发到reducer，最终驱动Store上状态的改变。</span><br><span class="line"></span><br><span class="line">通常我们在组件的componentDidMount函数中做请求服务器的事情，因为当生命周期函数componentDidMount被调用的时候，表明装载过程已经完成，组件需要渲染的内容已经在DOM树上出现，对服务器的请求可能依赖于已经渲染的内容，在componentDidMount函数中发送对服务器请求是一个合适的时机。</span><br><span class="line"></span><br><span class="line">fetch函数执行会立刻返回，返回一个Promise类型的对象，所以后面会跟上一大串then和catch的语句。每个Promise成功的时候，对应的then中的回调函数会被调用；如果失败，对应catch中的回调函数也被调用。</span><br><span class="line"></span><br><span class="line"># vue声明组件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>一、全局注册<br>// 注册<br>Vue.component(‘my-component’, {<br>  template: ‘<div>A custom component!</div>‘<br>})</p>
-<p>操作结束后，再送出一个 Action，触发 State 更新为”操作结束”状态，View 再一次重新渲染</p>
-<p>用户触发第一个 Action，这个跟同步操作一样，没有问题；如何才能在操作结束时，系统自动送出第二个 Action 呢？</p>
-<p>// 创建根实例<br>new Vue({<br>  el: ‘#example’<br>})</p>
-<p>二、局部注册<br>var Child = {<br>  template: ‘<div>A custom component!</div>‘<br>}</p>
-<p>new Vue({<br>  // …<br>  components: {<br>    // <my-component> 将只在父组件模板中可用<br>    ‘my-component’: Child<br>  }<br>})</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 检测变化的注意事项</span><br><span class="line"></span><br><span class="line">Vue 不能检测到对象属性的添加或删除。由于 Vue 会在初始化实例时对属性执行 getter&#x2F;setter 转化过程，所以属性必须在 data 对象上存在才能让 Vue 转换它，这样才能让它是响应的。</span><br><span class="line"></span><br><span class="line">Vue 不允许在已经创建的实例上动态添加新的根级响应式属性 (root-level reactive property)。然而它可以使用 Vue.set(object, key, value) 方法将响应属性添加到嵌套的对象上：</span><br><span class="line"></span><br><span class="line">Vue.set(vm.someObject, &#39;b&#39;, 2)</span><br><span class="line"></span><br><span class="line">this.$set(this.someObject,&#39;b&#39;,2)</span><br><span class="line"></span><br><span class="line">想向已有对象上添加一些属性，例如使用 Object.assign() 或 _.extend() 方法来添加属性。但是，添加到对象上的新属性不会触发更新。在这种情况下可以创建一个新的对象，让它包含原对象的属性和新的属性：</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 代替 &#96;Object.assign(this.someObject, &#123; a: 1, b: 2 &#125;)&#96;</span><br><span class="line">this.someObject &#x3D; Object.assign(&#123;&#125;, this.someObject, &#123; a: 1, b: 2 &#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># watch 深度监听</span><br><span class="line"></span><br><span class="line">&#x3D;&#x3D;deep： true&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">一个对象，键是需要观察的表达式，值是对应回调函数。值也可以是方法名，或者包含选项的对象。Vue 实例将会在实例化时调用 $watch()，遍历 watch 对象的每一个属性。</span><br><span class="line"></span><br><span class="line">不应该使用箭头函数来定义 watcher 函数 (例如 searchQuery: newValue &#x3D;&gt; this.updateAutocomplete(newValue))。理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，this.updateAutocomplete 将是 undefined。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>watch: {<br>    a: function (val, oldVal) {<br>      console.log(‘new: %s, old: %s’, val, oldVal)<br>    },<br>    // 方法名<br>    b: ‘someMethod’,<br>    // 深度 watcher<br>    c: {<br>      handler: function (val, oldVal) { /* … <em>/ },<br>      deep: true<br>    },<br>    // 该回调将会在侦听开始之后被立即调用<br>    d: {<br>      handler: function (val, oldVal) { /</em> … <em>/ },<br>      immediate: true<br>    },<br>    e: [<br>      function handle1 (val, oldVal) { /</em> … <em>/ },<br>      function handle2 (val, oldVal) { /</em> … <em>/ }<br>    ],<br>    // watch vm.e.f’s value: {g: 5}<br>    ‘e.f’: function (val, oldVal) { /</em> … */ }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 异步更新队列</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>this.$nextTick(function () {<br>    console.log(this.$el.textContent) // =&gt; ‘更新完成’<br>  })</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 计算属性 computed</span><br><span class="line"></span><br><span class="line">对于任何复杂逻辑，你都应当使用计算属性。</span><br><span class="line"></span><br><span class="line">当 vm.message 发生改变时，所有依赖 vm.reversedMessage 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有副作用 (side effect) 的，这使它更易于测试和理解。</span><br><span class="line"></span><br><span class="line">&#x3D;&#x3D;方法和计算属性：&#x3D;&#x3D; 两种方式的最终结果确实是完全相同的。</span><br><span class="line"></span><br><span class="line">不同的是计算属性是基于它们的依赖进行缓存的。</span><br><span class="line"></span><br><span class="line">计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要 message 还没有发生改变，多次访问 reversedMessage</span><br><span class="line">计算属性会立即返回之前的计算结果，而不必再次执行函数。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>computed: {<br>    // 计算属性的 getter<br>    reversedMessage: function () {<br>      // <code>this</code> 指向 vm 实例<br>      return this.message.split(‘’).reverse().join(‘’)<br>    }<br>}</p>
-<p>  console.log(vm.reversedMessage) // =&gt; ‘olleH’<br>vm.message = ‘Goodbye’<br>console.log(vm.reversedMessage) // =&gt; ‘eybdooG’</p>
-<p>// 在组件中<br>methods: {<br>  reversedMessage: function () {<br>    return this.message.split(‘’).reverse().join(‘’)<br>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 计算属性的 setter</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>// …<br>computed: {<br>  fullName: {<br>    // getter<br>    get: function () {<br>      return this.firstName + ‘ ‘ + this.lastName<br>    },<br>    // setter<br>    set: function (newValue) {<br>      var names = newValue.split(‘ ‘)<br>      this.firstName = names[0]<br>      this.lastName = names[names.length - 1]<br>    }<br>  }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># watch 侦听器</span><br><span class="line"></span><br><span class="line">虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的侦听器。这就是为什么 Vue 通过 watch 选项提供了一个更通用的方法，来响应数据的变化。当需要在数据变化时执行异步或开销较大的操作时，这个方式是最有用的。</span><br><span class="line"></span><br><span class="line">使用 watch 选项允许我们执行异步操作 (访问一个 API)，限制我们执行该操作的频率，并在我们得到最终结果前，设置中间状态。这些都是计算属性无法做到的。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>watch: {<br>    // 如果 <code>question</code> 发生改变，这个函数就会运行<br>    question: function (newQuestion, oldQuestion) {<br>      this.answer = ‘Waiting for you to stop typing…’<br>      this.getAnswer()<br>    }<br>},</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># getters作用</span><br><span class="line"></span><br><span class="line">Vuex 允许我们在 store 中定义“getter”（可以认为是 store 的计算属性）。就像计算属性一样，getter 的返回值会根据它的依赖被缓存起来，且只有当它的依赖值发生了改变才会被重新计算。</span><br><span class="line"></span><br><span class="line">this.$store.getters.doneTodosCount</span><br><span class="line"></span><br><span class="line"># mapGetters 辅助函数</span><br><span class="line"></span><br><span class="line">mapGetters 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性：</span><br><span class="line"></span><br><span class="line"># 提交 mutation 的另一种方式是直接使用包含 type 属性的对象</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>store.commit({<br>  type: ‘increment’,<br>  amount: 10<br>})</p>
-<p>store.commit(‘increment’, {<br>  amount: 10<br>})<br>可以在组件中使用 this.$store.commit(‘xxx’) 提交 mutation，<br>或者使用 mapMutations 辅助函数将组件中的 methods<br>映射为 store.commit 调用（需要在根节点注入 store）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 分发 Action</span><br><span class="line"></span><br><span class="line">Action 通过 store.dispatch 方法触发：</span><br><span class="line"></span><br><span class="line">store.dispatch(&#39;increment&#39;)</span><br><span class="line"></span><br><span class="line"># vue组件类型, 怎么定义一个组件</span><br><span class="line"></span><br><span class="line"># vue切换路由</span><br><span class="line"></span><br><span class="line">其他方式 不留痕迹</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;html</span><br><span class="line">一、router.push(location, onComplete?, onAbort?)</span><br><span class="line"></span><br><span class="line">&lt;router-link :to&#x3D;&quot;...&quot;&gt; router.push(...)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const userId &#x3D; 123</span><br><span class="line">router.push(&#123; name: &#39;user&#39;, params: &#123; userId &#125;&#125;) &#x2F;&#x2F; -&gt; &#x2F;user&#x2F;123</span><br><span class="line">router.push(&#123; path: &#96;&#x2F;user&#x2F;$&#123;userId&#125;&#96; &#125;) &#x2F;&#x2F; -&gt; &#x2F;user&#x2F;123</span><br><span class="line">&#x2F;&#x2F; 字符串</span><br><span class="line">router.push(&#39;home&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 对象</span><br><span class="line">router.push(&#123; path: &#39;home&#39; &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 命名的路由</span><br><span class="line">router.push(&#123; name: &#39;user&#39;, params: &#123; userId: 123 &#125;&#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 带查询参数，变成 &#x2F;register?plan&#x3D;private</span><br><span class="line">router.push(&#123; path: &#39;register&#39;, query: &#123; plan: &#39;private&#39; &#125;&#125;)</span><br><span class="line"></span><br><span class="line">二、 router.replace(location, onComplete?, onAbort?)</span><br><span class="line">跟 router.push 很像，唯一的不同就是，它不会向 history</span><br><span class="line">添加新记录，而是跟它的方法名一样 —— 替换掉当前的 history 记录。</span><br><span class="line"></span><br><span class="line">三、router.go(n)</span><br><span class="line">在 history 记录中向前或者后退多少步，</span><br><span class="line">类似 window.history.go(n)。</span><br></pre></td></tr></table></figure>
-
-<h1 id="vue-router传参方式"><a href="#vue-router传参方式" class="headerlink" title="vue-router传参方式"></a>vue-router传参方式</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">query 和params</span><br><span class="line"> &#123; <span class="attr">path</span>: <span class="string">&#x27;/news/:id&#x27;</span>, <span class="attr">component</span>: NewsDetail &#125;,</span><br><span class="line">      &lt;span&gt;&#123;&#123;$route.params.id&#125;&#125;&lt;/span&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">区别</span><br><span class="line"><span class="number">1</span>、用法</span><br><span class="line">    query要用path来引入，params要用name来引入，</span><br><span class="line">    接收参数都是类似的，</span><br><span class="line">    分别是<span class="built_in">this</span>.$route.query.name和<span class="built_in">this</span>.$route.params.name。</span><br><span class="line"></span><br><span class="line">    接收参数时，已经是$route而不是$router了哦！！</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、展示</span><br><span class="line">　　query更加类似于我们ajax中get传参，params则类似于post，</span><br><span class="line">　　说的再简单一点，前者在浏览器地址栏中显示参数，后者则不显示</span><br><span class="line"></span><br><span class="line">query:</span><br><span class="line">params:</span><br></pre></td></tr></table></figure>
-
-<h1 id="受控组件-非受控组件"><a href="#受控组件-非受控组件" class="headerlink" title="受控组件 非受控组件"></a>受控组件 非受控组件</h1><h1 id="没有任何嵌套关系的组件之间传值"><a href="#没有任何嵌套关系的组件之间传值" class="headerlink" title="没有任何嵌套关系的组件之间传值"></a>没有任何嵌套关系的组件之间传值</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">(1) Event Emitter&#x2F;Target&#x2F;Dispatcher</span><br><span class="line">&#x2F;&#x2F; to subscribe</span><br><span class="line">otherObject.addEventListener(‘click’, function() &#123; alert(‘click!’); &#125;);</span><br><span class="line">&#x2F;&#x2F; to dispatch</span><br><span class="line">this.dispatchEvent(‘click’);</span><br><span class="line"></span><br><span class="line">(2) Publish &#x2F; Subscribe</span><br><span class="line">&#x2F;&#x2F; to subscribe</span><br><span class="line">globalBroadcaster.subscribe(‘click’, function() &#123; alert(‘click!’); &#125;);</span><br><span class="line">&#x2F;&#x2F; to dispatch</span><br><span class="line">globalBroadcaster.publish(‘click’);</span><br><span class="line"></span><br><span class="line">(3) Signals</span><br><span class="line">&#x2F;&#x2F; to subscribe</span><br><span class="line">otherObject.clicked.add(function() &#123; alert(‘click’); &#125;);</span><br><span class="line">&#x2F;&#x2F; to dispatch</span><br><span class="line">this.clicked.dispatch();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="this-setState-参数"><a href="#this-setState-参数" class="headerlink" title="this.setState()参数"></a>this.setState()参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">这个函数接受两个参数，</span><br><span class="line">第一个参数表示上一个状态值，</span><br><span class="line">第二参数表示当前的 props，</span><br><span class="line">第二个参数是 state 导致的页面变化完成后的回调，等价于componentDidUpdate。</span><br><span class="line"></span><br><span class="line">this.setState((prevState, props) &#x3D;&gt; (&#123;</span><br><span class="line">  counter: prevState.counter + props.increment</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">setState的关键点:</span><br><span class="line"></span><br><span class="line">setState不会立刻改变React组件中state的值；</span><br><span class="line">setState通过引发一次组件的更新过程来引发重新绘制；</span><br><span class="line">多次setState函数调用产生的效果会合并。</span><br><span class="line"></span><br><span class="line">当setState被调用时，能驱动组件的更新过程，引发componentDidUpdate、render等一系列函数的调用。</span><br></pre></td></tr></table></figure>
-
-<h1 id="React的生命周期"><a href="#React的生命周期" class="headerlink" title="React的生命周期"></a>React的生命周期</h1><p>主要分为三段，mount（挂载）、update（更新）、unmount（卸载）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">一、mount，即挂载阶段，</span><br><span class="line">    第一次让组件出现在页面中的过程，React会将render的返回值插入到页面中，</span><br><span class="line">    这个过程会暴露以下几个钩子（hook）：</span><br><span class="line"></span><br><span class="line">    constructor()       &#x2F;&#x2F; 初始化props和state</span><br><span class="line"></span><br><span class="line">    　　初始化getDefaultProps()和getInitialState()</span><br><span class="line"></span><br><span class="line">    　　getDefaultProps: 执行过一次后，被创建的类会有缓存，映射的值会存在this.props,前提是这个prop不是父组件指定的</span><br><span class="line">这个方法在对象被创建之前执行，因此不能在方法内调用this.props ，另外，注意任何getDefaultProps()返回的对象在实例中共享，不是复制</span><br><span class="line"></span><br><span class="line">getInitialState : 控件加载之前执行，返回值会被用于state的初始化值</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    　　初始化</span><br><span class="line">    componentWillMount()    &#x2F;&#x2F; 将要被插入</span><br><span class="line"></span><br><span class="line">    执行一次，在初始化render之前执行，如果在这个方法内调用setState，render()知道state发生变化，并且只执行一次</span><br><span class="line"></span><br><span class="line">    render()    &#x2F;&#x2F; 将return的内容插入到页面里</span><br><span class="line">    componentDidMount()   &#x2F;&#x2F; 插入完成后的动作</span><br><span class="line">        在组件被装配后立即调用。</span><br><span class="line">        初始化使得DOM节点应该进行到这里。</span><br><span class="line">        若你需要从远端加载数据，</span><br><span class="line">        这是一个适合实现网络请求的地方。</span><br><span class="line">        在该方法里设置状态将会触发重渲。</span><br><span class="line"></span><br><span class="line">二、update，即更新阶段，如果数据有任何变动就会来这一阶段，这个过程有5个钩子：</span><br><span class="line"></span><br><span class="line">　　componentWillReceiveProps( nextprops )   &#x2F;&#x2F; 接受需要更新的props</span><br><span class="line">    　　在装配了的组件接收到新属性前调用。</span><br><span class="line">    　　若你需要更新状态响应属性改变（例如，重置它），</span><br><span class="line">    　　你可能需对比this.props和nextProps</span><br><span class="line">    　　并在该方法中使用this.setState()处理状态改变。</span><br><span class="line"></span><br><span class="line">    注意即使属性未有任何改变，React可能也会调用该方法，因此若你想要处理改变，请确保比较当前和之后的值。这可能会发生在当父组件引起你的组件重渲。</span><br><span class="line"></span><br><span class="line">　　shouldComponentUpdate( nextProps, nextState )   &#x2F;&#x2F; 请问要不要更新组件 true&#x2F;false</span><br><span class="line"></span><br><span class="line">        接收到新属性或状态时，</span><br><span class="line">        shouldComponentUpdate() 在渲染前被调用。默认为true。</span><br><span class="line">        该方法并不会在初始化渲染或当使用forceUpdate()时被调用。</span><br><span class="line">        当他们状态改变时，返回false 并不能阻止子组件重渲。</span><br><span class="line">        若shouldComponentUpdate()返回false，componentWillUpdate()将不会被调用。</span><br><span class="line">　　componentWillUpdate()  &#x2F;&#x2F; 准备更新组件啦</span><br><span class="line"></span><br><span class="line">　　render() &#x2F;&#x2F; 更新</span><br><span class="line"></span><br><span class="line">　　componentDidUpdate()   &#x2F;&#x2F; 更新完成</span><br><span class="line">    该方法并不会在初始化渲染时调用。</span><br><span class="line">三、unmount，即卸载过程，当一个组件要从页面移除时，会进入这个过程，其中有一个钩子：</span><br><span class="line"></span><br><span class="line">　　componentWillUnmount()    &#x2F;&#x2F; 要卸载啦</span><br><span class="line">    可以在该方法里处理任何必要的清理工作，</span><br><span class="line">    例如解绑定时器，取消网络请求，</span><br><span class="line">    清理任何在componentDidMount环节创建的DOM元素。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">一般我们只在这几个钩子里setState：</span><br><span class="line"></span><br><span class="line">componentWillMount()</span><br><span class="line"></span><br><span class="line">componentDidMount()</span><br><span class="line"></span><br><span class="line">componentWillReceiveProps()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="Redux原理"><a href="#Redux原理" class="headerlink" title="Redux原理"></a>Redux原理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Redux 和 React 没有直接关系，</span><br><span class="line">它瞄准的目标是应用状态管理。</span><br><span class="line"></span><br><span class="line">核心概念是 Map&#x2F;Reduce 中的 Reduce。</span><br><span class="line">且 Reducer 的执行是同步，</span><br><span class="line">产生的 State 是 Immutable 的。</span><br><span class="line"></span><br><span class="line">改变 State 只能通过向 Reducer dispatch actions 来完成。</span><br><span class="line"></span><br><span class="line">State 的不同字段，可以通过不同的 Reducers 来分别维护。</span><br><span class="line">combineReducers 负责组合这些 Reducers，</span><br><span class="line">前提是每个 Reducer 只能维护自己关心的字段。</span><br><span class="line"></span><br><span class="line">Action 对象只能是 Javascript Plain Object，</span><br><span class="line">但是通过在 store 上装载 middleware，</span><br><span class="line">则可以任意定义 action 对象的形式，</span><br><span class="line">反正会有特定的 middleware 负责</span><br><span class="line">将此 action 对象变为 Javascript Plain Object。</span><br><span class="line"></span><br><span class="line">可以以middleware 链条为集中点实现很多控制逻辑，</span><br><span class="line">例如 Log，Undo, ErrorHandler 等。</span><br><span class="line"></span><br><span class="line">Redux 仅仅专注于应用状态的维护，</span><br><span class="line">reducer、dispatch&#x2F;middleware 是两个常用扩展点、</span><br><span class="line">Higher-order Store 则仅针对需要扩展全部 Store 功能时使用。</span><br><span class="line"></span><br><span class="line">react-redux 是 Redux 针对 React&#x2F;React-Native 的 Binding，</span><br><span class="line">connect&#x2F;selector 是扩展点，</span><br><span class="line">负责将 store 中的状态添加到 React component 的 props 中。</span><br><span class="line"></span><br><span class="line">Redux 借用了很多函数式编程的思想，</span><br><span class="line">了解函数式编程会利于理解其实现原理，</span><br><span class="line">虽然使用它不需要了解很多函数式编程的概念。</span><br><span class="line">和 Flux 相比，Redux 的概念更精简、约定更严格、状态更确定、而是扩展却更灵活。</span><br><span class="line"></span><br><span class="line">通过 https:&#x2F;&#x2F;github.com&#x2F;xgrommx&#x2F;awesome-redux 可以获得大量参考。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">链接：https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;3334467e4b32</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">redux有三大准则</span><br><span class="line"></span><br><span class="line">单一数据源</span><br><span class="line">整个应用状态，都应该被存储在单一store的对象树中。</span><br><span class="line"></span><br><span class="line">只读状态</span><br><span class="line">唯一可以修改状态的方式，</span><br><span class="line">就是发送（dispatch）一个动作（Action），</span><br><span class="line">通俗来讲，就是说只有getter，没有setter。</span><br><span class="line"></span><br><span class="line">使用纯函数去修改状态</span><br><span class="line">纯函数保障了状态的稳定性，</span><br><span class="line">不会因不同环境导致应用程序出现不同情况，</span><br><span class="line">听说是redux真正的精髓，日后可以深入了解。</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="谈谈MVVM模式"><a href="#谈谈MVVM模式" class="headerlink" title="谈谈MVVM模式"></a>谈谈MVVM模式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Vue是以数据为驱动的，Vue自身将DOM和数据进行绑定，一旦创建绑定，DOM和数据将保持同步，每当数据发生变化，DOM会跟着变化。 ViewModel是Vue的核心，它是Vue的一个实例。Vue实例时作用域某个HTML元素上的这个HTML元素可以是body，也可以是某个id所指代的元素。</span><br><span class="line"></span><br><span class="line">DOMListeners和DataBindings是实现双向绑定的关键。DOMListeners监听页面所有View层DOM元素的变化，当发生变化，Model层的数据随之变化；DataBindings监听Model层的数据，当数据发生变化，View层的DOM元素随之变化。</span><br><span class="line"></span><br><span class="line">MVVM是Model-View-ViewModel的缩写。mvvm是一种设计思想。Model 层代表数据模型，也可以在Model中定义数据修改和操作的业务逻辑；View 代表UI 组件，它负责将数据模型转化成UI 展现出来，ViewModel 是一个同步View 和 Model的对象。</span><br><span class="line"></span><br><span class="line">在MVVM架构下，View 和 Model 之间并没有直接的联系，而是通过ViewModel进行交互，Model 和 ViewModel 之间的交互是双向的， 因此View 数据的变化会同步到Model中，而Model 数据的变化也会立即反应到View 上。</span><br><span class="line"></span><br><span class="line">ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而View 和 Model 之间的同步工作完全是自动的，无需人为干涉，因此开发者只需关注业务逻辑，不需要手动操作DOM, 不需要关注数据状态的同步问题，复杂的数据状态维护完全由 MVVM 来统一管理。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="2-mvvm和mvc区别"><a href="#2-mvvm和mvc区别" class="headerlink" title="2:mvvm和mvc区别"></a>2:mvvm和mvc区别</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mvc和mvvm其实区别并不大。都是一种设计思想。</span><br><span class="line">主要就是mvc中Controller演变成mvvm中的viewModel。</span><br><span class="line">mvvm主要解决了mvc中大量的DOM 操作使页面渲染性能降低，</span><br><span class="line">加载速度变慢，影响用户体验。</span><br><span class="line">和当 Model 频繁发生变化，开发者需要主动更新到View 。</span><br></pre></td></tr></table></figure>
-
-<h1 id="让CSS只在当前组件中起作用"><a href="#让CSS只在当前组件中起作用" class="headerlink" title="让CSS只在当前组件中起作用"></a>让CSS只在当前组件中起作用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将当前组件的&lt;style&gt;修改为&lt;style scoped&gt;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Vue中使用插件的步骤"><a href="#Vue中使用插件的步骤" class="headerlink" title="Vue中使用插件的步骤"></a>Vue中使用插件的步骤</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">采用ES6的import ... from ...语法或CommonJSd的require()方法引入插件</span><br><span class="line">使用全局方法Vue.use( plugin )使用插件,可以传入一个选项对象Vue.use(MyPlugin, &#123; someOption: true &#125;)</span><br></pre></td></tr></table></figure>
-
-<h1 id="组件的使用和自己创建公用组件"><a href="#组件的使用和自己创建公用组件" class="headerlink" title="组件的使用和自己创建公用组件"></a>组件的使用和自己创建公用组件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">第一步：在components目录新建你的组件文件（indexPage.vue），</span><br><span class="line">    script一定要export default &#123;&#125;</span><br><span class="line">第二步：在需要用的页面（组件）中导入：</span><br><span class="line">    import indexPage from &#39;@&#x2F;components&#x2F;indexPage.vue&#39;</span><br><span class="line">第三步：注入到vue的子组件的components属性上面,components:&#123;indexPage&#125;</span><br><span class="line">第四步：在template视图view中使用，</span><br><span class="line">问题有indexPage命名，使用的时候则index-page。</span><br></pre></td></tr></table></figure>
-
-<h1 id="vue如何实现按需加载配合webpack设置"><a href="#vue如何实现按需加载配合webpack设置" class="headerlink" title="vue如何实现按需加载配合webpack设置"></a>vue如何实现按需加载配合webpack设置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">webpack中提供了require.ensure()来实现按需加载。以前引入路由是通过import 这样的方式引入，改为const定义的方式进行引入。</span><br><span class="line">不进行页面按需加载引入方式：import  home   from &#39;..&#x2F;..&#x2F;common&#x2F;home.vue&#39;</span><br><span class="line">进行页面按需加载的引入方式：const  home &#x3D; r &#x3D;&gt; require.ensure( [], () &#x3D;&gt; r (require(&#39;..&#x2F;..&#x2F;common&#x2F;home.vue&#39;)))</span><br></pre></td></tr></table></figure>
-
-<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a><keep-alive></keep-alive>作用</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive&gt;&lt;&#x2F;keep-alive&gt; 包裹动态组件时，会缓存不活动的组件实例,主要用于保留组件状态或避免重新渲染。</span><br></pre></td></tr></table></figure>
-
-<h1 id="vue-route模式"><a href="#vue-route模式" class="headerlink" title="vue-route模式"></a>vue-route模式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">默认为hash，但是用hash模式的话，页面地址会加#</span><br><span class="line"></span><br><span class="line">所以一般采用 history模式</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;&#96;</span><br><span class="line"></span><br><span class="line"># vue阻止事件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>　.stop 阻止事件冒泡<br>　.prevent 阻止默认事件<br>　.capture　阻止事件捕获<br>　.once 只触发一次</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># router传参数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>routes: [<br>    {<br>        path: ‘/linkParams/:name’,<br>        name:’linkParams’,<br>        component: linkParams<br>    }<br>]</p>
-<p>获取name</p>
-<p>let name = this.$route.params.name</p>
-<p>// 字符串,这里的字符串是路径path匹配噢，不是router配置里的name<br>this.$router.push(‘home’)</p>
-<p>// 对象<br>this.$router.push({ path: ‘home’ })</p>
-<p>// 命名的路由 这里会变成 /user/123<br>this.$router.push({ name: ‘user’, params: { userId: 123 }})</p>
-<p>// 带查询参数，变成 /register?plan=private<br>this.$router.push({ path: ‘register’, query: { plan: ‘private’ }})</p>
-<p>router.beforeEach((to, from, next)=&gt;{<br>  //do something<br>  next();<br>});<br>router.afterEach((to, from, next) =&gt; {<br>    console.log(to.path);<br>});</p>
-<p>每个钩子方法接收三个参数：</p>
-<p>to: Route: 即将要进入的目标 路由对象</p>
-<p>from: Route: 当前导航正要离开的路由</p>
-<p>next: Function: 一定要调用该方法来 resolve 这个钩子。执行效果依赖 next 方法的调用参数。</p>
-<p>next(): 进行管道中的下一个钩子。如果全部钩子执行完了，则导航的状态就是 confirmed （确认的）。</p>
-<p>next(false): 中断当前的导航。如果浏览器的 URL 改变了（可能是用户手动或者浏览器后退按钮），那么 URL 地址会重置到 from 路由对应的地址。</p>
-<p>next(‘/‘) 或者 next({ path: ‘/‘ }): 跳转到一个不同的地址。当前的导航被中断，然后进行一个新的导航。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SSR实现原理</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>app.js 作为客户端与服务端的公用入口，导出 Vue 根实例，供客户端 entry 与服务端 entry 使用。客户端 entry 主要作用挂载到 DOM 上，服务端 entry 除了创建和返回实例，还进行路由匹配与数据预获取。<br>webpack 为客服端打包一个 Client Bundle ，为服务端打包一个 Server Bundle 。<br>服务器接收请求时，会根据 url，加载相应组件，获取和解析异步数据，创建一个读取 Server Bundle 的 BundleRenderer，然后生成 html 发送给客户端。<br>客户端混合，客户端收到从服务端传来的 DOM 与自己的生成的 DOM 进行对比，把不相同的 DOM 激活，使其可以能够响应后续变化，这个过程称为客户端激活 。为确保混合成功，客户端与服务器端需要共享同一套数据。在服务端，可以在渲染之前获取数据，填充到 stroe 里，这样，在客户端挂载到 DOM 之前，可以直接从 store 里取数据。首屏的动态数据通过 window.__INITIAL_STATE__ 发送到客户端。</p>
-<p>Vue SSR 的实现，主要就是把 Vue 的组件输出成一个完整 HTML, vue-server-renderer 就是干这事的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Vue实例初始化的过程中实现依赖管理的分析</span><br><span class="line"></span><br><span class="line">[链接](http:&#x2F;&#x2F;www.bslxx.com&#x2F;a&#x2F;vue&#x2F;2018&#x2F;0301&#x2F;1795.html)</span><br><span class="line"></span><br><span class="line">大致的总结下就是：</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>initState的过程中，<br>将props,computed,data等属性通过Object.defineProperty<br>来改造其getter/setter属性，<br>并为每一个响应式属性实例化一个observer观察者。<br>这个observer内部dep记录了这个响应式属性的所有依赖。</p>
-<p>当响应式属性调用setter函数时，<br>通过dep.notify()方法去遍历所有的依赖，<br>调用watcher.update()去完成数据的动态响应。</p>
-<p>vue.js 是采用数据劫持结合发布者-订阅者模式的方式，<br>通过Object.defineProperty()来劫持各个属性的setter，getter，<br>在数据变动时发布消息给订阅者，<br>触发相应的监听回调。</p>
-<p>具体步骤：<br>第一步：需要observe的数据对象进行递归遍历，<br>包括子属性对象的属性，<br>都加上 setter和getter<br>这样的话，<br>给这个对象的某个值赋值，就会触发setter，<br>那么就能监听到了数据变化</p>
-<p>第二步：compile解析模板指令，<br>将模板中的变量替换成数据，<br>然后初始化渲染页面视图，<br>并将每个指令对应的节点绑定更新函数，<br>添加监听数据的订阅者，一旦数据有变动，<br>收到通知，更新视图</p>
-<p>第三步：Watcher订阅者是Observer和Compile之间通信的桥梁，<br>主要做的事情是:<br>1、在自身实例化时往属性订阅器(dep)里面添加自己<br>2、自身必须有一个update()方法<br>3、待属性变动dep.notice()通知时，<br>能调用自身的update()方法，<br>并触发Compile中绑定的回调，则功成身退。</p>
-<p>第四步：MVVM作为数据绑定的入口，<br>整合Observer、Compile和Watcher三者，<br>通过Observer来监听自己的model数据变化，<br>通过Compile来解析编译模板指令，<br>最终利用Watcher搭起Observer和Compile之间的通信桥梁，<br>达到数据变化 -&gt; 视图更新；视图交互变化(input) -&gt; 数据model变更的双向绑定效果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Vue声明组件的state是用data方法，那为什么data是通过一个function来返回一个对象，而不是直接写一个对象呢</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>答：从语法上说，如果不用function返回就会出现语法错误导致编译不通过。从原理上的话，大概就是组件可以被多次创建，如果不使用function就会使所有调用该组件的页面公用同一个数据域，这样就失去了组件的概念了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># vuex</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p> State、 Getter、Mutation 、Action、 Module<br>通过状态（数据源）集中管理驱动组件的变化<br>（好比spring的IOC容器对bean进行集中管理）。<br>应用级的状态集中放在store中；<br>改变状态的方式是提交mutations，<br>这是个同步的事物； 异步逻辑应该封装在action中。</p>
-<p>一、Action 类似于 mutation，不同在于：<br>二、Action 提交的是 mutation，而不是直接变更状态。<br>三、Action 可以包含任意异步操作</p>
-<p>一、getters 可以对State进行计算操作，它就是Store的计算属性<br>二、 虽然在组件内也可以做计算属性，但是getters 可以在多组件之间复用<br>三、 如果一个状态只在一个组件内使用，是可以不用getters</p>
-<p>二、state里面存放的数据是响应式的，Vue组件从store中读取数据，若是store中的数据发生改变，依赖这个数据的组件也会发生更新<br>三、它通过mapState把全局的 state 和 getters 映射到当前组件的 computed 计算属性中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 说下vue组件之间的通信</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>答：<br>非父子组件间通信，Vue 有提供 Vuex，以状态共享方式来实现通信</p>
-<p>prop 向下传递，事件向上传递。<br>还可以通过$emit方法出发一个消息，然后$on接收这个消息</p>
-<p>兄弟组件间的数据通讯，它们将会 寻找其共同的父组件，使用数据和相关方法“提升”到父组件内部，并向下传给两个子组件。其中一个子组件取得数据，另一个子组件取得了改变数据的方法 。</p>
-<p>var Event = new Vue()<br>//父组件<br> Event.$on(“a-msg”, function (a) {<br>    this.a = a;<br>  }.bind(this));</p>
-<p>// 子组件<br> Event.$emit(“a-msg”, this.a);</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Vue 生命周期</span><br><span class="line"></span><br><span class="line"># 简单描述每个周期具体适合哪些场景</span><br><span class="line"></span><br><span class="line">Create  Mount  Update  Destroy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>beforeCreate（创建前）,<br>created（创建后）,</p>
-<p>beforeMount(载入前),<br>mounted（载入后）,</p>
-<p>beforeUpdate（更新前）,<br>updated（更新后）,</p>
-<p>beforeDestroy（销毁前）,<br>destroyed（销毁后）</p>
-<p>每个钩子函数都在啥时间触发</p>
-<p>beforeCreate<br>在实例初始化之后，<br>数据观测(data observer) 和 event/watcher 事件配置之前被调用。</p>
-<p>created<br>实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</p>
-<p>beforeMount<br>在挂载开始之前被调用：相关的 render 函数首次被调用。</p>
-<p>mounted<br>挂载元素，获取到DOM节点<br>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。<br>如果 root 实例挂载了一个文档内元素，<br>当 mounted 被调用时 vm.$el 也在文档内。</p>
-<p>beforeUpdate<br>数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。 你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。</p>
-<p>updated<br>由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。<br>当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。<br>然而在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。</p>
-<p>该钩子在服务器端渲染期间不被调用。</p>
-<p>beforeDestroy<br>实例销毁之前调用。在这一步，实例仍然完全可用。</p>
-<p>destroyed<br>Vue 实例销毁后调用。<br>调用后，Vue 实例指示的所有东西都会解绑定，<br>所有的事件监听器会被移除，所有的子实例也会被销毁。 该钩子在服务器端渲染期间不被调用。</p>
-<p>生命周期钩子的一些常见使用方法：</p>
-<p>beforecreate : 可以在这加个loading事件，<br>在加载实例时触发</p>
-<p>created : 初始化完成时需要执行的事件写在这里，<br>如在这结束loading事件，异步请求也适宜在这里调用</p>
-<p>mounted: 在这发起后端请求，拿回数据，配合路由钩子做一些事情</p>
-<p>updated : 如果对数据统一处理，在这里写上相应函数<br>beforeDestroy : 可以做一个确认停止事件的确认框 你确认删除XX吗？<br>nextTick : 更新数据后立即操作dom<br>activated::keep-alive组件激活时调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># v-show和v-if指令的共同点和不同点</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>v-show指令是通过修改元素的displayCSS属性让其显示或者隐藏<br>v-if指令是直接销毁和重建DOM达到让元素显示和隐藏的效果</p>
-<p>v-if 有更高的切换消耗而 v-show 有更高的初始渲染消耗。<br>因此，如果需要频繁切换 v-show 较好，<br>如果在运行时条件不大可能改变 v-if 较好。</p>
-<p>1.v-if 指令可以应用于template包装元素上，<br>而v-show不支持template<br>2.将v-show应用在组件上时，因为指令的优先级<br>v-else 会出现问题，<br>解决办法就是用另一个 v-show 替换 v-else</p>
-<p>// 错误<br><custom-component v-show="condition"></custom-component></p>
-<p v-else>这可能也是一个组件</p>
-     // 正确做法
-<custom-component v-show="condition"></custom-component>
-<p v-show="!condition">这可能也是一个组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># vue 父子组件嵌套时，组件内部的各个生命周期钩子触发先后顺序</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-顺序是 先创建父组件(父组件beforeMount)，然后才创建子组件，当子组件创建完成并且实体dom挂载完成后(子组件先mounted)父组件才挂载完成(父组件mounted)
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># h函数</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-它来自单词 hyperscript，
-这个单词通常用在 virtual-dom 的实现中。
-Hyperscript 本身是指
-
-<p>生成HTML 结构的 script 脚本，<br>因为 HTML 是 hyper-text markup language 的缩写（超文本标记语言）</p>
-<p>个人理解：<br>createElement 函数是用来生成 HTML DOM<br>元素的，也就是上文中的 generate HTML<br>structures，也就是 Hyperscript，<br>这样作者才把 createElement 简写成 h。</p>
-<p>大概的翻译下：<br>render: h =&gt; h(App) 是下面内容的缩写：</p>
-<p>render: function (createElement) {<br>    return createElement(App);<br>}<br>进一步缩写为(ES6 语法)：</p>
-<p>render (createElement) {<br>    return createElement(App);<br>}<br>再进一步缩写为：</p>
-<p>render (h){<br>    return h(App);<br>}<br>按照 ES6 箭头函数的写法，就得到了：</p>
-<p>render: h =&gt; h(App);</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># react-redux中connect函数</span><br><span class="line"></span><br><span class="line">[链接](https:&#x2F;&#x2F;segmentfault.com&#x2F;a&#x2F;1190000010188279)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>connect方法做的事情是<br>将state和dispatch绑定到Connect组件的参数上，<br>然后Connect组件将你当前的App组件封装起来，<br>使得App组件可以通过props获取到父<br>组件Connect传递的state和props。</p>
-<p>Provider是顶层组件的作用，<br>将store作为上下文提供给全局共享，<br>而Connect组件是局部组件，将某个react组件包装起来，<br>传递指定的state和props给该组件访问。</p>
-<p>connect()返回值是Connect组件（请注意大小写的区别）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># Vue和React区别</span><br><span class="line"></span><br><span class="line">### 相同</span><br><span class="line"></span><br><span class="line">- 使用 Virtual DOM</span><br><span class="line">- 提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。</span><br><span class="line">- 将注意力集中保持在核心库，而将其他功能如路由和全局状态管理交给相关的库。</span><br><span class="line"></span><br><span class="line">都是JavaScript的UI框架，专注于创造前端的富应用。</span><br><span class="line">不同于早期的JavaScript框架“功能齐全”，</span><br><span class="line"></span><br><span class="line">### 区别</span><br><span class="line"></span><br><span class="line">- **性能**</span><br><span class="line"></span><br><span class="line">    计算差异的算法是高性能框架的秘密所在，React和Vue在实现上有点不同。</span><br><span class="line"></span><br><span class="line">    Vue可以更快地计算出Virtual DOM的差异，</span><br><span class="line">    这是由于它在渲染过程中，</span><br><span class="line">    会跟踪每一个组件的依赖关系，</span><br><span class="line">    不需要重新渲染整个组件树。</span><br><span class="line"></span><br><span class="line">    而对于React而言，每当应用的状态被改变时，</span><br><span class="line">    全部子组件都会重新渲染。</span><br><span class="line">    当然，这可以通过shouldComponentUpdate</span><br><span class="line">    这个生命周期方法来进行控制，</span><br><span class="line">    但Vue将此视为默认的优化。</span><br><span class="line"></span><br><span class="line">- **JSX和Templates**</span><br><span class="line"></span><br><span class="line">    React 中，所有的组件的渲染功能都依靠 JSX</span><br><span class="line">    可以使用完整的编程语言 JavaScript 功能来构建你的视图页面。</span><br><span class="line"></span><br><span class="line">    模板比起 JSX 读写起来更自然。</span><br><span class="line">    基于 HTML 的模板使得将已有的应用逐步迁移到 Vue 更为容易。</span><br><span class="line">    可以使用其他模板预处理器，比如 Pug 来书写 Vue 的模板。</span><br><span class="line"></span><br><span class="line">    vue的模板语法去除了往视图&#x2F;组件中添加逻辑的诱惑，保持了关注点分离。</span><br><span class="line"></span><br><span class="line">    与React一样，Vue在技术上也支持render函数和JSX，但只是不是默认的而已。</span><br><span class="line"></span><br><span class="line">- **组件作用域内的 CSS**</span><br><span class="line"></span><br><span class="line">    Vue 设置样式的默认方法是单文件组件里类似 style 的标签。</span><br><span class="line">    可选 scoped 属性会自动添加一个唯一的属性</span><br><span class="line"></span><br><span class="line">    CSS 作用域在 React 中是通过 CSS-in-JS 的方案实现的</span><br><span class="line"></span><br><span class="line">- **Props**</span><br><span class="line"></span><br><span class="line">    JSX库中，数据通过props传到子组件中去。</span><br><span class="line"></span><br><span class="line">    在React中，这是必须的，它依赖一个“单一数据源”作为它的“状态”</span><br><span class="line"></span><br><span class="line">    在Vue中，props略有不同。它们一样是在组件中被定义，但Vue依赖于模板语法，你可以通过模板的循环函数更高效地展示传入的数据。</span><br><span class="line"></span><br><span class="line">- **构建工具**</span><br><span class="line"></span><br><span class="line">    React可以使用Create React App (CRA)，而Vue对应的则是vue-cli。</span><br><span class="line"></span><br><span class="line">- **配套框架**</span><br><span class="line"></span><br><span class="line">    Vue的核心团队维护着vue-router和vuex，</span><br><span class="line">    它们由官方维护支持且与核心库同步更新的。</span><br><span class="line">    而React的react-router和react-redux则是由社区成员维护，</span><br><span class="line">    创建了一个更分散的生态系统</span><br><span class="line"></span><br><span class="line">- **向下扩展**</span><br><span class="line"></span><br><span class="line">    React 学习曲线陡峭，学 React 前，你需要知道 JSX 和 ES2015，</span><br><span class="line"></span><br><span class="line">- **原生渲染**</span><br><span class="line"></span><br><span class="line">    Weex 还在积极发展，成熟度也不能和 React Native 相抗衡。</span><br><span class="line"></span><br><span class="line">&lt;https:&#x2F;&#x2F;juejin.im&#x2F;post&#x2F;5a9b8417518825558251ce15&gt;</span><br><span class="line"></span><br><span class="line"># redux原理</span><br><span class="line"></span><br><span class="line">[链接](https:&#x2F;&#x2F;segmentfault.com&#x2F;a&#x2F;1190000004236064)</span><br><span class="line"></span><br><span class="line"># redux流程</span><br><span class="line"></span><br><span class="line">[Redux 入门教程](http:&#x2F;&#x2F;www.ruanyifeng.com&#x2F;blog&#x2F;2016&#x2F;09&#x2F;redux_tutorial_part_one_basic_usages.html)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>// store<br>// Store 就是保存数据的地方，你可以把它看成一个容器。整个应用只能有一个 Store。</p>
-<p>import { createStore } from ‘redux’;<br>const store = createStore(fn);</p>
-<p>//数据集合，就叫做 State<br>const state = store.getState();</p>
-<p>// Action Creator定义一个函数来生成 Action<br>const ADD_TODO = ‘添加 TODO’;</p>
-<p>function addTodo(text) {<br>  return {<br>    type: ADD_TODO,<br>    text<br>  }<br>}</p>
-<p>const action = addTodo(‘Learn Redux’);</p>
-<p>//store.dispatch()是 View 发出 Action 的唯一方法。</p>
-<p>import { createStore } from ‘redux’;<br>const store = createStore(fn);</p>
-<p>store.dispatch({<br>  type: ‘ADD_TODO’,<br>  payload: ‘Learn Redux’<br>});</p>
-<p>store.dispatch(addTodo(‘Learn Redux’));</p>
-<p>//Reducer State 的计算过程就叫做 Reducer。<br>接受 Action 和当前 State 作为参数，返回一个新的 State。</p>
-<p>const reducer = function (state, action) {<br>  // …<br>  return new_state;<br>};</p>
-<p>const defaultState = 0;<br>const reducer = (state = defaultState, action) =&gt; {<br>  switch (action.type) {<br>    case ‘ADD’:<br>      return state + action.payload;<br>    default:<br>      return state;<br>  }<br>};</p>
-<p>const state = reducer(1, {<br>  type: ‘ADD’,<br>  payload: 2<br>});</p>
-<p>Reducer 函数不用像上面这样手动调用，store.dispatch方法会触发 Reducer 的自动执行。为此，Store 需要知道 Reducer 函数，做法就是在生成 Store 的时候，将 Reducer 传入createStore方法。</p>
-<p>import { createStore } from ‘redux’;<br>const store = createStore(reducer);</p>
-<p>createStore接受 Reducer 作为参数，生成一个新的 Store。以后每当store.dispatch发送过来一个新的 Action，就会自动调用 Reducer，得到新的 State。</p>
-<p>reducer最重要的特征是，它是一个纯函数。也就是说，只要是同样的输入，必定得到同样的输出。</p>
-<p>不得改写参数<br>不能调用系统 I/O 的API<br>不能调用Date.now()或者Math.random()等不纯的方法，因为每次会得到不一样的结果</p>
-<p>必须返回一个全新的对象<br>// State 是一个对象<br>function reducer(state, action) {<br>  return Object.assign({}, state, { thingToChange });<br>  // 或者<br>  return { …state, …newState };<br>}</p>
-<p>// State 是一个数组<br>function reducer(state, action) {<br>  return […state, newItem];<br>}</p>
-<pre><code></code></pre>
-
-      
-    </div>
-
-    
-    
-    
 
     <footer class="post-footer">
         <div class="post-eof"></div>
@@ -2881,7 +2060,7 @@ Hyperscript 本身是指
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -2892,16 +2071,16 @@ Hyperscript 本身是指
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">758k</span>
+    <span title="站点总字数">659k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:29</span>
+    <span title="站点阅读时长">9:59</span>
   </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -2909,10 +2088,12 @@ Hyperscript 本身是指
 
   
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+<script src="/js/local-search.js"></script>
 
 
 

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="添加java_home到.bash_profile文件vi ~&#x2F;.bash_profile 添加下面代码 123export JAVA_HOME&#x3D;$(&#x2F;usr&#x2F;libexec&#x2F;java_home)export PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATHexport CLASS_PATH&#x3D;$JAVA_HOME&#x2F;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java环境搭建">
+<meta property="og:url" content="http://believezjp.oriht.com/posts/Java%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="believeZJP">
+<meta property="og:description" content="添加java_home到.bash_profile文件vi ~&#x2F;.bash_profile 添加下面代码 123export JAVA_HOME&#x3D;$(&#x2F;usr&#x2F;libexec&#x2F;java_home)export PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATHexport CLASS_PATH&#x3D;$JAVA_HOME&#x2F;l">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-07T06:42:28.000Z">
+<meta property="article:modified_time" content="2021-01-07T06:42:28.000Z">
+<meta property="article:author" content="believeZJP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://believezjp.oriht.com/posts/Java%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>Java环境搭建 | believeZJP</title>
+  
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">believeZJP</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录成长路径</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0java-home%E5%88%B0-bash-profile%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">添加java_home到.bash_profile文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#idea%E4%B8%AD%E8%83%BD%E6%9F%A5%E7%9C%8B%E4%BB%A3%E7%A0%81%E6%AF%8F%E4%B8%80%E8%A1%8C%E6%9C%80%E5%90%8E%E4%BF%AE%E6%94%B9%E4%BA%BA%E7%9A%84%E6%8F%92%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">idea中能查看代码每一行最后修改人的插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inteli-Java-%E9%85%8D%E7%BD%AEtomcat"><span class="nav-number">4.</span> <span class="nav-text">Inteli Java 配置tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Tomcat"><span class="nav-number">4.1.</span> <span class="nav-text">安装Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IDEA%E9%85%8D%E7%BD%AETomcat"><span class="nav-number">4.2.</span> <span class="nav-text">IDEA配置Tomcat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">查看本地修改文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95"><span class="nav-number">6.</span> <span class="nav-text">断点调试</span></a></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">believeZJP</p>
+  <div class="site-description" itemprop="description">积土成山，风雨兴焉；积水成渊，蛟龙生焉;</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">88</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/believeZJP" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;believeZJP" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://believezjp.oriht.com/posts/Java%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="believeZJP">
+      <meta itemprop="description" content="积土成山，风雨兴焉；积水成渊，蛟龙生焉;">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="believeZJP">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java环境搭建
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-07 14:42:28" itemprop="dateCreated datePublished" datetime="2021-01-07T14:42:28+08:00">2021-01-07</time>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="添加java-home到-bash-profile文件"><a href="#添加java-home到-bash-profile文件" class="headerlink" title="添加java_home到.bash_profile文件"></a>添加java_home到.bash_profile文件</h2><p>vi ~/.bash_profile</p>
+<p>添加下面代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME&#x3D;$(&#x2F;usr&#x2F;libexec&#x2F;java_home)</span><br><span class="line">export PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATH</span><br><span class="line">export CLASS_PATH&#x3D;$JAVA_HOME&#x2F;lib</span><br></pre></td></tr></table></figure>
+
+<p>配置生效$source ~/.bash_profile</p>
+<a id="more"></a>
+
+<p>配置maven环境变量</p>
+<p>export M3_HOME=/usr/local/Cellar/maven/3.6.3_1/libexec<br>export PATH=$M3_HOME/bin:$PATH</p>
+<p>在vscode中配置的    <code>&quot;maven.executable.path&quot;: &quot;/usr/local/Cellar/maven/3.6.3_1/libexec/bin/mvn&quot;,</code></p>
+<p>要包含到mvn才行</p>
+<h2 id="idea中能查看代码每一行最后修改人的插件"><a href="#idea中能查看代码每一行最后修改人的插件" class="headerlink" title="idea中能查看代码每一行最后修改人的插件"></a>idea中能查看代码每一行最后修改人的插件</h2><p><code>GitToolBox</code> 在MarketPlace中搜索</p>
+<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p><code>preferences -&gt; plugins -&gt; marketplace搜索one dark</code></p>
+<h2 id="Inteli-Java-配置tomcat"><a href="#Inteli-Java-配置tomcat" class="headerlink" title="Inteli Java 配置tomcat"></a>Inteli Java 配置tomcat</h2><p>默认Java环境和IDEA已经安好了</p>
+<h3 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h3><ol>
+<li><p><a target="_blank" rel="noopener" href="https://tomcat.apache.org/download-90.cgi">官网</a>下载，Mac的话可以选择zip或者tar格式的，我这里下载的是tomcat9  </p>
+</li>
+<li><p>下载完成后，建议将Tomcat移动到<code>/Library</code>目录下。进入到终端，输入如下命令</p>
+<p> <code>cd /Library/apache-tomcat-9.0.34/bin # apache-tomcat-9.0.34是我的目录名</code></p>
+</li>
+<li><p>授权bin目录下的所有操作：终端输入如下命令</p>
+<p> <code>sudo chmod 755 *.sh</code></p>
+<p> 回车之后会提示输入系统密码</p>
+</li>
+<li><p>完成之后就可以打开Tomcat了</p>
+<p> <code>sudo sh ./startup.sh</code></p>
+<p> 可以在浏览器输入<code>http://localhost:8080/</code></p>
+</li>
+<li><p>关闭的话，可以输入如下命令：</p>
+<p> <code>sh ./shutdown.sh</code></p>
+</li>
+</ol>
+<h3 id="IDEA配置Tomcat"><a href="#IDEA配置Tomcat" class="headerlink" title="IDEA配置Tomcat"></a>IDEA配置Tomcat</h3><ol>
+<li><p>打开IDEA，通过菜单 run -&gt; Edit Configurations进入到如下界面  </p>
+</li>
+<li><p>依次点击<code>+</code>、<code>Tomcat Server</code>、<code>Local</code>，进入到如下界面<br> 可以给新配置的环境起名，初次配置Application server应该无内容，可以点击然后选中Tomcat存放的目录，我这里为<code>/Library/apache-tomcat-9.0.34</code></p>
+</li>
+<li><p>这些弄好之后，下面会提示warning，可以进入到Deployment选中一个项目<br> 选完项目后，一路ok下去。</p>
+</li>
+<li><p>配置好Tomcat后，运行时，可能会报如下错误</p>
+<blockquote>
+<p>Directory is invalid /usr/local/apache-tomcat-8.5.3/conf/Catalina</p>
+</blockquote>
+<p> 原因是tomcat下Catalina目录没有权限导致，将其设置读写权限即可。命令如下：</p>
+<p> <code>cd /Library/apache-tomcat-9.0.34/conf/</code></p>
+<p> <code>sudo chmod 777 Catalina</code></p>
+</li>
+<li><p>重启Tomcat，但又可能出现如下问题</p>
+<blockquote>
+<p>conf/Catalina/localhost (权限不够)</p>
+</blockquote>
+<p> 解决的话，进入到Library目录下，输入如下命令</p>
+<p> <code>cd /Library</code></p>
+<p> <code>sudo chmod -R 755 apache-tomcat-9.0.34</code></p>
+</li>
+</ol>
+<p>再重新启动Tomcat即可。</p>
+<h2 id="查看本地修改文件"><a href="#查看本地修改文件" class="headerlink" title="查看本地修改文件"></a>查看本地修改文件</h2><p>菜单栏<code>View -&gt; Tool Windows -&gt; Commit</code></p>
+<p>快捷键<code>command + 0</code></p>
+<p>快捷键<code>command + 1</code>即可展示<code>Project</code></p>
+<h2 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h2><p><code>Resume Program command+option+r</code>可以跳过断点直接执行完整个程序</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/img/alipay.png" alt="believeZJP 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/img/wechat.png" alt="believeZJP 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/Alfred/" rel="prev" title="Alfred">
+                  <i class="fa fa-chevron-left"></i> Alfred
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/CSRF/" rel="next" title="CSRF">
+                  CSRF <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">believeZJP</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">659k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9:59</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+
+
+
+
+
+
+</body>
+</html>

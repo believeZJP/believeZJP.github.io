@@ -21,7 +21,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="客户端推荐 SmartGit✨✨✨(开始用的，后来放弃) Sourcetree✨✨✨✨✨(现在用的这个，需要翻墙注册) GitKraken 很好用，可以替代SourceTree, 全平台免费(也开始收费了)">
 <meta property="og:type" content="article">
@@ -116,15 +116,46 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -163,7 +194,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +210,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/believeZJP" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;believeZJP" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -248,14 +284,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>11k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>10 分钟</span>
     </span>
 </div>
 
@@ -353,10 +389,10 @@
 <p> Read-Search-Ask methodology</p>
 <p>git pull的时候遇到这样的问题：<br>The following untracked working tree files would be overwritten by merge balabala…<br>解决办法：<br>git clean -d -fx<br>备注：会删除掉没有add到仓库的文件，操作记得慎重，以免改动文件的丢失。本质上就是操作仓库中没有被追踪的本地文件<br>$ git clean -f -n         # 1<br>$ git clean -f            # 2<br>$ git clean -fd           # 3<br>$ git clean -fX           # 4<br>$ git clean -fx           # 5<br>(1): 选项-n将显示执行（2）时将会移除哪些文件。<br>(2): 该命令会移除所有命令（1）中显示的文件。<br>(3): 如果你还想移除文件件，请使用选项-d。<br>(4): 如果你只想移除已被忽略的文件，请使用选项-X。<br>(5): 如果你想移除已被忽略和未被忽略的文件，请使用选项-x。</p>
 <p>mkdir learngit<br>cd learngit<br>pwd<br>git init<br>git add readme.txt<br>git commit -m “wrote a readme file”<br>git status<br> git diff readme.txt //查看文件的区别<br>git log  历史记录<br>git log –pretty=oneline   一行显示<br> git reset –hard HEAD^   回退上一个版本<br>上上一个版本就是HEAD^^   写成HEAD~100  上100个版本<br>git reset –hard 3628164  指定回到未来的某个版本。版本号没必要写全，前几位就可以了，Git会自动去找<br>gitreflog   记录每一次命令<br>git diff //查看修改的内容<br>git diff HEAD – readme.txt命令可以查看工作区和版本库里面最新版本的区别<br>git checkout – readme.txt    丢弃工作区的修改</p>
-<p>命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br>    一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br>    一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br>    总之，就是让这个文件回到最近一次git commit或git add时的状态。<br>–很重要，没有–，就变成了“切换到另一个分支”的命令，<br>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。<br>git reset HEAD readme.txt   可以把暂存区的修改撤销掉（unstage），重新放回工作区：<br>    小结：<br>        场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>        场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git rese            t HEAD file，就回到了场景1，第二步按场景1操作。<br>        场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退，不过前提是没有推送到远程库                    。<br>—–删除文件—-<br>rm test.txt   直接在文件管理器中把没用的文件删了，或者用rm命令删了：—相当于从文件管理器删除<br> git rm test.txt   从版本库中删除该文件，那就用命令git rm删掉，并且git commit：<br>git commit -m “remove test.txt”<br>            文件就从版本库中被删除了。<br>———–远程关联————<br>git remote add origin git@server-name:path/repo-name.git；<br>      eg:  $ git remote add origin <a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#x62;&#46;&#x63;&#x6f;&#109;</a>:michaelliao/learngit.git<br>git push -u origin master第一次推送master分支的所有内容；<br>每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；<br>git remote -v   看有没有权限推送</p>
-<p>————用命令克隆一个远程库—————-<br>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#116;&#x40;&#103;&#105;&#116;&#104;&#117;&#98;&#x2e;&#99;&#111;&#109;</a>:michaelliao/gitskills.git      用命令git clone克隆一个本地库：<br><a href="mailto:&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;</a>/believeZJP/believeZJP.github.io.git</p>
+<p>命令git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br>    一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br>    一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br>    总之，就是让这个文件回到最近一次git commit或git add时的状态。<br>–很重要，没有–，就变成了“切换到另一个分支”的命令，<br>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。<br>git reset HEAD readme.txt   可以把暂存区的修改撤销掉（unstage），重新放回工作区：<br>    小结：<br>        场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout – file。<br>        场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git rese            t HEAD file，就回到了场景1，第二步按场景1操作。<br>        场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退，不过前提是没有推送到远程库                    。<br>—–删除文件—-<br>rm test.txt   直接在文件管理器中把没用的文件删了，或者用rm命令删了：—相当于从文件管理器删除<br> git rm test.txt   从版本库中删除该文件，那就用命令git rm删掉，并且git commit：<br>git commit -m “remove test.txt”<br>            文件就从版本库中被删除了。<br>———–远程关联————<br>git remote add origin git@server-name:path/repo-name.git；<br>      eg:  $ git remote add origin <a href="mailto:&#x67;&#105;&#116;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#116;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;</a>:michaelliao/learngit.git<br>git push -u origin master第一次推送master分支的所有内容；<br>每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；<br>git remote -v   看有没有权限推送</p>
+<p>————用命令克隆一个远程库—————-<br>git clone <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:michaelliao/gitskills.git      用命令git clone克隆一个本地库：<br><a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>/believeZJP/believeZJP.github.io.git</p>
 <p><a target="_blank" rel="noopener" href="https://gitcafe.com/believeZJP/believeZJP.git">https://gitcafe.com/believeZJP/believeZJP.git</a></p>
-<p>git 只克隆一个分支<br> <code>git clone -b &lt;branch&gt; &lt;remote_repo&gt;</code><br> eg:      git clone -b gitcafe-pages  <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#105;&#116;&#x63;&#97;&#x66;&#x65;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#64;&#103;&#105;&#116;&#x63;&#97;&#x66;&#x65;&#x2e;&#99;&#111;&#109;</a>:believeZJP/believeZJP.git</p>
+<p>git 只克隆一个分支<br> <code>git clone -b &lt;branch&gt; &lt;remote_repo&gt;</code><br> eg:      git clone -b gitcafe-pages  <a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#x69;&#116;&#99;&#x61;&#102;&#x65;&#46;&#99;&#111;&#109;">&#103;&#x69;&#x74;&#64;&#103;&#x69;&#116;&#99;&#x61;&#102;&#x65;&#46;&#99;&#111;&#109;</a>:believeZJP/believeZJP.git</p>
 <p>————–切换分支————-<br>git checkout -b dev   checkout命令加上-b参数表示创建并切换，相当于以下两条命令：<br>git branch dev<br>git checkout dev<br>git branch   查看当前分支：会列出所有分支，当前分支前面会标一个*号<br>git checkout master         切换回master分支：<br> git merge dev                把dev分支的工作成果合并到master分支上<br>git branch -d dev            删除dev分支了<br>git branch -D feature-vulcan  强行删除分支</p>
 <p>小结<br>Git鼓励大量使用分支：<br>查看分支：git branch     //  git branch -a<br>创建分支：git branch <name><br>切换分支：git checkout <name><br>创建+切换分支：git checkout -b <name><br>合并某分支到当前分支：git merge <name><br>删除分支：git branch -d <name></p>
 <p> git log –graph –pretty=oneline –abbrev-commit   分支的合并情况：</p>
@@ -366,7 +402,7 @@
 <p>Git把stash内容存在某个地方，需要恢复，有两个办法：<br>一是用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；<br>另一种方式是用git stash pop，恢复的同时把stash内容也删了：</p>
 <p>可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：<br>$ git stash apply stash@{0}<br>修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；<br>当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。</p>
 <p>—————–多人协作——————–<br>小结<br>查看远程库信息，使用git remote -v；<br>本地新建的分支如果不推送到远程，对其他人就是不可见的；<br>从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；<br>在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；<br>建立本地分支和远程分支的关联，使用git branch –set-upstream branch-name origin/branch-name；<br>从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。</p>
-<p>—————创建标签—————<br>git tag v1.0                默认标签是打在最新提交的commit上<br>git tag                    查看所有标签<br>git tag v0.96224937         打标签到某一个commit上<br> git show v0.9                查看标签信息<br>git tag -a v0.1 -m “version 0.1 released”3628164        创建带有说明的标签，用-a指定标签名，-m指定说明文字<br>git tag -s <tagname> -m “blablabla…”可以用PGP签名标签；<br>git tag -d v0.1               删除标签<br>git push origin v1.0            推送某个标签到远程<br> git push origin –tags            一次性推送全部尚未推送到远程的本地标签<br>git push origin :refs/tags/v0.9<br>签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：从远程删除。删除命令也是push，但是格式如下：<br>git push origin :refs/tags/v0.9<br>// To <a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#109;">&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#109;</a>:michaelliao/learngit.git   不知道有没有这个</p>
+<p>—————创建标签—————<br>git tag v1.0                默认标签是打在最新提交的commit上<br>git tag                    查看所有标签<br>git tag v0.96224937         打标签到某一个commit上<br> git show v0.9                查看标签信息<br>git tag -a v0.1 -m “version 0.1 released”3628164        创建带有说明的标签，用-a指定标签名，-m指定说明文字<br>git tag -s <tagname> -m “blablabla…”可以用PGP签名标签；<br>git tag -d v0.1               删除标签<br>git push origin v1.0            推送某个标签到远程<br> git push origin –tags            一次性推送全部尚未推送到远程的本地标签<br>git push origin :refs/tags/v0.9<br>签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：从远程删除。删除命令也是push，但是格式如下：<br>git push origin :refs/tags/v0.9<br>// To <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;</a>:michaelliao/learngit.git   不知道有没有这个</p>
 <p>小结<br>命令git push origin <tagname>可以推送一个本地标签；<br>命令git push origin –tags可以推送全部未推送过的本地标签；<br>命令git tag -d <tagname>可以删除一个本地标签；<br>命令git push origin :refs/tags/<tagname>可以删除一个远程标签。</p>
 <p>———-使用GitHub———————<br>小结<br>在GitHub上，可以任意Fork开源仓库；<br>自己拥有Fork后的仓库的读写权限；<br>可以推送pull request给官方仓库来贡献代码。</p>
 <p>——————自定义Git————————<br>git config –global color.ui true                让Git显示颜色，会让命令输出看起来更醒目<br>——————配置别名—————————–</p>
@@ -442,8 +478,28 @@
     
     
     
+      
+
 
     <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/img/alipay.png" alt="believeZJP 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/img/wechat.png" alt="believeZJP 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
           <div class="post-tags">
               <a href="/tags/Git/" rel="tag"># Git</a>
               <a href="/tags/SmartGit/" rel="tag"># SmartGit</a>
@@ -504,7 +560,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -515,16 +571,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">758k</span>
+    <span title="站点总字数">659k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:29</span>
+    <span title="站点阅读时长">9:59</span>
   </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -532,10 +588,12 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+<script src="/js/local-search.js"></script>
 
 
 

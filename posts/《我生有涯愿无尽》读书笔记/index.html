@@ -21,7 +21,7 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Muse","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+    var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="摘自得到APP 怎样像梁漱溟那样，依靠自学，建立独立的思想体系梁漱溟说，人们总以为知道很多，处处显得很渊博才算学问。 其实渊博并不算学问。什么才是学问呢？是能把眼前的道理和材料加以系统化、深刻化。 他把这个建立独立思想、获得真正学问的过程，分成了八个步骤。 第一步是通过用心思来建立主见。梁漱溟说，什么是哲学的道理？其实就是偏见，美其名曰的话，可以说是主见。只要是哲学家，就一定是极端的。哲学家用心思">
 <meta property="og:type" content="article">
@@ -115,15 +115,46 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -162,7 +193,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">96</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -178,6 +209,11 @@
       </div>
   </nav>
 </div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/believeZJP" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;believeZJP" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
 
 
@@ -247,7 +283,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>0</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -285,8 +321,62 @@
     
     
     
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/posts/Redis实战读书笔记/" rel="bookmark">Redis实战读书笔记</a></div>
+        <div class="popular-posts-excerpt"><p><h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://redis.io/">redis官网</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.redis.cn/download.html">redis中文下载安装</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.redis.cn/documentation.html">redis中文文档</a></li>
+</ul>
+<p>当你需要以接近实时的速度访问快速变动的数据流时，Redis这样的键值数据库就是你的最佳选择。</p></p></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/posts/思维导图笔记/" rel="bookmark">思维导图笔记</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/posts/Javascript设计模式与开发实践-读书笔记/" rel="bookmark">Javascript设计模式与开发实践-读书笔记</a></div>
+        <div class="popular-posts-excerpt"><p><p>读《JavaScript设计模式与开发实践》笔记摘要</p>
+<h2 id="设计模式定义"><a href="#设计模式定义" class="headerlink" title="设计模式定义"></a>设计模式定义</h2><p>设计模式的定义：在面向对象软件设计过程中针对特定问题的简洁而优雅的解决方案。<br>通俗的说：<br>设计模式是在某种场合下对某个问题的一种解决方案。<br>设计模式是给面向对象软件开发中的一些好的设计取的名字。</p>
+<p>在软件设计中，模式是一些经过了大量实际项目验证的优秀解决方案。<br>熟悉这些模式 的程序员，对某些模式的理解也许形成了条件反射。当合适的场景出现时，他们可以很快地找到 某种模式作为解决方案。</p></p></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/posts/React进阶读书笔记/" rel="bookmark">React进阶读书笔记</a></div>
+        <div class="popular-posts-excerpt"><p><h1 id="React-四大特点"><a href="#React-四大特点" class="headerlink" title="React 四大特点"></a>React 四大特点</h1><ul>
+<li>声明式视图层<br>  采用JSX语法来声明视图层, 可以在视图层中随意使用各种状态数据</li>
+<li>简单的更新流程<br>  从状态到UI单向数据流让React组件的更新流程更清晰</li>
+<li>灵活的渲染实现<br>  基于虚拟dom渲染</li>
+<li>高效的DOM操作<br>  React可以尽量减少虚拟dom到真实DOM的渲染次数, 以及每次渲染需要改变的真实DOM节点数。</li>
+</ul>
+<p>React只是view层, 关注的是如何根据状态创建可复用的UI组件, 如何根据组件创建可组合的UI.<br>应用复杂时, 需要结合其他库(Redux, MobX等). </p></p></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/posts/读书笔记/精读你不知道的JavaScript上卷/" rel="bookmark">精读你不知道的JavaScript上卷</a></div>
+    </li>
+  </ul>
+
 
     <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/img/alipay.png" alt="believeZJP 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/img/wechat.png" alt="believeZJP 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
           <div class="post-tags">
               <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
               <a href="/tags/%E5%93%B2%E5%AD%A6/" rel="tag"># 哲学</a>
@@ -346,7 +436,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -357,16 +447,16 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">758k</span>
+    <span title="站点总字数">659k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:29</span>
+    <span title="站点阅读时长">9:59</span>
   </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
     </div>
@@ -374,10 +464,12 @@
 
   
   <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
 
   
 
+<script src="/js/local-search.js"></script>
 
 
 
