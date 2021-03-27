@@ -812,14 +812,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>307</span>
+      <span>2.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -837,6 +837,14 @@
 <p>生成过程中根据自己需求选择即可</p>
 <p>在vsCode配置中(setting.json)增加如下配置, 即可自动格式化</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;standard.run&quot;: &quot;onSave&quot;,</span><br><span class="line">&quot;standard.autoFixOnSave&quot;: true,</span><br><span class="line">&quot;javascript.validate.enable&quot;: false</span><br></pre></td></tr></table></figure>
+
+<p>vscode中配置ESLint</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;editor.codeActionsOnSave&quot;: &#123;</span><br><span class="line">    &quot;source.fixAll&quot;: true,</span><br><span class="line">&#125;,</span><br><span class="line">&quot;eslint.format.enable&quot;: true,</span><br><span class="line"><span class="comment">// 两者会在格式化js时冲突，所以需要关闭默认js格式化程序 </span></span><br><span class="line">&quot;javascript.format.enable&quot;: false</span><br></pre></td></tr></table></figure>
+
+<p>在<code>.eslint.js</code>中配置规则</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="string">&#x27;rules&#x27;</span>: &#123;</span><br><span class="line">    <span class="comment">// 4个空格缩进, switch需要单独配置, 否则会不生效</span></span><br><span class="line">    <span class="string">&#x27;indent&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="number">4</span>, &#123; <span class="string">&#x27;SwitchCase&#x27;</span>: <span class="number">1</span> &#125;],</span><br><span class="line">    <span class="string">&#x27;semi&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;always&#x27;</span>],</span><br><span class="line">    <span class="comment">// 操作符在行首</span></span><br><span class="line">    <span class="string">&#x27;operator-linebreak&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;before&#x27;</span>],</span><br><span class="line">    <span class="comment">// 强制在逗号周围使用空格</span></span><br><span class="line">    <span class="string">&#x27;comma-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="string">&#x27;before&#x27;</span>: <span class="literal">false</span>, <span class="string">&#x27;after&#x27;</span>: <span class="literal">true</span> &#125;],</span><br><span class="line">    <span class="comment">// 删除最后一个逗号</span></span><br><span class="line">    <span class="string">&#x27;comma-dangle&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">    <span class="comment">// 逗号前后的空格</span></span><br><span class="line">    <span class="string">&#x27;comma-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="string">&#x27;before&#x27;</span>: <span class="literal">false</span>, <span class="string">&#x27;after&#x27;</span>: <span class="literal">true</span> &#125;],</span><br><span class="line">    <span class="comment">// 对象两边加空格</span></span><br><span class="line">    <span class="string">&#x27;object-curly-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;always&#x27;</span>],</span><br><span class="line">    <span class="comment">// 数组类型左右不加空格</span></span><br><span class="line">    <span class="string">&#x27;array-bracket-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">    <span class="comment">// 计算属性类型加空格，同上</span></span><br><span class="line">    <span class="string">&#x27;computed-property-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">    <span class="comment">// 操作符加空格</span></span><br><span class="line">    <span class="string">&#x27;space-infix-ops&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="string">&#x27;int32Hint&#x27;</span>: <span class="literal">true</span> &#125;],</span><br><span class="line">    <span class="comment">// 删除多余空格和空行</span></span><br><span class="line">    <span class="string">&#x27;no-multi-spaces&#x27;</span>: <span class="string">&#x27;error&#x27;</span>,</span><br><span class="line">    <span class="comment">// 禁止行尾空格</span></span><br><span class="line">    <span class="string">&#x27;no-trailing-spaces&#x27;</span>: <span class="string">&#x27;error&#x27;</span>,</span><br><span class="line">    <span class="comment">// 方法参数是单个是不加括号</span></span><br><span class="line">    <span class="string">&#x27;arrow-parens&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;as-needed&#x27;</span>],</span><br><span class="line">    <span class="comment">// console警告</span></span><br><span class="line">    <span class="string">&#x27;no-console&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="attr">allow</span>: [<span class="string">&#x27;warn&#x27;</span>] &#125;],</span><br><span class="line">    <span class="comment">// 要求使用 === 和 !== (eqeqeq)</span></span><br><span class="line">    <span class="string">&#x27;eqeqeq&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;always&#x27;</span>],</span><br><span class="line">    <span class="comment">// 函数圆括号之前有一个空格</span></span><br><span class="line">    <span class="string">&#x27;space-before-function-paren&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;never&#x27;</span>],</span><br><span class="line">    <span class="comment">// 箭头函数=&gt;左右留空格</span></span><br><span class="line">    <span class="string">&#x27;arrow-spacing&#x27;</span>: <span class="string">&quot;error&quot;</span>,</span><br><span class="line">    <span class="comment">// 大括号之前有空格</span></span><br><span class="line">    <span class="string">&#x27;block-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;always&#x27;</span>],</span><br><span class="line">    <span class="comment">// 语句块之前的空格</span></span><br><span class="line">    <span class="string">&#x27;space-before-blocks&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;always&#x27;</span>],</span><br><span class="line">    <span class="comment">// 对象字面量的键和值之间使用一致的空格</span></span><br><span class="line">    <span class="string">&#x27;key-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="string">&#x27;afterColon&#x27;</span>: <span class="literal">true</span>, <span class="string">&#x27;beforeColon&#x27;</span>: <span class="literal">false</span> &#125;],</span><br><span class="line">    <span class="comment">// if等关键字后加空格</span></span><br><span class="line">    <span class="string">&#x27;keyword-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="string">&#x27;after&#x27;</span>: <span class="literal">true</span>, <span class="string">&#x27;before&#x27;</span>: <span class="literal">true</span> &#125;],</span><br><span class="line">    <span class="comment">// ; 前不加空格</span></span><br><span class="line">    <span class="string">&#x27;semi-spacing&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123;<span class="string">&#x27;before&#x27;</span>: <span class="literal">false</span>&#125;],</span><br><span class="line">    <span class="comment">// 使用骆驼拼写法</span></span><br><span class="line">    <span class="string">&#x27;camelcase&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="attr">allow</span>: [<span class="string">&#x27;Component&#x27;</span>] &#125;],</span><br><span class="line">    <span class="comment">// 文件末尾保留一行空行</span></span><br><span class="line">    <span class="string">&#x27;eol-last&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;always&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;no-multiple-empty-lines&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, &#123; <span class="string">&#x27;max&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;maxEOF&#x27;</span>: <span class="number">1</span> &#125;],</span><br><span class="line">    <span class="comment">// 单引号</span></span><br><span class="line">    <span class="string">&#x27;quotes&#x27;</span>: [<span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;single&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>即可自动格式化代码</p>
 
       
     </div>
@@ -1012,7 +1020,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>这一章节就是整理了<code>45</code>道<code>Promise</code>的笔试题让大家爽一爽 😁。</p>
+          <p>来看一个使用 await 的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line"> a = a + <span class="keyword">await</span> <span class="number">10</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">&#x27;2&#x27;</span>, a) <span class="comment">// -&gt; &#x27;2&#x27; 10</span></span><br><span class="line">&#125;</span><br><span class="line">b()</span><br><span class="line">a++</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;1&#x27;</span>, a) <span class="comment">// -&gt; &#x27;1&#x27; 1</span></span><br></pre></td></tr></table></figure>
+
+<p>对于以上代码你可能会有疑惑，让我来解释下原因：</p>
+<p>首先函数 b 先执行，在执行到 await 10 之前变量 a 还是 0，因为 <strong>await 内部实现了 generator ，generator 会保留堆栈中东西，所以这时候 a = 0 被保存了下来；</strong><br>因为 <strong>await 是异步操作，后来的表达式不返回 Promise 的话，就会包装成 Promise.reslove(返回值)，然后会去执行函数外的同步代码；</strong><br>同步代码执行完毕后开始执行异步代码，将保存下来的值拿出来使用，这时候 a = 0 + 10。</p>
+<p>这一章节就是整理了<code>45</code>道<code>Promise</code>的笔试题让大家爽一爽 😁。</p>
 <p>这篇文章是一篇比较纯的<code>Promise</code>笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。</p>
 <p>本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在<code>Node</code>的执行结果，执行结果全为浏览器环境下。</p>
 <p>OK👌， 来看看通过阅读本篇文章你可以学到：</p>
@@ -2603,47 +2616,46 @@ limitLoad(urls, loadImg, 3).then(res =&gt; &#123;
 <p>为了方便你查看，我截了个图，不过代码在后面也有</p>
 <p>(说真的，要我看这一大长串代码我也不愿意…)</p>
 <p>代码：</p>
-<pre><code>function limitLoad(urls, handler, limit) &#123;
-  let sequence = [].concat(urls); // 复制urls
-  // 这一步是为了初始化 promises 这个&quot;容器&quot;
-  let promises = sequence.splice(0, limit).map((url, index) =&gt; &#123;
-    return handler(url).then(() =&gt; &#123;
-      // 返回下标是为了知道数组中是哪一项最先完成
-      return index;
-    &#125;);
-  &#125;);
-  // 注意这里要将整个变量过程返回，这样得到的就是一个Promise，可以在外面链式调用
-  return sequence
-    .reduce((pCollect, url) =&gt; &#123;
-      return pCollect
-        .then(() =&gt; &#123;
-          return Promise.race(promises); // 返回已经完成的下标
-        &#125;)
-        .then(fastestIndex =&gt; &#123; // 获取到已经完成的下标
-         // 将&quot;容器&quot;内已经完成的那一项替换
-          promises[fastestIndex] = handler(url).then(
-            () =&gt; &#123;
-              return fastestIndex; // 要继续将这个下标返回，以便下一次变量
-            &#125;
-          );
-        &#125;)
-        .catch(err =&gt; &#123;
-          console.error(err);
+<pre><code class="js">    function limitLoad(urls, handler, limit) &#123;
+      let sequence = [].concat(urls); // 复制urls
+      // 这一步是为了初始化 promises 这个&quot;容器&quot;
+      let promises = sequence.splice(0, limit).map((url, index) =&gt; &#123;
+        return handler(url).then(() =&gt; &#123;
+          // 返回下标是为了知道数组中是哪一项最先完成
+          return index;
         &#125;);
-    &#125;, Promise.resolve()) // 初始化传入
-    .then(() =&gt; &#123; // 最后三个用.all来调用
-      return Promise.all(promises);
-    &#125;);
-&#125;
-limitLoad(urls, loadImg, 3)
-  .then(res =&gt; &#123;
-    console.log(&quot;图片全部加载完毕&quot;);
-    console.log(res);
-  &#125;)
-  .catch(err =&gt; &#123;
-    console.error(err);
-  &#125;);
-复制代码</code></pre>
+      &#125;);
+      // 注意这里要将整个变量过程返回，这样得到的就是一个Promise，可以在外面链式调用
+      return sequence
+        .reduce((pCollect, url) =&gt; &#123;
+          return pCollect
+            .then(() =&gt; &#123;
+              return Promise.race(promises); // 返回已经完成的下标
+            &#125;)
+            .then(fastestIndex =&gt; &#123; // 获取到已经完成的下标
+             // 将&quot;容器&quot;内已经完成的那一项替换
+              promises[fastestIndex] = handler(url).then(
+                () =&gt; &#123;
+                  return fastestIndex; // 要继续将这个下标返回，以便下一次变量
+                &#125;
+              );
+            &#125;)
+            .catch(err =&gt; &#123;
+              console.error(err);
+            &#125;);
+        &#125;, Promise.resolve()) // 初始化传入
+        .then(() =&gt; &#123; // 最后三个用.all来调用
+          return Promise.all(promises);
+        &#125;);
+    &#125;
+    limitLoad(urls, loadImg, 3)
+      .then(res =&gt; &#123;
+        console.log(&quot;图片全部加载完毕&quot;);
+        console.log(res);
+      &#125;)
+      .catch(err =&gt; &#123;
+        console.error(err);
+      &#125;);</code></pre>
 <h2 id="后语"><a href="#后语" class="headerlink" title="后语"></a>后语</h2><p>参考文章：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/80950713">《ES6之Promise常见面试题》</a></li>
@@ -2808,13 +2820,13 @@ limitLoad(urls, loadImg, 3)
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">659k</span>
+    <span title="站点总字数">662k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9:59</span>
+    <span title="站点阅读时长">10:02</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动

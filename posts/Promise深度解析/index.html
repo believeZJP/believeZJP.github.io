@@ -23,12 +23,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"believezjp.oriht.com","root":"/","images":"/images","scheme":"Pisces","version":"8.1.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="这一章节就是整理了45道Promise的笔试题让大家爽一爽 😁。 这篇文章是一篇比较纯的Promise笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。 本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在Node的执行结果，执行结果全为浏览器环境下。 OK👌， 来看看通过阅读本篇文章你可以学到：">
+<meta name="description" content="来看一个使用 await 的例子： 12345678let a &#x3D; 0let b &#x3D; async () &#x3D;&gt; &amp;#123; a &#x3D; a + await 10 console.log(&amp;#x27;2&amp;#x27;, a) &#x2F;&#x2F; -&gt; &amp;#x27;2&amp;#x27; 10&amp;#125;b()a++console.log(&amp;#x27;1&amp;#x27;, a) &#x2F;&#x2F; -&gt; &amp;#x27;1&amp;#x27">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise深度解析">
 <meta property="og:url" content="http://believezjp.oriht.com/posts/Promise%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="believeZJP">
-<meta property="og:description" content="这一章节就是整理了45道Promise的笔试题让大家爽一爽 😁。 这篇文章是一篇比较纯的Promise笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。 本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在Node的执行结果，执行结果全为浏览器环境下。 OK👌， 来看看通过阅读本篇文章你可以学到：">
+<meta property="og:description" content="来看一个使用 await 的例子： 12345678let a &#x3D; 0let b &#x3D; async () &#x3D;&gt; &amp;#123; a &#x3D; a + await 10 console.log(&amp;#x27;2&amp;#x27;, a) &#x2F;&#x2F; -&gt; &amp;#x27;2&amp;#x27; 10&amp;#125;b()a++console.log(&amp;#x27;1&amp;#x27;, a) &#x2F;&#x2F; -&gt; &amp;#x27;1&amp;#x27">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2020/2/28/1708baaf2b1e9075?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="article:published_time" content="2020-06-19T06:48:30.000Z">
@@ -301,7 +301,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>这一章节就是整理了<code>45</code>道<code>Promise</code>的笔试题让大家爽一爽 😁。</p>
+        <p>来看一个使用 await 的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line"> a = a + <span class="keyword">await</span> <span class="number">10</span></span><br><span class="line"> <span class="built_in">console</span>.log(<span class="string">&#x27;2&#x27;</span>, a) <span class="comment">// -&gt; &#x27;2&#x27; 10</span></span><br><span class="line">&#125;</span><br><span class="line">b()</span><br><span class="line">a++</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;1&#x27;</span>, a) <span class="comment">// -&gt; &#x27;1&#x27; 1</span></span><br></pre></td></tr></table></figure>
+
+<p>对于以上代码你可能会有疑惑，让我来解释下原因：</p>
+<p>首先函数 b 先执行，在执行到 await 10 之前变量 a 还是 0，因为 <strong>await 内部实现了 generator ，generator 会保留堆栈中东西，所以这时候 a = 0 被保存了下来；</strong><br>因为 <strong>await 是异步操作，后来的表达式不返回 Promise 的话，就会包装成 Promise.reslove(返回值)，然后会去执行函数外的同步代码；</strong><br>同步代码执行完毕后开始执行异步代码，将保存下来的值拿出来使用，这时候 a = 0 + 10。</p>
+<p>这一章节就是整理了<code>45</code>道<code>Promise</code>的笔试题让大家爽一爽 😁。</p>
 <p>这篇文章是一篇比较纯的<code>Promise</code>笔试文章，是我自己在做题的时候，根据题目想要的考点来反敲知识点，然后再由这个知识点编写从浅到深的的题目。</p>
 <p>本文的题目没有到特别深入，不过应该覆盖了大部分的考点，另外为了不把大家绕混，答案也没有考虑在<code>Node</code>的执行结果，执行结果全为浏览器环境下。</p>
 <p>OK👌， 来看看通过阅读本篇文章你可以学到：</p>
@@ -1892,47 +1897,46 @@ limitLoad(urls, loadImg, 3).then(res =&gt; &#123;
 <p>为了方便你查看，我截了个图，不过代码在后面也有</p>
 <p>(说真的，要我看这一大长串代码我也不愿意…)</p>
 <p>代码：</p>
-<pre><code>function limitLoad(urls, handler, limit) &#123;
-  let sequence = [].concat(urls); // 复制urls
-  // 这一步是为了初始化 promises 这个&quot;容器&quot;
-  let promises = sequence.splice(0, limit).map((url, index) =&gt; &#123;
-    return handler(url).then(() =&gt; &#123;
-      // 返回下标是为了知道数组中是哪一项最先完成
-      return index;
-    &#125;);
-  &#125;);
-  // 注意这里要将整个变量过程返回，这样得到的就是一个Promise，可以在外面链式调用
-  return sequence
-    .reduce((pCollect, url) =&gt; &#123;
-      return pCollect
-        .then(() =&gt; &#123;
-          return Promise.race(promises); // 返回已经完成的下标
-        &#125;)
-        .then(fastestIndex =&gt; &#123; // 获取到已经完成的下标
-         // 将&quot;容器&quot;内已经完成的那一项替换
-          promises[fastestIndex] = handler(url).then(
-            () =&gt; &#123;
-              return fastestIndex; // 要继续将这个下标返回，以便下一次变量
-            &#125;
-          );
-        &#125;)
-        .catch(err =&gt; &#123;
-          console.error(err);
+<pre><code class="js">    function limitLoad(urls, handler, limit) &#123;
+      let sequence = [].concat(urls); // 复制urls
+      // 这一步是为了初始化 promises 这个&quot;容器&quot;
+      let promises = sequence.splice(0, limit).map((url, index) =&gt; &#123;
+        return handler(url).then(() =&gt; &#123;
+          // 返回下标是为了知道数组中是哪一项最先完成
+          return index;
         &#125;);
-    &#125;, Promise.resolve()) // 初始化传入
-    .then(() =&gt; &#123; // 最后三个用.all来调用
-      return Promise.all(promises);
-    &#125;);
-&#125;
-limitLoad(urls, loadImg, 3)
-  .then(res =&gt; &#123;
-    console.log(&quot;图片全部加载完毕&quot;);
-    console.log(res);
-  &#125;)
-  .catch(err =&gt; &#123;
-    console.error(err);
-  &#125;);
-复制代码</code></pre>
+      &#125;);
+      // 注意这里要将整个变量过程返回，这样得到的就是一个Promise，可以在外面链式调用
+      return sequence
+        .reduce((pCollect, url) =&gt; &#123;
+          return pCollect
+            .then(() =&gt; &#123;
+              return Promise.race(promises); // 返回已经完成的下标
+            &#125;)
+            .then(fastestIndex =&gt; &#123; // 获取到已经完成的下标
+             // 将&quot;容器&quot;内已经完成的那一项替换
+              promises[fastestIndex] = handler(url).then(
+                () =&gt; &#123;
+                  return fastestIndex; // 要继续将这个下标返回，以便下一次变量
+                &#125;
+              );
+            &#125;)
+            .catch(err =&gt; &#123;
+              console.error(err);
+            &#125;);
+        &#125;, Promise.resolve()) // 初始化传入
+        .then(() =&gt; &#123; // 最后三个用.all来调用
+          return Promise.all(promises);
+        &#125;);
+    &#125;
+    limitLoad(urls, loadImg, 3)
+      .then(res =&gt; &#123;
+        console.log(&quot;图片全部加载完毕&quot;);
+        console.log(res);
+      &#125;)
+      .catch(err =&gt; &#123;
+        console.error(err);
+      &#125;);</code></pre>
 <h2 id="后语"><a href="#后语" class="headerlink" title="后语"></a>后语</h2><p>参考文章：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37719279/article/details/80950713">《ES6之Promise常见面试题》</a></li>
@@ -2036,13 +2040,13 @@ limitLoad(urls, loadImg, 3)
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">659k</span>
+    <span title="站点总字数">662k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9:59</span>
+    <span title="站点阅读时长">10:02</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动

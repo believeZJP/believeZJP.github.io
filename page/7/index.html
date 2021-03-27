@@ -359,7 +359,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.6k</span>
+      <span>5.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -378,7 +378,9 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>[TOC]</p>
-<h2 id="小程序开发经验积累"><a href="#小程序开发经验积累" class="headerlink" title="小程序开发经验积累"></a>小程序开发经验积累</h2><h2 id="小程序setData时，数据没更新"><a href="#小程序setData时，数据没更新" class="headerlink" title="小程序setData时，数据没更新"></a>小程序setData时，数据没更新</h2><p>由于小程序不支持将 data 中任何一项的 value 设为 undefined ，在 setState 的时候也请避免这么用。你可以使用 null 来替代。</p>
+<h2 id="小程序开发经验积累"><a href="#小程序开发经验积累" class="headerlink" title="小程序开发经验积累"></a>小程序开发经验积累</h2><h2 id="setData动态属性写法"><a href="#setData动态属性写法" class="headerlink" title="setData动态属性写法"></a>setData动态属性写法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.setData(&#123;</span><br><span class="line">    redis: a,</span><br><span class="line">    [<span class="string">`redis2[0]`</span>]: a</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="小程序setData时，数据没更新"><a href="#小程序setData时，数据没更新" class="headerlink" title="小程序setData时，数据没更新"></a>小程序setData时，数据没更新</h2><p>由于小程序不支持将 data 中任何一项的 value 设为 undefined ，在 setState 的时候也请避免这么用。你可以使用 null 来替代。</p>
 <p>setData有的值之前有值，重新set为undefined时，会导致页面不更新<br>解决办法<br>判断是undefined时，将值设为null</p>
 <p><code>key ? key : null</code></p>
           <!--noindex-->
@@ -738,14 +740,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>11k</span>
+      <span>12k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>10 分钟</span>
+      <span>11 分钟</span>
     </span>
 </div>
 
@@ -1270,13 +1272,13 @@ $('.hilight').hilight();
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">659k</span>
+    <span title="站点总字数">662k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9:59</span>
+    <span title="站点阅读时长">10:02</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
